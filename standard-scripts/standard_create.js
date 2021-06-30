@@ -49,7 +49,8 @@
  *
  *	2015-12-02 : SRY : Suppression de la zone 301 (variable contPeriodique)
  *	2017-01-31 : SRY : Ajout zones 200 $e, 225 $x, 300$a,339 $a $d, 712 02$a@ et suppression de la zone 310 (variable contElectronique)
-  *	2017-03-16 : SRY : // 20170316 : modification RDA FR 2017
+ *	2017-03-16 : SRY : // 20170316 : modification RDA FR 2017
+ *	2020-01-07 : SRY : // 20170316 : Evolution du format : transformation zone 219 en 214, transformation zone 7X2 en 7X1,  plus quelques ajustements
  **************************************************************************************************	
  */
 
@@ -59,12 +60,12 @@ const contAtlas =	"008 $aKax\n" +
 						"010 ##$A\n"  +
 						"181 ##$P01$ccri\n" +
 						"182 ##$P01$cn   \n" +
-						"183 ##$P01$a\n"  +
+						"183 ##$P01$anga\n"  +
 						"200 1#$a@ $f $g \n" +
 						"205 ##$a\n"  +
 						"206 ##$a\n"  +
+						"214 #[INDICATEUR]$a $b $c $d \n"  +
 						"215 ##$a $c $d \n"  +
-						"219 #[INDICATEUR]$a $b $c $d \n"  +
 						"225  #$a@ $v\n"  +
 						"300 ##$a\n"  +
 						"305 ##$a\n"  +
@@ -83,23 +84,24 @@ const typeAudiovisuel =	"Ba";
 const contAudiovisuel =	"008 $aBax\n" +
 						"181 ##$P01$ctdi\n" +
 						"182 ##$P01$cv\n" +
-						"183 ##$P01$a\n"  +
+						"183 ##$P01$av..\n"  +
 						"071 01$a\n"  +
 						"073 #0$a\n"  +
 						"200 1#$a@  $f $g \n" +
 						"205 ##$a\n"  +
+						"214 #[INDICATEUR]$a $b $c $d \n"  +
 						"215 ##$a $c \n"  +
-						"219 #[INDICATEUR]$a $b $c $d \n"  +
 						"225  #$a@ $v\n"  +
 						"300 ##$a\n"  +
 						"320 ##$a\n"  +
 						"306 ##$a\n"  +
 						"410 ##$t@ $v\n"  +
-						"600 #1$a $x $3035108444$2rameau\n"  +
-						"606 ##$a$x $3035108444$2rameau\n"  +
-						"607 ##$a$x $3035108444$2rameau\n"  +
+						"600 #1$a $x\n"  +
+						"606 ##$a$x $2rameau\n"  +
+						"607 ##$a$x $2rameau\n"  +
+						"608 ##$3035108444$2rameau\n"  +
 						"700 #1$a $b $4300 \n" +
-						"702 #1$a $b $4 \n"+
+						"701 #1$a $b $4 \n"+
 						"702 #1$a $b $4"
 						;
 
@@ -109,10 +111,10 @@ const typeElectronique =	"Oa";
 const contElectronique =	"008 $aOax\n" +
 						"181 ##$P01$ctxt\n" +
 						"182 ##$P01$cc\n" +
-						"183 ##$P01$a\n"  +
+						"183 ##$P01$aceb\n"  +
 						"010 ##$A\n"  +
 						"200 1#$a@ $e $f $g \n" +
-						"219 #[INDICATEUR]$a $b $c $d \n"  +
+						"214 #[INDICATEUR]$a $b $c $d \n"  +
 						"225  #$a@ $x $v\n"  +
 						"230 ##$a\n"  +
 						"300 ##$a\n"  +
@@ -127,19 +129,19 @@ const contElectronique =	"008 $aOax\n" +
 						"606 ##$a $x $2rameau\n"  +
 						"607 ##$a $x $2rameau\n"  +
 						"700 #1$a $b $4070\n" +
-						"712 02$a@ $4\n"  +
+						"711 02$a@ $4\n"  +
 						"856 4#$q $u"
 						;
 const typeMonograph =	"Aa";
 const contMonograph =	"008 $aAax\n" +
 						"181 ##$P01$ctxt\n" +
-						"182 ##$P01$c \n" +
-						"183 ##$P01$a\n"  +
+						"182 ##$P01$cn \n" +
+						"183 ##$P01$anga\n"  +
 						"010 ##$A\n"  +
 						"200 1#$a@ $f $g \n" +
 						"205 ##$a\n"  +
+						"214 #[INDICATEUR]$a $b $c $d \n"  +
 						"215 ##$a $c $d \n"  +
-						"219 #[INDICATEUR]$a $b $c $d \n"  +
 						"225  #$a@ $v\n"  +
 						"320 ##$a\n"  +
 						"410 ##$t@ $v\n"  +
@@ -147,7 +149,7 @@ const contMonograph =	"008 $aAax\n" +
 						"606 ##$a $x $2rameau\n"  +
 						"607 ##$a $x $2rameau\n"  +
 						"700 #1$a $b $4070\n"  +
-						"702 #1$a $b$4";
+						"701 #1$a $b$4";
 
 
 const typeMultimedia =	"Za";
@@ -155,13 +157,16 @@ const contMultimedia =	"008 $aZax\n" +
 						"181 ##$P01$c \n" +
 						"182 ##$P01$c \n" +
 						"183 ##$P01$a\n"  +
+						"181 ##$P02$c \n" +
+						"182 ##$P02$c \n" +
+						"183 ##$P02$a\n"  +
 						"010 ##$A\n"  +
 						"073 #0$a\n"  +
 						"200 1#$a@ $f $g \n" +
 						"205 ##$a\n"  +
+						"214 #[INDICATEUR]$a $b $c $d \n"  +
 						"215 ##$a $c $d \n"  +
 						"215 ##$a $c $d \n"  +
-						"219 #[INDICATEUR]$a $b $c $d \n"  +
 						"225  #$a@ $v\n"  +
 						"320 ##$a\n"  +
 						"336 ##$a \n"  +
@@ -186,8 +191,8 @@ const contPartition =	"008 $aMax\n"	+
 						"200 1#$a@ $f $g \n"	+
 						"205 ##$a\n"	+
 						"208 ##$a\n"	+
+						"214 #[INDICATEUR]$a $b $c $d \n"  +
 						"215 ##$a $c $d \n"	+
-						"219 #[INDICATEUR]$a $b $c $d \n"  +
 						"225  #$a@ $v\n"	+
 						"410 ##$t@ $v\n"	+
 						"500 ##$a@\n"	+
@@ -197,11 +202,11 @@ const contPartition =	"008 $aMax\n"	+
 const typePeriodique	=	"Ab";
 const contPeriodique   =	"008 $aAbx\n"	+
 						"181 ##$P01$ctxt\n" +
-						"182 ##$P01$c\n" +
-						"183 ##$P01$a\n"  +
+						"182 ##$P01$cn\n" +
+						"183 ##$P01$an..\n"  +
 						"200 1#$a@ $f $g\n"	+
 						"207 #0$a\n"	+
-						"210 ##$a $c $d \n"	+
+						"214 #[INDICATEUR]$a $c $d \n"	+
 						"215 ##$a $c $d \n"	+
 						"326 ##$a\n"	+
 						"421 ##$t@\n"	+
@@ -225,8 +230,8 @@ const contSonore	=	"008 $aNax\n"	+
 						"071 0#$a\n"	+
 						"200 1#$a@ $bEnregistrement sonore $f $g\n"	+
 						"205 ##$a\n"	+
+						"214 #[INDICATEUR]$a $b $c $d \n"  +
 						"215 ##$a\n"	+
-						"219 #[INDICATEUR]$a $b $c $d \n"  +
 						"225  #$a@ $v\n"	+
 						"300 ##$a\n"	+
 						"305 ##$a\n"	+
