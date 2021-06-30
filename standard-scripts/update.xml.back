@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<WinIBW3UpdateService>
+  <update date="20080919">
+    <file source="ControleSyntaxe60X.xul" destination="chrome\ibw\content\xul\ControleSyntaxe60X.xul" />
+   </update>
+</WinIBW3UpdateService>
