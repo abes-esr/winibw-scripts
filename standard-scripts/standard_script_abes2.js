@@ -13,6 +13,8 @@
 // 2017-03-16 : SRY : modification RDA FR 2017 sur tous les scripts TRANSFO//
 // 2017-06-01 : SRY : correction suite mise en place RDA FR 2017
 // 2018-01-04 : SRY : transfoMonoImpMonoElecEBook : ajout zone 183 et  suppression zone 579
+// 2020-01-01 par SRY : TransfoMonoElecEBookMonoImp : remplacer 219 par 214, si elle contient $4340, remplacer la zone 702 par une 701, modifier zone 210 et 452, ajouter paramètre vide à modifier181bis,modifier200bis, modifier200bisEBook,recupererPpnbis
+//                      CAT_transfoImpElec : transformer zones 219 en 214, modifier zones 210  si elle contient $4340 (ou $651 pour la 712), remplacer zone 7X2 par une 7X1
 // 
 
 function CAT_TransfoImpElec() 
@@ -49,7 +51,7 @@ function onCancel()
 }
 
 // 20170601 : correction suite mise en place RDA FR 2017
-function modifier181bis()
+function modifier181bis(tag)
 {
 	application.activeWindow.title.startOfBuffer (false);
 	var res = application.activeWindow.title.findTag ("181", 0, true, true, false);
@@ -64,7 +66,7 @@ function modifier181bis()
 	}
 }
 
-function modifier200bis()
+function modifier200bis(tag)
 {
     application.activeWindow.title.startOfBuffer(false);
    var res = application.activeWindow.title.findTag ("200", 0, true, true, false);
@@ -77,7 +79,7 @@ application.activeWindow.title.insertText (res.replace("$bTexte imprimé","") + "
 }
 
 // SRY le 25-01-2016
-function modifier200bisEBook()
+function modifier200bisEBook(tag)
 {
     application.activeWindow.title.startOfBuffer(false);
    var res = application.activeWindow.title.findTag ("200", 0, true, true, false);
@@ -108,7 +110,10 @@ function ajouterbis(zone)
 // 20170316 : modification RDA FR 2017
 function modifierNoticePatrim(ancienPpn)
 {
- 
+	var res = "";
+	var presence702 = presencesouszone("702","\\$4340","\\$z1a2b");
+	var presence712 = presencesouszone("712","\\$4340","\\$4651");
+	
     application.activeWindow.title.startOfBuffer(false);
    
     supprimerbis("000");
@@ -133,13 +138,22 @@ function modifierNoticePatrim(ancienPpn)
 	ajouterbis("181 ##$P01$ctxt");
 	ajouterbis("182 ##$P01$cc");
 	ajouterbis("183 ##$P01$aceb");
-    modifier200bis();
+    modifier200bis("");
 //	ajouterbis("205 ##$a[Reproduction en fac-similé]");
-    supprimerbis("210");
     supprimerbis("215");
 	supprimerbis("225");
-	supprimerRemplacer("219","219 #X$a[A compléter par la mention d’édition ou de diffusion]$c$d");
-    ajouterbis("230 ##$aDonnées textuelles (1 fichier : X vues)");
+     // traitement 210 : si 210, ajouter une 214
+	application.activeWindow.title.startOfBuffer(false);
+    res = application.activeWindow.title.findTag ("210", 0, true, true, false);
+	if (res != "")
+	{
+        supprimerRemplacer("210","214 #X [VERIFIER LES INDICATEURS] $a $c $d");
+	}
+	else 
+	{
+		supprimerRemplacer("214","214 #X$a[A compléter par la mention d'édition ou de diffusion]$c$d");
+	}
+	ajouterbis("230 ##$aDonnées textuelles (1 fichier : X vues)");
     ajouterbis("307 ##$aLa pagination de l'édition imprimée correspondante est de : X pages");
 	ajouterbis("303 ##$aNotice rédigée d'après la consultation, AAAA-MM-JJ");
     ajouterbis("304 ##$aTitre provenant de la page de titre du document numérisé");
@@ -150,14 +164,17 @@ function modifierNoticePatrim(ancienPpn)
 	supprimerbis("410");	
     ajouterbis("455 ##$0" + ancienPpn);
 	supprimerbis("579");
-    supprimerbis("801");
+	// traitement zone 702 (si $4340, alors 702 devient 701)
+	modifierRemplacerbis("702","702","701",presence702);
+	modifierRemplacerbis("712","712","711",presence712);
+	supprimerbis("801");
     supprimerbis("802");
     supprimerbis("830");
     ajouterbis("856 4#$qFormat$uURL$2Texte du lien$zAccès au texte intégral");
    
    
 }
-function recupererPpnbis()
+function recupererPpnbis(tag)
 {
     application.activeWindow.command("mod", false);
     //var zone003 = application.activeWindow.title.findTag ("003", 0, true, true, false);
@@ -173,7 +190,7 @@ function transfoMonoImpMonoElecPatrim()
     var bCodedData = application.activeWindow.codedData;
     application.activeWindow.codedData = false;
    
-    var ppn = recupererPpnbis();
+    var ppn = recupererPpnbis("");
     xpicaCopyRecord();
     modifierNoticePatrim(ppn);
    
@@ -197,7 +214,9 @@ function supprimerRemplacer(ancienneZone, nouvelleZone)
 // 20180104 : 
 function modifierNoticeEBook(ancienPpn)
 {
- 
+	var presence702 = presencesouszone("702","\\$4340","\\$z1a2b");
+	var presence712 = presencesouszone("712","\\$4340","\\$4651");
+	
     application.activeWindow.title.startOfBuffer (false);
    
     supprimerbis("000");
@@ -217,15 +236,15 @@ function modifierNoticeEBook(ancienPpn)
     supprimerbis("106");
 	supprimerbis("205");
     ajouterbis("135 ##$av$br$cm$e#$gm$ia$ja");
-	modifier200bis();
+	modifier200bis("");
     supprimerbis("210");
 	supprimerbis("215");
 	supprimerbis("225");
-	modifier181bis();
+	modifier181bis("");
 	supprimerRemplacer("182","182 ##$P01$cc");
 	supprimerRemplacer("183","183 ##$P01$aceb");
 	//on ajoute la $219 ou bien on la remplace si elle existe déjà
-	supprimerRemplacer("219","219 #0$aLieu de publication$cNom de l'éditeur$dDate de publication");
+	supprimerRemplacer("214","214 #0$aLieu de publication$cNom de l'éditeur$dDate de publication");
     ajouterbis("230 ##$aDonnées textuelles (1 fichier : X vues)");
     ajouterbis("307 ##$aLa pagination de l'édition imprimée correspondante est de : X pages");
 	ajouterbis("303 ##$aNotice rédigée d'après la consultation, AAAA-MM-JJ");
@@ -236,6 +255,9 @@ function modifierNoticeEBook(ancienPpn)
 	supprimerbis("410");
     ajouterbis("452 ##$0" + ancienPpn);
 	supprimerbis("579");
+	// traitement zone 702 (si $4340, alors 702 devient 701)
+	modifierRemplacerbis("702","702","701",presence702);
+	modifierRemplacerbis("712","712","711",presence712);
 	supprimerbis("801");
     supprimerbis("802");
     supprimerbis("830");
@@ -249,7 +271,10 @@ function modifierNoticeEBook(ancienPpn)
  // 20180104 : ajout zone 183 et suppression zone 579
 function modifierNoticeElecEBook(ancienPpn)
 {
- 
+	var res = "";
+	var presence702 = presencesouszone("702","\\$4340","\\$z1a2b");
+	var presence712 = presencesouszone("712","\\$4340","\\$4651");
+	
     application.activeWindow.title.startOfBuffer (false);
    
     supprimerbis("000");
@@ -272,9 +297,10 @@ function modifierNoticeElecEBook(ancienPpn)
 	supprimerRemplacer("182","182 ##$P01$cn");
 	supprimerRemplacer("183","183 ##$P01$anga");
 	supprimerbis("205");
-	modifier200bisEBook();
-	supprimerRemplacer("210","210 ##[A TRANSFORMER EN 219]$a$c$d");
+	modifier200bisEBook("");
+	supprimerRemplacer("210","210 ##[A TRANSFORMER EN 214]$a$c$d");
 	ajouterbis("215 ##$a[Type de présentation matérielle et importance matérielle]$c[Autres caractéristiques matérielles]$d[Dimensions]$eMatériel d'accompagnement");
+	// modifierRemplacer("219","219","214");
     supprimerRemplacer("225","225 2#$a[Titre de la collection]");
     supprimerbis("230");
     supprimerbis("303");
@@ -287,8 +313,11 @@ function modifierNoticeElecEBook(ancienPpn)
     supprimerbis("339");
 	supprimerRemplacer("410","410 ##$t@[Titre]");
 	ajouterbis("452 ##$0" + ancienPpn);
+	modifierRemplacer("452","$bTexte imprimé","");
 	supprimerbis("579");
-    supprimerbis("801");
+	// traitement zone 702 (si $4340, alors 702 devient 701)
+	modifierRemplacerbis("702","702","701",presence702);
+	supprimerbis("801");
     supprimerbis("802");
     supprimerbis("856");
     supprimerbis("859");
@@ -301,7 +330,7 @@ function transfoMonoImpMonoElecEBook()
 	  var bCodedData = application.activeWindow.codedData;
     application.activeWindow.codedData = false;
    
-    var ppn = recupererPpnbis();
+    var ppn = recupererPpnbis("");
     xpicaCopyRecord();
     modifierNoticeEBook(ppn);
    
@@ -318,7 +347,7 @@ function transfoMonoImpMonoElecEBook()
 	var bCodedData = application.activeWindow.codedData;
     application.activeWindow.codedData = false;
    
-    var ppn = recupererPpnbis();
+    var ppn = recupererPpnbis("");
     xpicaCopyRecord();
     modifierNoticeElecEBook(ppn);
 
@@ -356,4 +385,91 @@ function xpicaCopyRecord() {
 		}
 		application.activeWindow.title.endOfBuffer(false);
 	}
+}
+
+function modifierRemplacerbis(zone,ancientexte,nouveautexte,presenceszone)
+{
+	var tabres = new Array;
+	var i =0;
+	var res = "" ; 
+	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+                        .getService(Components.interfaces.nsIPromptService);
+	
+	do
+	{
+		application.activeWindow.title.startOfBuffer (false);	
+		res = application.activeWindow.title.findTag (zone, 0, true, true, false);
+		if (res != "")
+        {
+			if (zone == ancientexte) {
+				if (zone == "702" || zone == "712")
+				{
+					if (res.search("\\$4340") != -1 )
+					{
+						// prompts.alert(null,"7[0|1]2 : ","avec $4340");
+						tabres[i] = nouveautexte + res.substring(3) + "\n"; 
+					}
+					else {
+						if (res.search("\\$4651") != -1 && zone == "712")
+						{
+							// 	prompts.alert(null,"712 : ","avec $4651");
+							tabres[i] = nouveautexte + res.substring(3) + "\n"; 
+						}
+						else {
+							// prompts.alert(null,"7[0|1]2 : ","sans $4340");
+							if (zone == "702" && presenceszone == 1) {
+								tabres[i] = nouveautexte + res.substring(3) + "\n";
+							}
+							else {
+								if (zone == "712" && presenceszone ==1) {
+									tabres[i] = nouveautexte + res.substring(3) + "\n";
+								}
+								else {
+									tabres[i] = zone + res.substring(3) + "\n";
+								}
+							}
+						}
+					}
+				}		
+				else {
+					// prompts.alert(null,"pas 7[0|1]2 : ",zone);
+					tabres[i] = nouveautexte + res.substring(3) + "\n"; 
+				}
+			}
+			else {	
+				// prompts.alert(null,"Autre : ",zone);
+				tabres[i] = res.replace(ancientexte,nouveautexte) + "\n"; 
+			}	
+			application.activeWindow.title.deleteLine(1);
+			i++;
+		}	
+	}	while (res != "")
+		
+	for (i=0;i<tabres.length;i++)
+    {
+        application.activeWindow.title.endOfBuffer (false);
+        application.activeWindow.title.insertText (tabres[i]);
+    }	
+}
+
+function presencesouszone(zone,souszone1,souszone2)
+{
+	var result = 0;
+	var n = 0 ;
+	var res = "" ; 
+	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+                        .getService(Components.interfaces.nsIPromptService);
+	
+	for (n=0; n<30; n+=1)
+	{
+		application.activeWindow.title.startOfBuffer (false);	
+		res = application.activeWindow.title.findTag (zone, n, true, true, false);
+		if (res != "" ) {
+			if (res.search(souszone1) != -1 || res.search(souszone2) != -1) {
+				// prompts.alert(null,"702 : ","avec $4340");
+				result = 1; 
+			}
+		}	
+	}
+return result;	
 }

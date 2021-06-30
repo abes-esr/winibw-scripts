@@ -18,7 +18,16 @@
 // 				Nouvelles consignes RDA FR 2017 (zones 183, 210, 219, 215
 // mis à jour le 2018-01-03 par SRY : création de 2 scripts :
 // 				CAT_creerEchantillonAccompagne et CAT_creerObjet
-//
+// mis à jour le 2018-05-31 par SRY : création de script :
+// 				CAT_creerArticleImp
+//				modification du vocabulaire (vedette matière transformé en point d'accès)
+// mis à jour le 2020-01-01 par SRY : modification pour évolutions Unimarc 
+//				* création de script : CAT_creerPropositionFormeGenre - Ce script permet de créer une proposition rameau Forme/Genre Tf3
+//				* Modificication des scripts suivants comme suit :
+//				* remplacer 219 par 214 - suppression $x 600, 606 et 607 - ajout 608$a et $2 - modification libellé 700, 702, 710, 711 et 712
+//				CAT_creerMonoIMP, CAT_creerElectronique, CAT_creerAudiovisuel, CAT_creerMultimedia, CAT_creerAtlas, CAT_creerPartition, CAT_creerMusique, CAT_creerSonore, CAT_creerEchantillonAccompagne, CAT_creerObjet, CAT_creerPeriodique, CAT_creerPeriodElectr, CAT_creerCollection, CAT_creerTheseImprimeOriginelle, CAT_creerTheseElectroniqueReproduction, CAT_creerTheseImprimeReproduction, CAT_creerTheseImprimeEditionCommerciale, CAT_creerArticleImp
+//				
+
 
 function CAT_ajout301()
 {
@@ -67,11 +76,13 @@ function CAT_ajoutFMeSH()
 	// permet d'ajouter un $2rameau
 	application.activeWindow.title.insertText ("$2fmesh");
 }
-
 function CAT_ajoutTexteImprime()
 {
 	// permet d'ajouter 181 et 182 ok
-	application.activeWindow.title.insertText ("181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn"+ "\n" +"183 ##$P01$anga");
+	 application.activeWindow.title.insertText ("181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn"+ "\n" +"183 ##$P01$anga");
+	// var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
+    //      .getService(Components.interfaces.IApplication);
+	// application.messageBox("Script inconnu ", "Ce script a été désactivé le 01/01/2020", "alert-icon");
 }
 function CAT_ajoutRessourcElec()
 {
@@ -121,7 +132,7 @@ function CAT_ajoutMusiqueImprimee()
 function CAT_ajoutMusiqueBraille()
 {
 	// permet d'ajouter 181 Musique en braille
-	application.activeWindow.title.insertText ("181 ##$P01$ctcm"+ "\n" +"182 ##$P01$cn");
+	 application.activeWindow.title.insertText ("181 ##$P01$ctcm"+ "\n" +"182 ##$P01$cn");
 }
 function CAT_ajoutObjet()
 {
@@ -140,6 +151,7 @@ function CAT_dedoublonnageDED ()
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerAtlas()
 {
 	//Ce script permet de créer une notice d'atlas ou de carte Ka
@@ -155,21 +167,23 @@ function CAT_creerAtlas()
 	"200 01#$a@Titre$eComplément de Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" +
 	"205 ##$aEdition" + "\n" +
 	"206 ##$aEchelle" + "\n" +
+	"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 	"215 ##$aImportance matérielle$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" +
-	"219 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 	"304 ##$aNote sur le titre" + "\n" +
 	"305 ##$aNote sur l'édition" + "\n" +
 	"315 ##$aEchelle de Cartes" + "\n" +
 	"510 ##$a@Titre parallèle" + "\n" +
 	"517 ##$a@Variante du Titre" + "\n" +
-	"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$xForme$2rameau" + "\n" +
+	"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" +
 	"607 ##$aGéographique$2rameau" + "\n" +
-	"700 #1$aMention de responsabilité principale$bPrénom$4180"
+	"608 ##$3027497259$2rameau" + "\n" +
+	"700 #1$aNom Auteur relatif à l'oeuvre ou à l'expression$bPrénom$4180"
 	);
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerCollection()
 {
 	//Ce script permet de créer une notice de collection imprimée Ad 
@@ -182,19 +196,19 @@ function CAT_creerCollection()
 	"200 1#$a@Titre propre$eComplément du Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" + 
 	"181 ##$P01$ctxt" + "\n" +"182 ##$P01$cn"+ "\n" + 
 	"183 ##$P01$anga" + "\n" +
-	"210 ##$aLieu d'édition$cEditeur$dDate" + "\n" + 
+	"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" + 
 	"215 ##$aImportance matérielle$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" + 
 	"301 ##$ax volumes dans le Sudoc : pas de demande de numérotation ISSN (Attention, à partir de 5 notices appartenant à la collection, demande de numérotation ISSN à faire via l'application Cidemis) " + "\n" + 
 	"326 ##$aCollection" + "\n" + 
 	"510 ##$a@Titre parallèle" + "\n" + 
 	"512 ##$a@Titre de couverture" + "\n" + 
 	"517 ##$a@Autres variantes du titre" + "\n" + 
-	"600 # $aPersonne$xSubdivision de sujet$zChronologique$xForme$2rameau" + "\n" + 
-	"606 ##$aSujet$xForme$yGéographique$zChronologique$2rameau" + "\n" + 
-	"702 #1$aAuteur secondaire$4651"+ "\n" + 
-	"710 02$a@Nom Collectivité Auteur principal$4070" + "\n" + 
-	"711 02$a@Nom Collectivité Co-Auteur principal$4070" + "\n" + 
-	"712 02$a@Nom Collectivité Auteur secondaire$4Code de Fonction"
+	"606 ##$aSujet$yGéographique$zChronologique$2rameau" + "\n" + 
+	"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
+	"701 #1$aNom co-Auteur relatif à l'oeuvre ou à l'expression$4651"+ "\n" + 
+	"710 02$a@Nom Collectivité Auteur relatif à l'oeuvre ou à l'expression$4070" + "\n" + 
+	"711 02$a@Nom Collectivité co-Auteur relatif à l'oeuvre ou à l'expression$4070" + "\n" + 
+	"712 02$a@Nom Collecteur Auteur relatif à la manifestation ou à l'item$4Code de Fonction"
 	);
 	application.activeWindow.codedData = true;
 }
@@ -207,16 +221,17 @@ function CAT_creerCollectivite()
 	"008 $aTb5" + "\n" + 
 	"106 ##$a0$b1$c0" + "\n" + 
 	"150 ##$aType de collectivité officielle (11 codes possibles, voir le GM)$bCode de congrès ou de conférence (valeur 0 ou 1)" + "\n" +
-	"210   $90y$aNom de la collectivité$bsous-vedette facultative$clocalisation facultative" + "\n" + 
+	"210   $90y$a@Nom de la collectivité$bnom de la collectivité subordonnée facultative$clocalisation facultative" + "\n" + 
 	"340 ##$aNote biographique (informations à justifier par des sources mentionnées en zone 810)" + "\n" + 
-	"410   $9#y$aNom de la collectivité$bsous-vedette facultative$clocalisation facultative" + "\n" + 
-	"810 ##$aOBLIGATOIRERéférence du document pour lequel est créée la présente autorité Titre / Auteur, date" + "\n" + 
+	"410   $9#y$a@Nom de la collectivité$bnom de la collectivité subordonnée facultative$clocalisation facultative" + "\n" + 
+	"810 ##$aOBLIGATOIRE Référence du document pour lequel est créée la présente autorité Titre / Auteur, date" + "\n" + 
 	"810 ##$aDocument(s) de référence permettant d'établir les variantes éventuelles du nom 210 + 410, les informations biographiques 340, etc.$bCiter ici les informations trouvée dans la source Zone 810 répétable pour chaque source"
 	);
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerElectronique()
 {
 	//Ce script permet de créer une notice de monographie électronique Oa
@@ -229,7 +244,7 @@ function CAT_creerElectronique()
 	"182 ##$P01$cc" + "\n" + 
 	"183 ##$P01$aceb" + "\n" +
 	"200 1#$a@Titre$eComplément du Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" + 
-	"219 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+	"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 	"225  #$a@Titre de la Collection$xISSN$vNuméro" + "\n" + 
 	"230 ##$aDonnées textuelles" + "\n" + 
 	"300 ##$aNote générale" + "\n" + 
@@ -241,11 +256,12 @@ function CAT_creerElectronique()
 	"337 ##$aUn logiciel capable de lire un fichier au format XXX" + "\n" + 
 	"339 ##$aFormat de la ressource$ddate de publication" + "\n" + 
 	"410 ##$t@Lien au titre de la Collection$vNuméro" + "\n" + 
-	"600 # $aPersonne$xSubdivision de sujet$zChronologique$xForme$2rameau" + "\n" + 
-	"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$xForme$2rameau" + "\n" + 
-	"607 ##$aNom géographique$xSubdivision de sujet$yGéographique$zChronologique$xForme$2rameau" + "\n" + 
-	"700 #1$aNom auteur principal$bPrénom$4070"  + "\n" + 
-	"712 02$a@Nom Collectivité Auteur secondaire$4Code de Fonction"  + "\n" + 
+	"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
+	"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" + 
+	"607 ##$aNom géographique$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" + 
+	"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" + 
+	"700 #1$aNom Auteur relatif à l'oeuvre ou à l'expression$bPrénom$4070"  + "\n" + 
+	"712 02$a@Nom Collectivité auteur relatif à la manifestation ou à l'item$4Code de Fonction"  + "\n" + 
 	"856 4#$qFormat du fichier$uURL"
 	);
 	application.activeWindow.codedData = true;
@@ -287,6 +303,7 @@ application.activeWindow.title.insertText(
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerMonoIMP ()
 { // Ce script permet de créer une notice de monographie imprimée Aa
 application.activeWindow.codedData = false;
@@ -295,27 +312,30 @@ application.activeWindow.title.insertText(
 "008 $aAax3" + "\n" + 
 "010 ##$AISBN" + "\n" + 
 "073 #0$aNuméro EAN" + "\n" +
-"181 ##$P01$ctxt tct"+ "\n" +"182 ##$P01$cn" + "\n" + 
+"181 ##$P01$ctxt ou tct"+ "\n" +
+"182 ##$P01$cn" + "\n" + 
 "183 ##$P01$anga" + "\n" +
 "200 1#$a@Titre$eComplément du Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" + 
 "205 ##$aEdition" + "\n" + 
+"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 "215 ##$aNombre de vol. (nbr. de p. ou f.)$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" + 
-"219 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 "225  #$a@Titre de la Collection$xISSN$vNuméro" + "\n" + 
 "300 ##$aNote générale" + "\n" + 
 "305 ##$aNote sur l'édition" + "\n" + 
 "320 ##$aNote sur les Bibliographies et Index" + "\n" + 
 "410 ##$t@Lien au titre de la Collection$vNuméro" + "\n" + 
-"600 # $aPersonne$xSubdivision de sujet$zChronologique$xForme$2rameau" + "\n" + 
-"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$xForme$2rameau" + "\n" + 
-"700 #1$aNom Auteur principal$bPrénom$4070" + "\n" + 
+"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
+"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" + 
+"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
+"700 #1$aNom Auteur relatif à l'oeuvre ou à l'expression$bPrénom$4070" + "\n" + 
 "701 #1$aNom Co-auteur$bPrénom$4070" + "\n" + 
-"702 #1$aNom Auteur secondaire$bPrénom$4Code de Fonction" + "\n" + 
-"712 02$a@Nom Collectivité Auteur secondaire$4Code de Fonction");
+"702 #1$aNom Auteur relatif à la manifestation ou à l'item$bPrénom$4Code de Fonction" + "\n" + 
+"712 02$a@Nom Collectivité auteur relatif à la manifestation ou à l'item$4Code de Fonction");
 application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerMultimedia ()
 { // Ce script permet de créer une notice de document multimedia Za
 application.activeWindow.codedData = false;
@@ -330,11 +350,11 @@ application.activeWindow.title.insertText(
 "181 ##$P02$cCode du type de contenu"  + "\n" + 
 "182 ##$P02$cCode du type de médiation"  + "\n" + 
 "183 ##$P02$aCode du type de support matériel" + "\n" +
-"200 1#$a@ Titre$eComplément du Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" + 
+"200 1#$a@Titre$eComplément du Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" + 
 "205 ##$aEdition" + "\n" +  
+"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" + 
 "215 ##$aImportance matérielle$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" + 
 "215 ##$aImportance matérielle$cMention d'ill.$dFormat$eMatériel d'accompagnement(2ème support).." + "\n" +
-"219 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" + 
 "225  #$a@Titre de la Collection$xISSN$vNuméro" + "\n" + 
 "300 ##$aNote générale" + "\n" + 
 "305 ##$aNote sur l'édition" + "\n" + 
@@ -343,11 +363,12 @@ application.activeWindow.title.insertText(
 "336 ##$aNote sur le type de fichier informatique" + "\n" + 
 "337 ##$aNote sur les détails techniques (fichiers informatiques)" + "\n" + 
 "410 ##$t@Lien au titre de la Collection$vNuméro" + "\n" + 
-"600 # $aPersonne$xSubdivision de sujet$zChronologique$xForme$2rameau" + "\n" + 
-"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$xForme$2rameau" + "\n" + 
-"700 #1$aNom Auteur principal$bPrénom$4070" + "\n" + 
+"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
+"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" + 
+"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
+"700 #1$aNom Auteur relatif à l'oeuvre ou à l'expression$bPrénom$4070" + "\n" + 
 "701 #1$aNom Co-auteur$bPrénom$4070" + "\n" + 
-"702 #1$aNom Auteur secondaire$bPrénom$4Code de Fonction");
+"702 #1$aNom Auteur relatif à la manifestation ou à l'item$bPrénom$4Code de Fonction");
 application.activeWindow.codedData = true;
 }
 
@@ -383,7 +404,7 @@ application.activeWindow.title.insertText(
 "R510 $aFermetures" + "\n" + 
 "R520 $aConditions d'accès" + "\n" + 
 "R530 $aNotes particulières sur l'accès" + "\n" + 
-"R610 $aCode Dewey$bVedette-matiére Rameau" + "\n" + 
+"R610 $aCode Dewey$bPoint d'accès autorisé - nom commun Rameau" + "\n" + 
 "R620 $aDescription de la collection" + "\n" + 
 "R800 $aAccès à des Bases de données [Oui/Non]$bNom des BDD$cConditions d'utilisation" + "\n" + 
 "R810 $aRenseignement Bibliographiques Par téléphone [Oui/Non]$bpar Courrier [Oui/Non]$cpar Fax [Oui/Non]$dpar Messagerie [Oui/Non]$eConditions" + "\n" + 
@@ -409,6 +430,7 @@ application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerPartition ()
 { // Ce script permet de créer une notice de partition Ma
 application.activeWindow.codedData = false;
@@ -423,22 +445,24 @@ application.activeWindow.title.insertText(
 "200 1#$a@Titre$eComplément du Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" + 
 "205 ##$aEdition" + "\n" + 
 "208 ##$aMention spécifique de musique imprimée (Format)$dMention spécifique parallèle de musique imprimée" + "\n" + 
+"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 "215 ##$aImportance matérielle$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" + 
-"219 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 "225  #$a@Titre de la Collection$xISSN$vNuméro" + "\n" + 
 "300 ##$aNote générale" + "\n" + 
 "305 ##$aNote sur l'édition" + "\n" + 
 "320 ##$aNote sur les Bibliographies et Index" + "\n" + 
 "410 ##$t@Lien au titre de la Collection$vNuméro" + "\n" + 
-"600 # $aPersonne$xSubdivision de sujet$zChronologique$xForme$2rameau" + "\n" + 
-"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$xForme$2rameau" + "\n" + 
-"700 #1$aNom Auteur principal$bPrénom$4230" + "\n" + 
+"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
+"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" + 
+"608 ##$3027244601$2rameau" + "\n" +
+"700 #1$aNom Auteur relatif à l'oeuvre ou à l'expression$bPrénom$4230" + "\n" + 
 "701 #1$aNom Co-auteur$bPrénom$4230" + "\n" + 
-"702 #1$aNom Auteur secondaire$bPrénom$4Code de Fonction");
+"702 #1$aNom Auteur relatif à la manifestation ou à l'item$bPrénom$4Code de Fonction");
 application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerPeriodique ()
 { // Ce script permet de créer une notice de périodique imprimé Ab
 application.activeWindow.codedData = false;
@@ -449,7 +473,7 @@ application.activeWindow.title.insertText(
 "183 ##$P01$anga" + "\n" +
 "200 1#$a@Titre propre$eComplément du Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" + 
 "207 #0$aNumérotation : indication de date et de volume" + "\n" + 
-"210 ##$aLieu d'édition$cEditeur$dDate" + "\n" + 
+"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" + 
 "215 ##$aImportance matérielle$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" + 
 "326 ##$aPériodicité$bDates" + "\n" + 
 "421 ##$t@Titre Supplément" + "\n" + 
@@ -459,14 +483,16 @@ application.activeWindow.title.insertText(
 "451 ##$t@Titre Autre édition sur le même support" + "\n" + 
 "452 ##$t@Titre Autre édition sur un autre support" + "\n" + 
 "517 ##$a@Autres variantes du titre" + "\n" + 
-"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$xForme$2rameau" + "\n" + 
-"710 02$a@Nom Collectivité Auteur principal$4070" + "\n" + 
-"711 02$a@Nom Collectivité Co-Auteur principal$4070" + "\n" + 
-"712 02$a@Nom Collectivité Auteur secondaire$4Code de Fonction");
+"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" + 
+"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
+"710 02$a@Nom Collectivité Auteur relatif à l'oeuvre ou à l'expression$4070" + "\n" + 
+"711 02$a@Nom Collectivité co-Auteur relatif à l'oeuvre ou à l'expression$4070" + "\n" + 
+"712 02$a@Nom Collecteur Auteur relatif à la manifestation ou à l'item$4Code de Fonction");
 application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerPeriodElectr ()
 { // Ce script permet de créer une notice de périodique électronique Ob
 application.activeWindow.codedData = false;
@@ -478,8 +504,7 @@ application.activeWindow.title.insertText(
 "183 ##$P01$aceb" + "\n" +
 "200 1#$a@Titre propre$eComplément du Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" + 
 "207 #0$aNumérotation : indication de date et de volume" + "\n" + 
-"210 ##$aLieu d'édition$cEditeur$dDate" + "\n" + 
-"215 ##$aImportance matérielle$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" + 
+"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" + 
 "230 ##$aDonnées textuelles" + "\n" + 
 "326 ##$aPériodicité$bDates" + "\n" + 
 "336 ##$a" + "\n" + 
@@ -491,10 +516,11 @@ application.activeWindow.title.insertText(
 "451 ##$t@Titre Autre édition sur le même support" + "\n" + 
 "452 ##$t@Titre Autre édition sur un autre support" + "\n" + 
 "517 ##$a@Autres variantes du titre" + "\n" + 
-"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$xForme$2rameau" + "\n" + 
-"710 02$a@Nom Collectivité Auteur principal$4070" + "\n" + 
-"711 02$a@Nom Collectivité Co-Auteur principal$4070" + "\n" + 
-"712 02$a@Nom Collectivité Auteur secondaire$4Code de Fonction" + "\n" + 
+"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" + 
+"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
+"710 02$a@Nom Collectivité Auteur relatif à l'oeuvre ou à l'expression$4070" + "\n" + 
+"711 02$a@Nom Collectivité co-Auteur relatif à l'oeuvre ou à l'expression$4070" + "\n" + 
+"712 02$a@Nom Collecteur Auteur relatif à la manifestation ou à l'item$4Code de Fonction" + "\n" + 
 "856 4#$qFormat$uAdresse URL (si l'accès est réservé, créer une E856)");
 application.activeWindow.codedData = true;
 }
@@ -510,7 +536,7 @@ application.activeWindow.title.insertText(
 "200 # $90y$aNom de famille$bPrénom$fannées d'existence AAAA-AAAA" + "\n" + 
 "340 ##$aNote biographique (informations à justifier par des sources mentionnées en zone 810)" + "\n" + 
 "400 # $9#y$aNom de famille$bPrénom = Renvoi(s) facultatif(s)" + "\n" + 
-"810 ##$aOBLIGATOIRERéférence du document pour lequel est créée la présente autorité Titre / Auteur, date" + "\n" + 
+"810 ##$aOBLIGATOIRE Référence du document pour lequel est créée la présente autorité Titre / Auteur, date" + "\n" + 
 "810 ##$aDocument(s) de référence permettant d'établir les variantes éventuelles du nom 200 + 400, les informations biographiques 340, etc.$bCiter ici les informations trouvée dans la source Zone 810 répétable pour chaque source");
 application.activeWindow.codedData = true;
 }
@@ -521,15 +547,16 @@ application.activeWindow.codedData = false;
 application.activeWindow.command("cre e", false);
 application.activeWindow.title.insertText(
 "008 $aTd3" + "\n" + 
-"250 ##$8frefre$9#y$aNouvelle vedette Rameau proposée" + "\n" + 
-"450 ##$8frefre$9#y$aForme rejetée 1" + "\n" + 
-"450 ##$8frefre$9#y$aForme rejetée 2" + "\n" + 
-"810 ##$aOBLIGATOIRERéférence du document pour lequel est proposée la nouvelle vedette Titre / Auteur, date" + "\n" + 
-"810 ##$aDocument de référence permettant de justifier, définir, ... le concept proposé en vedette Titre / Auteur, date");
+"250 ##$8frefre$9#y$aNouveau Point d'accès autorisé - nom commun Rameau proposé" + "\n" + 
+"450 ##$8frefre$9#y$aVariante de point d'accès 1" + "\n" + 
+"450 ##$8frefre$9#y$aVariante de point d'accès 2" + "\n" + 
+"810 ##$aOBLIGATOIRE Référence du document pour lequel est proposé le nouveau Point d'accès Titre / Auteur, date" + "\n" + 
+"810 ##$aDocument de référence permettant de justifier, définir, ... le concept proposé en Point d'accès Titre / Auteur, date");
 application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerMusique ()
 { // Ce script permet de créer une notice de document sonore musical Ga
 application.activeWindow.codedData = false;
@@ -542,8 +569,8 @@ application.activeWindow.title.insertText(
 "183 ##$P01$aCode du type de support matériel" + "\n" +
 "200 1#$a@Titre$eComplément du Titre$fCompositeur principal$gAutres (compositeurs, interprètes, instrumentistes...)" + "\n" + 
 "205 ##$aEdition" + "\n" + 
+"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 "215 ##$aImportance matérielle$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" + 
-"219 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 "225  #$a@Titre de la Collection$xISSN$vNuméro" + "\n" + 
 "300 ##$aNote générale" + "\n" + 
 "306 ##$aNote sur l'adresse bibliographique" + "\n" + 
@@ -551,15 +578,17 @@ application.activeWindow.title.insertText(
 "323 ##$aNote sur les interprètes" + "\n" + 
 "359 2#$vTomaison / Numérotation de l'unité physique$btable des matières de niveau 1$pNuméro de page ou de plage$ctable des matières de niveau 2" + "\n" + 
 "410 ##$t@Lien au titre de la Collection$vNuméro" + "\n" + 
-"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$xForme$2rameau" + "\n" + 
-"700 #1$aNom Auteur principal$bPrénom$4230" + "\n" + 
+"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" + 
+"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
+"700 #1$aNom Auteur relatif à l'oeuvre ou à l'expression$bPrénom$4230" + "\n" + 
 "701 #1$aNom Co-auteur$bPrénom$4230" + "\n" + 
-"702 #1$aNom Auteur secondaire$bPrénom$4Code de Fonction" + "\n" + 
-"716 ##$aVedette marque commerciale");
+"702 #1$aNom Auteur relatif à la manifestation ou à l'item$bPrénom$4Code de Fonction" + "\n" + 
+"716 ##$aMarque commerciale - mention de responsabilité$4Code de fonction");
 application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerSonore ()
 { // Ce script permet de créer une notice de document sonore non musical Na
 application.activeWindow.codedData = false;
@@ -573,8 +602,8 @@ application.activeWindow.title.insertText(
 "183 ##$P01$aCode du type de support matériel" + "\n" +
 "200 1#$a@Titre$eComplément du Titre$fCompositeur principal$gAutres (compositeurs, interprètes, instrumentistes...)" + "\n" + 
 "205 ##$aEdition" + "\n" + 
+"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 "215 ##$aImportance matérielle$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" + 
-"219 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 "225  #$a@Titre de la Collection$xISSN$vNuméro" + "\n" + 
 "300 ##$aNote générale" + "\n" + 
 "306 ##$aNote sur l'adresse bibliographique" + "\n" + 
@@ -582,16 +611,18 @@ application.activeWindow.title.insertText(
 "323 ##$aNote sur les interprètes" + "\n" + 
 "359 2#$vTomaison / Numérotation de l'unité physique$btable des matières de niveau 1$pNuméro de page ou de plage$ctable des matières de niveau 2" + "\n" + 
 "410 ##$t@Lien au titre de la Collection$vNuméro" + "\n" + 
-"600 # $aPersonne$xSubdivision de sujet$zChronologique$xForme$2rameau" + "\n" + 
-"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$xForme$2rameau" + "\n" + 
-"700 #1$aNom Auteur principal$bPrénom$4230" + "\n" + 
+"600 #1$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
+"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" + 
+"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
+"700 #1$aNom Auteur relatif à l'oeuvre ou à l'expression$bPrénom$4230" + "\n" + 
 "701 #1$aNom Co-auteur$bPrénom$4230" + "\n" + 
-"702 #1$aNom Auteur secondaire$bPrénom$4Code de Fonction" + "\n" + 
-"716 ##$aVedette marque commerciale");
+"702 #1$aNom Auteur relatif à la manifestation ou à l'item$bPrénom$4Code de Fonction" + "\n" + 
+"716 ##$aMarque commerciale - mention de responsabilité$4Code de fonction");
 application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerTheseElectroniqueReproduction ()
 { // Ce script permet de créer une notice de thèse électronique Oa (Reproduction)
 application.activeWindow.codedData = false;
@@ -606,7 +637,7 @@ application.activeWindow.title.insertText(
 "181 ##$P01$ctxt" + "\n" + "182 ##$P01$cc" + "\n" + 
 "183 ##$P01$aceb" + "\n" +
 "200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" + 
-"219 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
+"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
 "230 ##$aDonnées textuelles" + "\n" + 
 "300 ##$aThèse soutenue en co-tutelle --Thèse soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" + 
 "303 ##$anombre de pages généré par l'impression du document, lorsque ce document est paginé" + "\n" + 
@@ -618,20 +649,22 @@ application.activeWindow.title.insertText(
 "337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" + 
 "455 ##$t@Lien vers la thèse originelle" + "\n" + 
 "541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" + 
-"600 # $aPersonne$xSubdivision de sujet$zChronologique$3027253139$2rameau" + "\n" + 
-"606 ##$aIndexation matière$3027253139$2rameau" + "\n" + 
-"606 ##$aINDEXATION MATIERE$3040839486$2fmesh" + "\n" + 
+"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
+"606 ##$aAccès sujet - nom commun$2rameau" + "\n" + 
+"606 ##$aACCES SUJET - NOM COMMUN$3040839486$2fmesh" + "\n" + 
+"608 ##$3027253139$2rameau" + "\n" +
 "610 0#$aMots clés libres" + "\n" + 
 "686 ##$a $2TEF" + "\n" + 
 "700 #1$aNom Auteur$bPrénom$4070" + "\n" + 
-"702 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" + 
-"712 02$a@Université de soutenance$4295" + "\n" + 
-"712 02$a@établissement de cotutelle, ou composante, ou organismes partenaires (à définir - voir Guide Méthodologique)$4(code de fonction à définir - voir Guide Méthodologique)" + "\n" + 
+"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" + 
+"711 02$a@Université de soutenance$4295" + "\n" + 
+"711 02$a@établissement de cotutelle, ou composante, ou organismes partenaires (à définir - voir Guide Méthodologique)$4(code de fonction à définir - voir Guide Méthodologique)" + "\n" + 
 "856 4#$qFormat$uAdresse URL (si l'accès est réservé, créer une E856)");
 application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerTheseImprimeOriginelle ()
 { // Ce script permet de créer une notice de thèse imprimée Aa (Document originel)corrige le 2013-09-03 MTE selon Assistance 4174
 application.activeWindow.codedData = false;
@@ -646,31 +679,30 @@ application.activeWindow.title.insertText(
 "181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn" + "\n" + 
 "183 ##$P01$anga" + "\n" +
 "200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" + 
+"214 #1$dDate de production" + "\n" +
 "215 ##$aNombre de vol. (nbr. de p. ou f.)$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" + 
-"219 #1$dDate de production" + "\n" +
 "300 ##$aThèse soutenue en co-tutelle --Thèse soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" + 
 "310 ##$aThèse confidentielle jusqu'en (année)(s'il y a lieu)" + "\n" + 
 "320 ##$aBibliographie : xxx réf." + "\n" + 
 "328 #0$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" + 
 "330 ##$aRésumé français" + "\n" + 
 "330 ##$aRésumé anglais" + "\n" + 
-"451 ##$t@Lien vers une édition commerciale sur le même support" + "\n" + 
-"452 ##$t@Lien vers une édition commerciale sur un support différent" + "\n" + 
-"456 ##$t@Lien vers une notice décrivant la reproduction" + "\n" + 
 "541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" + 
-"600 # $aPersonne$xSubdivision de sujet$zChronologique$3027253139$2rameau" + "\n" + 
-"606 ##$aIndexation matiére$3027253139$2rameau" + "\n" + 
-"606 ##$aINDEXATION MATIERE$3040839486$2fmesh" + "\n" + 
+"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
+"606 ##$aAccès sujet - nom commun$2rameau" + "\n" + 
+"606 ##$aACCES SUJET - NOM COMMUN$3040839486$2fmesh" + "\n" + 
+"608 ##$3027253139$2rameau" + "\n" +
 "610 0#$aMots clés libres" + "\n" + 
 "686 ##$a $2TEF" + "\n" + 
 "700 #1$aNom Auteur$bPrénom$4070" + "\n" + 
-"702 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" + 
-"712 02$a@Université de soutenance$4295" + "\n" + 
-"712 02$a@Composante (département, laboratoire...)$4295");
+"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" + 
+"711 02$a@Université de soutenance$4295" + "\n" + 
+"711 02$a@Composante (département, laboratoire...)$4295");
 application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerTheseImprimeReproduction ()
 { // Ce script permet de créer une notice de thèse imprimée Aa (Reproduction)
 application.activeWindow.codedData = false;
@@ -685,8 +717,8 @@ application.activeWindow.title.insertText(
 "181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn" + "\n" + 
 "183 ##$P01$anga" + "\n" +
 "200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" + 
+"214 #2$aLieu de diffusion$bAdresse du diffuseur$cNom diffuseur$dAnnée de diffusion" + "\n" +
 "215 ##$aNombre de vol. (nbr. de p. ou f.)$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" +
-"219 #2$aLieu de production$bAdresse du producteur$cNom producteur$dDate de production" + "\n" +
 "300 ##$aThèse soutenue en co-tutelle --Thèse soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" + 
 "320 ##$aBibliographie p.xxx-xxx. Index" + "\n" + 
 "328 #0$zReproduction de$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" + 
@@ -694,19 +726,21 @@ application.activeWindow.title.insertText(
 "330 ##$aRésumé anglais" + "\n" + 
 "455 ##$t@Lien vers la thèse originelle" + "\n" + 
 "541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" + 
-"600 # $aPersonne$xSubdivision de sujet$zChronologique$3027253139$2rameau" + "\n" + 
-"606 ##$aIndexation matiére$3027253139$2rameau" + "\n" + 
-"606 ##$aINDEXATION MATIERE$3040839486$2fmesh" + "\n" + 
+"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
+"606 ##$aAccès sujet - nom commun$2rameau" + "\n" + 
+"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" + 
+"608 ##$3027253139$2rameau" + "\n" +
 "610 0#$aMots clés libres" + "\n" + 
 "686 ##$a $2TEF" + "\n" + 
 "700 #1$aNom Auteur$bPrénom$4070" + "\n" + 
-"702 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" + 
-"712 02$a@Université de soutenance$4295" + "\n" + 
-"712 02$a@Composante (département, laboratoire...)$4295");
+"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" + 
+"711 02$a@Université de soutenance$4295" + "\n" + 
+"711 02$a@Composante (département, laboratoire...)$4295");
 application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerTheseImprimeEditionCommerciale ()
 { // Ce script permet de créer une notice de thèse imprimée Aa (Edition commerciale)
 application.activeWindow.codedData = false;
@@ -720,27 +754,23 @@ application.activeWindow.title.insertText(
 "105 ##$bv$c0$d0$e1$fy$gy" + "\n" + 
 "181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn" + "\n" + 
 "183 ##$P01$anga" + "\n" +
-"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" + 
+"200 1#$a@Titre$eComplément du titre$fAuteur" + "\n" + 
+"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" + 
 "215 ##$aNombre de vol. (nbr. de p. ou f.)$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" +
-"219 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" + 
-"300 ##$aThèse soutenue en co-tutelle -- Thèse soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" + 
 "320 ##$aBibliographie p.xxx-xxx. Index" + "\n" + 
 "328 #0$zTexte remanié de$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" + 
 "451 ##$t@Lien vers la thèse originelle sur le même support" + "\n" + 
 "452 ##$t@Lien vers la thèse originelle sur un support différent" + "\n" + 
 "600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
-"606 ##$aIndexation matière$2rameau" + "\n" + 
-"606 ##$aIndexation matière$2fmesh" + "\n" + 
+"606 ##$aAccès sujet - nom commun$2rameau" + "\n" + 
+"606 ##$aAccès sujet - nom commun$2fmesh" + "\n" + 
 "610 0#$aMots clés libres" + "\n" + 
-"686 ##$a $2TEF" + "\n" + 
-"700 #1$aNom Auteur$bPrénom$4070" + "\n" + 
-"702 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" + 
-"712 02$a@Université de soutenance$4295" + "\n" + 
-"712 02$a@Composante (département, laboratoire...)$4295");
+"700 #1$aNom Auteur$bPrénom$4070");
 application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
+// 20200101 : modification TB 2020
 function CAT_creerAudiovisuel ()
 { // Ce script permet de créer une notice de document audiovisuel Ba, choisir 181
 application.activeWindow.codedData = false;
@@ -749,13 +779,13 @@ application.activeWindow.title.insertText(
 "008 $aBax3" + "\n" + 
 "071 41$aNuméro d'éditeur commercial" + "\n" + 
 "073 #0$aCode-à-barres commercial" + "\n" + 
-"181 ##$P01$ctdi tdm"+ "\n" + 
+"181 ##$P01$ctdi ou tdm"+ "\n" + 
 "182 ##$P01$cv" + "\n" + 
 "183 ##$P01$avcc" + "\n" +
-"200 1#$a@Titre$d=$eComplément de Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" + 
+"200 1#$a@Titre$eComplément de Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" + 
 "205 ##$aEdition" + "\n" + 
+"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 "215 ##$aImportance matérielle$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" + 
-"219 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
 "225  #$a@Titre de la Collection$xISSN$vNuméro" + "\n" + 
 "300 ##$aNote sur les versions linguistiques (ex: Sous-titres pour les sourds et les malentendants...)" + "\n" + 
 "305 ##$aNote sur l'historique de l'oeuvre (ex: Enregistrement public au théâtre...)" + "\n" + 
@@ -769,17 +799,19 @@ application.activeWindow.title.insertText(
 "334 ##$aNote sur les récompenses" + "\n" + 
 "517 ##$aTitres associées" + "\n" + 
 "410 ##$t@Lien au titre de la Collection$vNuméro" + "\n" + 
-"600 # $aPersonne$xSubdivision de sujet$zChronologique$xforme$2rameau" + "\n" + 
-"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$xForme$2rameau" + "\n" + 
+"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
+"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" + 
+"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" + 
 "700 #1$aNom du Réalisateur$bPrénom du Réalisateur$4300" + "\n" + 
 "701 #1$aNom Co-auteur$bPrénom$4Code de Fonction" + "\n" + 
-"702 #1$aNom Auteur secondaire$bPrénom$4Code de Fonction" + "\n" + 
-"712 02$aNom Collectivité Auteur secondaire$4Code de Fonction");
+"702 #1$aNom Auteur relatif à la manifestation ou à l'item$bPrénom$4Code de Fonction" + "\n" + 
+"712 02$aNom Collectivité auteur relatif à la manifestation ou à l'item$4Code de Fonction");
 application.activeWindow.codedData = true;
 }
 
 
 // 20180103 : Création
+// 20200101 : modification TB 2020
 function CAT_creerEchantillonAccompagne ()
 { //Ce script permet de créer une notice d'échantillon avec matériel d'accompagnement
 application.activeWindow.codedData = false;
@@ -794,12 +826,13 @@ application.activeWindow.title.insertText(
 "182 ##$P01$cn" + "\n" + 
 "183 ##$P01$anez" + "\n" + 
 "200 1#$a@Nom de l'échantillon$e[échantillon]$fProducteur de l'échantillon" + "\n" + 
-"219 #1$aLieu de production$d[20XX]" + "\n" + 
+"214 #1$aLieu de production$d[20XX]" + "\n" + 
 "215 ##$a1 échantillon$cComposant de l'échantillon$dDimensions de l'échantillon (XX x XX x XX cm)- voir exemples sur GM $eLivret technique (xx p., xx cm)" + "\n" +  
 "300 ##$aDescription de l'échantillon et du livret technique si besoin" + "\n" + 
 "345 ##$uSite web source de l'acquisition (FACULTATIF)" + "\n" + 
 "463 ##$t@Titre du livret technique d'accompagnement" + "\n" + 
-"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$xSpécimens$2rameau" + "\n" + 
+"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" + 
+"608 ##$3027793079$2rameau" + "\n" +
 "710 02$a@Collectivité productrice de l'échantillon$4070" + "\n" + 
 "830 ##$aVérifier impérativement les données codées en 101, 102, modifier les valeurs données par défaut, si besoin. Compléter la zone 117 en attribuant les codes pertinents par rapport à l'objet (voir la liste des codes sur le GM). Supprimer la L606 si aucune indexation utilisant un thésaurus local n'est envisagée. Supprimer cette zone 830 avant de valider la notice." + "\n" + 
 "L606 ##$aSujet$xEchantillons$2Nom du thésaurus local utilisé");
@@ -807,6 +840,7 @@ application.activeWindow.codedData = true;
 }
 
 // 20180103 : Création
+// 20200101 : modification TB 2020
 function CAT_creerObjet ()
 { //Ce script permet de créer une notice d'objet
 application.activeWindow.codedData = false;
@@ -820,14 +854,59 @@ application.activeWindow.title.insertText(
 "182 ##$P01$cn" + "\n" + 
 "183 ##$P01$anez" + "\n" + 
 "200 1#$a@Nom de l'objet$fProducteur de l'objet" + "\n" + 
-"219 #1$aLieu de production$d[20XX]" + "\n" + 
-"215 ##$a1 objet$cComposants de l'objet$dDimensions de l'objet (XX x XX x XX cm) – voir exemples sur le GM " + "\n" +  
+"214 #1$aLieu de production$d[20XX]" + "\n" + 
+"215 ##$a1 objet$cComposants de l'objet$dDimensions de l'objet (XX x XX x XX cm) - voir exemples sur le GM " + "\n" +  
 "300 ##$aDescription de l'objet et de son usage" + "\n" + 
 "345 ##$uSite web source de l'acquisition (FACULTATIF)" + "\n" + 
-"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$xSpécimens$2rameau" + "\n" + 
+"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" + 
+"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
 "710 02$a@Collectivité productrice de l'objet$4070" + "\n" + 
 "830 ##$aVérifier impérativement les données codées en 101, 102, modifier les valeurs données par défaut, si besoin. Compléter la zone 117 en attribuant les codes pertinents par rapport à l'objet (voir la liste des codes sur le GM). Supprimer la L606 si aucune indexation utilisant un thésaurus local n'est envisagée. Supprimer cette zone 830 avant de valider la notice." + "\n" + 
 "L606 ##$aSujet$2Nom du thésaurus local utilisé"
 );
 application.activeWindow.codedData = true;
 }
+
+// 20180531 : Création
+// 20200101 : modification TB 2020
+function CAT_creerArticleImp ()
+{ //Ce script permet de créer une notice d'article Archive
+application.activeWindow.codedData = false;
+application.activeWindow.command("cre", false);
+application.activeWindow.title.insertText(
+"008 $aAsx3" + "\n" + 
+"100 0#$a20XX" + "\n" +  
+"101 0#$afre" + "\n" + 
+"104 ##$ak$by$cy$dba$e0$ffre" + "\n" + 
+"105 ##$c0$d0$fy$gy" + "\n" + 
+"200 1#$a@Titre de l'article$ecomplément de titre$f1e mention de responsabilité$g2e mention de responsabilité" + "\n" + 
+"209 ##$btome ou volume$cannée$dnuméro ou fascicule$hx-x (ne pas indiquer p.)" + "\n" + 
+"215 ##$a[nombre de pages]$cmention d'ill." + "\n" +  
+"305 ##$aIn : Titre-clé de la revue dont l'article est extrait, ISSN. - Vol., tomaison, n° de fascicule" + "\n" + 
+"320 ##$aBibliographie ou index" + "\n" + 
+"L606 ##$aSujet$2Nom du thésaurus local utilisé" + "\n" + 
+"606 ##$aSujet$2rameau" + "\n" + 
+"463 ##$t@Titre de la revue$vnuméro/année de la revue" + "\n" + 
+"700 #1$aNom Auteur relatif à l'oeuvre ou à l'expression$bPrénom$4code de fonction" + "\n" + 
+"701 #1$aCo-auteur relatif à l'oeuvre ou à l'expression$bPrénom$4code de fonction" + "\n" +
+"830 #$aSupprimer la L606 si aucune indexation utilisant un thésaurus local n'est envisagée. Supprimer cette zone 830 avant de valider la notice."
+);
+application.activeWindow.codedData = true;
+}
+
+// 20200101 : Création
+function CAT_creerPropositionFormeGenre ()
+{ // Ce script permet de créer une proposition rameau Forme/Genre Tf3
+application.activeWindow.codedData = false;
+application.activeWindow.command("cre e", false);
+application.activeWindow.title.insertText(
+"008 $aTf3" + "\n" + 
+"280 ##$8frefre$9#y$aNouveau Point d'accès autorisé – Forme ou Genre Rameau proposé" + "\n" + 
+"480 ##$8frefre$9#y$aVariante de point d'accès 1" + "\n" + 
+"480 ##$8frefre$9#y$aVariante de point d'accès 2" + "\n" + 
+"810 ##$aOBLIGATOIRE Référence du document pour lequel est proposé le nouveau Point d'accès Titre / Auteur, date" + "\n" + 
+"810 ##$aDocument de référence permettant de justifier, définir, ... le concept proposé en Point d'accès Titre / Auteur, date"
+);
+application.activeWindow.codedData = true;
+}
+

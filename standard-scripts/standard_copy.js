@@ -11,7 +11,8 @@
   * codées, avant de passer la commande "cre" ou "cre e"
   * 2014-10-09 : mte : verification pour 181-182 : RAS
   * 2016-02-08 : SRY : pour l'option "décrire un autre document(autorité)que la notice copiée", supprimer la zone 033. 
-* 2017-03-28 : SRY/OCLC : Modification pour correction problème dérivation de notices. 
+  * 2017-03-28 : SRY/OCLC : Modification pour correction problème dérivation de notices.  
+  * 2020-01-01 : SRY : suppression de la ligne "Nombre des titres lies ...." lors de la copie d'une autorité et intégration de la fonction PatrickCopyNotice à la fonction picaCopyRecord
   ********************************************************************************************/
  /*function copyRecordToSudoc() */
  //choix 1) Décrire le meme document (la meme autorité) que la notice a copier
@@ -77,9 +78,10 @@ if (TestNotice == "") return;
 	//application.messageBox("autorité", Autorite, "");
 	//application.activeWindow.simulateIBWKey("FE", false);
 		//application.messageBox("autorité", Autorite, "");
+		// ajour SRY 20191014 (1 ligne)
+		suptag("Nom");
 		suptag("E");
 		suptag("L");
-		application.activeWindow.title.startOfBuffer (false);
 		ZoneATraiter = application.activeWindow.title.findTag("003", 0, false, true, true);
 		if (ZoneATraiter.indexOf("sudoc",0) != 0) suptag("003");
 		suptag("00A");
@@ -100,6 +102,8 @@ if (TestNotice == "") return;
 
 		if (Autorite) {
 		    suptag("Cré");
+			// ajour SRY 20191014 (1 ligne)
+			suptag("Nom");
 			suptag("00A");
 			suptag("003");
 			suptag("010");
@@ -202,7 +206,7 @@ if (TestNotice == "") return;
 		}
 	}
 
-}
+
 
 function suptag(tag)
 {
@@ -283,3 +287,4 @@ function PatrickCopyNotice() {
 		application.activeWindow.closeWindow();
 	}
  }
+}
