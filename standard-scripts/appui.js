@@ -12,6 +12,7 @@
  * 20120802 MTE : corrige pb confusion autorite/biblio
  * 20140904 MTE : vérification de la majuscule de la variable "Autorite".
  * 2014-10-09 : mte : vérif pour mise en prod 181/182
+ * 2020-01-01 : sry : évolution technique
  *	
  **************************************************************************************************	
  */

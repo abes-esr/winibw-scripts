@@ -3,10 +3,13 @@
 //2014-12-01 : mte : correction fonction recupererPpn : on utilise la variable p3, pas la zone
 //2015-12-02 : SRY : Suppression de la zone 301 
 //2018-01-04 : SRY : remplacer zone 183
+//2020-01-01 par SRY : remplacer 210 par 214, suppression $302724640X en  606, ajout 608, suppression zone 215
 //
 
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
         .getService(Components.interfaces.IApplication);
+var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+                        .getService(Components.interfaces.nsIPromptService);
 		  
 function onLoad()
 {
@@ -51,84 +54,94 @@ function picaCopyRecord() {
 	}
 }
 
-
-function modifier200()
+// remplace la fonction modifier200()
+function modifierRemplacer(zone,ancientexte,nouveautexte)
 {
-	application.activeWindow.title.startOfBuffer (false);
-	var res = application.activeWindow.title.findTag ("200", 0, true, true, false);
-	if (res != "")
-	{
-		application.activeWindow.title.deleteLine(1);
-		application.activeWindow.title.endOfBuffer (false);
-		application.activeWindow.title.insertText (res.replace("$bTexte imprimé","") + "\n");
-	}
-}
-// renvoieNouvelle210 : passer en paramètre la zone 210##actuelle, la zone 210##modifiée est renvoyée
-function renvoieNouvelle210(chaine)
-{
-	//chaine = "210 ## $aAAAA$cfffff$cEEEEE$dTOTO$fddddachanger$zTexte imprimé$fqqqqq";
-	pos$d = chaine.indexOf("$d");
+	var tabres = new Array;
+	var i =0;
+	var res = "" ; 
 	
-	if (pos$d != -1)
+	do
 	{
-		// si $d est présent
-		pos$d += 2;// décallage de 2 pour ne pas inclure "$d"
-		sousChaine = chaine.substring(pos$d, chaine.length);
-		// recherche du prochain dollar
-		pos$suivant = sousChaine.indexOf("$");
-		if (pos$suivant == -1)
-		{
-			// cas où il n'y a pas de dollar après $d (fin de chaîne)
-			pos$suivant = chaine.length - pos$d;
-		}
-		// récup. du texte entre $d et le dollar suivant
-		contenu$d = chaine.substring(pos$d, pos$d + pos$suivant);
+		application.activeWindow.title.startOfBuffer (false);	
+		res = application.activeWindow.title.findTag (zone, 0, true, true, false);
+		if (res != "")
+        {
+			if (zone == ancientexte) {
+				tabres[i] = nouveautexte + res.substring(3) + "\n"; 
+			}
+			else {	
+				tabres[i] = res.replace(ancientexte,nouveautexte) + "\n"; 
+			}	
+			application.activeWindow.title.deleteLine(1);
+			i++;
+		}	
+	}	while (res != "")
 		
-		chaine = chaine.replace("$d" + contenu$d, "$d[199.]-");
-		
-	}
-	else
-	{
-		// pas de $d
-		// recherche du dernier $c de la chaîne
-		pos$c = chaine.lastIndexOf("$c");
-		// décallage de 1 pour ne pas inclure le $ de "$c"
-		pos$c += 1;
-		sousChaine = chaine.substring(pos$c, chaine.length);
-		// recherche du prochain $
-		pos$suivant = sousChaine.indexOf("$");
-		if (pos$suivant == -1)
-		{
-			// cas où il n'y a pas de dollar après $c (fin de chaîne)
-			pos$suivant = chaine.length - pos$c;
-		}
-		pointInsertion = pos$suivant + pos$c;
-		// récupération de la chaine jusqu'au point d'insertion (fin du texte du dernier $c)
-		chaine = chaine.substring(0, pointInsertion);
-		chaine += "$d[199.]-";
-	}
-	return chaine;
+	for (i=0;i<tabres.length;i++)
+    {
+        application.activeWindow.title.endOfBuffer (false);
+        application.activeWindow.title.insertText (tabres[i]);
+    }	
 }
-function supprimerRemplacer210()
-{
-	application.activeWindow.title.startOfBuffer (false);
-	var res = application.activeWindow.title.findTag ("210", 0, true, true, false);
-	var aConserver = "";
-	while (res != "")
-	{
-		if (res.substring(4,6) == "##")
-		{
-			aConserver = res;
-		}
-		application.activeWindow.title.deleteLine(1);
-		res = application.activeWindow.title.findTag ("210", 0, true, true, false);
-	}
-	if (aConserver != "")
-	{
+// supprimerRemplacer210Par214 : passer en paramètre la zone 210##actuelle, la zone 214##modifiée à partir de la zone 210 est renvoyée
+function supprimerRemplacer210Par214(zone)
+ {
+ 	application.activeWindow.title.startOfBuffer (false);
+ 	var res = application.activeWindow.title.findTag ("210", 0, true, true, false);
+ 	while (res != "")
+ 	{
+ 		application.activeWindow.title.deleteLine(1);
 		application.activeWindow.title.endOfBuffer (false);
-		application.activeWindow.title.insertText (renvoieNouvelle210(aConserver) + "\n");
-	}
+ 		application.activeWindow.title.insertText (renvoieNouvelle214(res) + "\n");
+ 		res = application.activeWindow.title.findTag ("210", 0, true, true, false);
+ 	}
 }
+function renvoieNouvelle214(chaine)
+{
+	
+var tab_sz = new Array("$6","$7","$a","$b","$c","$d");
+var i=0;
+var pos$sz=0;
+var indicateur = "";
+var result = "";
+var chaine$sz = "";
+
+chaine=chaine.substr(4,chaine.length);
+indicateur = chaine.substring(0, 2);
+result = "214"+ " " + indicateur;
+	
+//chaine = "210 ##$aAAAA$cfffff$cEEEEE$dTOTO$fddddachanger$zTexte imprimé$fqqqqq";
+
+
+for (i=0; i<tab_sz.length; i++) {
+	chaine$sz = chaine ;
+	pos$sz = chaine$sz.indexOf(tab_sz[i]);
+ 	while (pos$sz != -1)
+ 	{
+ 		// si $sz est présent
+ 		pos$sz += 2;// décallage de 2 pour ne pas inclure "$sz"
+ 		sousChaine = chaine$sz.substring(pos$sz, chaine$sz.length);
+ 		// recherche du prochain dollar
+ 		pos$suivant = sousChaine.indexOf("$");
+ 		if (pos$suivant == -1)
+ 		{
+ 			// cas où il n'y a pas de dollar après $d (fin de chaîne)
+ 			pos$suivant = chaine$sz.length - pos$sz;
+ 		}
+ 		// récup. du texte entre $d et le dollar suivant
+ 		contenu$sz = chaine$sz.substring(pos$sz, pos$sz + pos$suivant);
+		// prompts.alert(null,"contenu$sz4--",contenu$sz + "--");
+ 		
+ 		result = result + tab_sz[i] + contenu$sz;
+		chaine$sz = sousChaine ;
+		pos$sz = chaine$sz.indexOf(tab_sz[i]);
+  	} //while
+} //for	
+ 	result = result + "[VERIFIER LES INDICATEURS DANS LE GM]";
+ 	return result;
+ }
+
 function supprimerRemplacer(ancienneZone, nouvelleZone)
 {	
 	application.activeWindow.title.startOfBuffer (false);
@@ -158,6 +171,7 @@ function ajouter(zone)
 }
 
 //20180104 : remplacer zone 183
+// 20200101 : remplacer 210 par 214, modifier 606, ajouter 608
 function modifierNotice(ancienPpn)
 {
 	application.activeWindow.title.startOfBuffer (false);
@@ -176,9 +190,11 @@ function modifierNotice(ancienPpn)
 	supprimerRemplacer("181","181 ##$P01$ctxt");
 	supprimerRemplacer("182","182 ##$P01$cc");
 	supprimerRemplacer("183","183 ##$P01$aceb");
-	modifier200();
+	modifierRemplacer("200","$bTexte imprimé","");
 	supprimer("207");
-	supprimerRemplacer210();
+	supprimerRemplacer210Par214("");
+	//supprimer("210");
+	//ajouter("214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]");
 	supprimer("215");
 	supprimer("225");
 	supprimerRemplacer("230", "230 $aDonnées textuelles");
@@ -208,6 +224,8 @@ function modifierNotice(ancienPpn)
 	}
 	ajouter("337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)");
 	ajouter("452 $0" + ancienPpn);
+	modifierRemplacer("606","$302724640X","");
+	ajouter("608 ##$302724640X$2rameau");
 	supprimer("530");
 	supprimer("531");
 	supprimer("801");
