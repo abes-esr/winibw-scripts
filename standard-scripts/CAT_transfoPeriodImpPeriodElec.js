@@ -170,6 +170,27 @@ function ajouter(zone)
 	application.activeWindow.title.insertText (zone + "\n");
 }
 
+function remplacerValeurZone700(tag) {	
+	var res="x";
+	application.activeWindow.title.startOfBuffer (false);
+	var i=0;
+	while (res != "") {
+		res = application.activeWindow.title.findTag(tag, i, true, true, false);
+		//on récupère le contenu de la zone sans le libellé de la $4 : 
+		//l'index de fin est situé à la position de la $4 + 2 caractères de la sous zone + 3 caractères du code de fonction
+		var sousZones = res.split("$4");
+		var zone = res.substring(0, res.indexOf("$4"));
+		//pour chaque $4
+		for (var j=1;j<sousZones.length;j++) {
+			zone += "$4" + sousZones[j].substring(0, 3);
+		}
+		zone += "\n";
+		application.activeWindow.title.deleteLine(1);
+		application.activeWindow.title.insertText(zone);
+		i++;
+	}
+}
+
 //20180104 : remplacer zone 183
 // 20200101 : remplacer 210 par 214, modifier 606, ajouter 608
 function modifierNotice(ancienPpn)
@@ -228,6 +249,7 @@ function modifierNotice(ancienPpn)
 	ajouter("608 ##$302724640X$2rameau");
 	supprimer("530");
 	supprimer("531");
+	remplacerValeurZone700("7");
 	supprimer("801");
 	supprimer("802");
 	supprimer("830");

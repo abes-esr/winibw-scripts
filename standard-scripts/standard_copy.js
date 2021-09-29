@@ -85,6 +85,7 @@ if (TestNotice == "") return;
 		ZoneATraiter = application.activeWindow.title.findTag("003", 0, false, true, true);
 		if (ZoneATraiter.indexOf("sudoc",0) != 0) suptag("003");
 		suptag("00A");
+		remplacerValeurZone700("7");
 	}
 	if (button == "2") {
 /*	application.activeWindow.command("mod", false);
@@ -99,7 +100,7 @@ if (TestNotice == "") return;
 	//if (ZoneATraiter.substr(0,3) != "$aT") Autorite = false ;
 		//application.messageBox("autorité", Autorite, "");
 		application.activeWindow.title.startOfBuffer (false);
-
+		
 		if (Autorite) {
 		    suptag("Cré");
 			// ajour SRY 20191014 (1 ligne)
@@ -135,6 +136,7 @@ if (TestNotice == "") return;
 			application.activeWindow.title.insertText("810 ##$a\n");
 			//application.messageBox("autorité", Autorite, "");
 		} else {
+			//suppression des zones propres à la notice source non copiable dans la notice destination
 			suptag("Cré");
 			suptag("00A");
 			suptag("001");
@@ -167,6 +169,7 @@ if (TestNotice == "") return;
 			suptag("100");
 			suptag("211");
 			suptag("3");
+			remplacerValeurZone700("7");
 			suptag("8");
 			suptag("E");
 			suptag("L");
@@ -215,10 +218,31 @@ var res="x";
 while (res != "") {
 	application.activeWindow.title.startOfBuffer (false);
 	res = application.activeWindow.title.findTag(tag, 0, true, true, false);
-	if (res != "") application.activeWindow.title.deleteLine(1);;
+	if (res != "") application.activeWindow.title.deleteLine(1);
 }
 }
 
+function remplacerValeurZone700(tag) {	
+	var res="x";
+	application.activeWindow.title.startOfBuffer (false);
+	var i=0;
+	while (res != "") {
+		res = application.activeWindow.title.findTag(tag, i, true, true, false);
+		//on récupère le contenu de la zone sans le libellé de la $4 : 
+		//l'index de fin est situé à la position de la $4 + 2 caractères de la sous zone + 3 caractères du code de fonction
+		var sousZones = res.split("$4");
+		var zone = res.substring(0, res.indexOf("$4"));
+		//pour chaque $4
+		for (var j=1;j<sousZones.length;j++) {
+			zone += "$4" + sousZones[j].substring(0, 3);
+		}
+		zone += "\n";
+		application.activeWindow.title.deleteLine(1);
+		application.activeWindow.title.insertText(zone);
+		i++;
+	}
+}
+	
 
 
 // 2017-03-28 : SRY/OCLC : Modification pour correction 
