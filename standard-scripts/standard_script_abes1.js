@@ -120,6 +120,7 @@ application.activeWindow.title.endOfBuffer(false);
 application.activeWindow.title.insertText("608 ##$3027253139$2rameau" + "\n");
 modifierRemplacer("702","702","701");
 modifierRemplacer("712","712","711");
+remplacerValeurZone700("7");
 
 //modif 105 $bm en $bv
 application.activeWindow.title.startOfBuffer (false);

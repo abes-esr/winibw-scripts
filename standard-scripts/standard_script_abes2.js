@@ -167,6 +167,7 @@ function modifierNoticePatrim(ancienPpn)
 	// traitement zone 702 (si $4340, alors 702 devient 701)
 	modifierRemplacerbis("702","702","701",presence702);
 	modifierRemplacerbis("712","712","711",presence712);
+    remplacerValeurZone700("7");
 	supprimerbis("801");
     supprimerbis("802");
     supprimerbis("830");
@@ -258,6 +259,7 @@ function modifierNoticeEBook(ancienPpn)
 	// traitement zone 702 (si $4340, alors 702 devient 701)
 	modifierRemplacerbis("702","702","701",presence702);
 	modifierRemplacerbis("712","712","711",presence712);
+    remplacerValeurZone700("7");
 	supprimerbis("801");
     supprimerbis("802");
     supprimerbis("830");
@@ -317,6 +319,7 @@ function modifierNoticeElecEBook(ancienPpn)
 	supprimerbis("579");
 	// traitement zone 702 (si $4340, alors 702 devient 701)
 	modifierRemplacerbis("702","702","701",presence702);
+    remplacerValeurZone700("7");
 	supprimerbis("801");
     supprimerbis("802");
     supprimerbis("856");
