@@ -120,6 +120,7 @@ application.activeWindow.title.endOfBuffer(false);
 application.activeWindow.title.insertText("608 ##$3027253139$2rameau" + "\n");
 modifierRemplacer("702","702","701");
 modifierRemplacer("712","712","711");
+remplacerValeurZone700("7");
 
 //modif 105 $bm en $bv
 application.activeWindow.title.startOfBuffer (false);
@@ -457,6 +458,27 @@ function modifierRemplacer(zone,ancientexte,nouveautexte)
         application.activeWindow.title.endOfBuffer (false);
         application.activeWindow.title.insertText (tabres[i]);
     }	
+}
+
+function remplacerValeurZone700(tag) {	
+	var res="x";
+	application.activeWindow.title.startOfBuffer (false);
+	var i=0;
+	while (res != "") {
+		res = application.activeWindow.title.findTag(tag, i, true, true, false);
+		//on récupére le contenu de la zone sans le libellé de la $4 : 
+		//l'index de fin est situé à la position de la $4 + 2 caractères de la sous zone + 3 caractères du code de fonction
+		var sousZones = res.split("$4");
+		var zone = res.substring(0, res.indexOf("$4"));
+		//pour chaque $4
+		for (var j=1;j<sousZones.length;j++) {
+			zone += "$4" + sousZones[j].substring(0, 3);
+		}
+		zone += "\n";
+		application.activeWindow.title.deleteLine(1);
+		application.activeWindow.title.insertText(zone);
+		i++;
+	}
 }
 
 
