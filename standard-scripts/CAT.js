@@ -1,4 +1,4 @@
-//mis à jour le 2014-09-04 par MTE : ajout de tous les $b du 200 maintenant qu'ils sont contrôlés
+﻿//mis à jour le 2014-09-04 par MTE : ajout de tous les $b du 200 maintenant qu'ils sont contrôlés
 //mis à jour le 2014-10-07 par MTE : remplacement des 200$b par 181 et si possible 182
 //mis à jour le 2015-03-19 par IAN : mise à jour de la date dans le script CAT_creerExemplaireRetro, passée de 2014 à 2015
 //mis à jour le 2015-04-24 par IAN : mise à jour de la date dans le script CAT_creer-ThesesImpEditionCommerciale, mentions subdivision de forme Thèses et écrits académiques ($3 ppn) enlevées des zones 606
