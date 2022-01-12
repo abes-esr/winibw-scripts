@@ -34,52 +34,52 @@ function CAT_ajout301()
 	// permet d'ajouter une zone 301 ISSN
 	// tous ces scripts ont ete mis a jour le 20110617 par MTE
 	// selon les suggestions des formateurs relais
-	application.activeWindow.title.insertText("301 ##$aDemande de numérotation ISSN en cours");
+	application.activeWindow.title.insertText ("301 ##$aDemande de numérotation ISSN en cours");
 }
 function CAT_ajout305()
 {
 	// permet d'ajouter une zone 305 autres tirages
-	application.activeWindow.title.insertText("305 ##$aAutres tirages en ");
+	application.activeWindow.title.insertText ("305 ##$aAutres tirages en ");
 }
 function CAT_ajoutDollar4Aut()
 {
 	// permet d'ajouter un dollar 4 auteur
-	application.activeWindow.title.insertText("$4070");
+	application.activeWindow.title.insertText ("$4070");
 }
 function CAT_ajoutDollar4Pref()
 {
 	// permet d'ajouter un dollar 4080 prefacier
-	application.activeWindow.title.insertText("$4080");
+	application.activeWindow.title.insertText ("$4080");
 }
 function CAT_ajoutDollar4Ill()
 {
 	// permet d'ajouter un dollar 4440 illustrateur
-	application.activeWindow.title.insertText("$4440");
+	application.activeWindow.title.insertText ("$4440");
 }
 function CAT_ajoutDollar4Trad()
 {
 	// permet d'ajouter un dollar 4730 traducteur
-	application.activeWindow.title.insertText("$4730");
+	application.activeWindow.title.insertText ("$4730");
 }
 function CAT_ajoutDollar4Ed()
 {
 	// permet d'ajouter un dollar 4730 éditeur
-	application.activeWindow.title.insertText("$4340");
+	application.activeWindow.title.insertText ("$4340");
 }
 function CAT_ajoutRameau()
 {
 	// permet d'ajouter un $2rameau
-	application.activeWindow.title.insertText("$2rameau");
+	application.activeWindow.title.insertText ("$2rameau");
 }
 function CAT_ajoutFMeSH()
 {
 	// permet d'ajouter un $2rameau
-	application.activeWindow.title.insertText("$2fmesh");
+	application.activeWindow.title.insertText ("$2fmesh");
 }
 function CAT_ajoutTexteImprime()
 {
 	// permet d'ajouter 181 et 182 ok
-	application.activeWindow.title.insertText("181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn"+ "\n" +"183 ##$P01$anga");
+	application.activeWindow.title.insertText ("181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn"+ "\n" +"183 ##$P01$anga");
 	// var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	//      .getService(Components.interfaces.IApplication);
 	// application.messageBox("Script inconnu ", "Ce script a été désactivé le 01/01/2020", "alert-icon");
@@ -87,64 +87,64 @@ function CAT_ajoutTexteImprime()
 function CAT_ajoutRessourcElec()
 {
 	// permet d'ajouter 181 Ressource électronique
-	application.activeWindow.title.insertText("181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cc");
+	application.activeWindow.title.insertText ("181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cc");
 }
 function CAT_ajoutCarte()
 {
 	// permet d'ajouter 181 Document cartographique
-	application.activeWindow.title.insertText("181 ##$P01$ccri"+ "\n" +"182 ##$P01$cn");
+	application.activeWindow.title.insertText ("181 ##$P01$ccri"+ "\n" +"182 ##$P01$cn");
 }
 function CAT_ajoutSon()
 {
 	// permet d'ajouter  181 Enregistrement sonore
-	application.activeWindow.title.insertText("181 ##$P01$csnd" + "\n" +"182 ##$P01$cs ");
+	application.activeWindow.title.insertText ("181 ##$P01$csnd" + "\n" +"182 ##$P01$cs ");
 }
 function CAT_ajoutImagesAnimees()
 {
 	// permet d'ajouter 181Images animéees et 182 ?
-	application.activeWindow.title.insertText("181 ##$P01$ctdi");
+	application.activeWindow.title.insertText ("181 ##$P01$ctdi");
 }
 function CAT_ajoutImageFixe()
 {
 	// permet d'ajouter 181 Image fixe
-	application.activeWindow.title.insertText("181 ##$P01$csti" + "\n" + "182 ##$P01$cn");
+	application.activeWindow.title.insertText ("181 ##$P01$csti" + "\n" + "182 ##$P01$cn");
 }
 function CAT_ajoutTexteManuscrit()
 {
 	// permet d'ajouter 181 Texte manuscrit
-	application.activeWindow.title.insertText("181 ##$P01$ctxt" + "\n" + "182 ##$P01$cn");
+	application.activeWindow.title.insertText ("181 ##$P01$ctxt" + "\n" + "182 ##$P01$cn");
 }
 function CAT_ajoutMicroforme()
 {
 	// permet d'ajouter 181 Microforme
-	application.activeWindow.title.insertText("181 ##$P01$ctxt"+ "\n" +"182 ##$P01$ch");
+	application.activeWindow.title.insertText ("181 ##$P01$ctxt"+ "\n" +"182 ##$P01$ch");
 }
 function CAT_ajoutBraille()
 {
 	// permet d'ajouter  181 Braille
-	application.activeWindow.title.insertText("181 ##$P01$ctct"+ "\n" +"182 ##$P01$cn");
+	application.activeWindow.title.insertText ("181 ##$P01$ctct"+ "\n" +"182 ##$P01$cn");
 }
 function CAT_ajoutMusiqueImprimee()
 {
 	// permet d'ajouter 181 Musique imprimée
-	application.activeWindow.title.insertText("181 ##$P01$cntm"+ "\n" +"182 ##$P01$cn");
+	application.activeWindow.title.insertText ("181 ##$P01$cntm"+ "\n" +"182 ##$P01$cn");
 }
 function CAT_ajoutMusiqueBraille()
 {
 	// permet d'ajouter 181 Musique en braille
-	application.activeWindow.title.insertText("181 ##$P01$ctcm"+ "\n" +"182 ##$P01$cn");
+	application.activeWindow.title.insertText ("181 ##$P01$ctcm"+ "\n" +"182 ##$P01$cn");
 }
 function CAT_ajoutObjet()
 {
 	// permet d'ajouter 181 Objet
-	application.activeWindow.title.insertText("181 ##$P01$ctdf"+ "\n" +"182 ##$P01$cn");
+	application.activeWindow.title.insertText ("181 ##$P01$ctdf"+ "\n" +"182 ##$P01$cn");
 }
 function CAT_ajout320()
 {
 	// permet d'ajouter la zone 320 Bibliographie.Index
-	application.activeWindow.title.insertText("320 ##$aBibliographie. Index");
+	application.activeWindow.title.insertText ("320 ##$aBibliographie. Index");
 }
-function CAT_dedoublonnageDED()
+function CAT_dedoublonnageDED ()
 {
 	// Exécute la commande comparant les notices liées par une zone 024
 	application.activeWindow.command("ded unm", false);
@@ -284,7 +284,7 @@ function CAT_creerEtatDeCollectionCR()
 		"E01 41$fSérieDébut$dVolumeDébut$eNuméroDébut$bJourDébut$cMoisDébut$aAnnéeDébut$pSérieFin$nvolumeFin$oNuméroFin$lJourFin$mMoisFin$kAnnéeFin$0 $aAnnéeDébut-$4Commentaire (texte libre)$7Mention de lacune"
 	);
 }
-function CAT_creerExemplaireRetro()
+function CAT_creerExemplaireRetro ()
 { // Ce script permet de créer un exemplaire avec la mention retro en 991, maj par MTE le 2013-08-29
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("mod", false);
@@ -304,7 +304,7 @@ function CAT_creerExemplaireRetro()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-function CAT_creerMonoIMP()
+function CAT_creerMonoIMP ()
 { // Ce script permet de créer une notice de monographie imprimée Aa
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -336,7 +336,7 @@ function CAT_creerMonoIMP()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-function CAT_creerMultimedia()
+function CAT_creerMultimedia ()
 { // Ce script permet de créer une notice de document multimedia Za
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -372,7 +372,7 @@ function CAT_creerMultimedia()
 	application.activeWindow.codedData = true;
 }
 
-function CAT_creerNoticeRCR()
+function CAT_creerNoticeRCR ()
 { // Ce script permet de créer une notice de RCR Tw
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre e", false);
@@ -431,7 +431,7 @@ function CAT_creerNoticeRCR()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-function CAT_creerPartition()
+function CAT_creerPartition ()
 { // Ce script permet de créer une notice de partition Ma
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -463,7 +463,7 @@ function CAT_creerPartition()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-function CAT_creerPeriodique()
+function CAT_creerPeriodique ()
 { // Ce script permet de créer une notice de périodique imprimé Ab
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -493,7 +493,7 @@ function CAT_creerPeriodique()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-function CAT_creerPeriodElectr()
+function CAT_creerPeriodElectr ()
 { // Ce script permet de créer une notice de périodique électronique Ob
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -526,7 +526,7 @@ function CAT_creerPeriodElectr()
 }
 
 
-function CAT_creerPersonnephysique()
+function CAT_creerPersonnephysique ()
 { // Ce script permet de créer une notice d'autorité personne physique Tp5
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre e", false);
@@ -541,7 +541,7 @@ function CAT_creerPersonnephysique()
 	application.activeWindow.codedData = true;
 }
 
-function CAT_creerPropositionRameau()
+function CAT_creerPropositionRameau ()
 { // Ce script permet de créer une proposition rameau Td3
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre e", false);
@@ -557,7 +557,7 @@ function CAT_creerPropositionRameau()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-function CAT_creerMusique()
+function CAT_creerMusique ()
 { // Ce script permet de créer une notice de document sonore musical Ga
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -589,7 +589,7 @@ function CAT_creerMusique()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-function CAT_creerSonore()
+function CAT_creerSonore ()
 { // Ce script permet de créer une notice de document sonore non musical Na
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -623,7 +623,7 @@ function CAT_creerSonore()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-function CAT_creerTheseElectroniqueReproduction()
+function CAT_creerTheseElectroniqueReproduction ()
 { // Ce script permet de créer une notice de thèse électronique Oa (Reproduction)
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -665,7 +665,7 @@ function CAT_creerTheseElectroniqueReproduction()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-function CAT_creerTheseImprimeOriginelle()
+function CAT_creerTheseImprimeOriginelle ()
 { // Ce script permet de créer une notice de thèse imprimée Aa (Document originel)corrige le 2013-09-03 MTE selon Assistance 4174
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -702,7 +702,7 @@ function CAT_creerTheseImprimeOriginelle()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-function CAT_creerTheseImprimeReproduction()
+function CAT_creerTheseImprimeReproduction ()
 { // Ce script permet de créer une notice de thèse imprimée Aa (Reproduction)
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -739,7 +739,7 @@ function CAT_creerTheseImprimeReproduction()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-function CAT_creerTheseImprimeEditionCommerciale()
+function CAT_creerTheseImprimeEditionCommerciale ()
 { // Ce script permet de créer une notice de thèse imprimée Aa (Edition commerciale)
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -769,7 +769,7 @@ function CAT_creerTheseImprimeEditionCommerciale()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-function CAT_creerAudiovisuel()
+function CAT_creerAudiovisuel ()
 { // Ce script permet de créer une notice de document audiovisuel Ba, choisir 181
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -810,7 +810,7 @@ function CAT_creerAudiovisuel()
 
 // 20180103 : Création
 // 20200101 : modification TB 2020
-function CAT_creerEchantillonAccompagne()
+function CAT_creerEchantillonAccompagne ()
 { //Ce script permet de créer une notice d'échantillon avec matériel d'accompagnement
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -839,7 +839,7 @@ function CAT_creerEchantillonAccompagne()
 
 // 20180103 : Création
 // 20200101 : modification TB 2020
-function CAT_creerObjet()
+function CAT_creerObjet ()
 { //Ce script permet de créer une notice d'objet
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -867,7 +867,7 @@ function CAT_creerObjet()
 
 // 20180531 : Création
 // 20200101 : modification TB 2020
-function CAT_creerArticleImp()
+function CAT_creerArticleImp ()
 { //Ce script permet de créer une notice d'article Archive
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
@@ -893,7 +893,7 @@ function CAT_creerArticleImp()
 }
 
 // 20200101 : Création
-function CAT_creerPropositionFormeGenre()
+function CAT_creerPropositionFormeGenre ()
 { // Ce script permet de créer une proposition rameau Forme/Genre Tf3
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre e", false);
