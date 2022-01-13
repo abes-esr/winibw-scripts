@@ -1,7 +1,7 @@
 //Ce script transforme une notice de these electronique en notice de these imprimee, soit //reproduction, soit commerciale.
 //Mis en prod. le 2012-09-10, auteur PDZ.
 //2014-10-09 : mte : on enlève $b et on ajoute 181/182 pour texte imprimé
-// 2014-12-01 : mte : recupererPpn de ce script sert de modèle car on utilise la variable p3, pas la zone
+// 2014-12-01 : mte : recupererPpn de ce script sert de mod?le car on utilise la variable p3, pas la zone
 // 2016-01-22 : SRY : CAT_TransfoTheseElecTheseImp: modification mentions zone 210 et prise en compte des notices ayant 2 zones 328
 // 2016-11-14 : SRY : CAT_TransfoTheseElecTheseImp: désactivation automatique du mode novice et les données codées
 // 2017-03-16 : SRY : modification RDA FR 2017
@@ -32,7 +32,7 @@ var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +
 // second will be the value of aButtonTitle1, and the third will be "Cancel"  
   
 var button = prompts.confirmEx(null, "Choix Copie", "Que voulez-vous faire ?",  
-                               flags, "transformation de notice de thèse électronique en thèse imprimée (reproduction)", "", "transformation de notice de thèse électronique en thèse imprimée (ed. commerciale)", null, check);  
+                               flags, "transformation de notice de th?se ?lectronique en th?se imprim?e (reproduction)", "", "transformation de notice de th?se ?lectronique en th?se imprim?e (ed. commerciale)", null, check);  
 							   
  application.activeWindow.codedData = false;
  application.activeWindow.noviceMode = false;						   
@@ -74,7 +74,7 @@ if (Res == "") {
 				}
 if (go == true) {				
 xpicaCopyRecord();
-suptag("Cré");
+suptag("Cr?");
 suptag("...");
 suptag("00A");
 suptag("002");
@@ -94,7 +94,7 @@ suptag("579");
 suptag("856");
 application.activeWindow.title.endOfBuffer(false);
 
-application.activeWindow.title.insertText("100 0#$aAnnée d'édition\n");
+application.activeWindow.title.insertText("100 0#$aAnn?e d'édition\n");
 application.activeWindow.title.endOfBuffer(false);
 modifier181("");
 application.activeWindow.title.endOfBuffer(false);
@@ -211,7 +211,7 @@ function xpicaCopyRecord() {
 	
 	application.activeWindow.materialCode = forceDocType;
 	
-	// crée une notice vide (cre)
+	// cr?e une notice vide (cre)
 	if (Autorite) application.activeWindow.command("\\inv 2", false);
 	if (Autorite == false) application.activeWindow.command("\\inv 1", false);
 	if ((application.activeWindow.status == "OK") && (application.activeWindow.title != null)) {
@@ -224,7 +224,7 @@ function xpicaCopyRecord() {
 }
 function suptag(tag)
 {
-//supression de la ligne tag tronqué ou non
+//supression de la ligne tag tronqu? ou non
 var res="x";
 while (res != "") {
 	application.activeWindow.title.startOfBuffer (false);
@@ -249,7 +249,7 @@ var j =0;
 var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                         .getService(Components.interfaces.nsIPromptService);						
 var go=true;
-Res = application.activeWindow.getVariable("P3GPP"); // recupère le ppn
+Res = application.activeWindow.getVariable("P3GPP"); // recup?re le ppn
 
 if (Res == "") {
 
@@ -259,7 +259,7 @@ if (Res == "") {
 				}
 if (go == true) {		
 xpicaCopyRecord();
-suptag("Cré");
+suptag("Cr?");
 suptag("...");
 suptag("00A");
 suptag("002");
@@ -466,8 +466,8 @@ function remplacerValeurZone700(tag) {
 	var i=0;
 	while (res != "") {
 		res = application.activeWindow.title.findTag(tag, i, true, true, false);
-		//on récupére le contenu de la zone sans le libellé de la $4 : 
-		//l'index de fin est situé à la position de la $4 + 2 caractères de la sous zone + 3 caractères du code de fonction
+		//on r?cup?re le contenu de la zone sans le libell? de la $4 : 
+		//l'index de fin est situ? ? la position de la $4 + 2 caract?res de la sous zone + 3 caract?res du code de fonction
 		var sousZones = res.split("$4");
 		var zone = res.substring(0, res.indexOf("$4"));
 		//pour chaque $4

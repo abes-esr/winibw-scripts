@@ -1,4 +1,4 @@
-//MTE le 2012-06-04//
+// MTE le 2012-06-04//
 function CopyRecord() {
 
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]

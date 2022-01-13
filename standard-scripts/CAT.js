@@ -1,8 +1,8 @@
-//mis à jour le 2014-09-04 par MTE : ajout de tous les $b du 200 maintenant qu'ils sont contrôlés
-//mis à jour le 2014-10-07 par MTE : remplacement des 200$b par 181 et si possible 182
-//mis à jour le 2015-03-19 par IAN : mise à jour de la date dans le script CAT_creerExemplaireRetro, passée de 2014 à 2015
-//mis à jour le 2015-04-24 par IAN : mise à jour de la date dans le script CAT_creer-ThesesImpEditionCommerciale, mentions subdivision de forme Thèses et écrits académiques ($3 ppn) enlevées des zones 606
-//mis à jour le 2015-12-07 par SRY : CAT_creerTheseImprimeReproduction : supprimer 451 et 452
+// mis à jour le 2014-09-04 par MTE : ajout de tous les $b du 200 maintenant qu'ils sont contrôlés
+// mis à jour le 2014-10-07 par MTE : remplacement des 200$b par 181 et si possible 182
+// mis à jour le 2015-03-19 par IAN : mise à jour de la date dans le script CAT_creerExemplaireRetro, passée de 2014 à 2015
+// mis à jour le 2015-04-24 par IAN : mise à jour de la date dans le script CAT_creer-ThesesImpEditionCommerciale, mentions subdivision de forme Thèses et écrits académiques ($3 ppn) enlevées des zones 606
+// mis à jour le 2015-12-07 par SRY : CAT_creerTheseImprimeReproduction : supprimer 451 et 452
 //                                   CAT_creerTheseImprimeEditionCommerciale : supprimer $3027253139 en zone 6XX remplacer 451, 452 et supprimer 455 et 456
 //									 CAT_creerTheseElectroniqueReproduction : supprimer 451, 452 et 456
 //									 CAT_creerPeriodique, CAT_creerCollection, CAT_creerPeriodElectr : supprimer 301

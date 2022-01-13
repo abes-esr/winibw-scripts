@@ -35,22 +35,22 @@ application.activeWindow.commandLine =  "SEL MIS DEP AUJ tno e";
 }
 
 function CTL_miseAJourPropreDuJour ()
-{// affiche les mises à jour (création, modification, suppression) pour AUJOURD'HUI par RCR de l'établissement (ILN) sur les notices bibliographiques et d'exemplaires.
+{// affiche les mises ? jour (création, modification, suppression) pour AUJOURD'HUI par RCR de l'établissement (ILN) sur les notices bibliographiques et d'exemplaires.
 application.activeWindow.commandLine =  "SEL MIS DEP AUJ par <ILN> tno t";
 }
 
 function CTL_miseAJourPropreDepuis ()
-{// affiche les mises à jour (création, modification, suppression) à partir d'une date indiquée par RCR de l'établissement (ILN) sur les notices bibliographiques et d'exemplaires.
+{// affiche les mises ? jour (création, modification, suppression) ? partir d'une date indiquée par RCR de l'établissement (ILN) sur les notices bibliographiques et d'exemplaires.
 application.activeWindow.commandLine =  "SEL MIS DEP <JJ-MM-AAAA>  par <ILN> tno t";
 }
 
 function CTL_catalogueParRCR ()
 {// affiche la liste des notices localisées par la bibliothèque indiquée. Il est possible d'affiner la recherche avec d'autres index ou des limitations.
-application.activeWindow.commandLine =  "CHE RBC <N°RCR>";
+application.activeWindow.commandLine =  "CHE RBC <N?RCR>";
 }
 
 function CTL_toutesMiseAjourILN ()
-{// affiche toutes les mises à jour (création, modification, suppression des notices d'autorité, bibliographiques et d'exemplaires) de mon établissement (AUJourd'hui ou période <JJ-MM-AAA>)
+{// affiche toutes les mises ? jour (création, modification, suppression des notices d'autorité, bibliographiques et d'exemplaires) de mon établissement (AUJourd'hui ou période <JJ-MM-AAA>)
 application.activeWindow.commandLine =  "AFF MIS DEP AUJ";
 }
 

@@ -6,21 +6,21 @@
  *************************************************************************************************
  *	$Header$
  *	
- *	Script mis à jour en juin 2012 pour y intégrer le contenu de "choix-copie"
- *  un écran avant la copie permet de choisir de garder ou non les identifiants
+ *	Script mis ? jour en juin 2012 pour y int?grer le contenu de "choix-copie"
+ *  un ?cran avant la copie permet de choisir de garder ou non les identifiants
  * 20120723 MTE : ajoute definition variable testaut
  * 20120802 MTE : corrige pb confusion autorite/biblio
- * 20140904 MTE : vérification de la majuscule de la variable "Autorite".
- * 2014-10-09 : mte : vérif pour mise en prod 181/182
- * 2020-01-01 : sry : évolution technique
+ * 20140904 MTE : v?rification de la majuscule de la variable "Autorite".
+ * 2014-10-09 : mte : v?rif pour mise en prod 181/182
+ * 2020-01-01 : sry : ?volution technique
  *	
  **************************************************************************************************	
  */
- const msgAppuiRequired = "Vous devez être connecté à la Base d'Appui pour pouvoir utiliser cette fonction !";
- const msgSURequired    = "Vous devez être connecté au Sudoc pour pouvoir utiliser cette fonction !";;
- const msgRecordCopied  = "Notice copiée de la Base d'Appui";
- const msgEditRequired  = "Vous devez être en modification de notice pour pouvoir utiliser cette fonction !";
- const msgNoHits		= "Aucune réponse trouvée dans la Base d'Appui.";
+ const msgAppuiRequired = "Vous devez ?tre connect? ? la Base d'Appui pour pouvoir utiliser cette fonction !";
+ const msgSURequired    = "Vous devez ?tre connect? au Sudoc pour pouvoir utiliser cette fonction !";;
+ const msgRecordCopied  = "Notice copi?e de la Base d'Appui";
+ const msgEditRequired  = "Vous devez ?tre en modification de notice pour pouvoir utiliser cette fonction !";
+ const msgNoHits		= "Aucune r?ponse trouv?e dans la Base d'Appui.";
  
  
  function searchLink(doExact) {
@@ -88,11 +88,11 @@
  /********************************************************************************************
   * This function copies a record found in Base d'Appui to the Sudoc by using the standard
   * script function 'picaCopyRecord' Plus, choix-copie de Patrick
-  * Corrigé le 2012-08-02 par MTE : ne creait pas les notices autorite, corrige suivant standard_copy qui fonctionne bien.
+  * Corrig? le 2012-08-02 par MTE : ne creait pas les notices autorite, corrige suivant standard_copy qui fonctionne bien.
   ********************************************************************************************/
  /*function copyRecordToSudoc() */
- //choix 1) Décrire le meme document (la meme autorité) que la notice a copier
-//choix 2) Décrire un autre document (une autre autorité) que la notice a copier
+ //choix 1) D?crire le meme document (la meme autorit?) que la notice a copier
+//choix 2) D?crire un autre document (une autre autorit?) que la notice a copier
 var Autorite=false;
 var NbRes="";
 var ZoneATraiter="";
@@ -120,25 +120,25 @@ var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +
 // second will be the value of aButtonTitle1, and the third will be "Cancel"  
   
 var button = prompts.confirmEx(null, "Choix Copie", "Que voulez-vous faire ?",  
-                               flags, "Décrire le même document (la même autorité) que la notice à copier", "", "Décrire un autre document (une autre autorité) que la notice à copier", null, check);  
+                               flags, "D?crire le m?me document (la m?me autorit?) que la notice ? copier", "", "D?crire un autre document (une autre autorit?) que la notice ? copier", null, check);  
   
 // The checkbox will be hidden, and button will contain the index of the button pressed,  
 // 0, 1, or 2.  
  
-//var items = ["Décrire le même document (la même autorité) que la notice à copier ", "Décrire un autre document (une autre autorité) que la notice à copier"]; // liste d'éléments  
+//var items = ["D?crire le m?me document (la m?me autorit?) que la notice ? copier ", "D?crire un autre document (une autre autorit?) que la notice ? copier"]; // liste d'?l?ments  
   
 //var selected = {};  
   
 //var result = prompts.select(null, "                             Choix Copie                                     ", "Que voulez vous faire?", items.length, items, selected);  
 //if (result == false) selected.value = 3;
-// result vaut true si le bouton OK est actionné, false si c'est le bouton Cancel.  
-// selected contient l'index de l'élément sélectionné. Accédez à cet élément avec selected items[selected.value].  
+// result vaut true si le bouton OK est actionn?, false si c'est le bouton Cancel.  
+// selected contient l'index de l'?l?ment s?lectionn?. Acc?dez ? cet ?l?ment avec selected items[selected.value].  
 		  
-//var result = prompts.prompt(null, "Choix de la copie", "0) sortir\r\n1) Décrire le meme document (la même autorité) que la notice à copier.\r\n 2) Décrire un autre document (une autre autorité) que la notice a copier", input,"", check);
-NbRes = application.activeWindow.getVariable("P3GPP"); // recupère le ppn
-var TestNotice = application.activeWindow.getVariable("P3CLIP"); // recupère l'info de la notice
-var Testaut = application.activeWindow.getVariable("P3VMC"); // recupère l'info de la notice
-if (Testaut.substr(0,1) == "T") {Autorite = true ;} else {Autorite = false ;} // ajouté le 09/07/12 info comme dans standard_copy pour différncier bib d'aut
+//var result = prompts.prompt(null, "Choix de la copie", "0) sortir\r\n1) D?crire le meme document (la m?me autorit?) que la notice ? copier.\r\n 2) D?crire un autre document (une autre autorit?) que la notice a copier", input,"", check);
+NbRes = application.activeWindow.getVariable("P3GPP"); // recup?re le ppn
+var TestNotice = application.activeWindow.getVariable("P3CLIP"); // recup?re l'info de la notice
+var Testaut = application.activeWindow.getVariable("P3VMC"); // recup?re l'info de la notice
+if (Testaut.substr(0,1) == "T") {Autorite = true ;} else {Autorite = false ;} // ajout? le 09/07/12 info comme dans standard_copy pour diff?rncier bib d'aut
 if (TestNotice == "") return;
 
 	if (button == "0") {
@@ -154,10 +154,10 @@ if (TestNotice == "") return;
 		AbesCopyNotice();
 		application.activeWindow.title.startOfBuffer (false);
 		//ZoneATraiter = application.activeWindow.title.findTag("008", 0, false, true, true);//
-//		if (ZoneATraiter.substr(0,3) == "$aT") autorite = true; // notice autorité ou pas
+//		if (ZoneATraiter.substr(0,3) == "$aT") autorite = true; // notice autorit? ou pas
 
 		if (Autorite) {
-		    suptag("Cré");
+		    suptag("Cr?");
 			suptag("00A");
 			suptag("003");
 			suptag("010");
@@ -187,7 +187,7 @@ if (TestNotice == "") return;
 			application.activeWindow.title.endOfBuffer(false);
 			application.activeWindow.title.insertText("810 ##$a\n");
 		} else {
-			suptag("Cré");
+			suptag("Cr?");
 			suptag("00A");
 			suptag("001");
 			suptag("000");
@@ -247,7 +247,7 @@ if (TestNotice == "") return;
 
 function suptag(tag)
 {
-//supression de la ligne tag tronqué ou non
+//supression de la ligne tag tronqu? ou non
 var res="x";
 while (res != "") {
 	application.activeWindow.title.startOfBuffer (false);
@@ -274,11 +274,11 @@ function AbesCopyNotice() {
 	
 	application.activeWindow.materialCode = forceDocType;
 	
-	// crée une notice vide (cre)
+	// cr?e une notice vide (cre)
 	if (Autorite == true) application.activeWindow.command("cre e", false);
-//	application.messageBox("autorité", Autorite, "");
+//	application.messageBox("autorit?", Autorite, "");
 	if (Autorite == false) application.activeWindow.command("cre", false);
-//	application.messageBox("autorité", Autorite, "")
+//	application.messageBox("autorit?", Autorite, "")
 	if ((application.activeWindow.status == "OK") && (application.activeWindow.title != null)) {
 		application.activeWindow.pasteTitle();
 		if (bCodedData) {
