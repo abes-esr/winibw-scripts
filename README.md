@@ -15,7 +15,7 @@ Modifier le programme pour lors de la synchronisation faire transiter les script
 
 ## débogage
 
-#Afficher une zone
+Afficher une zone
 
 Dans les fichiers de scripts js, faire par exemple pour afficher la zone 003
 
@@ -25,3 +25,11 @@ prompts.alert(null, "resultat", resultat);
 ```
 
 La variable en troisième paramètre
+
+Ajout de zone (à vérifier)
+
+```js
+// ajout de "103 ##$a\n"
+application.activeWindow.title.endOfBuffer(false);
+application.activeWindow.title.insertText("103 ##$a\n");
+```
