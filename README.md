@@ -24,6 +24,12 @@ var resultat = application.activeWindow.title.findTag("003", 0, false, true, tru
 prompts.alert(null, "resultat", resultat);
 ```
 
+Afficher un message (pour voir si le code s'execute et passe à un endroit)
+
+```js
+prompts.alert(null, "passe ici");
+```
+
 La variable en troisième paramètre
 
 Ajout de zone (à vérifier)
