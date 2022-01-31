@@ -32,4 +32,20 @@ Ajout de zone (à vérifier)
 // ajout de "103 ##$a\n"
 application.activeWindow.title.endOfBuffer(false);
 application.activeWindow.title.insertText("103 ##$a\n");
+
+function supprimer(zone)
+{
+	application.activeWindow.title.startOfBuffer (false);
+	var res = application.activeWindow.title.findTag (zone, 0, true, true, false);
+	while (res != "")
+	{
+		application.activeWindow.title.deleteLine(1);
+		res = application.activeWindow.title.findTag (zone, 0, true, true, false);
+	}
+}
+function ajouter(zone)
+{
+	application.activeWindow.title.endOfBuffer (false);
+	application.activeWindow.title.insertText (zone + "\n");
+}
 ```
