@@ -27,7 +27,7 @@ prompts.alert(null, "resultat", resultat);
 Afficher un message (pour voir si le code s'execute et passe à un endroit)
 
 ```js
-prompts.alert(null, "passe ici");
+prompts.alert(null, "passeici", "ce qui s'affichera à l'écran" + variableEventuelle + "de l'affichage texte à nouveau");
 ```
 
 La variable en troisième paramètre
