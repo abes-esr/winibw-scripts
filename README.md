@@ -12,3 +12,16 @@ vers (répertoire de destination) -> C:\oclcpica\WinIBW30\chrome\ibw\content\xul
 # tache à faire (détecté le 05/01/22)
 
 Modifier le programme pour lors de la synchronisation faire transiter les scripts xul vers le répertoire xul et non le repertoire script
+
+## débogage
+
+#Afficher une zone
+
+Dans les fichiers de scripts js, faire par exemple pour afficher la zone 003
+
+```js
+var resultat = application.activeWindow.title.findTag("003", 0, false, true, true);
+prompts.alert(null, "resultat", resultat);
+```
+
+La variable en troisième paramètre
