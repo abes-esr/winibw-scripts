@@ -1,7 +1,7 @@
  /********************************************************************************************
   * This function copies a record found in Base d'Appui to the Sudoc by using the standard
   * script function 'picaCopyRecord' 
-  * La fonction 'picaCopyRecord' a été améliorée par PDZ (integration de ChoixCopie).
+  * La fonction 'picaCopyRecord' a ï¿½tï¿½ amï¿½liorï¿½e par PDZ (integration de ChoixCopie).
   * R?vis? et test? par MTE le 2012-06-25
   * Correction par Patrick Desmiez le 2012-09-10 : ajout des zones 010 et 320 vides.
   * Correction par PDZ le 2013-08-27 : distinction biblio/autorite dans tous les cas
@@ -10,13 +10,13 @@
   * La derni?re correction est la mise en "off" des grilles de donn?es
   * cod?es, avant de passer la commande "cre" ou "cre e"
   * 2014-10-09 : mte : verification pour 181-182 : RAS
-  * 2016-02-08 : SRY : pour l'option "décrire un autre document(autorité)que la notice copiée", supprimer la zone 033.
-  * 2017-03-28 : SRY/OCLC : Modification pour correction problème dérivation de notices.
-  * 2020-01-01 : SRY : suppression de la ligne "Nombre des titres lies ...." lors de la copie d'une autorité et intégration de la fonction PatrickCopyNotice à la fonction picaCopyRecord
+  * 2016-02-08 : SRY : pour l'option "dï¿½crire un autre document(autoritï¿½)que la notice copiï¿½e", supprimer la zone 033.
+  * 2017-03-28 : SRY/OCLC : Modification pour correction problï¿½me dï¿½rivation de notices.
+  * 2020-01-01 : SRY : suppression de la ligne "Nombre des titres lies ...." lors de la copie d'une autoritï¿½ et intï¿½gration de la fonction PatrickCopyNotice ï¿½ la fonction picaCopyRecord
   ********************************************************************************************/
  /*function copyRecordToSudoc() */
- //choix 1) Décrire le meme document (la meme autorité) que la notice a copier
-//choix 2) Décrire un autre document (une autre autorité) que la notice a copier
+ //choix 1) Dï¿½crire le meme document (la meme autoritï¿½) que la notice a copier
+//choix 2) Dï¿½crire un autre document (une autre autoritï¿½) que la notice a copier
 var Autorite = false;
 var NbRes="";
 var ZoneATraiter="";
@@ -44,7 +44,7 @@ var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +
 // second will be the value of aButtonTitle1, and the third will be "Cancel"  
 var Testaut = application.activeWindow.getVariable("P3VMC"); // recup?re l'info de la notice
 var button = prompts.confirmEx(null, "Choix Copie :" + Testaut, "Que voulez-vous faire ?",  
-                               flags, "Décrire le même document (la même autorité) que la notice à copier", "", "Décrire un autre document (une autre autorité) que la notice à copier", null, check);
+                               flags, "Dï¿½crire le mï¿½me document (la mï¿½me autoritï¿½) que la notice ï¿½ copier", "", "Dï¿½crire un autre document (une autre autoritï¿½) que la notice ï¿½ copier", null, check);
   
 // The checkbox will be hidden, and button will contain the index of the button pressed,  
 // 0, 1, or 2.  
@@ -56,9 +56,9 @@ var button = prompts.confirmEx(null, "Choix Copie :" + Testaut, "Que voulez-vous
 //var result = prompts.select(null, "                             Choix Copie                                     ", "Que voulez vous faire?", items.length, items, selected);  
 //if (result == false) selected.value = 3;
 // result vaut true si le bouton OK est actionn?, false si c'est le bouton Cancel.  
-// selected contient l'index de l'?l?ment s?lectionn?. Accédez à cet élément avec selected items[selected.value].
+// selected contient l'index de l'?l?ment s?lectionn?. Accï¿½dez ï¿½ cet ï¿½lï¿½ment avec selected items[selected.value].
 		  
-//var result = prompts.prompt(null, "Choix de la copie", "0) sortir\r\n1) Décrire le meme document (la même autorité) que la notice à copier.\r\n 2) Décrire un autre document (une autre autorité) que la notice a copier", input,"", check);
+//var result = prompts.prompt(null, "Choix de la copie", "0) sortir\r\n1) Dï¿½crire le meme document (la mï¿½me autoritï¿½) que la notice ï¿½ copier.\r\n 2) Dï¿½crire un autre document (une autre autoritï¿½) que la notice a copier", input,"", check);
 NbRes = application.activeWindow.getVariable("P3GPP"); // recup?re le ppn
 var TestNotice = application.activeWindow.getVariable("P3CLIP"); // recup?re l'info de la notice
 
@@ -68,22 +68,29 @@ if (Testaut.substr(0,1) == "T") {Autorite = true ;} else {Autorite = false ;}
 if (TestNotice == "") return;
 
 	if (button == "0") {
-	
 		PatrickCopyNotice();
-	application.activeWindow.codedData = false;
-	ZoneATraiter = application.activeWindow.title.findTag("008", 0, false, true, true);
-	
-	//if (ZoneATraiter.substr(0,3) == "$aT") Autorite = true ;
-	//if (ZoneATraiter.substr(0,3) != "$aT") Autorite = false ;
-	//application.messageBox("autorit?", Autorite, "");
-	//application.activeWindow.simulateIBWKey("FE", false);
-		//application.messageBox("autorit?", Autorite, "");
+		application.activeWindow.codedData = false;
+		ZoneATraiter = application.activeWindow.title.findTag("008", 0, false, true, true);
+
+		//if (ZoneATraiter.substr(0,3) == "$aT") Autorite = true ;
+		//if (ZoneATraiter.substr(0,3) != "$aT") Autorite = false ;
+		//application.messageBox("autoritÃ©", Autorite, "");
+		//application.activeWindow.simulateIBWKey("FE", false);
+		//application.messageBox("autoritÃ©", Autorite, "");
 		// ajour SRY 20191014 (1 ligne)
 		suptag("Nom");
 		suptag("E");
 		suptag("L");
-		ZoneATraiter = application.activeWindow.title.findTag("003", 0, false, true, true);
-		if (ZoneATraiter.indexOf("sudoc",0) != 0) suptag("003");
+		//JVK la suppression des deux lignes ci dessous permettent d'eviter la suppression de la 008
+		//ZoneATraiter = application.activeWindow.title.findTag("003", 0, false, true, true);
+		//if (ZoneATraiter.indexOf("sudoc",0) != 0) suptag("003");
+
+		//JVK Je regarde si la notice est une notice d'autoritÃ©, si c'est pas le cas je supprime la 003
+		ZoneATraiter = application.activeWindow.title.findTag("008", 0, false, true, true);
+		if (ZoneATraiter.substr(0,3) != "$aT") {
+			suptag("003");
+		}
+
 		suptag("00A");
 		remplacerValeurZone700("7");
 	}
@@ -182,7 +189,7 @@ if (TestNotice == "") return;
 			
 			
 			suptag("205");
-		//	application.messageBox("autorité", Autorite, "");
+		//	application.messageBox("autoritï¿½", Autorite, "");
 			application.activeWindow.title.startOfBuffer (false);
 			res = application.activeWindow.title.findTag("210", 0, true, true, false);
 			if (res != "") {
@@ -197,9 +204,9 @@ if (TestNotice == "") return;
 				suptag("210");
 				out = out + "$d\n"; //ajout de $d vide
 				application.activeWindow.title.endOfBuffer(false);
-				//application.messageBox("autorité",Autorite, "")
+				//application.messageBox("autoritï¿½",Autorite, "")
 				application.activeWindow.title.insertText(out);
-			//	application.messageBox("autorité", Autorite, "");
+			//	application.messageBox("autoritï¿½", Autorite, "");
 			}
 			
 			
@@ -222,23 +229,25 @@ while (res != "") {
 }
 }
 
-function remplacerValeurZone700(tag) {	
+function remplacerValeurZone700(tag) {
 	var res="x";
 	application.activeWindow.title.startOfBuffer (false);
 	var i=0;
 	while (res != "") {
 		res = application.activeWindow.title.findTag(tag, i, true, true, false);
-		//on récupère le contenu de la zone sans le libellé de la $4 :
-		//l'index de fin est situé à la position de la $4 + 2 caractères de la sous zone + 3 caractères du code de fonction
+		//on rÃ©cupÃ¨re le contenu de la zone sans le libellÃ© de la $4 :
+		//l'index de fin est situÃ© Ã  la position de la $4 + 2 caractÃ¨res de la sous zone + 3 caractÃ¨res du code de fonction
 		var sousZones = res.split("$4");
 		var zone = res.substring(0, res.indexOf("$4"));
 		//pour chaque $4
-		for (var j=1;j<sousZones.length;j++) {
-			zone += "$4" + sousZones[j].substring(0, 3);
+		if(zone != ""){
+			for (var j=1;j<sousZones.length;j++) {
+				zone += "$4" + sousZones[j].substring(0, 3);
+			}
+			zone += "\n";
+			application.activeWindow.title.deleteLine(1);
+			application.activeWindow.title.insertText(zone);
 		}
-		zone += "\n";
-		application.activeWindow.title.deleteLine(1);
-		application.activeWindow.title.insertText(zone);
 		i++;
 	}
 }
@@ -246,7 +255,7 @@ function remplacerValeurZone700(tag) {
 
 
 // 2017-03-28 : SRY/OCLC : Modification pour correction 
-// 					problème dérivation de notices.
+// 					problï¿½me dï¿½rivation de notices.
 
 function PatrickCopyNotice() {
 	var bCodedData = application.activeWindow.codedData;
@@ -268,11 +277,11 @@ function PatrickCopyNotice() {
 	
 	
 	application.activeWindow.materialCode = forceDocType;
-	// crée une notice vide (cre)
+	// crï¿½e une notice vide (cre)
 	//if (Autorite == true) application.activeWindow.command("cre e", false);
-//	application.messageBox("autorité", Autorite, "");
+//	application.messageBox("autoritï¿½", Autorite, "");
 	application.activeWindow.command("cre", false);
-//	application.messageBox("autorité", Autorite, "")
+//	application.messageBox("autoritï¿½", Autorite, "")
 	if ((application.activeWindow.status == "OK") && (application.activeWindow.title != null)) {
 		application.activeWindow.pasteTitle();
 		if (bCodedData) {
