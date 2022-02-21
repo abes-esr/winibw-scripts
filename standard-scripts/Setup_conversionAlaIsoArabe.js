@@ -23,7 +23,7 @@ function open_xul_dialog(theUrl, theFeatures, theArguments)
 		features = "centerscreen,chrome,close,titlebar,resizable,modal,dialog=yes";
 	}
 	
-	// it doesn't matter, if we don't have a parent
+	//it doesn't matter, if we don't have a parent
 	// we just use the active window, whether its null or not
 	ww.openWindow(theParent, theUrl, "", features, theArguments);
 }

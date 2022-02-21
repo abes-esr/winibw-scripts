@@ -1,4 +1,4 @@
-// 2014-10-09 mte : vérifié pour 181/182
+//2014-10-09 mte : vérifié pour 181/182
 function AFF_S()
 {
 	// affiche les exemplaires de mon ILN (en cliquant sur l'exemplaire, on peut le modifier).

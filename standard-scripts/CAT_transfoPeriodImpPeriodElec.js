@@ -1,9 +1,9 @@
 // 2014-10-09 : mte : adaptation pour 181/182, enlève $b du 200
 // charge l'objet d'accès à winIbw
-//2014-12-01 : mte : correction fonction recupererPpn : on utilise la variable p3, pas la zone
-//2015-12-02 : SRY : Suppression de la zone 301 
-//2018-01-04 : SRY : remplacer zone 183
-//2020-01-01 par SRY : remplacer 210 par 214, suppression $302724640X en  606, ajout 608, suppression zone 215
+// 2014-12-01 : mte : correction fonction recupererPpn : on utilise la variable p3, pas la zone
+// 2015-12-02 : SRY : Suppression de la zone 301
+// 2018-01-04 : SRY : remplacer zone 183
+// 2020-01-01 par SRY : remplacer 210 par 214, suppression $302724640X en  606, ajout 608, suppression zone 215
 //
 
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]

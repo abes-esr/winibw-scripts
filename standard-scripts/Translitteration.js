@@ -219,7 +219,7 @@ if (langue_source == "url") {
 }
 
 
-// Latin vers Arménien
+//Latin vers Arménien
 function isoToUni (chn) {
 var isouni = {
 " ":" ",

@@ -1,4 +1,4 @@
-//2014-10-09 : mte : juste changement de date
+// 2014-10-09 : mte : juste changement de date
 function validateURLs()
 {
 	var application = Components.classes["@oclcpica.nl/kitabapplication;1"].getService(Components.interfaces.IApplication);
