@@ -6,6 +6,10 @@ Pour ajouter un des scripts du dépôt, il faut éditer le fichier : C:\oclcpica
 # emplacement des versions de winibw (hors self service wapt)
 P:\SUDOC\logiciels_Pica\WinIBW\WinIBW3\
 
+actuelle
+
+P:\SUDOC\logiciels_Pica\WinIBW\WinIBW3\WinIBW3_2_5\prod -> version 3.2.5.5
+
 # attention emplacement spécifique des scripts
 
 Quand à la synchronisation, vous avez des fichier XXXXXX.js accompagné d'un fichier XXXXXX.xul, pensez à couper coller ces fichiers 
