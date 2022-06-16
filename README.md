@@ -31,7 +31,11 @@ var resultat = application.activeWindow.title.findTag("003", 0, false, true, tru
 prompts.alert(null, "resultat", resultat);
 ```
 
-Important : si prompts.alert ne fonctionne pas utiliser uniquement alert(variable) ou alert("message" + variable)
+Important : si prompts.alert ne fonctionne pas et fait planter winibw utiliser uniquement 
+
+```js
+alert(variable) ou alert("message" + variable)
+```
 
 Afficher un message (pour voir si le code s'execute et passe à un endroit)
 
