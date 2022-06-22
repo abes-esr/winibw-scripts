@@ -3,6 +3,13 @@ Scripts utilisateurs WinIBW
 
 Pour ajouter un des scripts du dépôt, il faut éditer le fichier : C:\oclcpica\WinIBW30\Profiles\<nom_utilisateur>\winibw.vbs sur votre poste, contenant WinIBW.
 
+# emplacement des versions de winibw (hors self service wapt)
+P:\SUDOC\logiciels_Pica\WinIBW\WinIBW3\
+
+actuelle
+
+P:\SUDOC\logiciels_Pica\WinIBW\WinIBW3\WinIBW3_2_5\prod -> version 3.2.5.5
+
 # attention emplacement spécifique des scripts
 
 Quand à la synchronisation, vous avez des fichier XXXXXX.js accompagné d'un fichier XXXXXX.xul, pensez à couper coller ces fichiers 
@@ -22,6 +29,12 @@ Dans les fichiers de scripts js, faire par exemple pour afficher la zone 003
 ```js
 var resultat = application.activeWindow.title.findTag("003", 0, false, true, true);
 prompts.alert(null, "resultat", resultat);
+```
+
+Important : si prompts.alert ne fonctionne pas et fait planter winibw utiliser uniquement 
+
+```js
+alert(variable) ou alert("message" + variable)
 ```
 
 Afficher un message (pour voir si le code s'execute et passe à un endroit)
