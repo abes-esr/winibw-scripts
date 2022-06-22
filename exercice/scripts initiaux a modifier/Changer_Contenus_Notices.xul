@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<!-- Include your own stylesheet here. -->
+
+<!-- Define the dialog: -->
+<dialog
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="Changer Un Contenu Dans Un Lot De Notices"
+	onload="onLoad();"
+	buttons="accept,cancel"
+	ondialogaccept="return onAccept();"
+	ondialogcancel="return onCancel();"
+	style="min-width: 33em;background-color:#FFF5E1"
+	id="SampleDialog"
+>
+	<!-- Refer to the file with Javascript functions: -->
+	<script type="application/x-javascript" src="chrome://ibw/content/xul/Changer_Contenus_Notices.js" />
+
+	<!-- Layout the dialog controls: -->
+	
+	<keyset>
+		<key id="Annulation" keycode="VK_ESCAPE" />
+	</keyset>
+	
+	<vbox>
+		<groupbox>
+			<caption label="Source" />
+			<radiogroup id="idSampleRadiogroup" orient="vertical">
+				<radio id="idSource1" group="idSampleRadiogroup" label="Sur Lot De Notices" selected="true" oncommand="oncommand_type_source(true);"/>
+				<radio id="idSource2" group="idSampleRadiogroup" label="Sur Fichier d'Entrée" oncommand="oncommand_type_source(false);"/>
+			</radiogroup>
+			
+			<hbox align="center">
+				<label align="left,bottom" id="idLabelChemin" value="Entrez le chemin : " />
+				<textbox align="right" id="idCase_Fichier_Entree" disabled="true" value="Fichier de liste de ppn"/>
+				<button label="Parcourir..." id="searchbuttonE" hidden="true" oncommand="Parcourir();"/>
+			</hbox>
+		</groupbox>
+		<separator/>	
+		
+		<groupbox>
+			<caption label="Textes à Supprimer/Remplacer" />
+			<hbox align="center">
+				<label align="left,bottom" value="Texte à supprimer : "/>
+				<textbox align ="right" id="idTexteSuppr" />
+			</hbox>
+			<hbox align="center">
+				<label align="left,bottom" value="Nouveau Texte : " />
+				<textbox align="right" id="idTexteNouv" />
+			</hbox>		
+			<hbox align="center">
+				<checkbox id="idRespectCasse" label="Respecter la casse" checked="false" />
+			</hbox>
+			<hbox align="center">
+				<checkbox id="idNomZone" label="Inclure le nom de la zone" checked="false" />
+			</hbox>
+		</groupbox>
+		<separator/>	
+		
+		<groupbox>
+			<caption label="Choix du Traitement : " />
+			<radiogroup id="idZones" orient="vertical">
+				<radio id="idZone1" group="idZones" label="Notice Entière" selected="true" oncommand="oncommand_type_zones(true);"/>
+				<hbox>
+					<radio id="idZone2" group="idZones" label="Zone(s), ex: 010;6XX;7XX-820" oncommand="oncommand_type_zones(false);"/>
+					<textbox align="right" id="idUniqueZone" hidden="true" />
+				</hbox>
+			</radiogroup>
+		</groupbox>
+		
+		<groupbox>
+			<caption label="Fichier à créer en résultat : " />
+			<hbox align="center">
+				<label align="left,bottom" value="Entrez le chemin : " />
+				<textbox align="right" id="idCase_Fichier_Sortie" value=""/>
+				<button label="Parcourir..." id="searchbuttonS" oncommand="Parcourir();"/>
+
+			</hbox>
+			<separator/>
+			<label align="left,bottom" style="color: blue" value="NB: Si la case est vide, Aucun fichier de sortie ne sera crée" />
+		</groupbox>
+		
+		<groupbox>
+			<caption label="Traitement en cours... " />
+			<progressmeter id="idBarreProgress" mode="determined" value="0"/>
+		</groupbox>
+	</vbox>
+</dialog>
+
+	
+
+	
