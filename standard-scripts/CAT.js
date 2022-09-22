@@ -1,8 +1,8 @@
-//mis à jour le 2014-09-04 par MTE : ajout de tous les $b du 200 maintenant qu'ils sont contrôlés
-//mis à jour le 2014-10-07 par MTE : remplacement des 200$b par 181 et si possible 182
-//mis à jour le 2015-03-19 par IAN : mise à jour de la date dans le script CAT_creerExemplaireRetro, passée de 2014 à 2015
-//mis à jour le 2015-04-24 par IAN : mise à jour de la date dans le script CAT_creer-ThesesImpEditionCommerciale, mentions subdivision de forme Thèses et écrits académiques ($3 ppn) enlevées des zones 606
-//mis à jour le 2015-12-07 par SRY : CAT_creerTheseImprimeReproduction : supprimer 451 et 452
+// mis à jour le 2014-09-04 par MTE : ajout de tous les $b du 200 maintenant qu'ils sont contrôlés
+// mis à jour le 2014-10-07 par MTE : remplacement des 200$b par 181 et si possible 182
+// mis à jour le 2015-03-19 par IAN : mise à jour de la date dans le script CAT_creerExemplaireRetro, passée de 2014 à 2015
+// mis à jour le 2015-04-24 par IAN : mise à jour de la date dans le script CAT_creer-ThesesImpEditionCommerciale, mentions subdivision de forme Thèses et écrits académiques ($3 ppn) enlevées des zones 606
+// mis à jour le 2015-12-07 par SRY : CAT_creerTheseImprimeReproduction : supprimer 451 et 452
 //                                   CAT_creerTheseImprimeEditionCommerciale : supprimer $3027253139 en zone 6XX remplacer 451, 452 et supprimer 455 et 456
 //									 CAT_creerTheseElectroniqueReproduction : supprimer 451, 452 et 456
 //									 CAT_creerPeriodique, CAT_creerCollection, CAT_creerPeriodElectr : supprimer 301
@@ -26,7 +26,34 @@
 //				* Modificication des scripts suivants comme suit :
 //				* remplacer 219 par 214 - suppression $x 600, 606 et 607 - ajout 608$a et $2 - modification libellé 700, 702, 710, 711 et 712
 //				CAT_creerMonoIMP, CAT_creerElectronique, CAT_creerAudiovisuel, CAT_creerMultimedia, CAT_creerAtlas, CAT_creerPartition, CAT_creerMusique, CAT_creerSonore, CAT_creerEchantillonAccompagne, CAT_creerObjet, CAT_creerPeriodique, CAT_creerPeriodElectr, CAT_creerCollection, CAT_creerTheseImprimeOriginelle, CAT_creerTheseElectroniqueReproduction, CAT_creerTheseImprimeReproduction, CAT_creerTheseImprimeEditionCommerciale, CAT_creerArticleImp
-//
+// mis à jour le 2022-04-13 par LJ : création de deux scripts de création de mémoire nativement numérique
+//				CAT_creerMemoireElec et CAT_creerMemoireImpr
+// mis à jour le 2022-05-25 par MRX :
+//		création de six scripts
+//				CAT_creerHDRElecVO : création HDR nativement électronique
+//				CAT_creerHDRImprVO : création HDR nativement imprimée
+//				CAT_creerHDRElecReproduction : création reproduction électronique de HDR
+//				CAT_creerHDRImprReproduction : création reproduction imprimée de HDR
+//				CAT_creerMemoireElecReproduction : création reproduction électronique de mémoire
+//				CAT_creerMemoireImprReproduction : création reproduction imprimée de mémoire
+//		mise à jour de 5 scripts :
+//				CAT_creerTheseImprimeOriginelle
+//				CAT_creerTheseImprimeReproduction
+//				CAT_creerTheseEclectroniqueReproduction
+//				CAT_creerMemoireElec
+//				CAT_creerMemoireImpr
+// mis à jour le 2022-06-03 par MRX :
+//		création de 3 scripts
+//				CAT_creerTheseElecAutreVersionAuteur : création version remaniée d'une thèse
+//				CAT_creerTheseImprNonDeposee : création thèse non déposée
+//				CAT_creerTheseImprPerdue : création thèse perdue
+// mise à jour le 2022-06-22 par MRX :
+//				CAT_creerTheseEclectroniqueReproduction
+//				CAT_creerHDRElecVO : création HDR nativement électronique
+//				CAT_creerHDRElecReproduction : création reproduction électronique de HDR
+//				CAT_creerMemoireElec
+//				CAT_creerMemoireElecReproduction : création reproduction électronique de mémoire
+//				CAT_creerTheseRemanieeAuteur : création version remaniée d'une thèse
 
 
 function CAT_ajout301()
@@ -197,8 +224,7 @@ function CAT_creerCollection()
 		"181 ##$P01$ctxt" + "\n" +"182 ##$P01$cn"+ "\n" +
 		"183 ##$P01$anga" + "\n" +
 		"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"215 ##$aImportance matérielle$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" +
-		"301 ##$ax volumes dans le Sudoc : pas de demande de numérotation ISSN (Attention, à partir de 5 notices appartenant à la collection, demande de numérotation ISSN à faire via l'application Cidemis) " + "\n" +
+		"301 ##$aX volumes dans le Sudoc au AAAA-MM-JJ : pas de demande de numérotation ISSN" + "\n" +
 		"326 ##$aCollection" + "\n" +
 		"510 ##$a@Titre parallèle" + "\n" +
 		"512 ##$a@Titre de couverture" + "\n" +
@@ -206,8 +232,8 @@ function CAT_creerCollection()
 		"606 ##$aSujet$yGéographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
 		"701 #1$aNom co-Auteur relatif à l'oeuvre ou à l'expression$4651"+ "\n" +
-		"710 02$a@Nom Collectivité Auteur relatif à l'oeuvre ou à l'expression$4070" + "\n" +
-		"711 02$a@Nom Collectivité co-Auteur relatif à l'oeuvre ou à l'expression$4070" + "\n" +
+		"710 02$a@Nom Collectivité Auteur relatif à l'oeuvre ou à l'expression$4651" + "\n" +
+		"711 02$a@Nom Collectivité co-Auteur relatif à l'oeuvre ou à l'expression$4651" + "\n" +
 		"712 02$a@Nom Collecteur Auteur relatif à la manifestation ou à l'item$4Code de Fonction"
 	);
 	application.activeWindow.codedData = true;
@@ -485,8 +511,8 @@ function CAT_creerPeriodique ()
 		"517 ##$a@Autres variantes du titre" + "\n" +
 		"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
-		"710 02$a@Nom Collectivité Auteur relatif à l'oeuvre ou à l'expression$4070" + "\n" +
-		"711 02$a@Nom Collectivité co-Auteur relatif à l'oeuvre ou à l'expression$4070" + "\n" +
+		"710 02$a@Nom Collectivité Auteur relatif à l'oeuvre ou à l'expression$4651" + "\n" +
+		"711 02$a@Nom Collectivité co-Auteur relatif à l'oeuvre ou à l'expression$4651" + "\n" +
 		"712 02$a@Nom Collecteur Auteur relatif à la manifestation ou à l'item$4Code de Fonction");
 	application.activeWindow.codedData = true;
 }
@@ -518,8 +544,8 @@ function CAT_creerPeriodElectr ()
 		"517 ##$a@Autres variantes du titre" + "\n" +
 		"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
-		"710 02$a@Nom Collectivité Auteur relatif à l'oeuvre ou à l'expression$4070" + "\n" +
-		"711 02$a@Nom Collectivité co-Auteur relatif à l'oeuvre ou à l'expression$4070" + "\n" +
+		"710 02$a@Nom Collectivité Auteur relatif à l'oeuvre ou à l'expression$4651" + "\n" +
+		"711 02$a@Nom Collectivité co-Auteur relatif à l'oeuvre ou à l'expression$4651" + "\n" +
 		"712 02$a@Nom Collecteur Auteur relatif à la manifestation ou à l'item$4Code de Fonction" + "\n" +
 		"856 4#$qFormat$uAdresse URL (si l'accès est réservé, créer une E856)");
 	application.activeWindow.codedData = true;
@@ -623,25 +649,34 @@ function CAT_creerSonore ()
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
+// 20220525 : mise à jour MRX
+// 20220622 : mise à jour MRX
 function CAT_creerTheseElectroniqueReproduction ()
 { // Ce script permet de créer une notice de thèse électronique Oa (Reproduction)
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aOax3" + "\n" +
+		"029 ##$aFR$bNuméro national de thèse (aaaaCODEnnnn)" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
 		"101 0#$afre$dfre$deng" + "\n" +
 		"102 ##$aFR" + "\n" +
 		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
 		"105 ##$bv$ba$c0$d0$fy$gy" + "\n" +
 		"135 ##$ad$br" + "\n" +
-		"181 ##$P01$ctxt" + "\n" + "182 ##$P01$cc" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cc" + "\n" +
 		"183 ##$P01$aceb" + "\n" +
 		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" +
 		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
 		"230 ##$aDonnées textuelles" + "\n" +
-		"300 ##$aThèse soutenue en co-tutelle --Thèse soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" +
-		"303 ##$anombre de pages généré par l'impression du document, lorsque ce document est paginé" + "\n" +
+		"300 ##$a(s'il y a lieu)Thèse soutenue en co-tutelle" + "\n" +
 		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
+		"307 ##$anombre de pages généré par l'impression du document, lorsque ce document est paginé" + "\n" +
+		"311 ##$a(s'il y a lieu)Thèse soutenue sur un ensemble de travaux" + "\n" +
+		"314 ##$aEcole(s) doctorale(s) : Nom de l'école doctorale" + "\n" +
+		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'équipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$zReproduction de$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
 		"330 ##$aRésumé français" + "\n" +
@@ -654,17 +689,28 @@ function CAT_creerTheseElectroniqueReproduction ()
 		"606 ##$aACCES SUJET - NOM COMMUN$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
 		"610 0#$aMots clés libres" + "\n" +
-		"686 ##$a $2TEF" + "\n" +
+		"686 ##$aCode TEF$2TEF" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" +
-		"711 02$a@Université de soutenance$4295" + "\n" +
-		"711 02$a@établissement de cotutelle, ou composante, ou organismes partenaires (à définir - voir Guide Méthodologique)$4(code de fonction à définir - voir Guide Méthodologique)" + "\n" +
-		"856 4#$qFormat$uAdresse URL (si l'accès est réservé, créer une E856)");
+		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295" + "\n" +
+		"711 02$a@Etablissement de cotutelle$4995" + "\n" +
+		"711 02$a@Ecole doctorale$4996" + "\n" +
+		"711 02$a@Laboratoire$4981" + "\n" +
+		"711 02$a@Autre type de partenaire (composante, institut, établissement d'inscription, etc)$4985" + "\n" +
+		"856 4#$qFormat$uAdresse URL (si l'accès est réservé, créer une E856)"
+	);
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
+// 20220525 : mise à jour MRX
 function CAT_creerTheseImprimeOriginelle ()
 { // Ce script permet de créer une notice de thèse imprimée Aa (Document originel)corrige le 2013-09-03 MTE selon Assistance 4174
 	application.activeWindow.codedData = false;
@@ -672,36 +718,54 @@ function CAT_creerTheseImprimeOriginelle ()
 	application.activeWindow.title.insertText(
 		"008 $aAax3" + "\n" +
 		"029 ##$aFR$bNuméro national de thèse (aaaaCODEnnnn)" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
 		"101 0#$afre$dfre$deng" + "\n" +
 		"102 ##$aFR" + "\n" +
 		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
 		"105 ##$bm$ba$c0$d0$e1$fy$gy" + "\n" +
-		"181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cn" + "\n" +
 		"183 ##$P01$anga" + "\n" +
 		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" +
 		"214 #1$dDate de production" + "\n" +
-		"215 ##$aNombre de vol. (nbr. de p. ou f.)$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" +
-		"300 ##$aThèse soutenue en co-tutelle --Thèse soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" +
-		"310 ##$aThèse confidentielle jusqu'en (année)(s'il y a lieu)" + "\n" +
+		"215 ##$ax vol. (xxx p.)$dDimensions" + "\n" +
+		"300 ##$a(s'il y a lieu)Thèse soutenue en co-tutelle" + "\n" +
+		"311 ##$a(s'il y a lieu)Thèse soutenue sur un ensemble de travaux" + "\n" +
+		"314 ##$aEcole(s) doctorale(s) : Nom de l'école doctorale" + "\n" +
+		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'équipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
 		"330 ##$aRésumé français" + "\n" +
 		"330 ##$aRésumé anglais" + "\n" +
+		"371 ##$a(s'il y a lieu)Thèse confidentielle jusqu'au (date exacte) OU jusqu'en (année)" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
-		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aACCES SUJET - NOM COMMUN$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
 		"610 0#$aMots clés libres" + "\n" +
-		"686 ##$a $2TEF" + "\n" +
+		"686 ##$aCode TEF$2TEF" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" +
-		"711 02$a@Université de soutenance$4295");
+		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295" + "\n" +
+		"711 02$a@Etablissement de cotutelle$4995" + "\n" +
+		"711 02$a@Ecole doctorale$4996" + "\n" +
+		"711 02$a@Laboratoire$4981" + "\n" +
+		"711 02$a@Autre type de partenaire (composante, institut, établissement d'inscription, etc)$4985"
+	);
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
+// 20220525 : mise à jour MRX
 function CAT_creerTheseImprimeReproduction ()
 { // Ce script permet de créer une notice de thèse imprimée Aa (Reproduction)
 	application.activeWindow.codedData = false;
@@ -713,27 +777,43 @@ function CAT_creerTheseImprimeReproduction ()
 		"102 ##$aFR" + "\n" +
 		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
 		"105 ##$bv$ba$c0$d0$e1$fy$gy" + "\n" +
-		"181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cn" + "\n" +
 		"183 ##$P01$anga" + "\n" +
 		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" +
 		"214 #2$aLieu de diffusion$bAdresse du diffuseur$cNom diffuseur$dAnnée de diffusion" + "\n" +
-		"215 ##$aNombre de vol. (nbr. de p. ou f.)$cMention d'ill.$dDimensions$eMatériel d'accompagnement" + "\n" +
-		"300 ##$aThèse soutenue en co-tutelle --Thèse soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" +
+		"215 ##$ax vol. (xxx p.)$dDimensions" + "\n" +
+		"300 ##$a(s'il y a lieu)Thèse soutenue en co-tutelle" + "\n" +
+		"311 ##$a(s'il y a lieu)Thèse soutenue sur un ensemble de travaux" + "\n" +
+		"314 ##$aEcole(s) doctorale(s) : Nom de l'école doctorale" + "\n" +
+		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'équipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie p.xxx-xxx. Index" + "\n" +
 		"328 #0$zReproduction de$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
 		"330 ##$aRésumé français" + "\n" +
 		"330 ##$aRésumé anglais" + "\n" +
 		"455 ##$t@Lien vers la thèse originelle" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
-		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
 		"610 0#$aMots clés libres" + "\n" +
-		"686 ##$a $2TEF" + "\n" +
+		"686 ##$aCode TEF$2TEF" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" +
-		"711 02$a@Université de soutenance$4295");
+		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295" + "\n" +
+		"711 02$a@Etablissement de cotutelle$4995" + "\n" +
+		"711 02$a@Ecole doctorale$4996" + "\n" +
+		"711 02$a@Laboratoire$4981" + "\n" +
+		"711 02$a@Autre type de partenaire (composante, institut, établissement d'inscription, etc)$4985"
+	);
 	application.activeWindow.codedData = true;
 }
 
@@ -759,11 +839,12 @@ function CAT_creerTheseImprimeEditionCommerciale ()
 		"328 #0$zTexte remanié de$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
 		"451 ##$t@Lien vers la thèse originelle sur le même support" + "\n" +
 		"452 ##$t@Lien vers la thèse originelle sur un support différent" + "\n" +
-		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$2fmesh" + "\n" +
 		"610 0#$aMots clés libres" + "\n" +
-		"700 #1$aNom Auteur$bPrénom$4070");
+		"700 #1$aNom Auteur$bPrénom$4070"
+	);
 	application.activeWindow.codedData = true;
 }
 
@@ -908,3 +989,533 @@ function CAT_creerPropositionFormeGenre ()
 	application.activeWindow.codedData = true;
 }
 
+// 20220603 : création MRX
+// 20220622 : mise à jour MRX
+function CAT_creerTheseRemanieeAuteur ()
+{ // Ce script permet de créer une notice de thèse électronique Oa (version remaniée par l'auteur hors publication commerciale)
+	application.activeWindow.codedData = false;
+	application.activeWindow.command("cre", false);
+	application.activeWindow.title.insertText(
+		"008 $aOax3" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
+		"101 0#$afre$dfre$deng" + "\n" +
+		"102 ##$aFR" + "\n" +
+		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+		"105 ##$bv$ba$c0$d0$fy$gy" + "\n" +
+		"135 ##$ad$br" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cc" + "\n" +
+		"183 ##$P01$aceb" + "\n" +
+		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" +
+		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
+		"230 ##$aDonnées textuelles" + "\n" +
+		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
+		"307 ##$anombre de pages généré par l'impression du document, lorsque ce document est paginé" + "\n" +
+		"320 ##$aBibliographie : xxx réf." + "\n" +
+		"328 #0$zTexte remanié de$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
+		"330 ##$aRésumé français" + "\n" +
+		"330 ##$aRésumé anglais" + "\n" +
+		"337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" +
+		"45X ##$t@Lien vers la thèse originelle" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
+		"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" +
+		"608 ##$3027253139$2rameau" + "\n" +
+		"610 0#$aMots clés libres" + "\n" +
+		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
+		"856 4#$qFormat$uAdresse URL$zAccès au texte intégral"
+	);
+	application.activeWindow.codedData = true;
+}
+
+// 20220413 : Création
+// 20220525 : Mise à jour MRX
+// 20220622 : Mise à jour MRX
+function CAT_creerMemoireElec ()
+{ // Ce script permet de créer une notice de mémoire nativement électronique Oa
+	application.activeWindow.codedData = false;
+	application.activeWindow.command("cre", false);
+	application.activeWindow.title.insertText(
+		"008 $aOax3" + "\n" +
+		"029 ##$aFR$mNuméro du mémoire" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
+		"101 0#$afre$dfre$deng" + "\n" +
+		"102 ##$aFR" + "\n" +
+		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+		"105 ##$b7$ba$c0$d0$fy$gy" + "\n" +
+		"135 ##$ad$br" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cc" + "\n" +
+		"183 ##$P01$aceb" + "\n" +
+		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de mémoire" + "\n" +
+		"214 #1$dDate de production" + "\n" +
+		"230 ##$aDonnées textuelles" + "\n" +
+		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
+		"307 ##$aNombre de pages à l'impression lorsque ce document est paginé" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
+		"320 ##$aBibliographie : xxx réf." + "\n" +
+		"328 #0$bMention du travail universitaire et nature du diplôme$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
+		"330 ##$aRésumé français" + "\n" +
+		"330 ##$aRésumé anglais" + "\n" +
+		"337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccès sujet nom commun$2rameau" + "\n" +
+		"606 ##$aAccès sujet nom commun$3040839486$2fmesh" + "\n" +
+		"608 ##$3027253139$2rameau" + "\n" +
+		"610 0#$aMots clés libres" + "\n" +
+		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
+		"701 #1$aNom Directeur de mémoire$bPrénom$4003" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295" + "\n" +
+		"856 4#$qFormat$uAdresse URL (si l'accès est réservé, créer une E856)"
+	);
+	application.activeWindow.codedData = true;
+}
+
+// 20220525 : Création
+// 20220622 : Mise à jour MRX
+function CAT_creerMemoireElecReproduction ()
+{ // Ce script permet de créer une notice de mémoire électronique Oa (reproduction)
+	application.activeWindow.codedData = false;
+	application.activeWindow.command("cre", false);
+	application.activeWindow.title.insertText(
+		"008 $aOax3" + "\n" +
+		"029 ##$aFR$mNuméro du mémoire" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
+		"101 0#$afre$dfre$deng" + "\n" +
+		"102 ##$aFR" + "\n" +
+		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+		"105 ##$b7$ba$c0$d0$fy$gy" + "\n" +
+		"135 ##$ad$br" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cc" + "\n" +
+		"183 ##$P01$aceb" + "\n" +
+		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de mémoire" + "\n" +
+		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
+		"230 ##$aDonnées textuelles" + "\n" +
+		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
+		"307 ##$aNombre de pages à l'impression lorsque ce document est paginé" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
+		"320 ##$aBibliographie : xxx réf." + "\n" +
+		"328 #0$zReproduction de$bMention du travail universitaire et nature du diplôme$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
+		"330 ##$aRésumé français" + "\n" +
+		"330 ##$aRésumé anglais" + "\n" +
+		"337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" +
+		"455 ##$t@Lien vers le mémoire originel" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccès sujet nom commun$2rameau" + "\n" +
+		"606 ##$aAccès sujet nom commun$3040839486$2fmesh" + "\n" +
+		"608 ##$3027253139$2rameau" + "\n" +
+		"610 0#$aMots clés libres" + "\n" +
+		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
+		"701 #1$aNom Directeur de mémoire$bPrénom$4003" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295" + "\n" +
+		"856 4#$qFormat$uAdresse URL (si l'accès est réservé, créer une E856)"
+	);
+	application.activeWindow.codedData = true;
+}
+
+// 20220413 : Création
+// 20220525 : Mise à jour MRX
+function CAT_creerMemoireImpr ()
+{ // Ce script permet de créer une notice de mémoire imprimé Aa
+	application.activeWindow.codedData = false;
+	application.activeWindow.command("cre", false);
+	application.activeWindow.title.insertText(
+		"008 $aAax3" + "\n" +
+		"029 ##$aFR$mNuméro du mémoire" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
+		"101 0#$afre$dfre$deng" + "\n" +
+		"102 ##$aFR" + "\n" +
+		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+		"105 ##$b7$ba$c0$d0$fy$gy" + "\n" +
+		"106 ##$ar" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cn" + "\n" +
+		"183 ##$P01$anga" + "\n" +
+		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de mémoire" + "\n" +
+		"214 #1$dDate de production" + "\n" +
+		"215 ##$ax vol. (xxx p.)$dDimensions" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
+		"320 ##$aBibliographie : xxx réf." + "\n" +
+		"328 #0$bMention du travail universitaire et nature du diplôme$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
+		"330 ##$aRésumé français" + "\n" +
+		"330 ##$aRésumé anglais" + "\n" +
+		"371 ##$a(s'il y a lieu)Mémoire confidentiel jusqu'au (date exacte) OU jusqu'en (année)" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccès sujet nom commun$2rameau" + "\n" +
+		"606 ##$aAccès sujet nom commun$3040839486$2fmesh" + "\n" +
+		"608 ##$3027253139$2rameau" + "\n" +
+		"610 0#$aMots clés libres" + "\n" +
+		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
+		"701 #1$aNom Directeur de mémoire$bPrénom$4003" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295"
+	);
+	application.activeWindow.codedData = true;
+}
+
+// 20220525 : Création
+function CAT_creerMemoireImprReproduction ()
+{ // Ce script permet de créer une notice de mémoire imprimé Aa (reproduction)
+	application.activeWindow.codedData = false;
+	application.activeWindow.command("cre", false);
+	application.activeWindow.title.insertText(
+		"008 $aAax3" + "\n" +
+		"029 ##$aFR$mNuméro du mémoire" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
+		"101 0#$afre$dfre$deng" + "\n" +
+		"102 ##$aFR" + "\n" +
+		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+		"105 ##$bv$ba$c0$d0$fy$gy" + "\n" +
+		"106 ##$ar" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cn" + "\n" +
+		"183 ##$P01$anga" + "\n" +
+		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de mémoire" + "\n" +
+		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
+		"215 ##$ax vol. (xxx p.)$dDimensions" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
+		"320 ##$aBibliographie : xxx réf." + "\n" +
+		"328 #0$zReproduction de$bMention du travail universitaire et nature du diplôme$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
+		"330 ##$aRésumé français" + "\n" +
+		"330 ##$aRésumé anglais" + "\n" +
+		"455 ##$t@Lien vers le mémoire originel" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccès sujet nom commun$2rameau" + "\n" +
+		"606 ##$aAccès sujet nom commun$3040839486$2fmesh" + "\n" +
+		"608 ##$3027253139$2rameau" + "\n" +
+		"610 0#$aMots clés libres" + "\n" +
+		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
+		"701 #1$aNom Directeur de mémoire$bPrénom$4003" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295"
+	);
+	application.activeWindow.codedData = true;
+}
+
+// 20220525 : Création
+function CAT_creerHDRImprVO ()
+{ // Ce script permet de créer une notice de HDR imprimé Aa
+	application.activeWindow.codedData = false;
+	application.activeWindow.command("cre", false);
+	application.activeWindow.title.insertText(
+		"008 $aAax3" + "\n" +
+		"029 ##$aFR$oNuméro de la HDR (numéro de HDR)" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
+		"101 0#$afre$dfre$deng" + "\n" +
+		"102 ##$aFR" + "\n" +
+		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+		"105 ##$b7$ba$c0$d0$fy$gy" + "\n" +
+		"106 ##$ar" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cn" + "\n" +
+		"183 ##$P01$anga" + "\n" +
+		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom de l'encadrant de la HDR" + "\n" +
+		"214 #1$dDate de production" + "\n" +
+		"215 ##$ax vol. (xxx p.)$dDimensions" + "\n" +
+		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire)" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
+		"320 ##$aBibliographie : xxx réf." + "\n" +
+		"328 #0$bHabilitation à diriger des recherches$cDiscipline (libellé complet)$eEtablissement (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
+		"330 ##$aRésumé français" + "\n" +
+		"330 ##$aRésumé anglais" + "\n" +
+		"371 ##$a(s'il y a lieu)HDR confidentielle jusqu'au (date exacte) OU jusqu'en (année)" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccès sujet nom commun$2rameau" + "\n" +
+		"606 ##$aAccès sujet nom commun$3040839486$2fmesh" + "\n" +
+		"608 ##$3027253139$2rameau" + "\n" +
+		"610 0#$aMots clés libres" + "\n" +
+		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
+		"701 #1$aNom Encadrant HDR$bPrénom$4003" + "\n" +
+		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295" + "\n" +
+		"711 02$a@Laboratoire$4981" + "\n" +
+		"711 02$a@Autre partenaire de recherche (composante, établissement d'inscription, etc)$4985"
+	);
+	application.activeWindow.codedData = true;
+}
+
+// 20220525 : Création
+function CAT_creerHDRImprReproduction ()
+{ // Ce script permet de créer une notice de HDR imprimée Oa (Reproduction)
+	application.activeWindow.codedData = false;
+	application.activeWindow.command("cre", false);
+	application.activeWindow.title.insertText(
+		"008 $aAax3" + "\n" +
+		"029 ##$aFR$oNuméro de la HDR (numéro de HDR)" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
+		"102 ##$aFR" + "\n" +
+		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+		"105 ##$bv$ba$c0$d0$e1$fy$gy" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cn" + "\n" +
+		"183 ##$P01$anga" + "\n" +
+		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom de l'encadrant de HDR" + "\n" +
+		"214 #2$aLieu de diffusion$bAdresse du diffuseur$cNom diffuseur$dAnnée de diffusion" + "\n" +
+		"215 ##$ax vol. (xxx p.)$dDimensions" + "\n" +
+		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'équipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
+		"320 ##$aBibliographie p.xxx-xxx. Index" + "\n" +
+		"328 #0$zReproduction de$bHabilitation à diriger des recherches$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
+		"330 ##$aRésumé français" + "\n" +
+		"330 ##$aRésumé anglais" + "\n" +
+		"455 ##$t@Lien vers la HDR originelle" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
+		"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" +
+		"608 ##$3027253139$2rameau" + "\n" +
+		"610 0#$aMots clés libres" + "\n" +
+		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
+		"701 #1$aNom Encadrant HDR$bPrénom$4003" + "\n" +
+		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295" + "\n" +
+		"711 02$a@Laboratoire$4981" + "\n" +
+		"711 02$a@Autre type de partenaire (composante, institut, établissement d'inscription, etc)$4985"
+	);
+	application.activeWindow.codedData = true;
+}
+
+// 20220525 : Création
+// 20220622 : Mise à jour MRX
+function CAT_creerHDRElecVO ()
+{ // Ce script permet de créer une notice de mémoire nativement électronique Oa
+	application.activeWindow.codedData = false;
+	application.activeWindow.command("cre", false);
+	application.activeWindow.title.insertText(
+		"008 $aOax3" + "\n" +
+		"029 ##$aFR$oNuméro de la HDR (numéro de HDR)" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
+		"101 0#$afre$dfre$deng" + "\n" +
+		"102 ##$aFR" + "\n" +
+		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+		"105 ##$b7$ba$c0$d0$fy$gy" + "\n" +
+		"135 ##$ad$br" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cc" + "\n" +
+		"183 ##$P01$aceb" + "\n" +
+		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom de l'encadrant de HDR" + "\n" +
+		"214 #1$dDate de production" + "\n" +
+		"230 ##$aDonnées textuelles" + "\n" +
+		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
+		"307 ##$aNombre de pages à l'impression lorsque ce document est paginé" + "\n" +
+		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire)" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
+		"320 ##$aBibliographie : xxx réf." + "\n" +
+		"328 #0$bHabilitation à diriger des recherches$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
+		"330 ##$aRésumé français" + "\n" +
+		"330 ##$aRésumé anglais" + "\n" +
+		"337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccès sujet nom commun$2rameau" + "\n" +
+		"606 ##$aAccès sujet nom commun$3040839486$2fmesh" + "\n" +
+		"608 ##$3027253139$2rameau" + "\n" +
+		"610 0#$aMots clés libres" + "\n" +
+		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
+		"701 #1$aNom Encadrant HDR$bPrénom$4003" + "\n" +
+		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295" + "\n" +
+		"711 02$a@Laboratoire$4981" + "\n" +
+		"711 02$a@Autre partenaire de recherche (composante, établissement d'inscription, etc)$4985" + "\n" +
+		"856 4#$qFormat$uAdresse URL (si l'accès est réservé, créer une E856)"
+	);
+	application.activeWindow.codedData = true;
+}
+
+// 20220525 : Création
+// 20220622 : Mise à jour MRX
+function CAT_creerHDRElecReproduction ()
+{ // Ce script permet de créer une notice de HDR électronique Oa (Reproduction)
+	application.activeWindow.codedData = false;
+	application.activeWindow.command("cre", false);
+	application.activeWindow.title.insertText(
+		"008 $aOax3" + "\n" +
+		"029 ##$aFR$oNuméro de la HDR (numéro de HDR)" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
+		"101 0#$afre$dfre$deng" + "\n" +
+		"102 ##$aFR" + "\n" +
+		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+		"105 ##$bv$ba$c0$d0$fy$gy" + "\n" +
+		"135 ##$ad$br" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cc" + "\n" +
+		"183 ##$P01$aceb" + "\n" +
+		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom de l'encadrant de HDR" + "\n" +
+		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
+		"230 ##$aDonnées textuelles" + "\n" +
+		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
+		"307 ##$aNombre de pages à l'impression lorsque ce document est paginé" + "\n" +
+		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire)" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
+		"320 ##$aBibliographie : xxx réf." + "\n" +
+		"328 #0$zReproduction de$bHabilitation à diriger des recherches$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
+		"330 ##$aRésumé français" + "\n" +
+		"330 ##$aRésumé anglais" + "\n" +
+		"337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" +
+		"455 ##$t@Lien vers la HDR originelle" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
+		"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" +
+		"608 ##$3027253139$2rameau" + "\n" +
+		"610 0#$aMots clés libres" + "\n" +
+		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
+		"701 #1$aNom Encadrant HDR$bPrénom$4003" + "\n" +
+		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295" + "\n" +
+		"711 02$a@Laboratoire$4981" + "\n" +
+		"711 02$a@Autre partenaire de recherche (composante, établissement d'inscription, etc)$4985" + "\n" +
+		"856 4#$qFormat$uAdresse URL (si l'accès est réservé, créer une E856)"
+	);
+	application.activeWindow.codedData = true;
+}
+
+// 2022060325 : création MRX
+function CAT_creerTheseImprPerdue ()
+{ // Ce script permet de créer une notice de thèse imprimée Aa perdue
+	application.activeWindow.codedData = false;
+	application.activeWindow.command("cre", false);
+	application.activeWindow.title.insertText(
+		"008 $aAax3" + "\n" +
+		"029 ##$aFR$bNuméro national de thèse (aaaaCODEnnnn)" + "\n" +
+		"035 ##$aTHOA[code court étab]" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
+		"101 0#$afre$dfre$deng" + "\n" +
+		"102 ##$aFR" + "\n" +
+		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+		"105 ##$bm$ba$c0$d0$e1$fy$gy" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cn" + "\n" +
+		"183 ##$P01$anga" + "\n" +
+		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" +
+		"214 #1$dDate de production" + "\n" +
+		"215 ##$a(si informations disponibles)x vol. (xxx p.)$dDimensions" + "\n" +
+		"300 ##$a(s'il y a lieu)Thèse soutenue en co-tutelle" + "\n" +
+		"303 ##$aNotice élaborée à partir de la reproduction de la thèse : la version de soutenance n'existe plus. OU Notice élaborée à partir de [mention des sources] : la version de soutenance n'existe plus.OU Notice élaborée à partir de [mention de sources]. Le document qui a justifié l'obtention du diplôme n'existe plus." + "\n" +
+		"311 ##$a(s'il y a lieu)Thèse soutenue sur un ensemble de travaux" + "\n" +
+		"314 ##$aEcole(s) doctorale(s) : Nom de l'école doctorale" + "\n" +
+		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'équipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
+		"320 ##$aBibliographie : xxx réf." + "\n" +
+		"328 #0$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
+		"330 ##$aRésumé français" + "\n" +
+		"330 ##$aRésumé anglais" + "\n" +
+		"371 ##$a(s'il y a lieu)Thèse confidentielle jusqu'en (année)" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
+		"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" +
+		"608 ##$3027253139$2rameau" + "\n" +
+		"610 0#$aMots clés libres" + "\n" +
+		"686 ##$aCode TEF$2TEF" + "\n" +
+		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
+		"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" +
+		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295" + "\n" +
+		"711 02$a@Etablissement de cotutelle$4995" + "\n" +
+		"711 02$a@Ecole doctorale$4996" + "\n" +
+		"711 02$a@Laboratoire$4981" + "\n" +
+		"711 02$a@Autre type de partenaire (composante, institut, établissement d'inscription, etc)$4985" + "\n" +
+		"E316 ##$aExemplaire manquant (constaté en AAAA) OU Exemplaire manquant/incommunicable depuis AAAA, pour cause de ... OU Exemplaire manquant/incommunicable depuis AAAA, pour cause de .... Il n'existe pas de copie conforme (au contenu strictement identique) de la version de soutenance$ulien vers la notice Sudoc de la reproduction conforme OU de la version non corrigée / remaniée / commercialisée de la thèse$2Consulter la reproduction OU Consulter la version non corrigée de la thèse OU Consulter la version commercialisée de la thèse OU Consulter une version de la thèse remaniée par l'auteur"
+	);
+	application.activeWindow.codedData = true;
+}
+
+// 2022060325 : création MRX
+function CAT_creerTheseImprNonDeposee ()
+{ // Ce script permet de créer une notice de thèse imprimée Aa non déposée
+	application.activeWindow.codedData = false;
+	application.activeWindow.command("cre", false);
+	application.activeWindow.title.insertText(
+		"008 $aAax3" + "\n" +
+		"029 ##$aFR$bNuméro national de thèse (aaaaCODEnnnn)" + "\n" +
+		"035 ##$aTHOA[code court étab]" + "\n" +
+		"100 0#$aAnnée de soutenance" + "\n" +
+		"101 0#$afre$dfre$deng" + "\n" +
+		"102 ##$aFR" + "\n" +
+		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+		"105 ##$bm$ba$c0$d0$e1$fy$gy" + "\n" +
+		"181 ##$P01$ctxt" + "\n" +
+		"182 ##$P01$cn" + "\n" +
+		"183 ##$P01$anga" + "\n" +
+		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" +
+		"214 #1$dDate de production" + "\n" +
+		"215 ##$a(si informations disponibles)x vol. (xxx p.)$dDimensions" + "\n" +
+		"300 ##$a(s'il y a lieu)Thèse soutenue en co-tutelle" + "\n" +
+		"303 ##$aNotice élaborée à partir de la version non corrigée de la thèse : la version de soutenance n'a pas été déposée OU Description établie à partir de (préciser les documents administratifs utilisés pour établir la description)" + "\n" +
+		"305 ##$a(s'il y a lieu) En l'absence de dépôt de la version définitive de la thèse, la version non corrigée fait office de dépôt légal. OU (si thèse non déposée) La version de soutenance n'existe pas. Le docteur n'a déposé aucun exemplaire de sa thèse pour archivage et communication." + "\n" +
+		"311 ##$a(s'il y a lieu)Thèse soutenue sur un ensemble de travaux" + "\n" +
+		"314 ##$aEcole(s) doctorale(s) : Nom de l'école doctorale" + "\n" +
+		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'équipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
+		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
+		"320 ##$aBibliographie : xxx réf." + "\n" +
+		"328 #0$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
+		"330 ##$aRésumé français" + "\n" +
+		"330 ##$aRésumé anglais" + "\n" +
+		"371 ##$a(s'il y a lieu)Thèse confidentielle jusqu'en (année)" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
+		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
+		"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" +
+		"608 ##$3027253139$2rameau" + "\n" +
+		"610 0#$aMots clés libres" + "\n" +
+		"686 ##$aCode TEF$2TEF" + "\n" +
+		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
+		"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" +
+		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"701 #1$aNom Rapporteur$bPrénom Rapporteur$4958" + "\n" +
+		"711 02$a@Etablissement de soutenance$4295" + "\n" +
+		"711 02$a@Etablissement de cotutelle$4995" + "\n" +
+		"711 02$a@Ecole doctorale$4996" + "\n" +
+		"711 02$a@Laboratoire$4981" + "\n" +
+		"711 02$a@Autre type de partenaire (composante, institut, établissement d'inscription, etc)$4985" + "\n" +
+		"E316 ##$aExemplaire manquant : le docteur n'a jamais déposé la version corrigée, validée, de sa thèse. OU Exemplaire manquant : le docteur n'a jamais déposé la version validée en soutenance de sa thèse. OU Exemplaire manquant : le docteur n'a jamais déposé sa thèse.$u(s'il y a lieu)lien vers la notice Sudoc de la version non corrigée--commercialisée--remaniée par l'auteur$2Consulter la version non corrigée de la thèse OU Consulter la version remaniée et commercialisée de la thèse OU Consulter la version de la thèse remaniée par l'auteur."
+	);
+	application.activeWindow.codedData = true;
+}
