@@ -1,4 +1,4 @@
-//2014-10-09 : mte : juste changement de date
+// 2014-10-09 : mte : juste changement de date
 function pressButtonOne()
 {
 	application.activeWindow.pressButton(1);

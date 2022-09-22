@@ -1,4 +1,4 @@
-//MTE ajout tri autorite le 20120306
+//MTE ajout tri autorité le 20120306
 //juste changement de date
 function TRI_titreAaZ ()
 {application.activeWindow.command("TRI TCO", false);}

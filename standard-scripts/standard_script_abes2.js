@@ -7,7 +7,7 @@
 // 2014-12-01 : mte : correction fonction recupererPpn : on utilise la variable p3, pas la zone
 // 2015-03-18 : ian : suppression 200 $b, les modifications faites par mte étaient restées en commentaire.
 // 2016-01-22 : SRY : ajout script transfoMonoElecEBookMonoImp : transformer une notice de monographie électronique en notice de monographie imprimée
-// 2016-01-28 : SRY : CAT_TransfoImpElec (Patrim et EBook) : 337 supprimer le $a qui doublonne, remplacer l'étiquette 324 par 305, supprimer la zone 336, ajouter une 339 
+// 2016-01-28 : SRY : CAT_TransfoImpElec (Patrim et EBook) : 337 supprimer le $a qui doublonne, remplacer l'étiquette 324 par 305, supprimer la zone 336, ajouter une 339
 // 2016-02-12 : SRY : CAT_TransfoImpElec (Patrim et EBook) : modification 181 et 182 
 // 2016-02-18 : SRY : CAT_TransfoImpElec (PAtrim) : ajout zone 324 et remplacement zone 305
 // 2017-03-16 : SRY : modification RDA FR 2017 sur tous les scripts TRANSFO//
@@ -29,7 +29,7 @@ var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +
 // This value of flags will create 3 buttons. The first will be "Save", the  
 // second will be the value of aButtonTitle1, and the third will be "Cancel"  
   
-var button = prompts.confirmEx(null, "Transformer une notice d'imprimé en notice de document électronique", "Que voulez-vous faire ?",  
+var button = prompts.confirmEx(null, "Transformer une notice d'imprimé en notice de document électronique", "Que voulez-vous faire ?",
                                flags, "Reproduction patrimoniale", "", "Transformer en ebook", null, check);  
  if (button == 0) transfoMonoImpMonoElecPatrim();
  if (button == 2) transfoMonoImpMonoElecEBook();
@@ -39,14 +39,14 @@ var button = prompts.confirmEx(null, "Transformer une notice d'imprimé en notice
  var ancienPpn = "";
  function onLoad()
 {
-    // Ã  l'ouverture de la boîte de dialogue
+    // à l'ouverture de la boîte de dialogue
    
     return true;
 }         
 function onCancel()
 {
     // The Cancel button is pressed..
-    //alert("Vous avez cliquÃ© sur Annuler, Rien ne sera modifiÃ©.");
+    //alert("Vous avez cliqué sur Annuler, Rien ne sera modifié.");
     return true;
 }
 
@@ -483,7 +483,7 @@ function remplacerValeurZone700(tag) {
 	var i=0;
 	while (res != "") {
 		res = application.activeWindow.title.findTag(tag, i, true, true, false);
-		//on récupére le contenu de la zone sans le libellé de la $4 : 
+		//on récupère le contenu de la zone sans le libellé de la $4 :
 		//l'index de fin est situé à la position de la $4 + 2 caractères de la sous zone + 3 caractères du code de fonction
 		var sousZones = res.split("$4");
 		var zone = res.substring(0, res.indexOf("$4"));

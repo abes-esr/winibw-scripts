@@ -30,7 +30,7 @@ application.activeWindow.command("aff ob", false);
 }
 
 function PEB_StoDemande ()
-{// PEB commande Annuler la dernière demande envoyée
+{// PEB commande Annuler la dernière demande envoy?e
 application.activeWindow.command("sto a*", false);
 }
 
@@ -40,7 +40,7 @@ application.activeWindow.command("sel enr dep auj", false);
 }
 
 function PEB_SelEnrAtt ()
-{// PEB commande Selectionner les demandes préliminaires reçues
+{// PEB commande Selectionner les demandes préliminaires re?ues
 application.activeWindow.command("sel enr att", false);
 }
 

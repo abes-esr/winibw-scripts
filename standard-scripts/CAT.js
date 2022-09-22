@@ -1,59 +1,32 @@
-// mis √† jour le 2014-09-04 par MTE : ajout de tous les $b du 200 maintenant qu'ils sont contr√¥l√©s
-// mis √† jour le 2014-10-07 par MTE : remplacement des 200$b par 181 et si possible 182
-// mis √† jour le 2015-03-19 par IAN : mise √† jour de la date dans le script CAT_creerExemplaireRetro, pass√©e de 2014 √† 2015
-// mis √† jour le 2015-04-24 par IAN : mise √† jour de la date dans le script CAT_creer-ThesesImpEditionCommerciale, mentions subdivision de forme Th√®ses et √©crits acad√©miques ($3 ppn) enlev√©es des zones 606
-// mis √† jour le 2015-12-07 par SRY : CAT_creerTheseImprimeReproduction : supprimer 451 et 452
+// mis ‡ jour le 2014-09-04 par MTE : ajout de tous les $b du 200 maintenant qu'ils sont contrÙlÈs
+// mis ‡ jour le 2014-10-07 par MTE : remplacement des 200$b par 181 et si possible 182
+// mis ‡ jour le 2015-03-19 par IAN : mise ‡ jour de la date dans le script CAT_creerExemplaireRetro, passÈe de 2014 ‡ 2015
+// mis ‡ jour le 2015-04-24 par IAN : mise ‡ jour de la date dans le script CAT_creer-ThesesImpEditionCommerciale, mentions subdivision de forme ThËses et Ècrits acadÈmiques ($3 ppn) enlevÈes des zones 606
+// mis ‡ jour le 2015-12-07 par SRY : CAT_creerTheseImprimeReproduction : supprimer 451 et 452
 //                                   CAT_creerTheseImprimeEditionCommerciale : supprimer $3027253139 en zone 6XX remplacer 451, 452 et supprimer 455 et 456
 //									 CAT_creerTheseElectroniqueReproduction : supprimer 451, 452 et 456
 //									 CAT_creerPeriodique, CAT_creerCollection, CAT_creerPeriodElectr : supprimer 301
 //									 CAT_creerExemplaireRetro : remplacement de la date 2015 par 2016
 //									 CAT_creerTheseImprimeOriginelle: modification mentions zone 210
-// mis √† jour le 2016-02-08 par SRY : CAT_creerElectronique, CAT_creerPeriodElectr : 230,337,339
-// mis √† jour le 2016-02-22 par SRY : CAT_creerCollection : ajout zone 301
-// mis √† jour le 2016-11-14 par SRY :
+// mis ‡ jour le 2016-02-08 par SRY : CAT_creerElectronique, CAT_creerPeriodElectr : 230,337,339
+// mis ‡ jour le 2016-02-22 par SRY : CAT_creerCollection : ajout zone 301
+// mis ‡ jour le 2016-11-14 par SRY :
 // 				CAT_creerTheseElectroniqueReproduction : modification zone 702
 //				CAT_creerCollectivite : ajout de la zone 150 $a et $b
 //				CAT_creerElectronique : ajout zone 336 $a
-// mis √† jour le 2017-03-16 par SRY :
+// mis ‡ jour le 2017-03-16 par SRY :
 // 				Nouvelles consignes RDA FR 2017 (zones 183, 210, 219, 215
-// mis √† jour le 2018-01-03 par SRY : cr√©ation de 2 scripts :
+// mis ‡ jour le 2018-01-03 par SRY : crÈation de 2 scripts :
 // 				CAT_creerEchantillonAccompagne et CAT_creerObjet
-// mis √† jour le 2018-05-31 par SRY : cr√©ation de script :
+// mis ‡ jour le 2018-05-31 par SRY : crÈation de script :
 // 				CAT_creerArticleImp
-//				modification du vocabulaire (vedette mati√®re transform√© en point d'acc√®s)
-// mis √† jour le 2020-01-01 par SRY : modification pour √©volutions Unimarc
-//				* cr√©ation de script : CAT_creerPropositionFormeGenre - Ce script permet de cr√©er une proposition rameau Forme/Genre Tf3
+//				modification du vocabulaire (vedette matiËre transformÈ en point d'accËs)
+// mis ‡ jour le 2020-01-01 par SRY : modification pour Èvolutions Unimarc
+//				* crÈation de script : CAT_creerPropositionFormeGenre - Ce script permet de crÈer une proposition rameau Forme/Genre Tf3
 //				* Modificication des scripts suivants comme suit :
-//				* remplacer 219 par 214 - suppression $x 600, 606 et 607 - ajout 608$a et $2 - modification libell√© 700, 702, 710, 711 et 712
+//				* remplacer 219 par 214 - suppression $x 600, 606 et 607 - ajout 608$a et $2 - modification libellÈ 700, 702, 710, 711 et 712
 //				CAT_creerMonoIMP, CAT_creerElectronique, CAT_creerAudiovisuel, CAT_creerMultimedia, CAT_creerAtlas, CAT_creerPartition, CAT_creerMusique, CAT_creerSonore, CAT_creerEchantillonAccompagne, CAT_creerObjet, CAT_creerPeriodique, CAT_creerPeriodElectr, CAT_creerCollection, CAT_creerTheseImprimeOriginelle, CAT_creerTheseElectroniqueReproduction, CAT_creerTheseImprimeReproduction, CAT_creerTheseImprimeEditionCommerciale, CAT_creerArticleImp
-// mis √† jour le 2022-04-13 par LJ : cr√©ation de deux scripts de cr√©ation de m√©moire nativement num√©rique
-//				CAT_creerMemoireElec et CAT_creerMemoireImpr
-// mis √† jour le 2022-05-25 par MRX :
-//		cr√©ation de six scripts
-//				CAT_creerHDRElecVO : cr√©ation HDR nativement √©lectronique
-//				CAT_creerHDRImprVO : cr√©ation HDR nativement imprim√©e
-//				CAT_creerHDRElecReproduction : cr√©ation reproduction √©lectronique de HDR
-//				CAT_creerHDRImprReproduction : cr√©ation reproduction imprim√©e de HDR
-//				CAT_creerMemoireElecReproduction : cr√©ation reproduction √©lectronique de m√©moire
-//				CAT_creerMemoireImprReproduction : cr√©ation reproduction imprim√©e de m√©moire
-//		mise √† jour de 5 scripts :
-//				CAT_creerTheseImprimeOriginelle
-//				CAT_creerTheseImprimeReproduction
-//				CAT_creerTheseEclectroniqueReproduction
-//				CAT_creerMemoireElec
-//				CAT_creerMemoireImpr
-// mis √† jour le 2022-06-03 par MRX :
-//		cr√©ation de 3 scripts
-//				CAT_creerTheseElecAutreVersionAuteur : cr√©ation version remani√©e d'une th√®se
-//				CAT_creerTheseImprNonDeposee : cr√©ation th√®se non d√©pos√©e
-//				CAT_creerTheseImprPerdue : cr√©ation th√®se perdue
-// mise √† jour le 2022-06-22 par MRX :
-//				CAT_creerTheseEclectroniqueReproduction
-//				CAT_creerHDRElecVO : cr√©ation HDR nativement √©lectronique
-//				CAT_creerHDRElecReproduction : cr√©ation reproduction √©lectronique de HDR
-//				CAT_creerMemoireElec
-//				CAT_creerMemoireElecReproduction : cr√©ation reproduction √©lectronique de m√©moire
-//				CAT_creerTheseRemanieeAuteur : cr√©ation version remani√©e d'une th√®se
+//
 
 
 function CAT_ajout301()
@@ -61,7 +34,7 @@ function CAT_ajout301()
 	// permet d'ajouter une zone 301 ISSN
 	// tous ces scripts ont ete mis a jour le 20110617 par MTE
 	// selon les suggestions des formateurs relais
-	application.activeWindow.title.insertText ("301 ##$aDemande de num√©rotation ISSN en cours");
+	application.activeWindow.title.insertText ("301 ##$aDemande de numÈrotation ISSN en cours");
 }
 function CAT_ajout305()
 {
@@ -90,7 +63,7 @@ function CAT_ajoutDollar4Trad()
 }
 function CAT_ajoutDollar4Ed()
 {
-	// permet d'ajouter un dollar 4730 √©diteur
+	// permet d'ajouter un dollar 4730 Èditeur
 	application.activeWindow.title.insertText ("$4340");
 }
 function CAT_ajoutRameau()
@@ -109,11 +82,11 @@ function CAT_ajoutTexteImprime()
 	application.activeWindow.title.insertText ("181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn"+ "\n" +"183 ##$P01$anga");
 	// var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	//      .getService(Components.interfaces.IApplication);
-	// application.messageBox("Script inconnu ", "Ce script a √©t√© d√©sactiv√© le 01/01/2020", "alert-icon");
+	// application.messageBox("Script inconnu ", "Ce script a ÈtÈ dÈsactivÈ le 01/01/2020", "alert-icon");
 }
 function CAT_ajoutRessourcElec()
 {
-	// permet d'ajouter 181 Ressource √©lectronique
+	// permet d'ajouter 181 Ressource Èlectronique
 	application.activeWindow.title.insertText ("181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cc");
 }
 function CAT_ajoutCarte()
@@ -128,7 +101,7 @@ function CAT_ajoutSon()
 }
 function CAT_ajoutImagesAnimees()
 {
-	// permet d'ajouter 181Images anim√©ees et 182 ?
+	// permet d'ajouter 181Images animÈees et 182 ?
 	application.activeWindow.title.insertText ("181 ##$P01$ctdi");
 }
 function CAT_ajoutImageFixe()
@@ -153,7 +126,7 @@ function CAT_ajoutBraille()
 }
 function CAT_ajoutMusiqueImprimee()
 {
-	// permet d'ajouter 181 Musique imprim√©e
+	// permet d'ajouter 181 Musique imprimÈe
 	application.activeWindow.title.insertText ("181 ##$P01$cntm"+ "\n" +"182 ##$P01$cn");
 }
 function CAT_ajoutMusiqueBraille()
@@ -173,7 +146,7 @@ function CAT_ajout320()
 }
 function CAT_dedoublonnageDED ()
 {
-	// Ex√©cute la commande comparant les notices li√©es par une zone 024
+	// ExÈcute la commande comparant les notices liÈes par une zone 024
 	application.activeWindow.command("ded unm", false);
 }
 
@@ -181,30 +154,30 @@ function CAT_dedoublonnageDED ()
 // 20200101 : modification TB 2020
 function CAT_creerAtlas()
 {
-	//Ce script permet de cr√©er une notice d'atlas ou de carte Ka
+	//Ce script permet de crÈer une notice d'atlas ou de carte Ka
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aKax3" + "\n" +
 		"010 ##$AISBN$dPrix" + "\n" +
-		"073 #0$aNum√©ro EAN" + "\n" +
+		"073 #0$aNumÈro EAN" + "\n" +
 		"181 ##$P01$ctxt" + "\n" + "182 ##$P01$cn" + "\n" +
 		"181 ##$P02$ccri" + "\n" + "182 ##$P02$cn"+ "\n" +
 		"183 ##$P01$anga" + "\n" +
-		"200 01#$a@Titre$eCompl√©ment de Titre$f1re mention de responsabilit√©$gMention de responsabilit√© de fonction diff√©rente" + "\n" +
+		"200 01#$a@Titre$eComplÈment de Titre$f1re mention de responsabilitÈ$gMention de responsabilitÈ de fonction diffÈrente" + "\n" +
 		"205 ##$aEdition" + "\n" +
 		"206 ##$aEchelle" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'√©diteur$cNom de l'√©diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"215 ##$aImportance mat√©rielle$cMention d'ill.$dDimensions$eMat√©riel d'accompagnement" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'Èditeur$cNom de l'Èditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+		"215 ##$aImportance matÈrielle$cMention d'ill.$dDimensions$eMatÈriel d'accompagnement" + "\n" +
 		"304 ##$aNote sur le titre" + "\n" +
-		"305 ##$aNote sur l'√©dition" + "\n" +
+		"305 ##$aNote sur l'Èdition" + "\n" +
 		"315 ##$aEchelle de Cartes" + "\n" +
-		"510 ##$a@Titre parall√®le" + "\n" +
+		"510 ##$a@Titre parallËle" + "\n" +
 		"517 ##$a@Variante du Titre" + "\n" +
-		"606 ##$aSujet$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
-		"607 ##$aG√©ographique$2rameau" + "\n" +
+		"606 ##$aSujet$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
+		"607 ##$aGÈographique$2rameau" + "\n" +
 		"608 ##$3027497259$2rameau" + "\n" +
-		"700 #1$aNom Auteur relatif √† l'oeuvre ou √† l'expression$bPr√©nom$4180"
+		"700 #1$aNom Auteur relatif ‡ l'oeuvre ou ‡ l'expression$bPrÈnom$4180"
 	);
 	application.activeWindow.codedData = true;
 }
@@ -213,45 +186,46 @@ function CAT_creerAtlas()
 // 20200101 : modification TB 2020
 function CAT_creerCollection()
 {
-	//Ce script permet de cr√©er une notice de collection imprim√©e Ad
+	//Ce script permet de crÈer une notice de collection imprimÈe Ad
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aAdx3" + "\n" +
-		"106 $aCaract√©ristiques physiques" + "\n" +
-		"110 $aType de publication en s√©rie$bP√©riodicit√©$cR√©gularit√©" + "\n" +
-		"200 1#$a@Titre propre$eCompl√©ment du Titre$f1re mention de responsabilit√©$gMention de responsabilit√© de fonction diff√©rente" + "\n" +
+		"106 $aCaractÈristiques physiques" + "\n" +
+		"110 $aType de publication en sÈrie$bPÈriodicitÈ$cRÈgularitÈ" + "\n" +
+		"200 1#$a@Titre propre$eComplÈment du Titre$f1re mention de responsabilitÈ$gMention de responsabilitÈ de fonction diffÈrente" + "\n" +
 		"181 ##$P01$ctxt" + "\n" +"182 ##$P01$cn"+ "\n" +
 		"183 ##$P01$anga" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'√©diteur$cNom de l'√©diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"301 ##$aX volumes dans le Sudoc au AAAA-MM-JJ : pas de demande de num√©rotation ISSN" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'Èditeur$cNom de l'Èditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+		"215 ##$aImportance matÈrielle$cMention d'ill.$dDimensions$eMatÈriel d'accompagnement" + "\n" +
+		"301 ##$ax volumes dans le Sudoc : pas de demande de numÈrotation ISSN (Attention, ‡ partir de 5 notices appartenant ‡ la collection, demande de numÈrotation ISSN ‡ faire via l'application Cidemis) " + "\n" +
 		"326 ##$aCollection" + "\n" +
-		"510 ##$a@Titre parall√®le" + "\n" +
+		"510 ##$a@Titre parallËle" + "\n" +
 		"512 ##$a@Titre de couverture" + "\n" +
 		"517 ##$a@Autres variantes du titre" + "\n" +
-		"606 ##$aSujet$yG√©ographique$zChronologique$2rameau" + "\n" +
+		"606 ##$aSujet$yGÈographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
-		"701 #1$aNom co-Auteur relatif √† l'oeuvre ou √† l'expression$4651"+ "\n" +
-		"710 02$a@Nom Collectivit√© Auteur relatif √† l'oeuvre ou √† l'expression$4651" + "\n" +
-		"711 02$a@Nom Collectivit√© co-Auteur relatif √† l'oeuvre ou √† l'expression$4651" + "\n" +
-		"712 02$a@Nom Collecteur Auteur relatif √† la manifestation ou √† l'item$4Code de Fonction"
+		"701 #1$aNom co-Auteur relatif ‡ l'oeuvre ou ‡ l'expression$4651"+ "\n" +
+		"710 02$a@Nom CollectivitÈ Auteur relatif ‡ l'oeuvre ou ‡ l'expression$4070" + "\n" +
+		"711 02$a@Nom CollectivitÈ co-Auteur relatif ‡ l'oeuvre ou ‡ l'expression$4070" + "\n" +
+		"712 02$a@Nom Collecteur Auteur relatif ‡ la manifestation ou ‡ l'item$4Code de Fonction"
 	);
 	application.activeWindow.codedData = true;
 }
 function CAT_creerCollectivite()
 {
-	//Ce script permet de cr√©er une notice d'autorit√© collectivit√© Tb5
+	//Ce script permet de crÈer une notice d'autoritÈ collectivitÈ Tb5
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre e", false);
 	application.activeWindow.title.insertText(
 		"008 $aTb5" + "\n" +
 		"106 ##$a0$b1$c0" + "\n" +
-		"150 ##$aType de collectivit√© officielle (11 codes possibles, voir le GM)$bCode de congr√®s ou de conf√©rence (valeur 0 ou 1)" + "\n" +
-		"210   $90y$a@Nom de la collectivit√©$bnom de la collectivit√© subordonn√©e facultative$clocalisation facultative" + "\n" +
-		"340 ##$aNote biographique (informations √† justifier par des sources mentionn√©es en zone 810)" + "\n" +
-		"410   $9#y$a@Nom de la collectivit√©$bnom de la collectivit√© subordonn√©e facultative$clocalisation facultative" + "\n" +
-		"810 ##$aOBLIGATOIRE R√©f√©rence du document pour lequel est cr√©√©e la pr√©sente autorit√© Titre / Auteur, date" + "\n" +
-		"810 ##$aDocument(s) de r√©f√©rence permettant d'√©tablir les variantes √©ventuelles du nom 210 + 410, les informations biographiques 340, etc.$bCiter ici les informations trouv√©e dans la source Zone 810 r√©p√©table pour chaque source"
+		"150 ##$aType de collectivitÈ officielle (11 codes possibles, voir le GM)$bCode de congrËs ou de confÈrence (valeur 0 ou 1)" + "\n" +
+		"210   $90y$a@Nom de la collectivitÈ$bnom de la collectivitÈ subordonnÈe facultative$clocalisation facultative" + "\n" +
+		"340 ##$aNote biographique (informations ‡ justifier par des sources mentionnÈes en zone 810)" + "\n" +
+		"410   $9#y$a@Nom de la collectivitÈ$bnom de la collectivitÈ subordonnÈe facultative$clocalisation facultative" + "\n" +
+		"810 ##$aOBLIGATOIRE RÈfÈrence du document pour lequel est crÈÈe la prÈsente autoritÈ Titre / Auteur, date" + "\n" +
+		"810 ##$aDocument(s) de rÈfÈrence permettant d'Ètablir les variantes Èventuelles du nom 210 + 410, les informations biographiques 340, etc.$bCiter ici les informations trouvÈe dans la source Zone 810 rÈpÈtable pour chaque source"
 	);
 	application.activeWindow.codedData = true;
 }
@@ -260,7 +234,7 @@ function CAT_creerCollectivite()
 // 20200101 : modification TB 2020
 function CAT_creerElectronique()
 {
-	//Ce script permet de cr√©er une notice de monographie √©lectronique Oa
+	//Ce script permet de crÈer une notice de monographie Èlectronique Oa
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
@@ -269,49 +243,49 @@ function CAT_creerElectronique()
 		"181 ##$P01$c..."+ "\n" +
 		"182 ##$P01$cc" + "\n" +
 		"183 ##$P01$aceb" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du Titre$f1re mention de responsabilit√©$gMention de responsabilit√© de fonction diff√©rente" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'√©diteur$cNom de l'√©diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"225  #$a@Titre de la Collection$xISSN$vNum√©ro" + "\n" +
-		"230 ##$aDonn√©es textuelles" + "\n" +
-		"300 ##$aNote g√©n√©rale" + "\n" +
+		"200 1#$a@Titre$eComplÈment du Titre$f1re mention de responsabilitÈ$gMention de responsabilitÈ de fonction diffÈrente" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'Èditeur$cNom de l'Èditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+		"225  #$a@Titre de la Collection$xISSN$vNumÈro" + "\n" +
+		"230 ##$aDonnÈes textuelles" + "\n" +
+		"300 ##$aNote gÈnÈrale" + "\n" +
 		"303 ##$aNote " + "\n" +
 		"304 ##$aNote sur le Titre" + "\n" +
 		"305 ##$aNote " + "\n" +
 		"320 ##$aNote sur bibliographies et index" + "\n" +
-		"336 ##$aNote sur le type de ressource √©lectronique" + "\n" +
+		"336 ##$aNote sur le type de ressource Èlectronique" + "\n" +
 		"337 ##$aUn logiciel capable de lire un fichier au format XXX" + "\n" +
 		"339 ##$aFormat de la ressource$ddate de publication" + "\n" +
-		"410 ##$t@Lien au titre de la Collection$vNum√©ro" + "\n" +
+		"410 ##$t@Lien au titre de la Collection$vNumÈro" + "\n" +
 		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aSujet$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
-		"607 ##$aNom g√©ographique$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
+		"606 ##$aSujet$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
+		"607 ##$aNom gÈographique$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
-		"700 #1$aNom Auteur relatif √† l'oeuvre ou √† l'expression$bPr√©nom$4070"  + "\n" +
-		"712 02$a@Nom Collectivit√© auteur relatif √† la manifestation ou √† l'item$4Code de Fonction"  + "\n" +
+		"700 #1$aNom Auteur relatif ‡ l'oeuvre ou ‡ l'expression$bPrÈnom$4070"  + "\n" +
+		"712 02$a@Nom CollectivitÈ auteur relatif ‡ la manifestation ou ‡ l'item$4Code de Fonction"  + "\n" +
 		"856 4#$qFormat du fichier$uURL"
 	);
 	application.activeWindow.codedData = true;
 }
 function CAT_creerEtatDeCollection()
 {
-	//Ce script permet de cr√©er un √©tat de collection ouvert
+	//Ce script permet de crÈer un Ètat de collection ouvert
 	application.activeWindow.title.insertText(
 		"e01 $bxO" + "\n" +
 		"930 ##$aCote$jCode PEB" + "\n" +
-		"955 41$fS√©rieD√©but$dVolumeD√©but$eNum√©roD√©but$bJourD√©but$cMoisD√©but$aAnn√©eD√©but$pS√©rieFin$nvolumeFin$oNum√©roFin$lJourFin$mMoisFin$kAnn√©eFin$0 $aAnn√©eD√©but-$4Commentaires(Texte libre)$7Mention de lacune"
+		"955 41$fSÈrieDÈbut$dVolumeDÈbut$eNumÈroDÈbut$bJourDÈbut$cMoisDÈbut$aAnnÈeDÈbut$pSÈrieFin$nvolumeFin$oNumÈroFin$lJourFin$mMoisFin$kAnnÈeFin$0 $aAnnÈeDÈbut-$4Commentaires(Texte libre)$7Mention de lacune"
 	);
 }
 function CAT_creerEtatDeCollectionCR()
 {
-	//Ce script permet de cr√©er un √©tat de collection ouvert - Format des centres r√©gionaux
+	//Ce script permet de crÈer un Ètat de collection ouvert - Format des centres rÈgionaux
 	application.activeWindow.title.insertText(
 		"e01 $bxO" + "\n" +
 		"C01 ##$bRCR$aCote$jCode PEB" + "\n" +
-		"E01 41$fS√©rieD√©but$dVolumeD√©but$eNum√©roD√©but$bJourD√©but$cMoisD√©but$aAnn√©eD√©but$pS√©rieFin$nvolumeFin$oNum√©roFin$lJourFin$mMoisFin$kAnn√©eFin$0 $aAnn√©eD√©but-$4Commentaire (texte libre)$7Mention de lacune"
+		"E01 41$fSÈrieDÈbut$dVolumeDÈbut$eNumÈroDÈbut$bJourDÈbut$cMoisDÈbut$aAnnÈeDÈbut$pSÈrieFin$nvolumeFin$oNumÈroFin$lJourFin$mMoisFin$kAnnÈeFin$0 $aAnnÈeDÈbut-$4Commentaire (texte libre)$7Mention de lacune"
 	);
 }
 function CAT_creerExemplaireRetro ()
-{ // Ce script permet de cr√©er un exemplaire avec la mention retro en 991, maj par MTE le 2013-08-29
+{ // Ce script permet de crÈer un exemplaire avec la mention retro en 991, maj par MTE le 2013-08-29
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("mod", false);
 	application.activeWindow.title.endOfBuffer(false);
@@ -319,208 +293,208 @@ function CAT_creerExemplaireRetro ()
 		"e01 $bx" + "\n" +
 		"ATTENTION EFFACEZ LES LIGNES INUTILES A L'EXEMPLAIRE CREE" + "\n" +
 		"930 ##$aCote$jCode PEB" + "\n" +
-		"991 ##$aRETRO-2016-FINANCEMENT ABES-[Nom du prestataire]-[Code du catalogueur]-CRE SAI$b[Informations n√©cessaires √† la biblioth√®que ou au prestataire]" + "\n" +
-		"991 ##$aRETRO-2016-FINANCEMENT ABES-[Nom du prestataire]-[Code du catalogueur]-CRE DER$b[Informations n√©cessaires √† la biblioth√®que ou au prestataire]" + "\n" +
-		"991 ##$aRETRO-2016-FINANCEMENT ABES-[Nom du prestataire]-[Code du catalogueur]-LOC$b[Informations n√©cessaires √† la biblioth√®que ou au prestataire]" + "\n" +"\n" +
-		"991 ##$aCatalogage r√©trospectif-2016-FINANCEMENT ABES-[Nom du prestataire]-[Code du catalogueur]-CRE SAI$b[Informations n√©cessaires √† la biblioth√®que ou au prestataire]" + "\n" +
-		"991 ##$aCatalogage r√©trospectif-2016-FINANCEMENT ABES-[Nom du prestataire]-[Code du catalogueur]-CRE DER$b[Informations n√©cessaires √† la biblioth√®que ou au prestataire]" + "\n" +
-		"991 ##$aCatalogage r√©trospectif-2016-FINANCEMENT ABES-[Nom du prestataire]-[Code du catalogueur]-LOC$b[Informations n√©cessaires √† la biblioth√®que ou au prestataire]"
+		"991 ##$aRETRO-2016-FINANCEMENT ABES-[Nom du prestataire]-[Code du catalogueur]-CRE SAI$b[Informations nÈcessaires ‡ la bibliothËque ou au prestataire]" + "\n" +
+		"991 ##$aRETRO-2016-FINANCEMENT ABES-[Nom du prestataire]-[Code du catalogueur]-CRE DER$b[Informations nÈcessaires ‡ la bibliothËque ou au prestataire]" + "\n" +
+		"991 ##$aRETRO-2016-FINANCEMENT ABES-[Nom du prestataire]-[Code du catalogueur]-LOC$b[Informations nÈcessaires ‡ la bibliothËque ou au prestataire]" + "\n" +"\n" +
+		"991 ##$aCatalogage rÈtrospectif-2016-FINANCEMENT ABES-[Nom du prestataire]-[Code du catalogueur]-CRE SAI$b[Informations nÈcessaires ‡ la bibliothËque ou au prestataire]" + "\n" +
+		"991 ##$aCatalogage rÈtrospectif-2016-FINANCEMENT ABES-[Nom du prestataire]-[Code du catalogueur]-CRE DER$b[Informations nÈcessaires ‡ la bibliothËque ou au prestataire]" + "\n" +
+		"991 ##$aCatalogage rÈtrospectif-2016-FINANCEMENT ABES-[Nom du prestataire]-[Code du catalogueur]-LOC$b[Informations nÈcessaires ‡ la bibliothËque ou au prestataire]"
 	);
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
 function CAT_creerMonoIMP ()
-{ // Ce script permet de cr√©er une notice de monographie imprim√©e Aa
+{ // Ce script permet de crÈer une notice de monographie imprimÈe Aa
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aAax3" + "\n" +
 		"010 ##$AISBN" + "\n" +
-		"073 #0$aNum√©ro EAN" + "\n" +
+		"073 #0$aNumÈro EAN" + "\n" +
 		"181 ##$P01$ctxt ou tct"+ "\n" +
 		"182 ##$P01$cn" + "\n" +
 		"183 ##$P01$anga" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du Titre$f1re mention de responsabilit√©$gMention de responsabilit√© de fonction diff√©rente" + "\n" +
+		"200 1#$a@Titre$eComplÈment du Titre$f1re mention de responsabilitÈ$gMention de responsabilitÈ de fonction diffÈrente" + "\n" +
 		"205 ##$aEdition" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'√©diteur$cNom de l'√©diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"215 ##$aNombre de vol. (nbr. de p. ou f.)$cMention d'ill.$dDimensions$eMat√©riel d'accompagnement" + "\n" +
-		"225  #$a@Titre de la Collection$xISSN$vNum√©ro" + "\n" +
-		"300 ##$aNote g√©n√©rale" + "\n" +
-		"305 ##$aNote sur l'√©dition" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'Èditeur$cNom de l'Èditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+		"215 ##$aNombre de vol. (nbr. de p. ou f.)$cMention d'ill.$dDimensions$eMatÈriel d'accompagnement" + "\n" +
+		"225  #$a@Titre de la Collection$xISSN$vNumÈro" + "\n" +
+		"300 ##$aNote gÈnÈrale" + "\n" +
+		"305 ##$aNote sur l'Èdition" + "\n" +
 		"320 ##$aNote sur les Bibliographies et Index" + "\n" +
-		"410 ##$t@Lien au titre de la Collection$vNum√©ro" + "\n" +
+		"410 ##$t@Lien au titre de la Collection$vNumÈro" + "\n" +
 		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aSujet$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
+		"606 ##$aSujet$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
-		"700 #1$aNom Auteur relatif √† l'oeuvre ou √† l'expression$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Co-auteur$bPr√©nom$4070" + "\n" +
-		"702 #1$aNom Auteur relatif √† la manifestation ou √† l'item$bPr√©nom$4Code de Fonction" + "\n" +
-		"712 02$a@Nom Collectivit√© auteur relatif √† la manifestation ou √† l'item$4Code de Fonction");
+		"700 #1$aNom Auteur relatif ‡ l'oeuvre ou ‡ l'expression$bPrÈnom$4070" + "\n" +
+		"701 #1$aNom Co-auteur$bPrÈnom$4070" + "\n" +
+		"702 #1$aNom Auteur relatif ‡ la manifestation ou ‡ l'item$bPrÈnom$4Code de Fonction" + "\n" +
+		"712 02$a@Nom CollectivitÈ auteur relatif ‡ la manifestation ou ‡ l'item$4Code de Fonction");
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
 function CAT_creerMultimedia ()
-{ // Ce script permet de cr√©er une notice de document multimedia Za
+{ // Ce script permet de crÈer une notice de document multimedia Za
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aZax" + "\n" +
 		"010 ##$AISBN" + "\n" +
-		"073 #0$aNum√©ro EAN" + "\n" +
+		"073 #0$aNumÈro EAN" + "\n" +
 		"181 ##$P01$cCode du type de contenu"  + "\n" +
-		"182 ##$P01$cCode du type de m√©diation"  + "\n" +
-		"183 ##$P01$aCode du type de support mat√©riel" + "\n" +
+		"182 ##$P01$cCode du type de mÈdiation"  + "\n" +
+		"183 ##$P01$aCode du type de support matÈriel" + "\n" +
 		"181 ##$P02$cCode du type de contenu"  + "\n" +
-		"182 ##$P02$cCode du type de m√©diation"  + "\n" +
-		"183 ##$P02$aCode du type de support mat√©riel" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du Titre$f1re mention de responsabilit√©$gMention de responsabilit√© de fonction diff√©rente" + "\n" +
+		"182 ##$P02$cCode du type de mÈdiation"  + "\n" +
+		"183 ##$P02$aCode du type de support matÈriel" + "\n" +
+		"200 1#$a@Titre$eComplÈment du Titre$f1re mention de responsabilitÈ$gMention de responsabilitÈ de fonction diffÈrente" + "\n" +
 		"205 ##$aEdition" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'√©diteur$cNom de l'√©diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"215 ##$aImportance mat√©rielle$cMention d'ill.$dDimensions$eMat√©riel d'accompagnement" + "\n" +
-		"215 ##$aImportance mat√©rielle$cMention d'ill.$dFormat$eMat√©riel d'accompagnement(2√®me support).." + "\n" +
-		"225  #$a@Titre de la Collection$xISSN$vNum√©ro" + "\n" +
-		"300 ##$aNote g√©n√©rale" + "\n" +
-		"305 ##$aNote sur l'√©dition" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'Èditeur$cNom de l'Èditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+		"215 ##$aImportance matÈrielle$cMention d'ill.$dDimensions$eMatÈriel d'accompagnement" + "\n" +
+		"215 ##$aImportance matÈrielle$cMention d'ill.$dFormat$eMatÈriel d'accompagnement(2Ëme support).." + "\n" +
+		"225  #$a@Titre de la Collection$xISSN$vNumÈro" + "\n" +
+		"300 ##$aNote gÈnÈrale" + "\n" +
+		"305 ##$aNote sur l'Èdition" + "\n" +
 		"307 ##$aNote sur la collation" + "\n" +
 		"320 ##$aNote sur les Bibliographies et Index" + "\n" +
 		"336 ##$aNote sur le type de fichier informatique" + "\n" +
-		"337 ##$aNote sur les d√©tails techniques (fichiers informatiques)" + "\n" +
-		"410 ##$t@Lien au titre de la Collection$vNum√©ro" + "\n" +
+		"337 ##$aNote sur les dÈtails techniques (fichiers informatiques)" + "\n" +
+		"410 ##$t@Lien au titre de la Collection$vNumÈro" + "\n" +
 		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aSujet$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
+		"606 ##$aSujet$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
-		"700 #1$aNom Auteur relatif √† l'oeuvre ou √† l'expression$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Co-auteur$bPr√©nom$4070" + "\n" +
-		"702 #1$aNom Auteur relatif √† la manifestation ou √† l'item$bPr√©nom$4Code de Fonction");
+		"700 #1$aNom Auteur relatif ‡ l'oeuvre ou ‡ l'expression$bPrÈnom$4070" + "\n" +
+		"701 #1$aNom Co-auteur$bPrÈnom$4070" + "\n" +
+		"702 #1$aNom Auteur relatif ‡ la manifestation ou ‡ l'item$bPrÈnom$4Code de Fonction");
 	application.activeWindow.codedData = true;
 }
 
 function CAT_creerNoticeRCR ()
-{ // Ce script permet de cr√©er une notice de RCR Tw
+{ // Ce script permet de crÈer une notice de RCR Tw
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre e", false);
 	application.activeWindow.title.insertText(
 		"008 $aTw6" + "\n" +
-		"R100 $aNom Tutelle$bSous division$cQualificatif g√©ographique" + "\n" +
+		"R100 $aNom Tutelle$bSous division$cQualificatif gÈographique" + "\n" +
 		"R110 $aOrganisme affiliation " + "\n" +
-		"R120 $aNom complet d√©velopp√© de l'√©tablissement$bSous-division$cQualificatif g√©ographique" + "\n" +
-		"R121 $aIntitul√© du CADIST" + "\n" +
-		"R122 $aAutre nom de l'√©tablissement (sigle, abr√©viations et autres)" + "\n" +
-		"R130 $aCode du type d'√©tablissement" + "\n" +
-		"R140 $aNum√©ro RCR" + "\n" +
-		"R150 $aParticipation √† un r√©seau documentaire autre que le Sudoc" + "\n" +
-		"R160 $aNote sur l'identification de l'√©tablissement" + "\n" +
-		"R200 $0Nom de l'√©tablissement$aAdresse Physique$bMention Compl√©mentaire$cMention Compl√©mentaire$dLieu-dit$eCode postal$fVille$gCedex" + "\n" +
-		"R201 $0Nom de l'√©tablissement$bAdresse Postale$cMention Compl√©mentaire$cMention Compl√©mentaire$dLieu-dit$eCode postal$fVille$gCedex" + "\n" +
-		"R210 $aT√©l√©phone Renseignements$bT√©l√©phone Service de PRET" + "\n" +
+		"R120 $aNom complet dÈveloppÈ de l'Ètablissement$bSous-division$cQualificatif gÈographique" + "\n" +
+		"R121 $aIntitulÈ du CADIST" + "\n" +
+		"R122 $aAutre nom de l'Ètablissement (sigle, abrÈviations et autres)" + "\n" +
+		"R130 $aCode du type d'Ètablissement" + "\n" +
+		"R140 $aNumÈro RCR" + "\n" +
+		"R150 $aParticipation ‡ un rÈseau documentaire autre que le Sudoc" + "\n" +
+		"R160 $aNote sur l'identification de l'Ètablissement" + "\n" +
+		"R200 $0Nom de l'Ètablissement$aAdresse Physique$bMention ComplÈmentaire$cMention ComplÈmentaire$dLieu-dit$eCode postal$fVille$gCedex" + "\n" +
+		"R201 $0Nom de l'Ètablissement$bAdresse Postale$cMention ComplÈmentaire$cMention ComplÈmentaire$dLieu-dit$eCode postal$fVille$gCedex" + "\n" +
+		"R210 $aTÈlÈphone Renseignements$bTÈlÈphone Service de PRET" + "\n" +
 		"R211 $aFax" + "\n" +
-		"R220 $aAdresse Web de la biblioth√®que$bAdresse Web du Catalogue en Ligne$dAdresse √©lectronique du service de renseignements" + "\n" +
-		"R230 $aAdresse √©lectronique PIB(ccfr)$bAdresse √©lectronique PEB(Sudoc)" + "\n" +
-		"R240 $aAutre adresse √©lectronique" + "\n" +
-		"R250 $aPr√©cision sur la localisation" + "\n" +
-		"R300 $aAnn√©e cr√©ation de l'√©tablissement:AAAA" + "\n" +
-		"R305 $aNom pr√©c√©dent de l'√©tablissement" + "\n" +
+		"R220 $aAdresse Web de la bibliothËque$bAdresse Web du Catalogue en Ligne$dAdresse Èlectronique du service de renseignements" + "\n" +
+		"R230 $aAdresse Èlectronique PIB(ccfr)$bAdresse Èlectronique PEB(Sudoc)" + "\n" +
+		"R240 $aAutre adresse Èlectronique" + "\n" +
+		"R250 $aPrÈcision sur la localisation" + "\n" +
+		"R300 $aAnnÈe crÈation de l'Ètablissement:AAAA" + "\n" +
+		"R305 $aNom prÈcÈdent de l'Ètablissement" + "\n" +
 		"R310 $aHistorique" + "\n" +
-		"R410 $aNom des Organismes associ√©s$bNature des liens$cN¬∞RCR$3N¬∞PPN de la notice li√©e$eCode CR Sudoc-PS$yN¬∞ILN_XXX " + "\n" +
-		"R440 $aNote sur les organismes associ√©s" + "\n" +
+		"R410 $aNom des Organismes associÈs$bNature des liens$cN∞RCR$3N∞PPN de la notice liÈe$eCode CR Sudoc-PS$yN∞ILN_XXX " + "\n" +
+		"R440 $aNote sur les organismes associÈs" + "\n" +
 		"R500 $aOuvertures" + "\n" +
 		"R510 $aFermetures" + "\n" +
-		"R520 $aConditions d'acc√®s" + "\n" +
-		"R530 $aNotes particuli√®res sur l'acc√®s" + "\n" +
-		"R610 $aCode Dewey$bPoint d'acc√®s autoris√© - nom commun Rameau" + "\n" +
+		"R520 $aConditions d'accËs" + "\n" +
+		"R530 $aNotes particuliËres sur l'accËs" + "\n" +
+		"R610 $aCode Dewey$bPoint d'accËs autorisÈ - nom commun Rameau" + "\n" +
 		"R620 $aDescription de la collection" + "\n" +
-		"R800 $aAcc√®s √† des Bases de donn√©es [Oui/Non]$bNom des BDD$cConditions d'utilisation" + "\n" +
-		"R810 $aRenseignement Bibliographiques Par t√©l√©phone [Oui/Non]$bpar Courrier [Oui/Non]$cpar Fax [Oui/Non]$dpar Messagerie [Oui/Non]$eConditions" + "\n" +
-		"R820 $aR√©servation de documents [Oui/Non]$bTypes de doc.$cConditions" + "\n" +
+		"R800 $aAccËs ‡ des Bases de donnÈes [Oui/Non]$bNom des BDD$cConditions d'utilisation" + "\n" +
+		"R810 $aRenseignement Bibliographiques Par tÈlÈphone [Oui/Non]$bpar Courrier [Oui/Non]$cpar Fax [Oui/Non]$dpar Messagerie [Oui/Non]$eConditions" + "\n" +
+		"R820 $aRÈservation de documents [Oui/Non]$bTypes de doc.$cConditions" + "\n" +
 		"R830 $aBibliographies [Oui/Non]$bConditions" + "\n" +
-		"R840 $aPhotocopie [Oui/Non]$bMicrofilmage [Oui/Non]$cMicrofichage [Oui/Non]$dNum√©risation [Oui/Non]$eAutres Services de reproduction$fPr√©cisions$gConditions" + "\n" +
+		"R840 $aPhotocopie [Oui/Non]$bMicrofilmage [Oui/Non]$cMicrofichage [Oui/Non]$dNumÈrisation [Oui/Non]$eAutres Services de reproduction$fPrÈcisions$gConditions" + "\n" +
 		"R850 $aPeb [Oui/Non]$bConditions" + "\n" +
-		"R860 $aConsultation sur Place [Oui/Non]$bPr√™t √† Domicile [Oui/Non]$cConditions" + "\n" +
-		"R870 $aPortage √† domicile [Oui/Non]$bConditions" + "\n" +
+		"R860 $aConsultation sur Place [Oui/Non]$bPrÍt ‡ Domicile [Oui/Non]$cConditions" + "\n" +
+		"R870 $aPortage ‡ domicile [Oui/Non]$bConditions" + "\n" +
 		"R880 $aAutres services$bConditions" + "\n" +
-		"R890 $aNotes sur les services propos√©s" + "\n" +
-		"R901 $aParticipation √† un r√©seau documentaire$bAutre r√©seau" + "\n" +
-		"R910 $aClassification utilis√©e" + "\n" +
-		"R920 $aNotes sur Catalogues sp√©cifiques" + "\n" +
-		"R930 $aDocumentation de l'√©tablissement" + "\n" +
-		"R940 $aPublications de l'√©tablissement" + "\n" +
+		"R890 $aNotes sur les services proposÈs" + "\n" +
+		"R901 $aParticipation ‡ un rÈseau documentaire$bAutre rÈseau" + "\n" +
+		"R910 $aClassification utilisÈe" + "\n" +
+		"R920 $aNotes sur Catalogues spÈcifiques" + "\n" +
+		"R930 $aDocumentation de l'Ètablissement" + "\n" +
+		"R940 $aPublications de l'Ètablissement" + "\n" +
 		"R950 $aSudoc" + "\n" +
-		"R960 $aDocuments consultables sur l'√©tablissement" + "\n" +
-		"R970 $aSyst√®me d'information" + "\n" +
-		"R980 $aEquipement sp√©ciaux (handicap√©s)" + "\n" +
-		"R999 $aInformations compl√©mentaires (ex:Caf√©teria)");
+		"R960 $aDocuments consultables sur l'Ètablissement" + "\n" +
+		"R970 $aSystËme d'information" + "\n" +
+		"R980 $aEquipement spÈciaux (handicapÈs)" + "\n" +
+		"R999 $aInformations complÈmentaires (ex:CafÈteria)");
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
 function CAT_creerPartition ()
-{ // Ce script permet de cr√©er une notice de partition Ma
+{ // Ce script permet de crÈer une notice de partition Ma
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aMax3" + "\n" +
 		"013 ##$aISMN" + "\n" +
-		"071 31$aNum√©ro d'√©diteur" + "\n" +
+		"071 31$aNumÈro d'Èditeur" + "\n" +
 		"181 ##$P01$cntm" + "\n" +
 		"182 ##$P01$cn" + "\n" +
 		"183 ##$P01$anga" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du Titre$f1re mention de responsabilit√©$gMention de responsabilit√© de fonction diff√©rente" + "\n" +
+		"200 1#$a@Titre$eComplÈment du Titre$f1re mention de responsabilitÈ$gMention de responsabilitÈ de fonction diffÈrente" + "\n" +
 		"205 ##$aEdition" + "\n" +
-		"208 ##$aMention sp√©cifique de musique imprim√©e (Format)$dMention sp√©cifique parall√®le de musique imprim√©e" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'√©diteur$cNom de l'√©diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"215 ##$aImportance mat√©rielle$cMention d'ill.$dDimensions$eMat√©riel d'accompagnement" + "\n" +
-		"225  #$a@Titre de la Collection$xISSN$vNum√©ro" + "\n" +
-		"300 ##$aNote g√©n√©rale" + "\n" +
-		"305 ##$aNote sur l'√©dition" + "\n" +
+		"208 ##$aMention spÈcifique de musique imprimÈe (Format)$dMention spÈcifique parallËle de musique imprimÈe" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'Èditeur$cNom de l'Èditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+		"215 ##$aImportance matÈrielle$cMention d'ill.$dDimensions$eMatÈriel d'accompagnement" + "\n" +
+		"225  #$a@Titre de la Collection$xISSN$vNumÈro" + "\n" +
+		"300 ##$aNote gÈnÈrale" + "\n" +
+		"305 ##$aNote sur l'Èdition" + "\n" +
 		"320 ##$aNote sur les Bibliographies et Index" + "\n" +
-		"410 ##$t@Lien au titre de la Collection$vNum√©ro" + "\n" +
+		"410 ##$t@Lien au titre de la Collection$vNumÈro" + "\n" +
 		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aSujet$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
+		"606 ##$aSujet$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
 		"608 ##$3027244601$2rameau" + "\n" +
-		"700 #1$aNom Auteur relatif √† l'oeuvre ou √† l'expression$bPr√©nom$4230" + "\n" +
-		"701 #1$aNom Co-auteur$bPr√©nom$4230" + "\n" +
-		"702 #1$aNom Auteur relatif √† la manifestation ou √† l'item$bPr√©nom$4Code de Fonction");
+		"700 #1$aNom Auteur relatif ‡ l'oeuvre ou ‡ l'expression$bPrÈnom$4230" + "\n" +
+		"701 #1$aNom Co-auteur$bPrÈnom$4230" + "\n" +
+		"702 #1$aNom Auteur relatif ‡ la manifestation ou ‡ l'item$bPrÈnom$4Code de Fonction");
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
 function CAT_creerPeriodique ()
-{ // Ce script permet de cr√©er une notice de p√©riodique imprim√© Ab
+{ // Ce script permet de crÈer une notice de pÈriodique imprimÈ Ab
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aAbx3" + "\n" +
 		"181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn" + "\n" +
 		"183 ##$P01$anga" + "\n" +
-		"200 1#$a@Titre propre$eCompl√©ment du Titre$f1re mention de responsabilit√©$gMention de responsabilit√© de fonction diff√©rente" + "\n" +
-		"207 #0$aNum√©rotation : indication de date et de volume" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'√©diteur$cNom de l'√©diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"215 ##$aImportance mat√©rielle$cMention d'ill.$dDimensions$eMat√©riel d'accompagnement" + "\n" +
-		"326 ##$aP√©riodicit√©$bDates" + "\n" +
-		"421 ##$t@Titre Suppl√©ment" + "\n" +
-		"422 ##$t@Titre Publication-m√®re du suppl√©ment" + "\n" +
+		"200 1#$a@Titre propre$eComplÈment du Titre$f1re mention de responsabilitÈ$gMention de responsabilitÈ de fonction diffÈrente" + "\n" +
+		"207 #0$aNumÈrotation : indication de date et de volume" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'Èditeur$cNom de l'Èditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+		"215 ##$aImportance matÈrielle$cMention d'ill.$dDimensions$eMatÈriel d'accompagnement" + "\n" +
+		"326 ##$aPÈriodicitÈ$bDates" + "\n" +
+		"421 ##$t@Titre SupplÈment" + "\n" +
+		"422 ##$t@Titre Publication-mËre du supplÈment" + "\n" +
 		"430 ##$t@Titre Suite de" + "\n" +
 		"440 ##$t@Titre Devient" + "\n" +
-		"451 ##$t@Titre Autre √©dition sur le m√™me support" + "\n" +
-		"452 ##$t@Titre Autre √©dition sur un autre support" + "\n" +
+		"451 ##$t@Titre Autre Èdition sur le mÍme support" + "\n" +
+		"452 ##$t@Titre Autre Èdition sur un autre support" + "\n" +
 		"517 ##$a@Autres variantes du titre" + "\n" +
-		"606 ##$aSujet$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
+		"606 ##$aSujet$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
-		"710 02$a@Nom Collectivit√© Auteur relatif √† l'oeuvre ou √† l'expression$4651" + "\n" +
-		"711 02$a@Nom Collectivit√© co-Auteur relatif √† l'oeuvre ou √† l'expression$4651" + "\n" +
-		"712 02$a@Nom Collecteur Auteur relatif √† la manifestation ou √† l'item$4Code de Fonction");
+		"710 02$a@Nom CollectivitÈ Auteur relatif ‡ l'oeuvre ou ‡ l'expression$4070" + "\n" +
+		"711 02$a@Nom CollectivitÈ co-Auteur relatif ‡ l'oeuvre ou ‡ l'expression$4070" + "\n" +
+		"712 02$a@Nom Collecteur Auteur relatif ‡ la manifestation ou ‡ l'item$4Code de Fonction");
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
 function CAT_creerPeriodElectr ()
-{ // Ce script permet de cr√©er une notice de p√©riodique √©lectronique Ob
+{ // Ce script permet de crÈer une notice de pÈriodique Èlectronique Ob
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
@@ -528,299 +502,245 @@ function CAT_creerPeriodElectr ()
 		"106 $az" + "\n" +
 		"181 ##$P01$ctxt"+ "\n" + "182 ##$P01$cc" + "\n" +
 		"183 ##$P01$aceb" + "\n" +
-		"200 1#$a@Titre propre$eCompl√©ment du Titre$f1re mention de responsabilit√©$gMention de responsabilit√© de fonction diff√©rente" + "\n" +
-		"207 #0$aNum√©rotation : indication de date et de volume" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'√©diteur$cNom de l'√©diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"230 ##$aDonn√©es textuelles" + "\n" +
-		"326 ##$aP√©riodicit√©$bDates" + "\n" +
+		"200 1#$a@Titre propre$eComplÈment du Titre$f1re mention de responsabilitÈ$gMention de responsabilitÈ de fonction diffÈrente" + "\n" +
+		"207 #0$aNumÈrotation : indication de date et de volume" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'Èditeur$cNom de l'Èditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+		"230 ##$aDonnÈes textuelles" + "\n" +
+		"326 ##$aPÈriodicitÈ$bDates" + "\n" +
 		"336 ##$a" + "\n" +
 		"337 ##$aUn logiciel capable de lire un fichier au format XXX" + "\n" +
-		"421 ##$t@Titre Suppl√©ment" + "\n" +
-		"422 ##$t@Titre Publication-m√®re du suppl√©ment" + "\n" +
+		"421 ##$t@Titre SupplÈment" + "\n" +
+		"422 ##$t@Titre Publication-mËre du supplÈment" + "\n" +
 		"430 ##$t@Titre Suite de" + "\n" +
 		"440 ##$t@Titre Devient" + "\n" +
-		"451 ##$t@Titre Autre √©dition sur le m√™me support" + "\n" +
-		"452 ##$t@Titre Autre √©dition sur un autre support" + "\n" +
+		"451 ##$t@Titre Autre Èdition sur le mÍme support" + "\n" +
+		"452 ##$t@Titre Autre Èdition sur un autre support" + "\n" +
 		"517 ##$a@Autres variantes du titre" + "\n" +
-		"606 ##$aSujet$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
+		"606 ##$aSujet$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
-		"710 02$a@Nom Collectivit√© Auteur relatif √† l'oeuvre ou √† l'expression$4651" + "\n" +
-		"711 02$a@Nom Collectivit√© co-Auteur relatif √† l'oeuvre ou √† l'expression$4651" + "\n" +
-		"712 02$a@Nom Collecteur Auteur relatif √† la manifestation ou √† l'item$4Code de Fonction" + "\n" +
-		"856 4#$qFormat$uAdresse URL (si l'acc√®s est r√©serv√©, cr√©er une E856)");
+		"710 02$a@Nom CollectivitÈ Auteur relatif ‡ l'oeuvre ou ‡ l'expression$4070" + "\n" +
+		"711 02$a@Nom CollectivitÈ co-Auteur relatif ‡ l'oeuvre ou ‡ l'expression$4070" + "\n" +
+		"712 02$a@Nom Collecteur Auteur relatif ‡ la manifestation ou ‡ l'item$4Code de Fonction" + "\n" +
+		"856 4#$qFormat$uAdresse URL (si l'accËs est rÈservÈ, crÈer une E856)");
 	application.activeWindow.codedData = true;
 }
 
 
 function CAT_creerPersonnephysique ()
-{ // Ce script permet de cr√©er une notice d'autorit√© personne physique Tp5
+{ // Ce script permet de crÈer une notice d'autoritÈ personne physique Tp5
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre e", false);
 	application.activeWindow.title.insertText(
 		"008 $aTp5" + "\n" +
 		"106 ##$a0$b1$c0"+ "\n" +
-		"200 # $90y$aNom de famille$bPr√©nom$fann√©es d'existence AAAA-AAAA" + "\n" +
-		"340 ##$aNote biographique (informations √† justifier par des sources mentionn√©es en zone 810)" + "\n" +
-		"400 # $9#y$aNom de famille$bPr√©nom = Renvoi(s) facultatif(s)" + "\n" +
-		"810 ##$aOBLIGATOIRE R√©f√©rence du document pour lequel est cr√©√©e la pr√©sente autorit√© Titre / Auteur, date" + "\n" +
-		"810 ##$aDocument(s) de r√©f√©rence permettant d'√©tablir les variantes √©ventuelles du nom 200 + 400, les informations biographiques 340, etc.$bCiter ici les informations trouv√©e dans la source Zone 810 r√©p√©table pour chaque source");
+		"200 # $90y$aNom de famille$bPrÈnom$fannÈes d'existence AAAA-AAAA" + "\n" +
+		"340 ##$aNote biographique (informations ‡ justifier par des sources mentionnÈes en zone 810)" + "\n" +
+		"400 # $9#y$aNom de famille$bPrÈnom = Renvoi(s) facultatif(s)" + "\n" +
+		"810 ##$aOBLIGATOIRE RÈfÈrence du document pour lequel est crÈÈe la prÈsente autoritÈ Titre / Auteur, date" + "\n" +
+		"810 ##$aDocument(s) de rÈfÈrence permettant d'Ètablir les variantes Èventuelles du nom 200 + 400, les informations biographiques 340, etc.$bCiter ici les informations trouvÈe dans la source Zone 810 rÈpÈtable pour chaque source");
 	application.activeWindow.codedData = true;
 }
 
 function CAT_creerPropositionRameau ()
-{ // Ce script permet de cr√©er une proposition rameau Td3
+{ // Ce script permet de crÈer une proposition rameau Td3
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre e", false);
 	application.activeWindow.title.insertText(
 		"008 $aTd3" + "\n" +
-		"250 ##$8frefre$9#y$aNouveau Point d'acc√®s autoris√© - nom commun Rameau propos√©" + "\n" +
-		"450 ##$8frefre$9#y$aVariante de point d'acc√®s 1" + "\n" +
-		"450 ##$8frefre$9#y$aVariante de point d'acc√®s 2" + "\n" +
-		"810 ##$aOBLIGATOIRE R√©f√©rence du document pour lequel est propos√© le nouveau Point d'acc√®s Titre / Auteur, date" + "\n" +
-		"810 ##$aDocument de r√©f√©rence permettant de justifier, d√©finir, ... le concept propos√© en Point d'acc√®s Titre / Auteur, date");
+		"250 ##$8frefre$9#y$aNouveau Point d'accËs autorisÈ - nom commun Rameau proposÈ" + "\n" +
+		"450 ##$8frefre$9#y$aVariante de point d'accËs 1" + "\n" +
+		"450 ##$8frefre$9#y$aVariante de point d'accËs 2" + "\n" +
+		"810 ##$aOBLIGATOIRE RÈfÈrence du document pour lequel est proposÈ le nouveau Point d'accËs Titre / Auteur, date" + "\n" +
+		"810 ##$aDocument de rÈfÈrence permettant de justifier, dÈfinir, ... le concept proposÈ en Point d'accËs Titre / Auteur, date");
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
 function CAT_creerMusique ()
-{ // Ce script permet de cr√©er une notice de document sonore musical Ga
+{ // Ce script permet de crÈer une notice de document sonore musical Ga
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aGax3" + "\n" +
 		"013 ##$aISMN" + "\n" +
-		"071 31$aNum√©ro d'√©diteur" + "\n" +
+		"071 31$aNumÈro d'Èditeur" + "\n" +
 		"181 ##$P01$cprm" + "\n" + "182 ##$P01$cs" + "\n" +
-		"183 ##$P01$aCode du type de support mat√©riel" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du Titre$fCompositeur principal$gAutres (compositeurs, interpr√®tes, instrumentistes...)" + "\n" +
+		"183 ##$P01$aCode du type de support matÈriel" + "\n" +
+		"200 1#$a@Titre$eComplÈment du Titre$fCompositeur principal$gAutres (compositeurs, interprËtes, instrumentistes...)" + "\n" +
 		"205 ##$aEdition" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'√©diteur$cNom de l'√©diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"215 ##$aImportance mat√©rielle$cMention d'ill.$dDimensions$eMat√©riel d'accompagnement" + "\n" +
-		"225  #$a@Titre de la Collection$xISSN$vNum√©ro" + "\n" +
-		"300 ##$aNote g√©n√©rale" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'Èditeur$cNom de l'Èditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+		"215 ##$aImportance matÈrielle$cMention d'ill.$dDimensions$eMatÈriel d'accompagnement" + "\n" +
+		"225  #$a@Titre de la Collection$xISSN$vNumÈro" + "\n" +
+		"300 ##$aNote gÈnÈrale" + "\n" +
 		"306 ##$aNote sur l'adresse bibliographique" + "\n" +
-		"322 ##$aNote sur le g√©n√©rique" + "\n" +
-		"323 ##$aNote sur les interpr√®tes" + "\n" +
-		"359 2#$vTomaison / Num√©rotation de l'unit√© physique$btable des mati√®res de niveau 1$pNum√©ro de page ou de plage$ctable des mati√®res de niveau 2" + "\n" +
-		"410 ##$t@Lien au titre de la Collection$vNum√©ro" + "\n" +
-		"606 ##$aSujet$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
+		"322 ##$aNote sur le gÈnÈrique" + "\n" +
+		"323 ##$aNote sur les interprËtes" + "\n" +
+		"359 2#$vTomaison / NumÈrotation de l'unitÈ physique$btable des matiËres de niveau 1$pNumÈro de page ou de plage$ctable des matiËres de niveau 2" + "\n" +
+		"410 ##$t@Lien au titre de la Collection$vNumÈro" + "\n" +
+		"606 ##$aSujet$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
-		"700 #1$aNom Auteur relatif √† l'oeuvre ou √† l'expression$bPr√©nom$4230" + "\n" +
-		"701 #1$aNom Co-auteur$bPr√©nom$4230" + "\n" +
-		"702 #1$aNom Auteur relatif √† la manifestation ou √† l'item$bPr√©nom$4Code de Fonction" + "\n" +
-		"716 ##$aMarque commerciale - mention de responsabilit√©$4Code de fonction");
+		"700 #1$aNom Auteur relatif ‡ l'oeuvre ou ‡ l'expression$bPrÈnom$4230" + "\n" +
+		"701 #1$aNom Co-auteur$bPrÈnom$4230" + "\n" +
+		"702 #1$aNom Auteur relatif ‡ la manifestation ou ‡ l'item$bPrÈnom$4Code de Fonction" + "\n" +
+		"716 ##$aMarque commerciale - mention de responsabilitÈ$4Code de fonction");
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
 function CAT_creerSonore ()
-{ // Ce script permet de cr√©er une notice de document sonore non musical Na
+{ // Ce script permet de crÈer une notice de document sonore non musical Na
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aNax3" + "\n" +
 		"013 ##$aISMN" + "\n" +
-		"071 31$aNum√©ro d'√©diteur" + "\n" +
+		"071 31$aNumÈro d'Èditeur" + "\n" +
 		"181 ##$P01$csnd" + "\n" +
 		"182 ##$P01$cs" + "\n" +
-		"183 ##$P01$aCode du type de support mat√©riel" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du Titre$fCompositeur principal$gAutres (compositeurs, interpr√®tes, instrumentistes...)" + "\n" +
+		"183 ##$P01$aCode du type de support matÈriel" + "\n" +
+		"200 1#$a@Titre$eComplÈment du Titre$fCompositeur principal$gAutres (compositeurs, interprËtes, instrumentistes...)" + "\n" +
 		"205 ##$aEdition" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'√©diteur$cNom de l'√©diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"215 ##$aImportance mat√©rielle$cMention d'ill.$dDimensions$eMat√©riel d'accompagnement" + "\n" +
-		"225  #$a@Titre de la Collection$xISSN$vNum√©ro" + "\n" +
-		"300 ##$aNote g√©n√©rale" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'Èditeur$cNom de l'Èditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+		"215 ##$aImportance matÈrielle$cMention d'ill.$dDimensions$eMatÈriel d'accompagnement" + "\n" +
+		"225  #$a@Titre de la Collection$xISSN$vNumÈro" + "\n" +
+		"300 ##$aNote gÈnÈrale" + "\n" +
 		"306 ##$aNote sur l'adresse bibliographique" + "\n" +
-		"322 ##$aNote sur le g√©n√©rique" + "\n" +
-		"323 ##$aNote sur les interpr√®tes" + "\n" +
-		"359 2#$vTomaison / Num√©rotation de l'unit√© physique$btable des mati√®res de niveau 1$pNum√©ro de page ou de plage$ctable des mati√®res de niveau 2" + "\n" +
-		"410 ##$t@Lien au titre de la Collection$vNum√©ro" + "\n" +
+		"322 ##$aNote sur le gÈnÈrique" + "\n" +
+		"323 ##$aNote sur les interprËtes" + "\n" +
+		"359 2#$vTomaison / NumÈrotation de l'unitÈ physique$btable des matiËres de niveau 1$pNumÈro de page ou de plage$ctable des matiËres de niveau 2" + "\n" +
+		"410 ##$t@Lien au titre de la Collection$vNumÈro" + "\n" +
 		"600 #1$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aSujet$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
+		"606 ##$aSujet$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
-		"700 #1$aNom Auteur relatif √† l'oeuvre ou √† l'expression$bPr√©nom$4230" + "\n" +
-		"701 #1$aNom Co-auteur$bPr√©nom$4230" + "\n" +
-		"702 #1$aNom Auteur relatif √† la manifestation ou √† l'item$bPr√©nom$4Code de Fonction" + "\n" +
-		"716 ##$aMarque commerciale - mention de responsabilit√©$4Code de fonction");
+		"700 #1$aNom Auteur relatif ‡ l'oeuvre ou ‡ l'expression$bPrÈnom$4230" + "\n" +
+		"701 #1$aNom Co-auteur$bPrÈnom$4230" + "\n" +
+		"702 #1$aNom Auteur relatif ‡ la manifestation ou ‡ l'item$bPrÈnom$4Code de Fonction" + "\n" +
+		"716 ##$aMarque commerciale - mention de responsabilitÈ$4Code de fonction");
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-// 20220525 : mise √† jour MRX
-// 20220622 : mise √† jour MRX
 function CAT_creerTheseElectroniqueReproduction ()
-{ // Ce script permet de cr√©er une notice de th√®se √©lectronique Oa (Reproduction)
+{ // Ce script permet de crÈer une notice de thËse Èlectronique Oa (Reproduction)
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aOax3" + "\n" +
-		"029 ##$aFR$bNum√©ro national de th√®se (aaaaCODEnnnn)" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
 		"101 0#$afre$dfre$deng" + "\n" +
 		"102 ##$aFR" + "\n" +
 		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
 		"105 ##$bv$ba$c0$d0$fy$gy" + "\n" +
 		"135 ##$ad$br" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cc" + "\n" +
+		"181 ##$P01$ctxt" + "\n" + "182 ##$P01$cc" + "\n" +
 		"183 ##$P01$aceb" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom du directeur de th√®se" + "\n" +
+		"200 1#$a@Titre$eComplÈment du titre$fAuteur$gsous la direction de PrÈnom Nom du directeur de thËse" + "\n" +
 		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
-		"230 ##$aDonn√©es textuelles" + "\n" +
-		"300 ##$a(s'il y a lieu)Th√®se soutenue en co-tutelle" + "\n" +
-		"304 ##$aTitre provenant de l'√©cran-titre" + "\n" +
-		"307 ##$anombre de pages g√©n√©r√© par l'impression du document, lorsque ce document est pagin√©" + "\n" +
-		"311 ##$a(s'il y a lieu)Th√®se soutenue sur un ensemble de travaux" + "\n" +
-		"314 ##$aEcole(s) doctorale(s) : Nom de l'√©cole doctorale" + "\n" +
-		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'√©quipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
-		"320 ##$aBibliographie : xxx r√©f." + "\n" +
-		"328 #0$zReproduction de$bTh√®se d'Etat--Th√®se de doctorat--Th√®se de 3e cycle--Th√®se d'universit√©--Th√®se de docteur-ing√©nieur--Th√®se d'exercice$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"337 ##$aUn logiciel capable de lire un fichier au format (pr√©ciser le format)" + "\n" +
-		"455 ##$t@Lien vers la th√®se originelle" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
+		"230 ##$aDonnÈes textuelles" + "\n" +
+		"300 ##$aThËse soutenue en co-tutelle --ThËse soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" +
+		"303 ##$anombre de pages gÈnÈrÈ par l'impression du document, lorsque ce document est paginÈ" + "\n" +
+		"304 ##$aTitre provenant de l'Ècran-titre" + "\n" +
+		"320 ##$aBibliographie : xxx rÈf." + "\n" +
+		"328 #0$zReproduction de$bThËse d'Etat--ThËse de doctorat--ThËse de 3e cycle--ThËse d'universitÈ--ThËse de docteur-ingÈnieur--ThËse d'exercice$cDiscipline (libellÈ complet)$eUniversitÈ (voir table des libellÈs du Guide MÈthodologique)$dAnnÈe de soutenance" + "\n" +
+		"330 ##$aRÈsumÈ franÁais" + "\n" +
+		"330 ##$aRÈsumÈ anglais" + "\n" +
+		"337 ##$aUn logiciel capable de lire un fichier au format (prÈciser le format)" + "\n" +
+		"455 ##$t@Lien vers la thËse originelle" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplÈment du Titre$zeng" + "\n" +
 		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$2rameau" + "\n" +
+		"606 ##$aAccËs sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aACCES SUJET - NOM COMMUN$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"686 ##$aCode TEF$2TEF" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Directeur de th√®se$bPr√©nom$4727" + "\n" +
-		"701 #1$aNom Pr√©sident du jury$bPr√©nom Pr√©sident du jury$4956" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295" + "\n" +
-		"711 02$a@Etablissement de cotutelle$4995" + "\n" +
-		"711 02$a@Ecole doctorale$4996" + "\n" +
-		"711 02$a@Laboratoire$4981" + "\n" +
-		"711 02$a@Autre type de partenaire (composante, institut, √©tablissement d'inscription, etc)$4985" + "\n" +
-		"856 4#$qFormat$uAdresse URL (si l'acc√®s est r√©serv√©, cr√©er une E856)"
-	);
+		"610 0#$aMots clÈs libres" + "\n" +
+		"686 ##$a $2TEF" + "\n" +
+		"700 #1$aNom Auteur$bPrÈnom$4070" + "\n" +
+		"701 #1$aNom Directeur de thËse$bPrÈnom$4727" + "\n" +
+		"711 02$a@UniversitÈ de soutenance$4295" + "\n" +
+		"711 02$a@Ètablissement de cotutelle, ou composante, ou organismes partenaires (‡ dÈfinir - voir Guide MÈthodologique)$4(code de fonction ‡ dÈfinir - voir Guide MÈthodologique)" + "\n" +
+		"856 4#$qFormat$uAdresse URL (si l'accËs est rÈservÈ, crÈer une E856)");
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-// 20220525 : mise √† jour MRX
 function CAT_creerTheseImprimeOriginelle ()
-{ // Ce script permet de cr√©er une notice de th√®se imprim√©e Aa (Document originel)corrige le 2013-09-03 MTE selon Assistance 4174
+{ // Ce script permet de crÈer une notice de thËse imprimÈe Aa (Document originel)corrige le 2013-09-03 MTE selon Assistance 4174
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aAax3" + "\n" +
-		"029 ##$aFR$bNum√©ro national de th√®se (aaaaCODEnnnn)" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
+		"029 ##$aFR$bNumÈro national de thËse (aaaaCODEnnnn)" + "\n" +
 		"101 0#$afre$dfre$deng" + "\n" +
 		"102 ##$aFR" + "\n" +
 		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
 		"105 ##$bm$ba$c0$d0$e1$fy$gy" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cn" + "\n" +
+		"181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn" + "\n" +
 		"183 ##$P01$anga" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom du directeur de th√®se" + "\n" +
+		"200 1#$a@Titre$eComplÈment du titre$fAuteur$gsous la direction de PrÈnom Nom du directeur de thËse" + "\n" +
 		"214 #1$dDate de production" + "\n" +
-		"215 ##$ax vol. (xxx p.)$dDimensions" + "\n" +
-		"300 ##$a(s'il y a lieu)Th√®se soutenue en co-tutelle" + "\n" +
-		"311 ##$a(s'il y a lieu)Th√®se soutenue sur un ensemble de travaux" + "\n" +
-		"314 ##$aEcole(s) doctorale(s) : Nom de l'√©cole doctorale" + "\n" +
-		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'√©quipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
-		"320 ##$aBibliographie : xxx r√©f." + "\n" +
-		"328 #0$bTh√®se d'Etat--Th√®se de doctorat--Th√®se de 3e cycle--Th√®se d'universit√©--Th√®se de docteur-ing√©nieur--Th√®se d'exercice$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"371 ##$a(s'il y a lieu)Th√®se confidentielle jusqu'au (date exacte) OU jusqu'en (ann√©e)" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$2rameau" + "\n" +
+		"215 ##$aNombre de vol. (nbr. de p. ou f.)$cMention d'ill.$dDimensions$eMatÈriel d'accompagnement" + "\n" +
+		"300 ##$aThËse soutenue en co-tutelle --ThËse soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" +
+		"310 ##$aThËse confidentielle jusqu'en (annÈe)(s'il y a lieu)" + "\n" +
+		"320 ##$aBibliographie : xxx rÈf." + "\n" +
+		"328 #0$bThËse d'Etat--ThËse de doctorat--ThËse de 3e cycle--ThËse d'universitÈ--ThËse de docteur-ingÈnieur--ThËse d'exercice$cDiscipline (libellÈ complet)$eUniversitÈ (voir table des libellÈs du Guide MÈthodologique)$dAnnÈe de soutenance" + "\n" +
+		"330 ##$aRÈsumÈ franÁais" + "\n" +
+		"330 ##$aRÈsumÈ anglais" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplÈment du Titre$zeng" + "\n" +
+		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccËs sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aACCES SUJET - NOM COMMUN$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"686 ##$aCode TEF$2TEF" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Directeur de th√®se$bPr√©nom$4727" + "\n" +
-		"701 #1$aNom Pr√©sident du jury$bPr√©nom Pr√©sident du jury$4956" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295" + "\n" +
-		"711 02$a@Etablissement de cotutelle$4995" + "\n" +
-		"711 02$a@Ecole doctorale$4996" + "\n" +
-		"711 02$a@Laboratoire$4981" + "\n" +
-		"711 02$a@Autre type de partenaire (composante, institut, √©tablissement d'inscription, etc)$4985"
-	);
+		"610 0#$aMots clÈs libres" + "\n" +
+		"686 ##$a $2TEF" + "\n" +
+		"700 #1$aNom Auteur$bPrÈnom$4070" + "\n" +
+		"701 #1$aNom Directeur de thËse$bPrÈnom$4727" + "\n" +
+		"711 02$a@UniversitÈ de soutenance$4295");
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
-// 20220525 : mise √† jour MRX
 function CAT_creerTheseImprimeReproduction ()
-{ // Ce script permet de cr√©er une notice de th√®se imprim√©e Aa (Reproduction)
+{ // Ce script permet de crÈer une notice de thËse imprimÈe Aa (Reproduction)
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aAax3" + "\n" +
-		"029 ##$aFR$bNum√©ro national de th√®se (aaaaCODEnnnn)" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
+		"029 ##$aFR$bNumÈro national de thËse (aaaaCODEnnnn)" + "\n" +
+		"100 0#$aAnnÈe de soutenance" + "\n" +
 		"102 ##$aFR" + "\n" +
 		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
 		"105 ##$bv$ba$c0$d0$e1$fy$gy" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cn" + "\n" +
+		"181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn" + "\n" +
 		"183 ##$P01$anga" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom du directeur de th√®se" + "\n" +
-		"214 #2$aLieu de diffusion$bAdresse du diffuseur$cNom diffuseur$dAnn√©e de diffusion" + "\n" +
-		"215 ##$ax vol. (xxx p.)$dDimensions" + "\n" +
-		"300 ##$a(s'il y a lieu)Th√®se soutenue en co-tutelle" + "\n" +
-		"311 ##$a(s'il y a lieu)Th√®se soutenue sur un ensemble de travaux" + "\n" +
-		"314 ##$aEcole(s) doctorale(s) : Nom de l'√©cole doctorale" + "\n" +
-		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'√©quipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
+		"200 1#$a@Titre$eComplÈment du titre$fAuteur$gsous la direction de PrÈnom Nom du directeur de thËse" + "\n" +
+		"214 #2$aLieu de diffusion$bAdresse du diffuseur$cNom diffuseur$dAnnÈe de diffusion" + "\n" +
+		"215 ##$aNombre de vol. (nbr. de p. ou f.)$cMention d'ill.$dDimensions$eMatÈriel d'accompagnement" + "\n" +
+		"300 ##$aThËse soutenue en co-tutelle --ThËse soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" +
 		"320 ##$aBibliographie p.xxx-xxx. Index" + "\n" +
-		"328 #0$zReproduction de$bTh√®se d'Etat--Th√®se de doctorat--Th√®se de 3e cycle--Th√®se d'universit√©--Th√®se de docteur-ing√©nieur--Th√®se d'exercice$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"455 ##$t@Lien vers la th√®se originelle" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$3040839486$2fmesh" + "\n" +
+		"328 #0$zReproduction de$bThËse d'Etat--ThËse de doctorat--ThËse de 3e cycle--ThËse d'universitÈ--ThËse de docteur-ingÈnieur--ThËse d'exercice$cDiscipline (libellÈ complet)$eUniversitÈ (voir table des libellÈs du Guide MÈthodologique)$dAnnÈe de soutenance" + "\n" +
+		"330 ##$aRÈsumÈ franÁais" + "\n" +
+		"330 ##$aRÈsumÈ anglais" + "\n" +
+		"455 ##$t@Lien vers la thËse originelle" + "\n" +
+		"541 ##$a@Titre traduit en anglais$eComplÈment du Titre$zeng" + "\n" +
+		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccËs sujet - nom commun$2rameau" + "\n" +
+		"606 ##$aAccËs sujet - nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"686 ##$aCode TEF$2TEF" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Directeur de th√®se$bPr√©nom$4727" + "\n" +
-		"701 #1$aNom Pr√©sident du jury$bPr√©nom Pr√©sident du jury$4956" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295" + "\n" +
-		"711 02$a@Etablissement de cotutelle$4995" + "\n" +
-		"711 02$a@Ecole doctorale$4996" + "\n" +
-		"711 02$a@Laboratoire$4981" + "\n" +
-		"711 02$a@Autre type de partenaire (composante, institut, √©tablissement d'inscription, etc)$4985"
-	);
+		"610 0#$aMots clÈs libres" + "\n" +
+		"686 ##$a $2TEF" + "\n" +
+		"700 #1$aNom Auteur$bPrÈnom$4070" + "\n" +
+		"701 #1$aNom Directeur de thËse$bPrÈnom$4727" + "\n" +
+		"711 02$a@UniversitÈ de soutenance$4295");
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
 function CAT_creerTheseImprimeEditionCommerciale ()
-{ // Ce script permet de cr√©er une notice de th√®se imprim√©e Aa (Edition commerciale)
+{ // Ce script permet de crÈer une notice de thËse imprimÈe Aa (Edition commerciale)
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
@@ -832,67 +752,66 @@ function CAT_creerTheseImprimeEditionCommerciale ()
 		"105 ##$bv$c0$d0$e1$fy$gy" + "\n" +
 		"181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn" + "\n" +
 		"183 ##$P01$anga" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'√©diteur$cNom de l'√©diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"215 ##$aNombre de vol. (nbr. de p. ou f.)$cMention d'ill.$dDimensions$eMat√©riel d'accompagnement" + "\n" +
+		"200 1#$a@Titre$eComplÈment du titre$fAuteur" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'Èditeur$cNom de l'Èditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+		"215 ##$aNombre de vol. (nbr. de p. ou f.)$cMention d'ill.$dDimensions$eMatÈriel d'accompagnement" + "\n" +
 		"320 ##$aBibliographie p.xxx-xxx. Index" + "\n" +
-		"328 #0$zTexte remani√© de$bTh√®se d'Etat--Th√®se de doctorat--Th√®se de 3e cycle--Th√®se d'universit√©--Th√®se de docteur-ing√©nieur--Th√®se d'exercice$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"451 ##$t@Lien vers la th√®se originelle sur le m√™me support" + "\n" +
-		"452 ##$t@Lien vers la th√®se originelle sur un support diff√©rent" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$2fmesh" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070"
-	);
+		"328 #0$zTexte remaniÈ de$bThËse d'Etat--ThËse de doctorat--ThËse de 3e cycle--ThËse d'universitÈ--ThËse de docteur-ingÈnieur--ThËse d'exercice$cDiscipline (libellÈ complet)$eUniversitÈ (voir table des libellÈs du Guide MÈthodologique)$dAnnÈe de soutenance" + "\n" +
+		"451 ##$t@Lien vers la thËse originelle sur le mÍme support" + "\n" +
+		"452 ##$t@Lien vers la thËse originelle sur un support diffÈrent" + "\n" +
+		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+		"606 ##$aAccËs sujet - nom commun$2rameau" + "\n" +
+		"606 ##$aAccËs sujet - nom commun$2fmesh" + "\n" +
+		"610 0#$aMots clÈs libres" + "\n" +
+		"700 #1$aNom Auteur$bPrÈnom$4070");
 	application.activeWindow.codedData = true;
 }
 
 // 20170316 : modification RDA FR 2017
 // 20200101 : modification TB 2020
 function CAT_creerAudiovisuel ()
-{ // Ce script permet de cr√©er une notice de document audiovisuel Ba, choisir 181
+{ // Ce script permet de crÈer une notice de document audiovisuel Ba, choisir 181
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aBax3" + "\n" +
-		"071 41$aNum√©ro d'√©diteur commercial" + "\n" +
-		"073 #0$aCode-√†-barres commercial" + "\n" +
+		"071 41$aNumÈro d'Èditeur commercial" + "\n" +
+		"073 #0$aCode-‡-barres commercial" + "\n" +
 		"181 ##$P01$ctdi ou tdm"+ "\n" +
 		"182 ##$P01$cv" + "\n" +
 		"183 ##$P01$avcc" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment de Titre$f1re mention de responsabilit√©$gMention de responsabilit√© de fonction diff√©rente" + "\n" +
+		"200 1#$a@Titre$eComplÈment de Titre$f1re mention de responsabilitÈ$gMention de responsabilitÈ de fonction diffÈrente" + "\n" +
 		"205 ##$aEdition" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'√©diteur$cNom de l'√©diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"215 ##$aImportance mat√©rielle$cMention d'ill.$dDimensions$eMat√©riel d'accompagnement" + "\n" +
-		"225  #$a@Titre de la Collection$xISSN$vNum√©ro" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'Èditeur$cNom de l'Èditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
+		"215 ##$aImportance matÈrielle$cMention d'ill.$dDimensions$eMatÈriel d'accompagnement" + "\n" +
+		"225  #$a@Titre de la Collection$xISSN$vNumÈro" + "\n" +
 		"300 ##$aNote sur les versions linguistiques (ex: Sous-titres pour les sourds et les malentendants...)" + "\n" +
-		"305 ##$aNote sur l'historique de l'oeuvre (ex: Enregistrement public au th√©√¢tre...)" + "\n" +
+		"305 ##$aNote sur l'historique de l'oeuvre (ex: Enregistrement public au thÈ‚tre...)" + "\n" +
 		"306 ##$aNote sur l'adresse bibliographique (ex: Copyright)" + "\n" +
 		"307 ##$aFormat de l'image" + "\n" +
-		"312 ##$aNote sur les titres associ√©es (ex: D'apr√®s le roman...)" + "\n" +
+		"312 ##$aNote sur les titres associÈes (ex: D'aprËs le roman...)" + "\n" +
 		"320 ##$aNote sur les documents annexes (ex: Filmographie, galeries photo, etc.)" + "\n" +
-		"322 ##$aNote sur le g√©n√©rique" + "\n" +
-		"323 ##$aNote sur les interpr√®tes" + "\n" +
+		"322 ##$aNote sur le gÈnÈrique" + "\n" +
+		"323 ##$aNote sur les interprËtes" + "\n" +
 		"327  #$aNote de contenu" + "\n" +
-		"334 ##$aNote sur les r√©compenses" + "\n" +
-		"517 ##$aTitres associ√©es" + "\n" +
-		"410 ##$t@Lien au titre de la Collection$vNum√©ro" + "\n" +
+		"334 ##$aNote sur les rÈcompenses" + "\n" +
+		"517 ##$aTitres associÈes" + "\n" +
+		"410 ##$t@Lien au titre de la Collection$vNumÈro" + "\n" +
 		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aSujet$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
+		"606 ##$aSujet$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
-		"700 #1$aNom du R√©alisateur$bPr√©nom du R√©alisateur$4300" + "\n" +
-		"701 #1$aNom Co-auteur$bPr√©nom$4Code de Fonction" + "\n" +
-		"702 #1$aNom Auteur relatif √† la manifestation ou √† l'item$bPr√©nom$4Code de Fonction" + "\n" +
-		"712 02$aNom Collectivit√© auteur relatif √† la manifestation ou √† l'item$4Code de Fonction");
+		"700 #1$aNom du RÈalisateur$bPrÈnom du RÈalisateur$4300" + "\n" +
+		"701 #1$aNom Co-auteur$bPrÈnom$4Code de Fonction" + "\n" +
+		"702 #1$aNom Auteur relatif ‡ la manifestation ou ‡ l'item$bPrÈnom$4Code de Fonction" + "\n" +
+		"712 02$aNom CollectivitÈ auteur relatif ‡ la manifestation ou ‡ l'item$4Code de Fonction");
 	application.activeWindow.codedData = true;
 }
 
 
-// 20180103 : Cr√©ation
+// 20180103 : CrÈation
 // 20200101 : modification TB 2020
 function CAT_creerEchantillonAccompagne ()
-{ //Ce script permet de cr√©er une notice d'√©chantillon avec mat√©riel d'accompagnement
+{ //Ce script permet de crÈer une notice d'Èchantillon avec matÈriel d'accompagnement
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
@@ -904,24 +823,24 @@ function CAT_creerEchantillonAccompagne ()
 		"181 ##$P01$ctdf" + "\n" +
 		"182 ##$P01$cn" + "\n" +
 		"183 ##$P01$anez" + "\n" +
-		"200 1#$a@Nom de l'√©chantillon$e[√©chantillon]$fProducteur de l'√©chantillon" + "\n" +
+		"200 1#$a@Nom de l'Èchantillon$e[Èchantillon]$fProducteur de l'Èchantillon" + "\n" +
 		"214 #1$aLieu de production$d[20XX]" + "\n" +
-		"215 ##$a1 √©chantillon$cComposant de l'√©chantillon$dDimensions de l'√©chantillon (XX x XX x XX cm)- voir exemples sur GM $eLivret technique (xx p., xx cm)" + "\n" +
-		"300 ##$aDescription de l'√©chantillon et du livret technique si besoin" + "\n" +
+		"215 ##$a1 Èchantillon$cComposant de l'Èchantillon$dDimensions de l'Èchantillon (XX x XX x XX cm)- voir exemples sur GM $eLivret technique (xx p., xx cm)" + "\n" +
+		"300 ##$aDescription de l'Èchantillon et du livret technique si besoin" + "\n" +
 		"345 ##$uSite web source de l'acquisition (FACULTATIF)" + "\n" +
 		"463 ##$t@Titre du livret technique d'accompagnement" + "\n" +
-		"606 ##$aSujet$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
+		"606 ##$aSujet$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
 		"608 ##$3027793079$2rameau" + "\n" +
-		"710 02$a@Collectivit√© productrice de l'√©chantillon$4070" + "\n" +
-		"830 ##$aV√©rifier imp√©rativement les donn√©es cod√©es en 101, 102, modifier les valeurs donn√©es par d√©faut, si besoin. Compl√©ter la zone 117 en attribuant les codes pertinents par rapport √† l'objet (voir la liste des codes sur le GM). Supprimer la L606 si aucune indexation utilisant un th√©saurus local n'est envisag√©e. Supprimer cette zone 830 avant de valider la notice." + "\n" +
-		"L606 ##$aSujet$xEchantillons$2Nom du th√©saurus local utilis√©");
+		"710 02$a@CollectivitÈ productrice de l'Èchantillon$4070" + "\n" +
+		"830 ##$aVÈrifier impÈrativement les donnÈes codÈes en 101, 102, modifier les valeurs donnÈes par dÈfaut, si besoin. ComplÈter la zone 117 en attribuant les codes pertinents par rapport ‡ l'objet (voir la liste des codes sur le GM). Supprimer la L606 si aucune indexation utilisant un thÈsaurus local n'est envisagÈe. Supprimer cette zone 830 avant de valider la notice." + "\n" +
+		"L606 ##$aSujet$xEchantillons$2Nom du thÈsaurus local utilisÈ");
 	application.activeWindow.codedData = true;
 }
 
-// 20180103 : Cr√©ation
+// 20180103 : CrÈation
 // 20200101 : modification TB 2020
 function CAT_creerObjet ()
-{ //Ce script permet de cr√©er une notice d'objet
+{ //Ce script permet de crÈer une notice d'objet
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
@@ -937,19 +856,19 @@ function CAT_creerObjet ()
 		"215 ##$a1 objet$cComposants de l'objet$dDimensions de l'objet (XX x XX x XX cm) - voir exemples sur le GM " + "\n" +
 		"300 ##$aDescription de l'objet et de son usage" + "\n" +
 		"345 ##$uSite web source de l'acquisition (FACULTATIF)" + "\n" +
-		"606 ##$aSujet$xSubdivision de sujet$yG√©ographique$zChronologique$2rameau" + "\n" +
+		"606 ##$aSujet$xSubdivision de sujet$yGÈographique$zChronologique$2rameau" + "\n" +
 		"608 ##$aIndexation Forme ou Genre Rameau$2rameau" + "\n" +
-		"710 02$a@Collectivit√© productrice de l'objet$4070" + "\n" +
-		"830 ##$aV√©rifier imp√©rativement les donn√©es cod√©es en 101, 102, modifier les valeurs donn√©es par d√©faut, si besoin. Compl√©ter la zone 117 en attribuant les codes pertinents par rapport √† l'objet (voir la liste des codes sur le GM). Supprimer la L606 si aucune indexation utilisant un th√©saurus local n'est envisag√©e. Supprimer cette zone 830 avant de valider la notice." + "\n" +
-		"L606 ##$aSujet$2Nom du th√©saurus local utilis√©"
+		"710 02$a@CollectivitÈ productrice de l'objet$4070" + "\n" +
+		"830 ##$aVÈrifier impÈrativement les donnÈes codÈes en 101, 102, modifier les valeurs donnÈes par dÈfaut, si besoin. ComplÈter la zone 117 en attribuant les codes pertinents par rapport ‡ l'objet (voir la liste des codes sur le GM). Supprimer la L606 si aucune indexation utilisant un thÈsaurus local n'est envisagÈe. Supprimer cette zone 830 avant de valider la notice." + "\n" +
+		"L606 ##$aSujet$2Nom du thÈsaurus local utilisÈ"
 	);
 	application.activeWindow.codedData = true;
 }
 
-// 20180531 : Cr√©ation
+// 20180531 : CrÈation
 // 20200101 : modification TB 2020
 function CAT_creerArticleImp ()
-{ //Ce script permet de cr√©er une notice d'article Archive
+{ //Ce script permet de crÈer une notice d'article Archive
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
@@ -958,564 +877,34 @@ function CAT_creerArticleImp ()
 		"101 0#$afre" + "\n" +
 		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
 		"105 ##$c0$d0$fy$gy" + "\n" +
-		"200 1#$a@Titre de l'article$ecompl√©ment de titre$f1e mention de responsabilit√©$g2e mention de responsabilit√©" + "\n" +
-		"209 ##$btome ou volume$cann√©e$dnum√©ro ou fascicule$hx-x (ne pas indiquer p.)" + "\n" +
+		"200 1#$a@Titre de l'article$ecomplÈment de titre$f1e mention de responsabilitÈ$g2e mention de responsabilitÈ" + "\n" +
+		"209 ##$btome ou volume$cannÈe$dnumÈro ou fascicule$hx-x (ne pas indiquer p.)" + "\n" +
 		"215 ##$a[nombre de pages]$cmention d'ill." + "\n" +
-		"305 ##$aIn : Titre-cl√© de la revue dont l'article est extrait, ISSN. - Vol., tomaison, n¬∞ de fascicule" + "\n" +
+		"305 ##$aIn : Titre-clÈ de la revue dont l'article est extrait, ISSN. - Vol., tomaison, n∞ de fascicule" + "\n" +
 		"320 ##$aBibliographie ou index" + "\n" +
-		"L606 ##$aSujet$2Nom du th√©saurus local utilis√©" + "\n" +
+		"L606 ##$aSujet$2Nom du thÈsaurus local utilisÈ" + "\n" +
 		"606 ##$aSujet$2rameau" + "\n" +
-		"463 ##$t@Titre de la revue$vnum√©ro/ann√©e de la revue" + "\n" +
-		"700 #1$aNom Auteur relatif √† l'oeuvre ou √† l'expression$bPr√©nom$4code de fonction" + "\n" +
-		"701 #1$aCo-auteur relatif √† l'oeuvre ou √† l'expression$bPr√©nom$4code de fonction" + "\n" +
-		"830 #$aSupprimer la L606 si aucune indexation utilisant un th√©saurus local n'est envisag√©e. Supprimer cette zone 830 avant de valider la notice."
+		"463 ##$t@Titre de la revue$vnumÈro/annÈe de la revue" + "\n" +
+		"700 #1$aNom Auteur relatif ‡ l'oeuvre ou ‡ l'expression$bPrÈnom$4code de fonction" + "\n" +
+		"701 #1$aCo-auteur relatif ‡ l'oeuvre ou ‡ l'expression$bPrÈnom$4code de fonction" + "\n" +
+		"830 #$aSupprimer la L606 si aucune indexation utilisant un thÈsaurus local n'est envisagÈe. Supprimer cette zone 830 avant de valider la notice."
 	);
 	application.activeWindow.codedData = true;
 }
 
-// 20200101 : Cr√©ation
+// 20200101 : CrÈation
 function CAT_creerPropositionFormeGenre ()
-{ // Ce script permet de cr√©er une proposition rameau Forme/Genre Tf3
+{ // Ce script permet de crÈer une proposition rameau Forme/Genre Tf3
 	application.activeWindow.codedData = false;
 	application.activeWindow.command("cre e", false);
 	application.activeWindow.title.insertText(
 		"008 $aTf3" + "\n" +
-		"280 ##$8frefre$9#y$aNouveau Point d'acc√®s autoris√© ‚Äì Forme ou Genre Rameau propos√©" + "\n" +
-		"480 ##$8frefre$9#y$aVariante de point d'acc√®s 1" + "\n" +
-		"480 ##$8frefre$9#y$aVariante de point d'acc√®s 2" + "\n" +
-		"810 ##$aOBLIGATOIRE R√©f√©rence du document pour lequel est propos√© le nouveau Point d'acc√®s Titre / Auteur, date" + "\n" +
-		"810 ##$aDocument de r√©f√©rence permettant de justifier, d√©finir, ... le concept propos√© en Point d'acc√®s Titre / Auteur, date"
+		"280 ##$8frefre$9#y$aNouveau Point d'accËs autorisÈ ñ Forme ou Genre Rameau proposÈ" + "\n" +
+		"480 ##$8frefre$9#y$aVariante de point d'accËs 1" + "\n" +
+		"480 ##$8frefre$9#y$aVariante de point d'accËs 2" + "\n" +
+		"810 ##$aOBLIGATOIRE RÈfÈrence du document pour lequel est proposÈ le nouveau Point d'accËs Titre / Auteur, date" + "\n" +
+		"810 ##$aDocument de rÈfÈrence permettant de justifier, dÈfinir, ... le concept proposÈ en Point d'accËs Titre / Auteur, date"
 	);
 	application.activeWindow.codedData = true;
 }
 
-// 20220603 : cr√©ation MRX
-// 20220622 : mise √† jour MRX
-function CAT_creerTheseRemanieeAuteur ()
-{ // Ce script permet de cr√©er une notice de th√®se √©lectronique Oa (version remani√©e par l'auteur hors publication commerciale)
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
-	application.activeWindow.title.insertText(
-		"008 $aOax3" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
-		"101 0#$afre$dfre$deng" + "\n" +
-		"102 ##$aFR" + "\n" +
-		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
-		"105 ##$bv$ba$c0$d0$fy$gy" + "\n" +
-		"135 ##$ad$br" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cc" + "\n" +
-		"183 ##$P01$aceb" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom du directeur de th√®se" + "\n" +
-		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
-		"230 ##$aDonn√©es textuelles" + "\n" +
-		"304 ##$aTitre provenant de l'√©cran-titre" + "\n" +
-		"307 ##$anombre de pages g√©n√©r√© par l'impression du document, lorsque ce document est pagin√©" + "\n" +
-		"320 ##$aBibliographie : xxx r√©f." + "\n" +
-		"328 #0$zTexte remani√© de$bTh√®se d'Etat--Th√®se de doctorat--Th√®se de 3e cycle--Th√®se d'universit√©--Th√®se de docteur-ing√©nieur--Th√®se d'exercice$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"337 ##$aUn logiciel capable de lire un fichier au format (pr√©ciser le format)" + "\n" +
-		"45X ##$t@Lien vers la th√®se originelle" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$3040839486$2fmesh" + "\n" +
-		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"856 4#$qFormat$uAdresse URL$zAcc√®s au texte int√©gral"
-	);
-	application.activeWindow.codedData = true;
-}
-
-// 20220413 : Cr√©ation
-// 20220525 : Mise √† jour MRX
-// 20220622 : Mise √† jour MRX
-function CAT_creerMemoireElec ()
-{ // Ce script permet de cr√©er une notice de m√©moire nativement √©lectronique Oa
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
-	application.activeWindow.title.insertText(
-		"008 $aOax3" + "\n" +
-		"029 ##$aFR$mNum√©ro du m√©moire" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
-		"101 0#$afre$dfre$deng" + "\n" +
-		"102 ##$aFR" + "\n" +
-		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
-		"105 ##$b7$ba$c0$d0$fy$gy" + "\n" +
-		"135 ##$ad$br" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cc" + "\n" +
-		"183 ##$P01$aceb" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom du directeur de m√©moire" + "\n" +
-		"214 #1$dDate de production" + "\n" +
-		"230 ##$aDonn√©es textuelles" + "\n" +
-		"304 ##$aTitre provenant de l'√©cran-titre" + "\n" +
-		"307 ##$aNombre de pages √† l'impression lorsque ce document est pagin√©" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
-		"320 ##$aBibliographie : xxx r√©f." + "\n" +
-		"328 #0$bMention du travail universitaire et nature du dipl√¥me$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"337 ##$aUn logiciel capable de lire un fichier au format (pr√©ciser le format)" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet nom commun$3040839486$2fmesh" + "\n" +
-		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Directeur de m√©moire$bPr√©nom$4003" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295" + "\n" +
-		"856 4#$qFormat$uAdresse URL (si l'acc√®s est r√©serv√©, cr√©er une E856)"
-	);
-	application.activeWindow.codedData = true;
-}
-
-// 20220525 : Cr√©ation
-// 20220622 : Mise √† jour MRX
-function CAT_creerMemoireElecReproduction ()
-{ // Ce script permet de cr√©er une notice de m√©moire √©lectronique Oa (reproduction)
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
-	application.activeWindow.title.insertText(
-		"008 $aOax3" + "\n" +
-		"029 ##$aFR$mNum√©ro du m√©moire" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
-		"101 0#$afre$dfre$deng" + "\n" +
-		"102 ##$aFR" + "\n" +
-		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
-		"105 ##$b7$ba$c0$d0$fy$gy" + "\n" +
-		"135 ##$ad$br" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cc" + "\n" +
-		"183 ##$P01$aceb" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom du directeur de m√©moire" + "\n" +
-		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
-		"230 ##$aDonn√©es textuelles" + "\n" +
-		"304 ##$aTitre provenant de l'√©cran-titre" + "\n" +
-		"307 ##$aNombre de pages √† l'impression lorsque ce document est pagin√©" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
-		"320 ##$aBibliographie : xxx r√©f." + "\n" +
-		"328 #0$zReproduction de$bMention du travail universitaire et nature du dipl√¥me$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"337 ##$aUn logiciel capable de lire un fichier au format (pr√©ciser le format)" + "\n" +
-		"455 ##$t@Lien vers le m√©moire originel" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet nom commun$3040839486$2fmesh" + "\n" +
-		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Directeur de m√©moire$bPr√©nom$4003" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295" + "\n" +
-		"856 4#$qFormat$uAdresse URL (si l'acc√®s est r√©serv√©, cr√©er une E856)"
-	);
-	application.activeWindow.codedData = true;
-}
-
-// 20220413 : Cr√©ation
-// 20220525 : Mise √† jour MRX
-function CAT_creerMemoireImpr ()
-{ // Ce script permet de cr√©er une notice de m√©moire imprim√© Aa
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
-	application.activeWindow.title.insertText(
-		"008 $aAax3" + "\n" +
-		"029 ##$aFR$mNum√©ro du m√©moire" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
-		"101 0#$afre$dfre$deng" + "\n" +
-		"102 ##$aFR" + "\n" +
-		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
-		"105 ##$b7$ba$c0$d0$fy$gy" + "\n" +
-		"106 ##$ar" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cn" + "\n" +
-		"183 ##$P01$anga" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom du directeur de m√©moire" + "\n" +
-		"214 #1$dDate de production" + "\n" +
-		"215 ##$ax vol. (xxx p.)$dDimensions" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
-		"320 ##$aBibliographie : xxx r√©f." + "\n" +
-		"328 #0$bMention du travail universitaire et nature du dipl√¥me$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"371 ##$a(s'il y a lieu)M√©moire confidentiel jusqu'au (date exacte) OU jusqu'en (ann√©e)" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet nom commun$3040839486$2fmesh" + "\n" +
-		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Directeur de m√©moire$bPr√©nom$4003" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295"
-	);
-	application.activeWindow.codedData = true;
-}
-
-// 20220525 : Cr√©ation
-function CAT_creerMemoireImprReproduction ()
-{ // Ce script permet de cr√©er une notice de m√©moire imprim√© Aa (reproduction)
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
-	application.activeWindow.title.insertText(
-		"008 $aAax3" + "\n" +
-		"029 ##$aFR$mNum√©ro du m√©moire" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
-		"101 0#$afre$dfre$deng" + "\n" +
-		"102 ##$aFR" + "\n" +
-		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
-		"105 ##$bv$ba$c0$d0$fy$gy" + "\n" +
-		"106 ##$ar" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cn" + "\n" +
-		"183 ##$P01$anga" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom du directeur de m√©moire" + "\n" +
-		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
-		"215 ##$ax vol. (xxx p.)$dDimensions" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
-		"320 ##$aBibliographie : xxx r√©f." + "\n" +
-		"328 #0$zReproduction de$bMention du travail universitaire et nature du dipl√¥me$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"455 ##$t@Lien vers le m√©moire originel" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet nom commun$3040839486$2fmesh" + "\n" +
-		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Directeur de m√©moire$bPr√©nom$4003" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295"
-	);
-	application.activeWindow.codedData = true;
-}
-
-// 20220525 : Cr√©ation
-function CAT_creerHDRImprVO ()
-{ // Ce script permet de cr√©er une notice de HDR imprim√© Aa
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
-	application.activeWindow.title.insertText(
-		"008 $aAax3" + "\n" +
-		"029 ##$aFR$oNum√©ro de la HDR (num√©ro de HDR)" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
-		"101 0#$afre$dfre$deng" + "\n" +
-		"102 ##$aFR" + "\n" +
-		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
-		"105 ##$b7$ba$c0$d0$fy$gy" + "\n" +
-		"106 ##$ar" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cn" + "\n" +
-		"183 ##$P01$anga" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom de l'encadrant de la HDR" + "\n" +
-		"214 #1$dDate de production" + "\n" +
-		"215 ##$ax vol. (xxx p.)$dDimensions" + "\n" +
-		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire)" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
-		"320 ##$aBibliographie : xxx r√©f." + "\n" +
-		"328 #0$bHabilitation √† diriger des recherches$cDiscipline (libell√© complet)$eEtablissement (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"371 ##$a(s'il y a lieu)HDR confidentielle jusqu'au (date exacte) OU jusqu'en (ann√©e)" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet nom commun$3040839486$2fmesh" + "\n" +
-		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Encadrant HDR$bPr√©nom$4003" + "\n" +
-		"701 #1$aNom Pr√©sident du jury$bPr√©nom Pr√©sident du jury$4956" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295" + "\n" +
-		"711 02$a@Laboratoire$4981" + "\n" +
-		"711 02$a@Autre partenaire de recherche (composante, √©tablissement d'inscription, etc)$4985"
-	);
-	application.activeWindow.codedData = true;
-}
-
-// 20220525 : Cr√©ation
-function CAT_creerHDRImprReproduction ()
-{ // Ce script permet de cr√©er une notice de HDR imprim√©e Oa (Reproduction)
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
-	application.activeWindow.title.insertText(
-		"008 $aAax3" + "\n" +
-		"029 ##$aFR$oNum√©ro de la HDR (num√©ro de HDR)" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
-		"102 ##$aFR" + "\n" +
-		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
-		"105 ##$bv$ba$c0$d0$e1$fy$gy" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cn" + "\n" +
-		"183 ##$P01$anga" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom de l'encadrant de HDR" + "\n" +
-		"214 #2$aLieu de diffusion$bAdresse du diffuseur$cNom diffuseur$dAnn√©e de diffusion" + "\n" +
-		"215 ##$ax vol. (xxx p.)$dDimensions" + "\n" +
-		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'√©quipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
-		"320 ##$aBibliographie p.xxx-xxx. Index" + "\n" +
-		"328 #0$zReproduction de$bHabilitation √† diriger des recherches$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"455 ##$t@Lien vers la HDR originelle" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$3040839486$2fmesh" + "\n" +
-		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Encadrant HDR$bPr√©nom$4003" + "\n" +
-		"701 #1$aNom Pr√©sident du jury$bPr√©nom Pr√©sident du jury$4956" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295" + "\n" +
-		"711 02$a@Laboratoire$4981" + "\n" +
-		"711 02$a@Autre type de partenaire (composante, institut, √©tablissement d'inscription, etc)$4985"
-	);
-	application.activeWindow.codedData = true;
-}
-
-// 20220525 : Cr√©ation
-// 20220622 : Mise √† jour MRX
-function CAT_creerHDRElecVO ()
-{ // Ce script permet de cr√©er une notice de m√©moire nativement √©lectronique Oa
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
-	application.activeWindow.title.insertText(
-		"008 $aOax3" + "\n" +
-		"029 ##$aFR$oNum√©ro de la HDR (num√©ro de HDR)" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
-		"101 0#$afre$dfre$deng" + "\n" +
-		"102 ##$aFR" + "\n" +
-		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
-		"105 ##$b7$ba$c0$d0$fy$gy" + "\n" +
-		"135 ##$ad$br" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cc" + "\n" +
-		"183 ##$P01$aceb" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom de l'encadrant de HDR" + "\n" +
-		"214 #1$dDate de production" + "\n" +
-		"230 ##$aDonn√©es textuelles" + "\n" +
-		"304 ##$aTitre provenant de l'√©cran-titre" + "\n" +
-		"307 ##$aNombre de pages √† l'impression lorsque ce document est pagin√©" + "\n" +
-		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire)" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
-		"320 ##$aBibliographie : xxx r√©f." + "\n" +
-		"328 #0$bHabilitation √† diriger des recherches$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"337 ##$aUn logiciel capable de lire un fichier au format (pr√©ciser le format)" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet nom commun$3040839486$2fmesh" + "\n" +
-		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Encadrant HDR$bPr√©nom$4003" + "\n" +
-		"701 #1$aNom Pr√©sident du jury$bPr√©nom Pr√©sident du jury$4956" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295" + "\n" +
-		"711 02$a@Laboratoire$4981" + "\n" +
-		"711 02$a@Autre partenaire de recherche (composante, √©tablissement d'inscription, etc)$4985" + "\n" +
-		"856 4#$qFormat$uAdresse URL (si l'acc√®s est r√©serv√©, cr√©er une E856)"
-	);
-	application.activeWindow.codedData = true;
-}
-
-// 20220525 : Cr√©ation
-// 20220622 : Mise √† jour MRX
-function CAT_creerHDRElecReproduction ()
-{ // Ce script permet de cr√©er une notice de HDR √©lectronique Oa (Reproduction)
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
-	application.activeWindow.title.insertText(
-		"008 $aOax3" + "\n" +
-		"029 ##$aFR$oNum√©ro de la HDR (num√©ro de HDR)" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
-		"101 0#$afre$dfre$deng" + "\n" +
-		"102 ##$aFR" + "\n" +
-		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
-		"105 ##$bv$ba$c0$d0$fy$gy" + "\n" +
-		"135 ##$ad$br" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cc" + "\n" +
-		"183 ##$P01$aceb" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom de l'encadrant de HDR" + "\n" +
-		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
-		"230 ##$aDonn√©es textuelles" + "\n" +
-		"304 ##$aTitre provenant de l'√©cran-titre" + "\n" +
-		"307 ##$aNombre de pages √† l'impression lorsque ce document est pagin√©" + "\n" +
-		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire)" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
-		"320 ##$aBibliographie : xxx r√©f." + "\n" +
-		"328 #0$zReproduction de$bHabilitation √† diriger des recherches$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"337 ##$aUn logiciel capable de lire un fichier au format (pr√©ciser le format)" + "\n" +
-		"455 ##$t@Lien vers la HDR originelle" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$3040839486$2fmesh" + "\n" +
-		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Encadrant HDR$bPr√©nom$4003" + "\n" +
-		"701 #1$aNom Pr√©sident du jury$bPr√©nom Pr√©sident du jury$4956" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295" + "\n" +
-		"711 02$a@Laboratoire$4981" + "\n" +
-		"711 02$a@Autre partenaire de recherche (composante, √©tablissement d'inscription, etc)$4985" + "\n" +
-		"856 4#$qFormat$uAdresse URL (si l'acc√®s est r√©serv√©, cr√©er une E856)"
-	);
-	application.activeWindow.codedData = true;
-}
-
-// 2022060325 : cr√©ation MRX
-function CAT_creerTheseImprPerdue ()
-{ // Ce script permet de cr√©er une notice de th√®se imprim√©e Aa perdue
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
-	application.activeWindow.title.insertText(
-		"008 $aAax3" + "\n" +
-		"029 ##$aFR$bNum√©ro national de th√®se (aaaaCODEnnnn)" + "\n" +
-		"035 ##$aTHOA[code court √©tab]" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
-		"101 0#$afre$dfre$deng" + "\n" +
-		"102 ##$aFR" + "\n" +
-		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
-		"105 ##$bm$ba$c0$d0$e1$fy$gy" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cn" + "\n" +
-		"183 ##$P01$anga" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom du directeur de th√®se" + "\n" +
-		"214 #1$dDate de production" + "\n" +
-		"215 ##$a(si informations disponibles)x vol. (xxx p.)$dDimensions" + "\n" +
-		"300 ##$a(s'il y a lieu)Th√®se soutenue en co-tutelle" + "\n" +
-		"303 ##$aNotice √©labor√©e √† partir de la reproduction de la th√®se : la version de soutenance n'existe plus. OU Notice √©labor√©e √† partir de [mention des sources] : la version de soutenance n'existe plus.OU Notice √©labor√©e √† partir de [mention de sources]. Le document qui a justifi√© l'obtention du dipl√¥me n'existe plus." + "\n" +
-		"311 ##$a(s'il y a lieu)Th√®se soutenue sur un ensemble de travaux" + "\n" +
-		"314 ##$aEcole(s) doctorale(s) : Nom de l'√©cole doctorale" + "\n" +
-		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'√©quipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
-		"320 ##$aBibliographie : xxx r√©f." + "\n" +
-		"328 #0$bTh√®se d'Etat--Th√®se de doctorat--Th√®se de 3e cycle--Th√®se d'universit√©--Th√®se de docteur-ing√©nieur--Th√®se d'exercice$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"371 ##$a(s'il y a lieu)Th√®se confidentielle jusqu'en (ann√©e)" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$3040839486$2fmesh" + "\n" +
-		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"686 ##$aCode TEF$2TEF" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Directeur de th√®se$bPr√©nom$4727" + "\n" +
-		"701 #1$aNom Pr√©sident du jury$bPr√©nom Pr√©sident du jury$4956" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295" + "\n" +
-		"711 02$a@Etablissement de cotutelle$4995" + "\n" +
-		"711 02$a@Ecole doctorale$4996" + "\n" +
-		"711 02$a@Laboratoire$4981" + "\n" +
-		"711 02$a@Autre type de partenaire (composante, institut, √©tablissement d'inscription, etc)$4985" + "\n" +
-		"E316 ##$aExemplaire manquant (constat√© en AAAA) OU Exemplaire manquant/incommunicable depuis AAAA, pour cause de ... OU Exemplaire manquant/incommunicable depuis AAAA, pour cause de .... Il n'existe pas de copie conforme (au contenu strictement identique) de la version de soutenance$ulien vers la notice Sudoc de la reproduction conforme OU de la version non corrig√©e / remani√©e / commercialis√©e de la th√®se$2Consulter la reproduction OU Consulter la version non corrig√©e de la th√®se OU Consulter la version commercialis√©e de la th√®se OU Consulter une version de la th√®se remani√©e par l'auteur"
-	);
-	application.activeWindow.codedData = true;
-}
-
-// 2022060325 : cr√©ation MRX
-function CAT_creerTheseImprNonDeposee ()
-{ // Ce script permet de cr√©er une notice de th√®se imprim√©e Aa non d√©pos√©e
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
-	application.activeWindow.title.insertText(
-		"008 $aAax3" + "\n" +
-		"029 ##$aFR$bNum√©ro national de th√®se (aaaaCODEnnnn)" + "\n" +
-		"035 ##$aTHOA[code court √©tab]" + "\n" +
-		"100 0#$aAnn√©e de soutenance" + "\n" +
-		"101 0#$afre$dfre$deng" + "\n" +
-		"102 ##$aFR" + "\n" +
-		"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
-		"105 ##$bm$ba$c0$d0$e1$fy$gy" + "\n" +
-		"181 ##$P01$ctxt" + "\n" +
-		"182 ##$P01$cn" + "\n" +
-		"183 ##$P01$anga" + "\n" +
-		"200 1#$a@Titre$eCompl√©ment du titre$fAuteur$gsous la direction de Pr√©nom Nom du directeur de th√®se" + "\n" +
-		"214 #1$dDate de production" + "\n" +
-		"215 ##$a(si informations disponibles)x vol. (xxx p.)$dDimensions" + "\n" +
-		"300 ##$a(s'il y a lieu)Th√®se soutenue en co-tutelle" + "\n" +
-		"303 ##$aNotice √©labor√©e √† partir de la version non corrig√©e de la th√®se : la version de soutenance n'a pas √©t√© d√©pos√©e OU Description √©tablie √† partir de (pr√©ciser les documents administratifs utilis√©s pour √©tablir la description)" + "\n" +
-		"305 ##$a(s'il y a lieu) En l'absence de d√©p√¥t de la version d√©finitive de la th√®se, la version non corrig√©e fait office de d√©p√¥t l√©gal. OU (si th√®se non d√©pos√©e) La version de soutenance n'existe pas. Le docteur n'a d√©pos√© aucun exemplaire de sa th√®se pour archivage et communication." + "\n" +
-		"311 ##$a(s'il y a lieu)Th√®se soutenue sur un ensemble de travaux" + "\n" +
-		"314 ##$aEcole(s) doctorale(s) : Nom de l'√©cole doctorale" + "\n" +
-		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'√©quipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
-		"314 ##$aAutre(s) contribution(s) : Pr√©nom Nom (Pr√©sident du jury) ; Pr√©nom Nom, Pr√©nom Nom (Membre(s) du jury) ; Pr√©nom Nom (Rapporteur(s))" + "\n" +
-		"320 ##$aBibliographie : xxx r√©f." + "\n" +
-		"328 #0$bTh√®se d'Etat--Th√®se de doctorat--Th√®se de 3e cycle--Th√®se d'universit√©--Th√®se de docteur-ing√©nieur--Th√®se d'exercice$cDiscipline (libell√© complet)$eUniversit√© (voir table des libell√©s du Guide M√©thodologique)$dAnn√©e de soutenance" + "\n" +
-		"330 ##$aR√©sum√© fran√ßais" + "\n" +
-		"330 ##$aR√©sum√© anglais" + "\n" +
-		"371 ##$a(s'il y a lieu)Th√®se confidentielle jusqu'en (ann√©e)" + "\n" +
-		"541 ##$a@Titre traduit en anglais$eCompl√©ment du Titre$zeng" + "\n" +
-		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$2rameau" + "\n" +
-		"606 ##$aAcc√®s sujet - nom commun$3040839486$2fmesh" + "\n" +
-		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots cl√©s libres" + "\n" +
-		"686 ##$aCode TEF$2TEF" + "\n" +
-		"700 #1$aNom Auteur$bPr√©nom$4070" + "\n" +
-		"701 #1$aNom Directeur de th√®se$bPr√©nom$4727" + "\n" +
-		"701 #1$aNom Pr√©sident du jury$bPr√©nom Pr√©sident du jury$4956" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Membre du jury$bPr√©nom Membre du jury$4555" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"701 #1$aNom Rapporteur$bPr√©nom Rapporteur$4958" + "\n" +
-		"711 02$a@Etablissement de soutenance$4295" + "\n" +
-		"711 02$a@Etablissement de cotutelle$4995" + "\n" +
-		"711 02$a@Ecole doctorale$4996" + "\n" +
-		"711 02$a@Laboratoire$4981" + "\n" +
-		"711 02$a@Autre type de partenaire (composante, institut, √©tablissement d'inscription, etc)$4985" + "\n" +
-		"E316 ##$aExemplaire manquant : le docteur n'a jamais d√©pos√© la version corrig√©e, valid√©e, de sa th√®se. OU Exemplaire manquant : le docteur n'a jamais d√©pos√© la version valid√©e en soutenance de sa th√®se. OU Exemplaire manquant : le docteur n'a jamais d√©pos√© sa th√®se.$u(s'il y a lieu)lien vers la notice Sudoc de la version non corrig√©e--commercialis√©e--remani√©e par l'auteur$2Consulter la version non corrig√©e de la th√®se OU Consulter la version remani√©e et commercialis√©e de la th√®se OU Consulter la version de la th√®se remani√©e par l'auteur."
-	);
-	application.activeWindow.codedData = true;
-}

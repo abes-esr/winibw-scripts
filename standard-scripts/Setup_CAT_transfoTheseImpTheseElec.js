@@ -10,7 +10,7 @@ function open_xul_dialog(theUrl, theFeatures, theArguments)
 		return false;
 	}
 	
-	// let's try to get a valid parent
+	//let's try to get a valid parent
 	var theParent = ww.activeWindow;
 	
 	var features = null;
