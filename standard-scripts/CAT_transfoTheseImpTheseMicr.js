@@ -200,6 +200,7 @@ function modifierNotice(ancienPpn)
 	modifierRemplacer("605","$3027253139$2rameau","$2rameau");
 	modifierRemplacer("606","$3027253139$2rameau","$2rameau");
 	modifierRemplacer("607","$3027253139$2rameau","$2rameau");
+	supprimer("608");
 	ajouter("608 ##$3027253139$2rameau");
 	remplacerValeurZone700("7");
 	modifierRemplacer("702","702","701");
