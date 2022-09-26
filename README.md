@@ -68,3 +68,8 @@ function ajouter(zone)
 	application.activeWindow.title.insertText (zone + "\n");
 }
 ```
+
+# winibw-sync
+
+Winibw sync est un outil permettant de synchroniser des script distants présents sur le dépôt github sur les postes en local des utilisateurs ou se situent leur installation classique de leur winibw local
+(voir guide utilisation et compilation du programme)
