@@ -28,9 +28,11 @@ public class SyncGui {
     public static void main(String[] args) {
 
         JFrame frame = new JFrame("Synchronisation des scripts WinIBW de transformation - xul + js");
+        frame.getContentPane().setBackground(Color.BLUE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 400);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+
 
         // create a panel to add buttons
         JPanel top = new JPanel();
@@ -95,7 +97,7 @@ public class SyncGui {
 
                     RestTemplate restTemplate = new RestTemplate();
                     List<Map> response = restTemplate.getForObject(
-                            "https://api.github.com/repos/{owner}/{repo}/contents/transformation-scripts-js-et-xul?ref={branch}", List.class, "abes-esr",
+                            "https://api.github.com/repos/{owner}/{repo}/contents/scripts-transformation-js-et-xul?ref={branch}", List.class, "abes-esr",
                             "winibw-scripts", list.getSelectedItem().toString());
 
                     // To print response JSON, using GSON. Any other JSON parser can be used here.

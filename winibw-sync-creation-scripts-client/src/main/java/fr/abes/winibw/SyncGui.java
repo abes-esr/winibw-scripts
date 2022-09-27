@@ -31,6 +31,7 @@ public class SyncGui {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 400);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+        frame.getContentPane().setBackground(Color.YELLOW);
 
         // create a panel to add buttons
         JPanel top = new JPanel();
@@ -95,7 +96,7 @@ public class SyncGui {
 
                     RestTemplate restTemplate = new RestTemplate();
                     List<Map> response = restTemplate.getForObject(
-                            "https://api.github.com/repos/{owner}/{repo}/contents/creation-scripts-js?ref={branch}", List.class, "abes-esr",
+                            "https://api.github.com/repos/{owner}/{repo}/contents/scripts-creation-js?ref={branch}", List.class, "abes-esr",
                             "winibw-scripts", list.getSelectedItem().toString());
 
                     // To print response JSON, using GSON. Any other JSON parser can be used here.
