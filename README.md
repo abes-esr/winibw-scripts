@@ -101,25 +101,30 @@ Utilisation de l'outil :
 ![image](https://user-images.githubusercontent.com/19894885/193787708-c59faa0d-0844-4c69-83d8-2c7c542f4ba2.png)
 - Relancez winibw et testez un script par exemple celui-ci : CAT creer atlas, qui est dans le fichier CAT.js
 
-![image](https://user-images.githubusercontent.com/19894885/193789766-a379b909-58e9-458f-8a7f-cdd36c5b81a0.png)
-Donnera
-![image](https://user-images.githubusercontent.com/19894885/193789919-9589a884-afc6-4706-a0cc-1c4614fb4b87.png)
+- ![image](https://user-images.githubusercontent.com/19894885/193789766-a379b909-58e9-458f-8a7f-cdd36c5b81a0.png)
+- 
+- Donnera
+- 
+- ![image](https://user-images.githubusercontent.com/19894885/193789919-9589a884-afc6-4706-a0cc-1c4614fb4b87.png)
 
-![image](https://user-images.githubusercontent.com/19894885/193789981-7f13bad6-dfbe-4ff7-a029-bcb4b100f896.png)
-Donnera
+- ![image](https://user-images.githubusercontent.com/19894885/193789981-7f13bad6-dfbe-4ff7-a029-bcb4b100f896.png)
+- 
+- Donnera
+- 
+- ![image](https://user-images.githubusercontent.com/19894885/193791034-0e15909d-48b7-4afa-890f-6121afd95360.png)
 
 
 
 
 
 - Vous pouvez dans un terminal utiliser la commande suivante pour détecter l'encodage de l'ensemble des fichiers d'un repertoire
-![image](https://user-images.githubusercontent.com/19894885/193788244-7f3ae3b8-fe72-4555-9d68-0d9429787f54.png)
+- ![image](https://user-images.githubusercontent.com/19894885/193788244-7f3ae3b8-fe72-4555-9d68-0d9429787f54.png)
 - Notez que la différence ici et que le charset qui vous est donné est l'encodage à partir de la détection des caractère du fichier dans son contenu et non du BOM du fichier. 
 - AbesCopyRecord.js avec un é fin de ligne 6 donnera
-![image](https://user-images.githubusercontent.com/19894885/193788701-c3335922-be66-4442-8d9c-702b3d0886ed.png)
-![image](https://user-images.githubusercontent.com/19894885/193788763-ab37e944-8889-4d67-8e12-ab7969435bdf.png)
+- ![image](https://user-images.githubusercontent.com/19894885/193788701-c3335922-be66-4442-8d9c-702b3d0886ed.png)
+- ![image](https://user-images.githubusercontent.com/19894885/193788763-ab37e944-8889-4d67-8e12-ab7969435bdf.png)
 - AbesCopyRecord.js avec un e fin de ligne 6 (ce qui signifie qu'il n'y a dans ce cas la aucun autre accent nul part dans le fichier) donnera
-![image](https://user-images.githubusercontent.com/19894885/193788886-80b80f17-05e3-47b9-9132-a8c61dc0a024.png)
-![image](https://user-images.githubusercontent.com/19894885/193788964-a49f8630-e9da-4b77-8022-2be1f1cf396a.png)
+- ![image](https://user-images.githubusercontent.com/19894885/193788886-80b80f17-05e3-47b9-9132-a8c61dc0a024.png)
+- ![image](https://user-images.githubusercontent.com/19894885/193788964-a49f8630-e9da-4b77-8022-2be1f1cf396a.png)
 
 Donc, **toujours utiliser iso-8859-1 qui est au dessus de us-ascii et comprends les caractères latins**.
