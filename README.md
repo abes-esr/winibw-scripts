@@ -86,3 +86,45 @@ function ajouter(zone)
 
 Winibw sync est un outil permettant de synchroniser des script distants présents sur le dépôt github sur les postes en local des utilisateurs ou se situent leur installation classique de leur winibw local
 (voir guide utilisation et compilation du programme) situé dans le répertoire documentation pour apporter si nécessaire des modifications logicielles
+
+# Encodage des scripts du dépôt
+
+Winibw utilise par défaut un encodage en iso-8859-1. Pour éviter d'avoir des caractères parasites lors du lancement des fonctions qui s'affichent, il convient de controler lors de la modification en local de vos fichier et avant tout push sur le dépôt de bien avoir encodé les scripts en iso-8859-1. Pour ce faire, vous pouvez utilisez l'outil graphique File Encoding Checker.
+
+- Téléchargement de File Encoding CHecker pour Windows : https://github.com/amrali-eg/EncodingChecker/raw/master/App/EncodingChecker.exe
+
+Utilisation de l'outil :
+- Lancer le le logiciel et placez vous dans le repertoire contenant vos scripts
+- Dans Select valid characters sets cochez iso-8859-1  et pour Concvert to : iso-8869-1, cochez la case Select / deselect all, puis cliquez sur le bouton convert
+![image](https://user-images.githubusercontent.com/19894885/193787576-e68238e6-cef7-49d0-a1fd-57e5fd39de1b.png)
+- L'ensemble de vos fichiers sont passés au bon encodage
+![image](https://user-images.githubusercontent.com/19894885/193787708-c59faa0d-0844-4c69-83d8-2c7c542f4ba2.png)
+- Relancez winibw et testez un script par exemple celui-ci : CAT creer atlas, qui est dans le fichier CAT.js
+
+- ![image](https://user-images.githubusercontent.com/19894885/193789766-a379b909-58e9-458f-8a7f-cdd36c5b81a0.png)
+- 
+- Donnera
+- 
+- ![image](https://user-images.githubusercontent.com/19894885/193789919-9589a884-afc6-4706-a0cc-1c4614fb4b87.png)
+
+- ![image](https://user-images.githubusercontent.com/19894885/193789981-7f13bad6-dfbe-4ff7-a029-bcb4b100f896.png)
+- 
+- Donnera
+- 
+- ![image](https://user-images.githubusercontent.com/19894885/193791034-0e15909d-48b7-4afa-890f-6121afd95360.png)
+
+
+
+
+
+- Vous pouvez dans un terminal utiliser la commande suivante pour détecter l'encodage de l'ensemble des fichiers d'un repertoire
+- ![image](https://user-images.githubusercontent.com/19894885/193788244-7f3ae3b8-fe72-4555-9d68-0d9429787f54.png)
+- Notez que la différence ici et que le charset qui vous est donné est l'encodage à partir de la détection des caractère du fichier dans son contenu et non du BOM du fichier. 
+- AbesCopyRecord.js avec un é fin de ligne 6 donnera
+- ![image](https://user-images.githubusercontent.com/19894885/193788701-c3335922-be66-4442-8d9c-702b3d0886ed.png)
+- ![image](https://user-images.githubusercontent.com/19894885/193788763-ab37e944-8889-4d67-8e12-ab7969435bdf.png)
+- AbesCopyRecord.js avec un e fin de ligne 6 (ce qui signifie qu'il n'y a dans ce cas la aucun autre accent nul part dans le fichier) donnera
+- ![image](https://user-images.githubusercontent.com/19894885/193788886-80b80f17-05e3-47b9-9132-a8c61dc0a024.png)
+- ![image](https://user-images.githubusercontent.com/19894885/193788964-a49f8630-e9da-4b77-8022-2be1f1cf396a.png)
+
+Donc, **toujours utiliser iso-8859-1 qui est au dessus de us-ascii et comprends les caractères latins**.
