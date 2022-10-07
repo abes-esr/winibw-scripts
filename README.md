@@ -5,20 +5,17 @@ Pour ajouter un des scripts du dépôt, il faut éditer le fichier : C:\oclcpica
 
 # Logiciels de synchronisation des scripts
 
-- Téléchargez les logiciels de synchronisation :
-- Logiciel de synchronisation des scripts de création : https://cloud.abes.fr/index.php/s/fdg3ZWR3SNq5s6W
-- Logiciel de synchronisation des scripts de transformation : https://cloud.abes.fr/index.php/s/9scoPa8bpsdMnSX
-- Dézippez le dossier puis lancer comme ci-dessous le programme (exemple avec celui des fichiers xul + js)
-
-![img.png](medias/img.png)
+- Télécharger le logiciel de synchronisation : https://cloud.abes.fr/index.php/s/tNQrMBDMQkMgen3
+- Dézippez le dossier puis lancer comme ci-dessous le programme
 
 - Cliquez sur synchroniser (en utilisant la branche éventuelle qui vous sera spécifiée, par défaut develop)
 
-![img_1.png](medias/img_1.png)
-
-- Dans le cas ci-dessus cela mettra automatiquement à jour vos scripts de transformation situés dans le répertoire 
-- C:\oclcpica\WinIBW30\chrome\ibw\content\xul
+- Dans le cas ci-dessus cela mettra automatiquement à jour vos scripts.
 - Les fichiers existants de même nom seront écrasés automatiquement la MAJ est automatique
+
+# Encodage des scripts : iso-8859-1
+
+- Pour que les scripts soient executés sans problème d'encodage ils doivent etre encodés au format iso-8859-1 sur le dépôt. En cas d'utilisation d'un éditeur puis de mise à jour sur le dépôt des scripts via un push, utiliser le logiciel File Encoding Checker pour Windows : https://github.com/amrali-eg/EncodingChecker/raw/master/App/EncodingChecker.exe pour contrôler le bon format.
 
 # emplacement des versions de winibw (hors self service wapt)
 P:\SUDOC\logiciels_Pica\WinIBW\WinIBW3\
@@ -26,12 +23,6 @@ P:\SUDOC\logiciels_Pica\WinIBW\WinIBW3\
 actuelle
 
 P:\SUDOC\logiciels_Pica\WinIBW\WinIBW3\WinIBW3_2_5\prod -> version 3.2.5.5
-
-# attention emplacement spécifique des scripts [ancienne procédure ne plus tenir compte]
-
-Quand à la synchronisation, vous avez des fichier XXXXXX.js accompagné d'un fichier XXXXXX.xul, pensez à couper coller ces fichiers 
-à partir de (repertoire d'origine) -> C:\oclcpica\WinIBW30\scripts\
-vers (répertoire de destination) -> C:\oclcpica\WinIBW30\chrome\ibw\content\xul
 
 ## débogage
 
