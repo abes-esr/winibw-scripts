@@ -1,7 +1,9 @@
 # winibw-scripts
 Scripts utilisateurs WinIBW
-
-Pour ajouter un des scripts du dépôt, il faut éditer le fichier : C:\oclcpica\WinIBW30\Profiles\<nom_utilisateur>\winibw.vbs sur votre poste, contenant WinIBW.
+- le fichier : C:\oclcpica\WinIBW30\Profiles\<nom_utilisateur>\winibw.vbs contient les fonctions pré-enregistrées (via play stop sur l'interface de winibw)
+- le fichier : C:\oclcpica\WinIBW30\defaults\pref\setup.js contient la liste des fichiers de scripts présents dans vos repertoires (mentionnées après) à référencer pour les utiliser
+- le dossier : C:\oclcpica\WinIBW30\scripts contient les scripts de création. 
+- le dossier : C:\oclcpica\WinIBW30\chrome\ibw\content\xul contient les scripts de tranformation (ils contiennent une boite de dialogue qui s'affiche dans winibw (fichier xul) accompagné d'un fichier qui lance les traitements (fichier js)
 
 # Logiciels de synchronisation des scripts
 
