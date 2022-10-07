@@ -1,0 +1,5 @@
+Lancer la commande
+mvn clean install
+dans ce repertoire courant
+
+Maven doit etre installer sur votre poste
