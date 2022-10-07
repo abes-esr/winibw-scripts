@@ -1,5 +1,6 @@
 # winibw-scripts
-Scripts utilisateurs WinIBW
+
+# comment cela fonctionne : dans votre explorateur de fichier windows la ou est installé winibw
 - le fichier : C:\oclcpica\WinIBW30\Profiles\<nom_utilisateur>\winibw.vbs contient les fonctions pré-enregistrées (via play stop sur l'interface de winibw)
 - le fichier : C:\oclcpica\WinIBW30\defaults\pref\setup.js contient la liste des fichiers de scripts présents dans vos repertoires (mentionnées après) à référencer pour les utiliser
 - le dossier : C:\oclcpica\WinIBW30\scripts contient les scripts de création. 
