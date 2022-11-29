@@ -122,3 +122,8 @@ Utilisation de l'outil :
 - ![image](https://user-images.githubusercontent.com/19894885/193788964-a49f8630-e9da-4b77-8022-2be1f1cf396a.png)
 
 Donc, **toujours utiliser iso-8859-1 qui est au dessus de us-ascii et comprends les caractères latins**.
+
+#Recherche récursive de terme dans un ensemble de fichiers (pour le nom des fonctions)
+```js
+find [NOM_REPERTOIRE] -type f exec grep -li "[TERME_A_RECHERCHER]" {} \ .,
+```
