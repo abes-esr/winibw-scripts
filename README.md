@@ -125,5 +125,5 @@ Donc, **toujours utiliser iso-8859-1 qui est au dessus de us-ascii et comprends 
 
 #Recherche récursive de terme dans un ensemble de fichiers (pour le nom des fonctions)
 ```js
-find [NOM_REPERTOIRE] -type f exec grep -li "[TERME_A_RECHERCHER]" {} \ ;
+find [NOM_REPERTOIRE] -type f exec grep -li "[TERME_A_RECHERCHER]" {} \;
 ```
