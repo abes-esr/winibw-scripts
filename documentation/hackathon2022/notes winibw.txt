@@ -1,0 +1,43 @@
+
+
+Que doit etre cet hackaton ? Périmètre
+Atelier ou formation sur quelque chose qui ignorent ?
+Ou séance de codage collectif sur winibw (avancé) ?
+-> Afficher dans le programme comme un tutoriel / formation (prévoir une salle pour cela)
+si c'est le cas, atelier = 80personnes (problème public / salle)
+temps imparti 45min ou 1h30 ?
+1h30 chacun
+
+connexion externe a winibw ? et chacun disposant de son pc avec winibw installé dessus
+
+Préciser un pré-requis pour bibliothécaire système (connaissances préalables en js)
+Rajouter en debut du hackaton un slide -> attention à ne pas faire des opérations de masse en lot
+Mettre une condition pour s'assurer que le 930 on est bien dans un rcr iln de son perimetre
+L'abes ne maintiendra pas des scripts via AbesSTP 
+
+besoin métier -> à partir des imprimés je crée les électroniques
+deboguage à travers les prompts.alert
+
+cramoisi -> identifier une opération utile au quotidien ou ponctuellement sur un lot de notice, en se basant le jour j sur l'écriture de script à partir de changer_contenu_notice, puis effectuer sur operation sur cramoisi en chargeant le dit script une fois modifié
+
+A prendre en compte -> ticket Abes STP pontentiels pour de l'aide à la création de scripts, et à l'intervention si erreurs sur une opération sur un lot, après l'atelier
+
+pour laurent -> txt de présentation du contenu succint -> modalité technique par participant
+
+Exemple de besoin identifié
+Supprimer la 200$b ress. electronique et la remplacer par la 183
+Tag 830 dans cramoisi sur lot de notice pour identifier la notice comme utilisable dans le cadre du bac à sable de scripts
+
+commande wini
+exemplaires supplémentaires crées avec 
+une détection au niveau de l'iln -> pour savoir si des exmplaires sont deja présents
+
+(!)ITEM -> la mention je souhaite créer des exemplaires supplémentaires même si des exemplaires pour la même notice existent déja au niveau de l'iln.
+aff unma -> condition supplémentaire qui permetterai d'isoler les exemplaires du rcr en question ?
+
+1. modifier la plateforme de dev pour modifier le traitement (créer ticket)
+2. modifier la documentation pour la production (f) + eventullt interface
+3. modifier la notion de créer des exemp supp
+4. commande pr isoler les exeplaires existants au sein du rcr
+
+eXX incremente au niv iln
