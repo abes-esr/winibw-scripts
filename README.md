@@ -83,7 +83,7 @@ Winibw sync est un outil permettant de synchroniser des script distants présent
 
 # Encodage des scripts du dépôt
 
-Winibw utilise par défaut un encodage en iso-8859-1. Pour éviter d'avoir des caractères parasites lors du lancement des fonctions qui s'affichent, il convient de controler lors de la modification en local de vos fichier et avant tout push sur le dépôt de bien avoir encodé les scripts en iso-8859-1. Pour ce faire, vous pouvez utilisez l'outil graphique File Encoding Checker.
+Winibw 3 utilise par défaut un encodage en iso-8859-1. Pour éviter d'avoir des caractères parasites lors du lancement des fonctions qui s'affichent, il convient de controler lors de la modification en local de vos fichier et avant tout push sur le dépôt de bien avoir encodé les scripts en iso-8859-1. Pour ce faire, vous pouvez utilisez l'outil graphique File Encoding Checker.
 
 - Téléchargement de File Encoding CHecker pour Windows : https://github.com/amrali-eg/EncodingChecker/raw/master/App/EncodingChecker.exe
 
