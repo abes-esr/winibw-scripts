@@ -266,12 +266,13 @@ function CAT_creerElectronique()
 	application.activeWindow.title.insertText(
 		"008 $aOax3" + "\n" +
 		"010 ##$AISBN" + "\n" +
+		"017 #2$aURL$2DOI" + "\n" +
 		"181 ##$P01$c..."+ "\n" +
 		"182 ##$P01$cc" + "\n" +
 		"183 ##$P01$aceb" + "\n" +
 		"200 1#$a@Titre$eComplément du Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"225  #$a@Titre de la Collection$xISSN$vNuméro" + "\n" +
+		"214 #2$a $c $d" + "\n" +
+		"225  #$a@Titre de la Collection électronique$xISSN$vNuméro" + "\n" +
 		"230 ##$aDonnées textuelles" + "\n" +
 		"300 ##$aNote générale" + "\n" +
 		"303 ##$aNote " + "\n" +
@@ -281,6 +282,7 @@ function CAT_creerElectronique()
 		"336 ##$aNote sur le type de ressource électronique" + "\n" +
 		"337 ##$aUn logiciel capable de lire un fichier au format XXX" + "\n" +
 		"339 ##$aFormat de la ressource$ddate de publication" + "\n" +
+		"371 .#$a" + "\n" +
 		"410 ##$t@Lien au titre de la Collection$vNuméro" + "\n" +
 		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
 		"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" +
@@ -664,6 +666,7 @@ function CAT_creerTheseElectroniqueReproduction ()
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aOax3" + "\n" +
+		"017 #2$aURL$2DOI" + "\n" +
 		"029 ##$aFR$bNuméro national de thèse (aaaaCODEnnnn)" + "\n" +
 		"100 0#$aAnnée de soutenance" + "\n" +
 		"101 0#$afre$dfre$deng" + "\n" +
@@ -675,7 +678,7 @@ function CAT_creerTheseElectroniqueReproduction ()
 		"182 ##$P01$cc" + "\n" +
 		"183 ##$P01$aceb" + "\n" +
 		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" +
-		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
+		"214 #2$a $c $d" + "\n" +
 		"230 ##$aDonnées textuelles" + "\n" +
 		"300 ##$a(s'il y a lieu)Thèse soutenue en co-tutelle" + "\n" +
 		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
@@ -689,6 +692,7 @@ function CAT_creerTheseElectroniqueReproduction ()
 		"330 ##$aRésumé français" + "\n" +
 		"330 ##$aRésumé anglais" + "\n" +
 		"337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" +
+		"371 .#$a" + "\n" +
 		"455 ##$t@Lien vers la thèse originelle" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
 		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
