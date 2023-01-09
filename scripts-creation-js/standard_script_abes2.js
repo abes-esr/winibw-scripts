@@ -111,8 +111,11 @@ function ajouterbis(zone)
 function modifierNoticePatrim(ancienPpn)
 {
 	var res = "";
+	var contenupresent214 = controlepresencecontenu("VERIFIER LES INDICATEURS"); /*GT données docelec 22/11/2022*/
 	var presence702 = presencesouszone("702","\\$4340","\\$z1a2b");
 	var presence712 = presencesouszone("712","\\$4340","\\$4651");
+	var presence702dollar4651 = presencesouszoneunique("702","\\$4651");
+	var presence712dollar4651 = presencesouszoneunique("712","\\$4651");
 	
     application.activeWindow.title.startOfBuffer(false);
    
@@ -122,6 +125,8 @@ function modifierNoticePatrim(ancienPpn)
     supprimerbis("003");
     supprimerRemplacer("008", "008 $aOax3");
     supprimerbis("010");
+	ajouterbis("010 ##$AISBN électronique"); /*GT données docelec 22/11/2022*/
+	ajouterbis("017 #2$aDOI$2DOI"); /*GT données docelec 22/11/2022*/
 	supprimerbis("020");
 	supprimerbis("021");
 	supprimerbis("033");
@@ -147,20 +152,21 @@ function modifierNoticePatrim(ancienPpn)
     res = application.activeWindow.title.findTag ("210", 0, true, true, false);
 	if (res != "")
 	{
-        supprimerRemplacer("210","214 #X [VERIFIER LES INDICATEURS] $a $c $d");
+        supprimerRemplacer("210","214 #2$a $c $d");
 	}
 	else 
 	{
 		supprimerRemplacer("214","214 #X$a[A compléter par la mention d'édition ou de diffusion]$c$d");
 	}
-	ajouterbis("230 ##$aDonnées textuelles (1 fichier : X vues)");
-    ajouterbis("307 ##$aLa pagination de l'édition imprimée correspondante est de : X pages");
-	ajouterbis("303 ##$aNotice rédigée d'après la consultation, AAAA-MM-JJ");
-    ajouterbis("304 ##$aTitre provenant de la page de titre du document numérisé");
+	/*Décision du GT données docélec du 22/11/2022 suppression -> ajouterbis("230 ##$aDonnées textuelles (1 fichier : X vues)");*/
+    /*Décision du GT données docélec du 22/11/2022 suppression -> ajouterbis("307 ##$aLa pagination de l'édition imprimée correspondante est de : X pages");*/
+	/*Décision du GT données docélec du 22/11/2022 suppression -> ajouterbis("303 ##$aNotice rédigée d'après la consultation, AAAA-MM-JJ");*/
+    /*Décision du GT données docélec du 22/11/2022 suppression -> ajouterbis("304 ##$aTitre provenant de la page de titre du document numérisé");*/
 	ajouterbis("305 ##$aNote sur l'édition et l'histoire bibliographique");
 	ajouterbis("324 ##$aReproduction numérique de l'édition de LIEU : EDITEUR, DATE");
 	ajouterbis("337 ##$aNécessite un logiciel capable de lire un fichier au(x) format(s)..., ... ou ...");
 	ajouterbis("339 ##$aFormat de la ressource$ddate de publication");
+	ajouterbis("371 .#$a"); /*GT données docelec 22/11/2022 : laissé faux pour forcer le catalogueur à remplir quelque chose*/
 	supprimerbis("410");	
     ajouterbis("455 ##$0" + ancienPpn);
 	supprimerbis("579");
@@ -168,12 +174,20 @@ function modifierNoticePatrim(ancienPpn)
 	modifierRemplacerbis("702","702","701",presence702);
 	modifierRemplacerbis("712","712","711",presence712);
     remplacerValeurZone700("7");
+	//Décision du GT données docélec du 22/11/2022
+	if(presence702dollar4651){
+		supprimerRemplacer("702","701");
+	}
+	if(presence712dollar4651){
+		supprimerRemplacer("712","711");
+	}
 	supprimerbis("801");
     supprimerbis("802");
     supprimerbis("830");
-    ajouterbis("856 4#$qFormat$uURL$2Texte du lien$zAccès au texte intégral");
-   
-   
+	//Décision du GT données docélec du 22/11/2022
+	//856 : supprimer la $z et modifier de la manière suivante $u$2Accès en ligne
+    //ajouterbis("856 4#$qFormat$uURL");
+	supprimerRemplacer("856","856 $u$2Accès en ligne");
 }
 function recupererPpnbis(tag)
 {
@@ -216,6 +230,10 @@ function supprimerRemplacer(ancienneZone, nouvelleZone)
 function modifierNoticeEBook(ancienPpn)
 {
 	var presence702 = presencesouszone("702","\\$4340","\\$z1a2b");
+	/*Décision du GT données docélec du 22/11/2022 
+	Si présence sous zone $4651 dans la notice initiale, transformer 702 en 701 dans la notice issue de la transformation*/
+	var presence702dollar4651 = presencesouszoneunique("702","\\$4651");
+	var presence712dollar4651 = presencesouszoneunique("712","\\$4651");
 	var presence712 = presencesouszone("712","\\$4340","\\$4651");
 	
     application.activeWindow.title.startOfBuffer (false);
@@ -226,6 +244,8 @@ function modifierNoticeEBook(ancienPpn)
     supprimerbis("003");
     supprimerRemplacer("008", "008 $aOax3");
     supprimerbis("010");
+	ajouterbis("010 ##$AISBN électronique"); /*Décision du GT données docélec du 22/11/2022*/
+	ajouterbis("017 #2$aDOI$2DOI"); /*Décision du GT données docélec du 22/11/2022*/
 	supprimerbis("020");
 	supprimerbis("021");
 	supprimerbis("033");
@@ -246,26 +266,32 @@ function modifierNoticeEBook(ancienPpn)
 	supprimerRemplacer("183","183 ##$P01$aceb");
 	//on ajoute la $219 ou bien on la remplace si elle existe déjà
 	supprimerRemplacer("214","214 #0$aLieu de publication$cNom de l'éditeur$dDate de publication");
-    ajouterbis("230 ##$aDonnées textuelles (1 fichier : X vues)");
-    ajouterbis("307 ##$aLa pagination de l'édition imprimée correspondante est de : X pages");
-	ajouterbis("303 ##$aNotice rédigée d'après la consultation, AAAA-MM-JJ");
-    ajouterbis("304 ##$aTitre provenant de la page de titre du document numérisé");
-	ajouterbis("305 ##$aReproduction numérique de l'édition de LIEU : EDITEUR, DATE");
+    /* Décision du GT données docélec du 22/11/2022 -> suppression -> ajouterbis("230 ##$aDonnées textuelles (1 fichier : X vues)");*/
+    /* Décision du GT données docélec du 22/11/2022 -> suppression -> ajouterbis("307 ##$aLa pagination de l'édition imprimée correspondante est de : X pages");*/
+	/* Décision du GT données docélec du 22/11/2022 -> suppression -> ajouterbis("303 ##$aNotice rédigée d'après la consultation, AAAA-MM-JJ");*/
+    /* Décision du GT données docélec du 22/11/2022 -> suppression -> ajouterbis("304 ##$aTitre provenant de la page de titre du document numérisé");*/
+	/* Décision du GT données docélec du 22/11/2022 -> suppression -> ajouterbis("305 ##$aReproduction numérique de l'édition de LIEU : EDITEUR, DATE");*/
 	ajouterbis("337 ##$aNécessite un logiciel capable de lire un fichier au(x) format(s)..., ... ou ...");
 	ajouterbis("339 ##$aFormat de la ressource$ddate de publication");
+	ajouterbis("371 .#$a"); /*Décision du GT données docélec du 22/11/2022*/
 	supprimerbis("410");
     ajouterbis("452 ##$0" + ancienPpn);
 	supprimerbis("579");
 	// traitement zone 702 (si $4340, alors 702 devient 701)
 	modifierRemplacerbis("702","702","701",presence702);
 	modifierRemplacerbis("712","712","711",presence712);
+	// traitement zone 702 (si 702$4651, alors 702 devient 701 dans la notice issue de la transformation)
+	if(presence702dollar4651){
+		supprimerRemplacer("702","701");
+	}
+	if(presence712dollar4651){
+		supprimerRemplacer("712","711");
+	}
     remplacerValeurZone700("7");
 	supprimerbis("801");
     supprimerbis("802");
     supprimerbis("830");
-    ajouterbis("856 4#$qFormat$uURL$2Texte du lien$zAccès au texte intégral");
-   
-   
+    ajouterbis("856 4#$qFormat$uURL");
 }
  
  // SRY le 25-01-2015
@@ -475,6 +501,52 @@ function presencesouszone(zone,souszone1,souszone2)
 		}	
 	}
 return result;	
+}
+
+/*
+Décision du GT données docélec du 22/11/2022
+Ecriture fonction de contrôle de présence de sous-zone, une seule sous-zone possible en contrôle
+*/
+function presencesouszoneunique(zone,souszone1)
+{
+	var result = 0;
+	var n = 0 ;
+	var res = "" ; 
+	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+                        .getService(Components.interfaces.nsIPromptService);
+	
+	for (n=0; n<30; n+=1)
+	{
+		application.activeWindow.title.startOfBuffer (false);	
+		res = application.activeWindow.title.findTag (zone, n, true, true, false);
+		if (res != "" ) {
+			if (res.search(souszone1) != -1) {
+				result = 1; 
+			}
+		}	
+	}
+return result;	
+}
+
+function controlepresencecontenu(zone,contenusouszoneaverifier)
+{
+	var result = 0;
+	var n = 0;
+	var res = "";
+	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+						.getService(Components.interfaces.nsIPromptService);
+	
+	for (n=0; n<30; n+=1)
+	{
+		application.activeWindow.title.startOfBuffer (false);	
+		res = application.activeWindow.title.findTag (zone, n, true, true, false);
+		if (res != "" ) {
+			if (res.contains(contenusouszoneaverifier)) {
+				result = 1; 
+			}
+		}	
+	}
+return result;
 }
 
 function remplacerValeurZone700(tag) {	
