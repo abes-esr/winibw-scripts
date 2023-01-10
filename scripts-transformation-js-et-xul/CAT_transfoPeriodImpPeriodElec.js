@@ -142,6 +142,10 @@ for (i=0; i<tab_sz.length; i++) {
  	return result;
  }
 
+/**
+Supprime une zone et la remplace par une autre zone
+param: ancienneZone=juste le numero de la zone a mettre, nouvelleZone=numero de la zone + ses sous zones et le contenu des sous zones)
+**/
 function supprimerRemplacer(ancienneZone, nouvelleZone)
 {	
 	application.activeWindow.title.startOfBuffer (false);
@@ -154,16 +158,26 @@ function supprimerRemplacer(ancienneZone, nouvelleZone)
 	application.activeWindow.title.endOfBuffer (false);
 	application.activeWindow.title.insertText (nouvelleZone + "\n");
 }
+
+/**
+Supprime une zone donnée (également si elle repétée) et reboucle sur la notice pour s'assurer de la bonne suppression de la zone
+**/
 function supprimer(zone)
 {	
+	//Placement du buffer en début de notice
 	application.activeWindow.title.startOfBuffer (false);
 	var res = application.activeWindow.title.findTag (zone, 0, true, true, false);
+	//Tant que le resultat n'est pas vide, c'est qu'il existe encore dans la notice la zone xxx passée en paramètre
 	while (res != "")
 	{
 		application.activeWindow.title.deleteLine(1);
 		res = application.activeWindow.title.findTag (zone, 0, true, true, false);
 	}
 }
+
+/**
+Ajout de zone
+**/
 function ajouter(zone)
 {
 	application.activeWindow.title.endOfBuffer (false);
@@ -191,8 +205,24 @@ function remplacerValeurZone700(tag) {
 	}
 }
 
+/**
+Contrôle la présence d'un contenu dans une sous zone d'une zone
+Param : zone, souszone, contenudelasouszone
+Return : 1 si le contenu de la sous zone indiqué est présent, 0 si il ne l'est pas
+**/
+function controlecontenusouszone(zone, souszone, contenudelasouszone) {
+	application.activeWindow.title.startOfBuffer (false);
+	//Contrôle de la présence de la zone XXX
+ 	var res = application.activeWindow.title.findTag (zone, 0, true, true, false);
+		//Contrôle de la présence de la sous-zone $x avec en contenu xxxxx
+		if (res.search("\\"+souszone+contenudelasouszone)!= -1) { //"\\$4651"
+			return 1;
+		}
+ 	return 0;
+}
+
 //20180104 : remplacer zone 183
-// 20200101 : remplacer 210 par 214, modifier 606, ajouter 608
+//20200101 : remplacer 210 par 214, modifier 606, ajouter 608
 function modifierNotice(ancienPpn)
 {
 	application.activeWindow.title.startOfBuffer (false);
@@ -215,12 +245,14 @@ function modifierNotice(ancienPpn)
 	supprimer("207");
 	supprimerRemplacer210Par214("");
 	//supprimer("210");
-	//ajouter("214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]");
+	ajouter("214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication");
 	supprimer("215");
 	supprimer("225");
-	supprimerRemplacer("230", "230 $aDonnées textuelles");
+	supprimer("230");
+	//supprimerRemplacer("230", "230 $aDonnées textuelles");
 	supprimer("301");
 	ajouter("303 $anombre de pages générées par l'impression du document, lorsque ce document est paginé");
+	ajouter("304");
 	supprimerRemplacer("304", "304 $aTitre provenant de l'écran-titre");
 	//  supprimer les 4XX
 	for (var i = 0; i < 10; i++)
@@ -243,18 +275,27 @@ function modifierNotice(ancienPpn)
 	{
 		supprimer("3" + i);
 	}
-	ajouter("337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)");
+	supprimer("337");
+	//ajouter("337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)");
+	ajouter("371 .#$a");
 	ajouter("452 $0" + ancienPpn);
 	modifierRemplacer("606","$302724640X","");
 	ajouter("608 ##$302724640X$2rameau");
 	supprimer("530");
 	supprimer("531");
 	remplacerValeurZone700("7");
+	var presencecontenu702 = controlecontenusouszone("702","$4","651");
+	if(presencecontenu702 == 1){
+		supprimerRemplacer("702","701 $4651");
+	}
+	var presencecontenu712 = controlecontenusouszone("712","$4","651");
+	if(presencecontenu712 == 1){
+		supprimerRemplacer("712","711 $4651");
+	}
 	supprimer("801");
 	supprimer("802");
 	supprimer("830");
-	ajouter("856 4#$qFormat$uAdresse URL (si l'accès est réservé, créer une E856)");
-	
+	ajouter("856 4#$uAdresse URL (si l'accès est réservé, créer une E856)");
 }
 function recupererPpn()
 {
