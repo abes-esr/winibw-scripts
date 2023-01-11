@@ -50,6 +50,7 @@ pref("ibw.standardScripts.script.23", "resource:/scripts/url_checker.js");
 pref("ibw.standardScripts.script.24", "resource:/scripts/Nettoyage_Notice.js");
 pref("ibw.standardScripts.script.25", "resource:/scripts/standard_script_abes1.js");
 pref("ibw.standardScripts.script.26", "resource:/scripts/standard_script_abes2.js");
+pref("ibw.standardScripts.script.27", "resource:/scripts/standard_script_abes3.js");
 pref("ibw.standardScripts.script.28", "resource:/scripts/Setup_Changer_Contenus_Notices.js");
 pref("ibw.hyperlinks.PPNMatch.create", false);
 pref("ibw.presentation.syntaxcolor.UNM.regex.1", '([^\\$](?:\\$\\$)*)(\\$[^\\$ ])');
