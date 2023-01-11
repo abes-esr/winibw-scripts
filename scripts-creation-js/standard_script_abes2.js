@@ -133,7 +133,7 @@ function modifierNoticePatrim(ancienPpn)
 	supprimerbis("034");
     supprimerbis("035");
 	supprimerbis("073");
-    supprimerRemplacer("100","100 0#$a[Année de mise en ligne]$e[Année de publication de l'original]");
+    supprimerRemplacer("100","100 0#$a[Année de mise en ligne]");
 	supprimerRemplacer("102","102 ##$a[A compléter]");
     supprimerbis("106");
     ajouterbis("135 ##$av$br$cm$e#$gm$ia$ja");
@@ -152,10 +152,11 @@ function modifierNoticePatrim(ancienPpn)
     res = application.activeWindow.title.findTag ("210", 0, true, true, false);
 	if (res != "")
 	{
-        supprimerRemplacer("210","214 #2$a $c $d");
+        supprimerRemplacer("210","214 #0$a $c");
 	}
 	else 
 	{
+		ajouterbis("214 #0$a $c $d");
 		supprimerRemplacer("214","214 #X$a[A compléter par la mention d'édition ou de diffusion]$c$d");
 	}
 	/*Décision du GT données docélec du 22/11/2022 suppression -> ajouterbis("230 ##$aDonnées textuelles (1 fichier : X vues)");*/
@@ -185,9 +186,9 @@ function modifierNoticePatrim(ancienPpn)
     supprimerbis("802");
     supprimerbis("830");
 	//Décision du GT données docélec du 22/11/2022
-	//856 : supprimer la $z et modifier de la manière suivante $u$2Accès en ligne
+	//856 : supprimer la $z et la $2Accès en ligne 
     //ajouterbis("856 4#$qFormat$uURL");
-	supprimerRemplacer("856","856 $u$2Accès en ligne");
+	supprimerRemplacer("856","856 $q$u");
 }
 function recupererPpnbis(tag)
 {
@@ -252,7 +253,7 @@ function modifierNoticeEBook(ancienPpn)
 	supprimerbis("034");
     supprimerbis("035");
 	supprimerbis("073");
-    supprimerRemplacer("100","100 0#$a[Année de mise en ligne]$e[Année de publication de l'original]");
+    supprimerRemplacer("100","100 0#$a[Année de mise en ligne]");
 	supprimerRemplacer("102","102 ##$a[A compléter]");
     supprimerbis("106");
 	supprimerbis("205");
@@ -265,7 +266,8 @@ function modifierNoticeEBook(ancienPpn)
 	supprimerRemplacer("182","182 ##$P01$cc");
 	supprimerRemplacer("183","183 ##$P01$aceb");
 	//on ajoute la $219 ou bien on la remplace si elle existe déjà
-	supprimerRemplacer("214","214 #0$aLieu de publication$cNom de l'éditeur$dDate de publication");
+	supprimerRemplacer("214","214 #0$a $c");
+	ajouterbis("214 #2$a $c $d");
     /* Décision du GT données docélec du 22/11/2022 -> suppression -> ajouterbis("230 ##$aDonnées textuelles (1 fichier : X vues)");*/
     /* Décision du GT données docélec du 22/11/2022 -> suppression -> ajouterbis("307 ##$aLa pagination de l'édition imprimée correspondante est de : X pages");*/
 	/* Décision du GT données docélec du 22/11/2022 -> suppression -> ajouterbis("303 ##$aNotice rédigée d'après la consultation, AAAA-MM-JJ");*/

@@ -266,7 +266,7 @@ function CAT_creerElectronique()
 	application.activeWindow.title.insertText(
 		"008 $aOax3" + "\n" +
 		"010 ##$AISBN" + "\n" +
-		"017 #2$aURL$2DOI" + "\n" +
+		"017 #2$aDOI$2DOI" + "\n" +
 		"181 ##$P01$c..."+ "\n" +
 		"182 ##$P01$cc" + "\n" +
 		"183 ##$P01$aceb" + "\n" +
@@ -283,7 +283,7 @@ function CAT_creerElectronique()
 		"337 ##$aUn logiciel capable de lire un fichier au format XXX" + "\n" +
 		"339 ##$aFormat de la ressource$ddate de publication" + "\n" +
 		"371 .#$a" + "\n" +
-		"410 ##$t@Lien au titre de la Collection$vNuméro" + "\n" +
+		"410 ##$t@Lien au titre de la Collection électronique$vNuméro" + "\n" +
 		"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
 		"606 ##$aSujet$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" +
 		"607 ##$aNom géographique$xSubdivision de sujet$yGéographique$zChronologique$2rameau" + "\n" +
@@ -539,11 +539,10 @@ function CAT_creerPeriodElectr ()
 		"183 ##$P01$aceb" + "\n" +
 		"200 1#$a@Titre propre$eComplément du Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" +
 		"207 #0$aNumérotation : indication de date et de volume" + "\n" +
-		"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-		"230 ##$aDonnées textuelles" + "\n" +
+		"214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication" + "\n" +
 		"326 ##$aPériodicité$bDates" + "\n" +
 		"336 ##$a" + "\n" +
-		"337 ##$aUn logiciel capable de lire un fichier au format XXX" + "\n" +
+		"371 .#$a" + "\n" +
 		"421 ##$t@Titre Supplément" + "\n" +
 		"422 ##$t@Titre Publication-mère du supplément" + "\n" +
 		"430 ##$t@Titre Suite de" + "\n" +
@@ -666,7 +665,7 @@ function CAT_creerTheseElectroniqueReproduction ()
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aOax3" + "\n" +
-		"017 #2$aURL$2DOI" + "\n" +
+		"017 #2$aDOI$2DOI" + "\n" +
 		"029 ##$aFR$bNuméro national de thèse (aaaaCODEnnnn)" + "\n" +
 		"100 0#$aAnnée de soutenance" + "\n" +
 		"101 0#$afre$dfre$deng" + "\n" +
