@@ -1,55 +1,32 @@
-//Ce script transforme une notice de these electronique en notice de these imprimee, soit //reproduction, soit commerciale.
-//Mis en prod. le 2012-09-10, auteur PDZ.
-//2014-10-09 : mte : on enlève $b et on ajoute 181/182 pour texte imprimé
-// 2014-12-01 : mte : recupererPpn de ce script sert de mod?le car on utilise la variable p3, pas la zone
-// 2016-01-22 : SRY : CAT_TransfoTheseElecTheseImp: modification mentions zone 210 et prise en compte des notices ayant 2 zones 328
-// 2016-11-14 : SRY : CAT_TransfoTheseElecTheseImp: désactivation automatique du mode novice et les données codées
-// 2017-03-16 : SRY : modification RDA FR 2017
-// 2017-06-01 : SRY : correction suite mise en place RDA FR 2017
-// 2018-01-04 : SRY : CAT_TransfoTheseElecTheseImp : suppression zone 579 et 7X2, remplacement zone 456 par 455
-// 2020-01-01 par SRY :	remplacer 219 par 214, suppression $302724640X en  606, ajout 608, transformer 7XX (on ne garde que la 700 $4070), supprimer zones 310, 311, 314, ajout paramètre vide à modifier181
-//
-
-
 var Res = "";
 
-
-
-
-// 20170601 : correction suite mise en place RDA FR 2017
-// 20180104 : suppression zone 579 et 7X2 et remplacement 456 par 455
 function CAT_TransfoTheseElecTheseImp() {
-var bCodedData = application.activeWindow.codedData;
-var bNoviceMode = application.activeWindow.noviceMode;
-var input = {value: "1"};
-var check= {value: false};
-var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-                        .getService(Components.interfaces.nsIPromptService);
-var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +  
-            prompts.BUTTON_POS_1 * prompts.BUTTON_TITLE_CANCEL +
-			prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;  
-// This value of flags will create 3 buttons. The first will be "Save", the  
-// second will be the value of aButtonTitle1, and the third will be "Cancel"  
-  
-var button = prompts.confirmEx(null, "Choix Copie", "Que voulez-vous faire ?",  
-                               flags, "transformation de notice de th?se ?lectronique en th?se imprim?e (reproduction)", "", "transformation de notice de th?se ?lectronique en th?se imprim?e (ed. commerciale)", null, check);  
-							   
- application.activeWindow.codedData = false;
- application.activeWindow.noviceMode = false;						   
-							   
- if (button == 0) AReproTheseOaAa();
- if (button == 2) ACommerceTheseOaAa();
- 
- // application.activeWindow.codedData = true;
- if (bCodedData) application.activeWindow.codedData = true;
- // application.activeWindow.noviceMode = true;
- if (bNoviceMode) application.activeWindow.noviceMode = true;
- 
- }
+	var bCodedData = application.activeWindow.codedData;
+	var bNoviceMode = application.activeWindow.noviceMode;
+	var input = {value: "1"};
+	var check= {value: false};
+	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+							.getService(Components.interfaces.nsIPromptService);
+	var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +  
+				prompts.BUTTON_POS_1 * prompts.BUTTON_TITLE_CANCEL +
+				prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;  
+	// This value of flags will create 3 buttons. The first will be "Save", the  
+	// second will be the value of aButtonTitle1, and the third will be "Cancel"  
+	  
+	var button = prompts.confirmEx(null,"Choix Copie","Que voulez-vous faire ?",flags,"transformation de notice de th?se ?lectronique en th?se imprim?e (reproduction)","","transformation de notice de th?se ?lectronique en th?se imprim?e (ed. commerciale)",null,check);  
+								   
+	application.activeWindow.codedData = false;
+	application.activeWindow.noviceMode = false;						   
+								   
+	if (button == 0) AReproTheseOaAa();
+	if (button == 2) ACommerceTheseOaAa();
+	 
+	// application.activeWindow.codedData = true;
+	if (bCodedData) application.activeWindow.codedData = true;
+	// application.activeWindow.noviceMode = true;
+	if (bNoviceMode) application.activeWindow.noviceMode = true;
+}
 
- // 20170316 : modification RDA FR 2017
- // 20170601 : correction suite mise en place RDA FR 2017
- // 20180104 : suppression zone 579
 function AReproTheseOaAa()
 {
 var cont="";
