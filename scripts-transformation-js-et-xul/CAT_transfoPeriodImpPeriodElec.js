@@ -1,29 +1,42 @@
-// 2014-10-09 : mte : adaptation pour 181/182, enlève $b du 200
-// charge l'objet d'accès à winIbw
-// 2014-12-01 : mte : correction fonction recupererPpn : on utilise la variable p3, pas la zone
-// 2015-12-02 : SRY : Suppression de la zone 301
-// 2018-01-04 : SRY : remplacer zone 183
-// 2020-01-01 par SRY : remplacer 210 par 214, suppression $302724640X en  606, ajout 608, suppression zone 215
-//
-
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
         .getService(Components.interfaces.IApplication);
 var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                         .getService(Components.interfaces.nsIPromptService);
-		  
+
+/**SCRIPT
+Transformation d'un périodique imprimé en périodique électronique
+*/
+function transfoPeriodImpPeriodElec()
+{
+	var bCodedData = application.activeWindow.codedData;
+	application.activeWindow.codedData = false;
+	var ppn = recupererPpn();
+	picaCopyRecord();
+	modifierNotice(ppn);
+	application.activeWindow.codedData = bCodedData;
+}
+
+/**
+Fonction liée à l'ouverture des boîtes de dialogue (gérées par les fichiers xul)
+*/
 function onLoad()
 {
-	// à l'ouverture de la boîte de dialogue
-	
 	return true;
-}		  
+}
+
+/**
+Fonction d'annulation liée au bouton annuler des boites de dialogue
+The Cancel button is pressed..
+alert("Vous avez cliqué sur Annuler, Rien ne sera modifié.");
+*/
 function onCancel()
 {
-	// The Cancel button is pressed..
-	//alert("Vous avez cliqué sur Annuler, Rien ne sera modifié.");
 	return true;
 }	  
 
+/**
+Fonction permettant de dupliquer une notice existante en conservant l'ensemble des données d'origine
+*/
 function picaCopyRecord() {
 	var bCodedData = application.activeWindow.codedData;
 	
@@ -36,9 +49,7 @@ function picaCopyRecord() {
 	var matCode = application.activeWindow.materialCode;
 	var forceDocType = matCode.substr(0, 2);
 
-	
 	application.activeWindow.command("\\sys 1; \\bes 1", false);
-	
 	
 	application.activeWindow.materialCode = forceDocType;
 	
@@ -54,39 +65,71 @@ function picaCopyRecord() {
 	}
 }
 
-// remplace la fonction modifier200()
-function modifierRemplacer(zone,ancientexte,nouveautexte)
+/**
+Modification de la notice
+Param: ancienppn=ppn à modifier
+*/
+function modifierNotice(ancienPpn)
 {
-	var tabres = new Array;
-	var i =0;
-	var res = "" ; 
+	application.activeWindow.title.startOfBuffer (false);
+	supprimer("000");
+	supprimer("00A");
+	supprimer("002");
+	supprimer("003");
+	if(controlecontenusouszone("008","$a","Ab")){
+		remplacementSousZone("008","$aAb","$aOb");
+	}
+	supprimer("010");
+	supprimer("011");
+	supprimer("035");
+	chercherZoneEtSupprimerLigneAssocieePuisInsererLigne("100","100 0#$a199X$d199X-...",false);
+	supprimer("106");
+	chercherZoneEtSupprimerLigneAssocieePuisInsererLigne("135","135 $ad$br",false);
+	chercherZoneEtSupprimerLigneAssocieePuisInsererLigne("181","181 ##$P01$ctxt",false);
+	chercherZoneEtSupprimerLigneAssocieePuisInsererLigne("182","182 ##$P01$cc",false);
+	chercherZoneEtSupprimerLigneAssocieePuisInsererLigne("183","183 ##$P01$aceb",false);
+	remplacementSousZone("200","$bTexte imprimé","");
+	supprimer("207");
+	supprimerRemplacer210Par214("");
+	ajouter("214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication");
+	supprimer("215");
+	supprimer("225");
+	supprimer("230");
 	
-	do
-	{
-		application.activeWindow.title.startOfBuffer (false);	
-		res = application.activeWindow.title.findTag (zone, 0, true, true, false);
-		if (res != "")
-        {
-			if (zone == ancientexte) {
-				tabres[i] = nouveautexte + res.substring(3) + "\n"; 
-			}
-			else {	
-				tabres[i] = res.replace(ancientexte,nouveautexte) + "\n"; 
-			}	
-			application.activeWindow.title.deleteLine(1);
-			i++;
-		}	
-	}	while (res != "")
-		
-	for (i=0;i<tabres.length;i++)
-    {
-        application.activeWindow.title.endOfBuffer (false);
-        application.activeWindow.title.insertText (tabres[i]);
-    }	
+	//Suppression des zones 3XX sauf 304
+	supprimer("300");
+	supprimer("301");
+	supprimer("302");
+	supprimer("303");
+	supprimer("305");
+	supprimer("306");
+	supprimer("307");
+	supprimer("308");
+	supprimer("309");
+	for (var i = 10; i < 100; i++){supprimer("3" + i);}
+	ajouter("371 .#$a");
+	
+	//Suppression des zones 4XX
+	for (var i = 0; i < 10; i++){supprimer("40" + i);}
+	for (var i = 10; i < 100; i++){supprimer("4" + i);}
+	ajouter("452 $0" + ancienPpn);
+	supprimer("530");
+	supprimer("531");
+	remplacementSousZone("606","$302724640X","");
+	ajouter("608 ##$302724640X$2rameau");
+	remplacerValeurZone700("7");
+	if(controlecontenusouszone("702","$4","651")){chercherZoneEtSupprimerLigneAssocieePuisInsererLigne("702","701"+recuperationContenuDeLigneZoneNonInclusePourLaZone("702"));}
+	if(controlecontenusouszone("712","$4","651")){chercherZoneEtSupprimerLigneAssocieePuisInsererLigne("712","711"+recuperationContenuDeLigneZoneNonInclusePourLaZone("712"));}
+	supprimer("801");
+	supprimer("802");
+	supprimer("830");
+	ajouter("856 4#$uAdresse URL (si l'accès est réservé, créer une E856)");
 }
-// supprimerRemplacer210Par214 : passer en paramètre la zone 210##actuelle, la zone 214##modifiée à partir de la zone 210 est renvoyée
+
+//FONCTIONS SPECIFIQUES A CE SCRIPT
+
 function supprimerRemplacer210Par214(zone)
- {
+{
  	application.activeWindow.title.startOfBuffer (false);
  	var res = application.activeWindow.title.findTag ("210", 0, true, true, false);
  	while (res != "")
@@ -97,6 +140,7 @@ function supprimerRemplacer210Par214(zone)
  		res = application.activeWindow.title.findTag ("210", 0, true, true, false);
  	}
 }
+
 function renvoieNouvelle214(chaine)
 {
 	
@@ -142,21 +186,15 @@ for (i=0; i<tab_sz.length; i++) {
  	return result;
  }
 
+//OPERATIONS RELATIVES AUX ZONES ET SOUS ZONES DE LA NOTICE
+
 /**
-Supprime une zone et la remplace par une autre zone
-param: ancienneZone=juste le numero de la zone a mettre, nouvelleZone=numero de la zone + ses sous zones et le contenu des sous zones)
+Ajout de zone
 **/
-function supprimerRemplacer(ancienneZone, nouvelleZone)
-{	
-	application.activeWindow.title.startOfBuffer (false);
-	var res = application.activeWindow.title.findTag (ancienneZone, 0, true, true, false);
-	while (res != "")
-	{
-		application.activeWindow.title.deleteLine(1);
-		res = application.activeWindow.title.findTag (ancienneZone, 0, true, true, false);
-	}
+function ajouter(zone)
+{
 	application.activeWindow.title.endOfBuffer (false);
-	application.activeWindow.title.insertText (nouvelleZone + "\n");
+	application.activeWindow.title.insertText (zone + "\n");
 }
 
 /**
@@ -176,14 +214,49 @@ function supprimer(zone)
 }
 
 /**
-Ajout de zone
+Supprime une zone et la remplace par une autre zone
+param: numeroDeZone=juste le numero de la zone a mettre, 
+param: nouvelleLigneAInserer=numero de la zone + ses sous zones et le contenu des sous zones
+param: booleenDeRecuperationDuContenuDorigineDeLaLigne= si true, on conserve la contenu d'origine de la ligne sans la sous zone
 **/
-function ajouter(zone)
-{
+function chercherZoneEtSupprimerLigneAssocieePuisInsererLigne(numeroDeZone, nouvelleLigneAInserer)
+{	
+	application.activeWindow.title.startOfBuffer(false);
+	var res = application.activeWindow.title.findTag (numeroDeZone, 0, true, true, false);
+	while (res != "")
+	{
+		application.activeWindow.title.deleteLine(1);
+		res = application.activeWindow.title.findTag (numeroDeZone, 0, true, true, false);
+	}
 	application.activeWindow.title.endOfBuffer (false);
-	application.activeWindow.title.insertText (zone + "\n");
+	application.activeWindow.title.insertText(nouvelleLigneAInserer + "\n");
 }
 
+/**
+Récupère le contenu d'une ligne avec la zone indiquée en paramètre, ligne complète sans la zone en début de ligne
+*/
+function recuperationContenuDeLigneZoneNonInclusePourLaZone(numeroDeZone){
+	application.activeWindow.title.startOfBuffer(false);
+	var contenu = application.activeWindow.title.findTag(numeroDeZone, 0, true, true, false);
+	if(contenu != ""){
+		return contenu.substring(3,contenu.length);
+	}else{
+		return contenu;
+	}
+}
+
+/**
+Récupère le contenu d'une ligne avec la zone indiquée en paramètre, ligne complète zone incluse de debut de ligne
+*/
+function recuperationContenuDeLigneZoneInclusePourLaZone(numeroDeZone){
+	application.activeWindow.title.startOfBuffer(false);
+	var contenu = application.activeWindow.title.findTag(numeroDeZone, 0, true, true, false);
+	return contenu;
+}
+
+/**
+Remplace valeurs de la zone 700
+*/
 function remplacerValeurZone700(tag) {	
 	var res="x";
 	application.activeWindow.title.startOfBuffer (false);
@@ -206,116 +279,65 @@ function remplacerValeurZone700(tag) {
 }
 
 /**
+Remplace l'ensemble du texte suivant une zone par un nouveau texte
+param: zone=la zone ciblée
+param: ancientexte=la sous zone + le contenu de la sous zone à remplacer
+param: nouveautext=la sous zone + le contenu de la sous zone qui remplacera
+
+cette fonction doit s'appeler remplacement de souszone
+*/
+function remplacementSousZone(zone,ancientexte,nouveautexte)
+{
+	var tabres = new Array;
+	var i =0;
+	var res = "" ; 
+	
+	do
+	{
+		application.activeWindow.title.startOfBuffer (false);	
+		res = application.activeWindow.title.findTag (zone, 0, true, true, false);
+		if (res != "")
+        {
+			if (zone == ancientexte) {
+				tabres[i] = nouveautexte + res.substring(3) + "\n"; 
+			}
+			else {	
+				tabres[i] = res.replace(ancientexte,nouveautexte) + "\n"; 
+			}	
+			application.activeWindow.title.deleteLine(1);
+			i++;
+		}	
+	}	while (res != "")
+		
+	for (i=0;i<tabres.length;i++)
+    {
+        application.activeWindow.title.endOfBuffer (false);
+        application.activeWindow.title.insertText (tabres[i]);
+    }	
+}
+
+/**
 Contrôle la présence d'un contenu dans une sous zone d'une zone
 Param : zone, souszone, contenudelasouszone
 Return : 1 si le contenu de la sous zone indiqué est présent, 0 si il ne l'est pas
 **/
 function controlecontenusouszone(zone, souszone, contenudelasouszone) {
 	application.activeWindow.title.startOfBuffer (false);
-	//Contrôle de la présence de la zone XXX
  	var res = application.activeWindow.title.findTag (zone, 0, true, true, false);
-		//Contrôle de la présence de la sous-zone $x avec en contenu xxxxx
-		if (res.search("\\"+souszone+contenudelasouszone)!= -1) { //"\\$4651"
+		if (res.search("\\"+souszone+contenudelasouszone)!= -1) { 
 			return 1;
 		}
  	return 0;
 }
 
-//20180104 : remplacer zone 183
-//20200101 : remplacer 210 par 214, modifier 606, ajouter 608
-function modifierNotice(ancienPpn)
-{
-	application.activeWindow.title.startOfBuffer (false);
-	
-	supprimer("000");
-	supprimer("00A");
-	supprimer("002");
-	supprimer("003");
-	supprimerRemplacer("008", "008 $aObx3");
-	supprimer("010");
-	supprimer("011");
-	supprimer("035");
-	supprimerRemplacer("100", "100 0#$a199X$d199X-...");
-	supprimer("106");
-	supprimerRemplacer("135", "135 $ad$br");
-	supprimerRemplacer("181","181 ##$P01$ctxt");
-	supprimerRemplacer("182","182 ##$P01$cc");
-	supprimerRemplacer("183","183 ##$P01$aceb");
-	modifierRemplacer("200","$bTexte imprimé","");
-	supprimer("207");
-	supprimerRemplacer210Par214("");
-	//supprimer("210");
-	ajouter("214 #0$aLieu de publication$bAdresse de l'éditeur$cNom de l'éditeur$dDate de publication");
-	supprimer("215");
-	supprimer("225");
-	supprimer("230");
-	//supprimerRemplacer("230", "230 $aDonnées textuelles");
-	supprimer("301");
-	ajouter("303 $anombre de pages générées par l'impression du document, lorsque ce document est paginé");
-	ajouter("304");
-	supprimerRemplacer("304", "304 $aTitre provenant de l'écran-titre");
-	//  supprimer les 4XX
-	for (var i = 0; i < 10; i++)
-	{
-		supprimer("40" + i);
-	}
-	for (var i = 10; i < 100; i++)
-	{
-		supprimer("4" + i);
-	}
-	// supprimer les 3XX
-	for (var i = 0; i < 10; i++)
-	{
-		if (i != 1 && i != 4)// conserver les nouvelles 301 et 304 créées plus haut...
-		{
-			supprimer("30" + i);
-		}
-	}
-	for (var i = 10; i < 100; i++)
-	{
-		supprimer("3" + i);
-	}
-	supprimer("337");
-	//ajouter("337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)");
-	ajouter("371 .#$a");
-	ajouter("452 $0" + ancienPpn);
-	modifierRemplacer("606","$302724640X","");
-	ajouter("608 ##$302724640X$2rameau");
-	supprimer("530");
-	supprimer("531");
-	remplacerValeurZone700("7");
-	var presencecontenu702 = controlecontenusouszone("702","$4","651");
-	if(presencecontenu702 == 1){
-		supprimerRemplacer("702","701 $4651");
-	}
-	var presencecontenu712 = controlecontenusouszone("712","$4","651");
-	if(presencecontenu712 == 1){
-		supprimerRemplacer("712","711 $4651");
-	}
-	supprimer("801");
-	supprimer("802");
-	supprimer("830");
-	ajouter("856 4#$uAdresse URL (si l'accès est réservé, créer une E856)");
-}
+/**
+Fonction permettant de retourner le ppn en cours
+*/
 function recupererPpn()
 {
 	application.activeWindow.command("mod", false);
-	//var zone001 = application.activeWindow.title.findTag ("001", 0, true, true, false);
-	//var ppn = zone001.substring(4, zone001.length);
 	ppn = application.activeWindow.getVariable("P3GPP"); // recupère le ppn
 	application.activeWindow.simulateIBWKey("FE");
 	return ppn;
 	
-}
-
-function transfoPeriodImpPeriodElec()
-{
-	var bCodedData = application.activeWindow.codedData;
-	application.activeWindow.codedData = false;
-	
-	var ppn = recupererPpn();
-	picaCopyRecord();
-	modifierNotice(ppn);
-	
-	application.activeWindow.codedData = bCodedData;
 }

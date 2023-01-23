@@ -266,7 +266,7 @@ function CAT_creerElectronique()
 	application.activeWindow.title.insertText(
 		"008 $aOax3" + "\n" +
 		"010 ##$AISBN" + "\n" +
-		"017 #2$aDOI$2DOI" + "\n" +
+		"017 70$aDOI$2DOI" + "\n" +
 		"181 ##$P01$c..."+ "\n" +
 		"182 ##$P01$cc" + "\n" +
 		"183 ##$P01$aceb" + "\n" +
@@ -665,7 +665,7 @@ function CAT_creerTheseElectroniqueReproduction ()
 	application.activeWindow.command("cre", false);
 	application.activeWindow.title.insertText(
 		"008 $aOax3" + "\n" +
-		"017 #2$aDOI$2DOI" + "\n" +
+		"017 70$aDOI$2DOI" + "\n" +
 		"029 ##$aFR$bNuméro national de thèse (aaaaCODEnnnn)" + "\n" +
 		"100 0#$aAnnée de soutenance" + "\n" +
 		"101 0#$afre$dfre$deng" + "\n" +
