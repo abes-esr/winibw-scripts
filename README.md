@@ -16,6 +16,13 @@
 - Dans le cas ci-dessus cela mettra automatiquement à jour vos scripts.
 - Les fichiers existants de même nom seront écrasés automatiquement la MAJ est automatique
 
+# Attention : règles particulières de programmation des scripts (WINIBW3, janvier 2023)
+
+- Les scripts ne peuvent pas utiliser l'ECMAScript 6 de 2015.
+- let n'est pas autorisé, uniquement var
+- les structures de données complexes comme les map ne fonctionnent pas, y privilégier systématiquement des tableaux simples (Array[])
+- eviter la programmation fonctionnelle
+
 # Encodage des scripts : iso-8859-1
 
 - Pour que les scripts soient executés sans problème d'encodage ils doivent etre encodés au format iso-8859-1 sur le dépôt. En cas d'utilisation d'un éditeur puis de mise à jour sur le dépôt des scripts via un push, utiliser le logiciel File Encoding Checker pour Windows : https://github.com/amrali-eg/EncodingChecker/raw/master/App/EncodingChecker.exe pour contrôler le bon format.
