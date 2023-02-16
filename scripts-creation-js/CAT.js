@@ -675,7 +675,6 @@ function CAT_creerTheseElectroniqueReproduction ()
 		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" +
 		"214 #2$a $c $d" + "\n" +
 		"300 ##$a(s'il y a lieu)Thèse soutenue en co-tutelle" + "\n" +
-		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
 		"311 ##$a(s'il y a lieu)Thèse soutenue sur un ensemble de travaux" + "\n" +
 		"314 ##$aEcole(s) doctorale(s) : Nom de l'école doctorale" + "\n" +
 		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'équipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
@@ -692,7 +691,7 @@ function CAT_creerTheseElectroniqueReproduction ()
 		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aACCES SUJET - NOM COMMUN$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"686 ##$aCode TEF$2TEF" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" +
@@ -748,7 +747,7 @@ function CAT_creerTheseImprimeOriginelle ()
 		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aACCES SUJET - NOM COMMUN$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"686 ##$aCode TEF$2TEF" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" +
@@ -802,7 +801,7 @@ function CAT_creerTheseImprimeReproduction ()
 		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"686 ##$aCode TEF$2TEF" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" +
@@ -846,7 +845,7 @@ function CAT_creerTheseImprimeEditionCommerciale ()
 		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$2fmesh" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070"
 	);
 	application.activeWindow.codedData = true;
@@ -1023,7 +1022,7 @@ function CAT_creerTheseRemanieeAuteur ()
 		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"856 4#$qFormat$uAdresse URL$zAccès au texte intégral"
 	);
@@ -1062,7 +1061,7 @@ function CAT_creerMemoireElec ()
 		"606 ##$aAccès sujet nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Directeur de mémoire$bPrénom$4003" + "\n" +
 		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
@@ -1106,7 +1105,7 @@ function CAT_creerMemoireElecReproduction ()
 		"606 ##$aAccès sujet nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Directeur de mémoire$bPrénom$4003" + "\n" +
 		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
@@ -1150,7 +1149,7 @@ function CAT_creerMemoireImpr ()
 		"606 ##$aAccès sujet nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Directeur de mémoire$bPrénom$4003" + "\n" +
 		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
@@ -1192,7 +1191,7 @@ function CAT_creerMemoireImprReproduction ()
 		"606 ##$aAccès sujet nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Directeur de mémoire$bPrénom$4003" + "\n" +
 		"701 #1$aNom Membre du jury$bPrénom Membre du jury$4555" + "\n" +
@@ -1235,7 +1234,7 @@ function CAT_creerHDRImprVO ()
 		"606 ##$aAccès sujet nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Encadrant HDR$bPrénom$4003" + "\n" +
 		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
@@ -1281,7 +1280,7 @@ function CAT_creerHDRImprReproduction ()
 		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Encadrant HDR$bPrénom$4003" + "\n" +
 		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
@@ -1329,7 +1328,7 @@ function CAT_creerHDRElecVO ()
 		"606 ##$aAccès sujet nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Encadrant HDR$bPrénom$4003" + "\n" +
 		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
@@ -1379,7 +1378,7 @@ function CAT_creerHDRElecReproduction ()
 		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Encadrant HDR$bPrénom$4003" + "\n" +
 		"701 #1$aNom Président du jury$bPrénom Président du jury$4956" + "\n" +
@@ -1432,7 +1431,7 @@ function CAT_creerTheseImprPerdue ()
 		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"686 ##$aCode TEF$2TEF" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" +
@@ -1489,7 +1488,7 @@ function CAT_creerTheseImprNonDeposee ()
 		"606 ##$aAccès sujet - nom commun$2rameau" + "\n" +
 		"606 ##$aAccès sujet - nom commun$3040839486$2fmesh" + "\n" +
 		"608 ##$3027253139$2rameau" + "\n" +
-		"610 0#$aMots clés libres" + "\n" +
+		"610 0#$aMots clés libres$z" + "\n" +
 		"686 ##$aCode TEF$2TEF" + "\n" +
 		"700 #1$aNom Auteur$bPrénom$4070" + "\n" +
 		"701 #1$aNom Directeur de thèse$bPrénom$4727" + "\n" +
