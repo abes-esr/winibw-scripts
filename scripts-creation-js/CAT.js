@@ -273,10 +273,6 @@ function CAT_creerElectronique()
 		"200 1#$a@Titre$eComplément du Titre$f1re mention de responsabilité$gMention de responsabilité de fonction différente" + "\n" +
 		"214 #2$a $c $d" + "\n" +
 		"225  #$a@Titre de la Collection électronique$xISSN$vNuméro" + "\n" +
-		"230 ##$aDonnées textuelles" + "\n" +
-		"300 ##$aNote générale" + "\n" +
-		"303 ##$aNote " + "\n" +
-		"304 ##$aNote sur le Titre" + "\n" +
 		"305 ##$aNote " + "\n" +
 		"320 ##$aNote sur bibliographies et index" + "\n" +
 		"336 ##$aNote sur le type de ressource électronique" + "\n" +
@@ -678,18 +674,16 @@ function CAT_creerTheseElectroniqueReproduction ()
 		"183 ##$P01$aceb" + "\n" +
 		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" +
 		"214 #2$a $c $d" + "\n" +
-		"230 ##$aDonnées textuelles" + "\n" +
 		"300 ##$a(s'il y a lieu)Thèse soutenue en co-tutelle" + "\n" +
 		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
-		"307 ##$anombre de pages généré par l'impression du document, lorsque ce document est paginé" + "\n" +
 		"311 ##$a(s'il y a lieu)Thèse soutenue sur un ensemble de travaux" + "\n" +
 		"314 ##$aEcole(s) doctorale(s) : Nom de l'école doctorale" + "\n" +
 		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire) ; Nom de l'équipe de recherche (Equipe de recherche) ; Nom de l'entreprise (Entreprise) ; Nom de la fondation (Fondation) ; Nom d'un autre partenaire (Expliciter le type de partenaire)" + "\n" +
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$zReproduction de$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" +
 		"371 .#$a" + "\n" +
 		"455 ##$t@Lien vers la thèse originelle" + "\n" +
@@ -746,8 +740,8 @@ function CAT_creerTheseImprimeOriginelle ()
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"371 ##$a(s'il y a lieu)Thèse confidentielle jusqu'au (date exacte) OU jusqu'en (année)" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
 		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
@@ -800,8 +794,8 @@ function CAT_creerTheseImprimeReproduction ()
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie p.xxx-xxx. Index" + "\n" +
 		"328 #0$zReproduction de$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"455 ##$t@Lien vers la thèse originelle" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
 		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
@@ -1018,13 +1012,10 @@ function CAT_creerTheseRemanieeAuteur ()
 		"183 ##$P01$aceb" + "\n" +
 		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de thèse" + "\n" +
 		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
-		"230 ##$aDonnées textuelles" + "\n" +
-		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
-		"307 ##$anombre de pages généré par l'impression du document, lorsque ce document est paginé" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$zTexte remanié de$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" +
 		"45X ##$t@Lien vers la thèse originelle" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
@@ -1060,14 +1051,11 @@ function CAT_creerMemoireElec ()
 		"183 ##$P01$aceb" + "\n" +
 		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de mémoire" + "\n" +
 		"214 #1$dDate de production" + "\n" +
-		"230 ##$aDonnées textuelles" + "\n" +
-		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
-		"307 ##$aNombre de pages à l'impression lorsque ce document est paginé" + "\n" +
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$bMention du travail universitaire et nature du diplôme$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
 		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
@@ -1106,14 +1094,11 @@ function CAT_creerMemoireElecReproduction ()
 		"183 ##$P01$aceb" + "\n" +
 		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom du directeur de mémoire" + "\n" +
 		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
-		"230 ##$aDonnées textuelles" + "\n" +
-		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
-		"307 ##$aNombre de pages à l'impression lorsque ce document est paginé" + "\n" +
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$zReproduction de$bMention du travail universitaire et nature du diplôme$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" +
 		"455 ##$t@Lien vers le mémoire originel" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
@@ -1157,8 +1142,8 @@ function CAT_creerMemoireImpr ()
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$bMention du travail universitaire et nature du diplôme$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"371 ##$a(s'il y a lieu)Mémoire confidentiel jusqu'au (date exacte) OU jusqu'en (année)" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
 		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
@@ -1199,8 +1184,8 @@ function CAT_creerMemoireImprReproduction ()
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$zReproduction de$bMention du travail universitaire et nature du diplôme$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"455 ##$t@Lien vers le mémoire originel" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
 		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
@@ -1242,8 +1227,8 @@ function CAT_creerHDRImprVO ()
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$bHabilitation à diriger des recherches$cDiscipline (libellé complet)$eEtablissement (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"371 ##$a(s'il y a lieu)HDR confidentielle jusqu'au (date exacte) OU jusqu'en (année)" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
 		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
@@ -1288,8 +1273,8 @@ function CAT_creerHDRImprReproduction ()
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie p.xxx-xxx. Index" + "\n" +
 		"328 #0$zReproduction de$bHabilitation à diriger des recherches$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"455 ##$t@Lien vers la HDR originelle" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
 		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
@@ -1332,15 +1317,12 @@ function CAT_creerHDRElecVO ()
 		"183 ##$P01$aceb" + "\n" +
 		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom de l'encadrant de HDR" + "\n" +
 		"214 #1$dDate de production" + "\n" +
-		"230 ##$aDonnées textuelles" + "\n" +
-		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
-		"307 ##$aNombre de pages à l'impression lorsque ce document est paginé" + "\n" +
 		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire)" + "\n" +
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$bHabilitation à diriger des recherches$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
 		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
@@ -1384,15 +1366,12 @@ function CAT_creerHDRElecReproduction ()
 		"183 ##$P01$aceb" + "\n" +
 		"200 1#$a@Titre$eComplément du titre$fAuteur$gsous la direction de Prénom Nom de l'encadrant de HDR" + "\n" +
 		"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
-		"230 ##$aDonnées textuelles" + "\n" +
-		"304 ##$aTitre provenant de l'écran-titre" + "\n" +
-		"307 ##$aNombre de pages à l'impression lorsque ce document est paginé" + "\n" +
 		"314 ##$aPartenaire(s) de recherche : Nom du Laboratoire (Laboratoire)" + "\n" +
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$zReproduction de$bHabilitation à diriger des recherches$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"337 ##$aUn logiciel capable de lire un fichier au format (préciser le format)" + "\n" +
 		"455 ##$t@Lien vers la HDR originelle" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
@@ -1445,8 +1424,8 @@ function CAT_creerTheseImprPerdue ()
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"371 ##$a(s'il y a lieu)Thèse confidentielle jusqu'en (année)" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
 		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
@@ -1502,8 +1481,8 @@ function CAT_creerTheseImprNonDeposee ()
 		"314 ##$aAutre(s) contribution(s) : Prénom Nom (Président du jury) ; Prénom Nom, Prénom Nom (Membre(s) du jury) ; Prénom Nom (Rapporteur(s))" + "\n" +
 		"320 ##$aBibliographie : xxx réf." + "\n" +
 		"328 #0$bThèse d'Etat--Thèse de doctorat--Thèse de 3e cycle--Thèse d'université--Thèse de docteur-ingénieur--Thèse d'exercice$cDiscipline (libellé complet)$eUniversité (voir table des libellés du Guide Méthodologique)$dAnnée de soutenance" + "\n" +
-		"330 ##$aRésumé français" + "\n" +
-		"330 ##$aRésumé anglais" + "\n" +
+		"330 ##$aRésumé français$zfre" + "\n" +
+		"330 ##$aRésumé anglais$zeng" + "\n" +
 		"371 ##$a(s'il y a lieu)Thèse confidentielle jusqu'en (année)" + "\n" +
 		"541 ##$a@Titre traduit en anglais$eComplément du Titre$zeng" + "\n" +
 		"600 ##$aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
