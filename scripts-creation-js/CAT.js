@@ -293,8 +293,8 @@ function CAT_creerElectronique()
 function CAT_creerEtatDeCollection()
 {
 	//JVK 20221011 - Déboggage les fonctions de création doivent contenir la commande cree avant l'insertion des zones
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
+	//application.activeWindow.codedData = false;
+	//application.activeWindow.command("cre", false);
 	//Ce script permet de créer un état de collection ouvert
 	application.activeWindow.title.insertText(
 		"e01 $bxO" + "\n" +
@@ -305,8 +305,8 @@ function CAT_creerEtatDeCollection()
 function CAT_creerEtatDeCollectionCR()
 {
 	//JVK 20221011 - Déboggage les fonctions de création doivent contenir la commande cree avant l'insertion des zones
-	application.activeWindow.codedData = false;
-	application.activeWindow.command("cre", false);
+	//application.activeWindow.codedData = false;
+	//application.activeWindow.command("cre", false);
 	//Ce script permet de créer un état de collection ouvert - Format des centres régionaux
 	application.activeWindow.title.insertText(
 		"e01 $bxO" + "\n" +
@@ -316,10 +316,10 @@ function CAT_creerEtatDeCollectionCR()
 }
 function CAT_creerExemplaireRetro ()
 { // Ce script permet de créer un exemplaire avec la mention retro en 991, maj par MTE le 2013-08-29
-	application.activeWindow.codedData = false;
+	//application.activeWindow.codedData = false;
 	//JVK 20221011 - Correction des commandes wini pour creation
-	application.activeWindow.command("cre", false);
-	application.activeWindow.title.endOfBuffer(false);
+	//application.activeWindow.command("cre", false);
+	//application.activeWindow.title.endOfBuffer(false);
 	application.activeWindow.title.insertText(
 		"e01 $bx" + "\n" +
 		"ATTENTION EFFACEZ LES LIGNES INUTILES A L'EXEMPLAIRE CREE" + "\n" +
