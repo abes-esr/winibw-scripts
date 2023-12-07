@@ -34,6 +34,11 @@ actuelle
 
 P:\SUDOC\logiciels_Pica\WinIBW\WinIBW3\WinIBW3_2_5\prod -> version 3.2.5.5
 
+emplacement de winibw 4
+- la version 4.4 ne supporte pas le https, la 4.5.1 le supporte
+
+P:\SUDOC\logiciels_Pica\WinIBW\WinIBW4\WinIBW4 v4.5.1.101 Abes test\
+
 ## débogage
 
 Afficher une zone
