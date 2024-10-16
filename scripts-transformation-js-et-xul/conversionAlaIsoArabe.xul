@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<!-- Include your own stylesheet here. -->
+
+<!-- Define the dialog: -->
+<dialog
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="Conversion de ALA vers ISO pour l'arabe"
+	onload="onLoad();"
+	buttons="cancel"
+	ondialogcancel="return onCancel();"
+  style="min-width: 33em;background-color:#FFF5E1"
+  id="DialogConversionAlaVersISo"
+>
+	<script type="application/x-javascript" src="chrome://ibw/content/xul/conversionAlaIsoArabe.js" />
+
+	<vbox>
+	    <groupbox>
+			<caption label="Conversion ALA vers ISO9 pour l'arabe" />
+		    <hbox align="center">
+			
+			    <radiogroup id="radGrpChoisirZones" orient="vertical">
+				<radio id="radToutesZones" group="radGrpChoisirZones" label="Toutes les zones" selected="true" oncommand="radToutesZones_click();"/>
+				<radio id="radZonesChoisies" group="radGrpChoisirZones" label="Zones choisies par vous" oncommand="radZonesChoisies_click();"/>
+			</radiogroup>
+			<vbox align="center">
+				<label align="left,bottom" value="vos zones séparées par une virgule : " />
+				<textbox align="end" id="txtZones" size="30" disabled="true"/>
+			</vbox>
+			    <button align="right" id="btnLancer" label="convertir les zones" oncommand="btnLancer_click();window.close();"/>
+			 
+		    </hbox>
+	  	</groupbox>
+
+	</vbox>
+
+
+</dialog>
+
+	
+
+	
