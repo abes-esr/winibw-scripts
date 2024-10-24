@@ -1,6 +1,6 @@
 var algo_theses_base_url = "https://theses.fr/api/v1/outils/AlgoTheses";
 var max_number_of_ppn = 200;
-var chunk_size = 200; // le matching n'est rÃ©alisÃ© que sur les deux premiers caractÃ¨res du materialCode, les Aax et Oax sont donc couverts.
+var chunk_size = 200; // le matching n'est réalisé que sur les deux premiers caractères du materialCode, les Aax et Oax sont donc couverts.
 
 var allowed_doc_types = ["Aa", "Oa"];
 var allowed_screens = ["SU Catalogue Affichage en liste"];
@@ -42,32 +42,32 @@ function _includes(input, search_value) {
       return true;
     }
   }
-} // le script ne peut Ãªtre activÃ© que pour une liste de rÃ©sultats, ou un rÃ©sultat dont le type commence par Aa ou Oa
+} // le script ne peut être activé que pour une liste de résultats, ou un résultat dont le type commence par Aa ou Oa
 
 
 function _should_mount() {
   return _includes(allowed_doc_types, application.activeWindow.materialCode.replace(/[*+]/, "").slice(0, 2)) || _includes(allowed_screens, application.activeWindow.caption || "");
-} // rÃ©cupÃ¨re un PPN Ã  partir de la notice
+} // récupère un PPN à partir de la notice
 
 
 function _get_ppn() {
   return [application.activeWindow.getVariable("P3GPP")];
 }
 
-// rÃ©cupÃ¨re les PPNs Ã  partir d'une liste de rÃ©sultats
-// seuls les ppn dont le type commence par Aa et Oa sont rÃ©cupÃ©rÃ©s
+// récupère les PPNs à partir d'une liste de résultats
+// seuls les ppn dont le type commence par Aa et Oa sont récupérés
 function _collect_ppn() {
   var list_of_ppns = [];
   var number_of_ppn = Math.min(max_number_of_ppn, application.activeWindow.getVariable("P3GSZ"));
   application.activeWindow.command("af k " + "1", false);
   var max = number_of_ppn; 
   
-  // l'itÃ©ration doit commencer Ã  1 pour rÃ©cupÃ©rer proprement le contenur de P3VKZ
+  // l'itération doit commencer à 1 pour récupérer proprement le contenur de P3VKZ
   for (var _i2 = 1; _i2 < max; _i2 += 16) {
     application.activeWindow.command("af k " + _i2, false);
     search_results = application.activeWindow.getVariable("P3VKZ").split("\x1BH\x1BLPP"); 
     
-    // retrait du premier Ã©lÃ©ment qui est vide
+    // retrait du premier élément qui est vide
     search_results.shift();
     var _a2 = search_results;
     var _i3 = 0;
@@ -91,7 +91,7 @@ function _collect_ppn() {
     }
   } 
   
-  // on slice pour ne pas excÃ©der max_number_of_ppn car on rÃ©cupÃ¨re les rÃ©sultats 16 par 16.
+  // on slice pour ne pas excéder max_number_of_ppn car on récupère les résultats 16 par 16.
   return list_of_ppns.splice(0, max_number_of_ppn);
 }
 

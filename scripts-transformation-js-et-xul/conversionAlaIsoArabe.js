@@ -1,11 +1,11 @@
 /**
-	Convertir un caract�re unicode ALA en un caract�re unicode ISO 9.<b> 
-	Les formes compos�es sont pr�f�r�es pour les caract�res ISO.
+	Convertir un caract?re unicode ALA en un caract?re unicode ISO 9.<b> 
+	Les formes compos?es sont pr?f?r?es pour les caract?res ISO.
 	
 	
 	Version pour l'Arabe
 */
-// mis � jour le 2018-05-31 par SRY : ajout zone 219
+// mis ? jour le 2018-05-31 par SRY : ajout zone 219
 
 function convertirCaractereAlaVersIso (caract)
 {
@@ -63,11 +63,11 @@ function convertirCaractereAlaVersIso (caract)
 		case "\u0069\u00AF\u0079\u0061\u0068\u0021" : return "\u0069\u0079\u0079\u0061\u1E97\u0021"; // point d'exclamation
 		case "\u0069\u00AF\u0079\u0061\u0068\u003F" : return "\u0069\u0079\u0079\u0061\u1E97\u003F" ; // point d'interrogation
 		case "\u0069\u00AF\u0079\u0061\u0068\u0022" : return "\u0069\u0079\u0079\u0061\u1E97\u0022"; // guillemet
-		case "\u0069\u00AF\u0079\u0061\u0068\u0029" : return "\u0069\u0079\u0079\u0061\u1E97\u0029"; // parenth�se fermante
+		case "\u0069\u00AF\u0079\u0061\u0068\u0029" : return "\u0069\u0079\u0079\u0061\u1E97\u0029"; // parenth?se fermante
 		case "\u0069\u00AF\u0079\u0061\u0068\u005D" : return "\u0069\u0079\u0079\u0061\u1E97\u005D"; // crochet fermant
 		case "\u0069\u00AF\u0079\u0061\u0068\u007D" : return "\u0069\u0079\u0079\u0061\u1E97\u007D"; // accolade fermante
 		case "\u0069\u00AF\u0079\u0061\u0068\u0024" : return "\u0069\u0079\u0079\u0061\u1E97\u0024"; // dollar
-        //i macron y a h                 :       i y y a t+tr�ma
+        //i macron y a h                 :       i y y a t+tr?ma
 		
 		case "\u0049\u00AF\u0059\u0041\u0048\u002C" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u002C";
 		case "\u0049\u00AF\u0059\u0041\u0048\u002E" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u002E";
@@ -83,7 +83,7 @@ function convertirCaractereAlaVersIso (caract)
 		case "\u0049\u00AF\u0059\u0041\u0048\u007D" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u007D";
 		case "\u0049\u00AF\u0059\u0041\u0048\u0024" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u0024";
 		
-        //I macron Y A H                 :       I Y Y A T tr�ma
+        //I macron Y A H                 :       I Y Y A T tr?ma
 		
 		case "\u012B\u0079\u0061\u0068\u002C"       : return "\u0069\u0079\u0079\u0061\u1E97\u002C";
 		case "\u012B\u0079\u0061\u0068\u002E"       : return "\u0069\u0079\u0079\u0061\u1E97\u002E";
@@ -98,7 +98,7 @@ function convertirCaractereAlaVersIso (caract)
 		case "\u012B\u0079\u0061\u0068\u005D"       : return "\u0069\u0079\u0079\u0061\u1E97\u005D";
 		case "\u012B\u0079\u0061\u0068\u007D"       : return "\u0069\u0079\u0079\u0061\u1E97\u007D";
 		case "\u012B\u0079\u0061\u0068\u0024"       : return "\u0069\u0079\u0079\u0061\u1E97\u0024";
-        //i+macron y a h                 :       i y y a t+tr�ma 
+        //i+macron y a h                 :       i y y a t+tr?ma 
 		
 		case "\u012A\u0059\u0041\u0048\u002C" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u002C";
 		case "\u012A\u0059\u0041\u0048\u002E" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u002E";
@@ -113,7 +113,7 @@ function convertirCaractereAlaVersIso (caract)
 		case "\u012A\u0059\u0041\u0048\u005D" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u005D";
 		case "\u012A\u0059\u0041\u0048\u007D" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u007D";
 		case "\u012A\u0059\u0041\u0048\u0024" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u0024";
-        //I+macron Y A H                 :       I Y Y A T tr�ma
+        //I+macron Y A H                 :       I Y Y A T tr?ma
 
 		
 		case "\u0069\u00AF\u0079\u0061\u0074\u002C" : return "\u0069\u0079\u0079\u0061\u1E97\u002C";
@@ -129,7 +129,7 @@ function convertirCaractereAlaVersIso (caract)
 		case "\u0069\u00AF\u0079\u0061\u0074\u005D" : return "\u0069\u0079\u0079\u0061\u1E97\u005D";
 		case "\u0069\u00AF\u0079\u0061\u0074\u007D" : return "\u0069\u0079\u0079\u0061\u1E97\u007D";
 		case "\u0069\u00AF\u0079\u0061\u0074\u0024" : return "\u0069\u0079\u0079\u0061\u1E97\u0024";
-        //i macron y a t                 :       i y y a t+tr�ma 
+        //i macron y a t                 :       i y y a t+tr?ma 
 		
 		case "\u0049\u00AF\u0059\u0041\u0054\u002C" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u002C";
 		case "\u0049\u00AF\u0059\u0041\u0054\u002E" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u002E";
@@ -144,7 +144,7 @@ function convertirCaractereAlaVersIso (caract)
 		case "\u0049\u00AF\u0059\u0041\u0054\u005D" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u005D";
 		case "\u0049\u00AF\u0059\u0041\u0054\u007D" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u007D";
 		case "\u0049\u00AF\u0059\u0041\u0054\u0024" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u0024";
-        //I macron Y A T                 :       I Y Y A T tr�ma
+        //I macron Y A T                 :       I Y Y A T tr?ma
 		
 		case "\u012B\u0079\u0061\u0074\u002C"       : return "\u0069\u0079\u0079\u0061\u1E97\u002C";
 		case "\u012B\u0079\u0061\u0074\u002E"       : return "\u0069\u0079\u0079\u0061\u1E97\u002E";
@@ -159,7 +159,7 @@ function convertirCaractereAlaVersIso (caract)
 		case "\u012B\u0079\u0061\u0074\u005D"       : return "\u0069\u0079\u0079\u0061\u1E97\u005D";
 		case "\u012B\u0079\u0061\u0074\u007D"       : return "\u0069\u0079\u0079\u0061\u1E97\u007D";
 		case "\u012B\u0079\u0061\u0074\u0024"       : return "\u0069\u0079\u0079\u0061\u1E97\u0024";
-        //i+macron y a t                 :       i y y a t+tr�ma
+        //i+macron y a t                 :       i y y a t+tr?ma
 		
 		case "\u012A\u0059\u0041\u0054\u002C" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u002C";
 		case "\u012A\u0059\u0041\u0054\u002E" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u002E";
@@ -174,7 +174,7 @@ function convertirCaractereAlaVersIso (caract)
 		case "\u012A\u0059\u0041\u0054\u005D" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u005D";
 		case "\u012A\u0059\u0041\u0054\u007D" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u007D";
 		case "\u012A\u0059\u0041\u0054\u0024" : return "\u0049\u0059\u0059\u0041\u0054\u0308\u0024";
-        //I+macron Y A T                 :       I Y Y A T tr�ma
+        //I+macron Y A T                 :       I Y Y A T tr?ma
 
 		
 		case "\u0061\u0068\u002C" : return "\u0061\u1E97\u002C";
@@ -239,12 +239,12 @@ function convertirCaractereAlaVersIso (caract)
         //A T         :             A T trema
 		
 		case "\u0001" : return "";
-		// supprime le caract�re qui sert � rep�rer la fin de ligne (utilis� pour les cas ci-dessus).
+		// supprime le caract?re qui sert ? rep?rer la fin de ligne (utilis? pour les cas ci-dessus).
 		default : return "\u0000";
 	}
 }
 /**
-	Renvoie les zones � traiter d�finies par d�faut.
+	Renvoie les zones ? traiter d?finies par d?faut.
 */
 function renvoieZonesATraiterParDefaut ()
 {
@@ -261,7 +261,7 @@ function renvoieZonesATraiterParDefaut ()
 }
 
 /**
-	Renvoie les zones � traiter choisies par l'utilisateur
+	Renvoie les zones ? traiter choisies par l'utilisateur
 */
 function renvoieZonesATraiterChoisies (chaineZones)
 {
@@ -271,7 +271,7 @@ function renvoieZonesATraiterChoisies (chaineZones)
 }
 
 /**
-	Renvoie les zones � traiter
+	Renvoie les zones ? traiter
 */
 function renvoieZonesATraiter ()
 {
@@ -289,18 +289,18 @@ function renvoieZonesATraiter ()
 	}
 }
 /**
-	Convertir la cha�ne pass�e en param�tre de l'unicode ALA vers les 
-	caract�res de l'unicode ISO 9.
+	Convertir la cha?ne pass?e en param?tre de l'unicode ALA vers les 
+	caract?res de l'unicode ISO 9.
 */
 function convertirChaineAlaVersIso (chaine)
 {
 	
 	// tests avec substr
-	// tant que chaine.length >0, envoyer toute la chaine , puis toute la cha�ne -1, puis -2 
+	// tant que chaine.length >0, envoyer toute la chaine , puis toute la cha?ne -1, puis -2 
 	// lorsque le res est diff. de rien (a preciser), inserer le caract dans la nouvelle chaine
 	// et decaler i d'autant de pos que la longueur du caract (= de la chaine).
-	// si chaine.length =0 et res = rien, alors le caract reste le m�me.
-	// caractPrec permet de ne pas convertir si le caract�re pr�c�dant celui en cours
+	// si chaine.length =0 et res = rien, alors le caract reste le m?me.
+	// caractPrec permet de ne pas convertir si le caract?re pr?c?dant celui en cours
 	// est un $ (pour exclure la transformation du $c).
 	
 	chaineRes = "";
@@ -337,7 +337,7 @@ function convertirChaineAlaVersIso (chaine)
 	return chaineRes;
 }
 /**
-	V�rifie si la zone pass�e en param�tre doit �tre convertie.
+	V?rifie si la zone pass?e en param?tre doit ?tre convertie.
 	Permet de placer des restrictions. 
 */
 function aConvertir (res)
@@ -349,8 +349,8 @@ function aConvertir (res)
 	return false;
 }
 /**
-	Permet de d�couper la chaine res et de choisir la partie
-	� convertir : � gauche du choix = non converti, � droite = converti.
+	Permet de d?couper la chaine res et de choisir la partie
+	? convertir : ? gauche du choix = non converti, ? droite = converti.
 */
 function convertirChaine (res)
 {
@@ -360,14 +360,14 @@ function convertirChaine (res)
 	}
 	else
 	{
-		// toute la cha�ne est convertie
+		// toute la cha?ne est convertie
 		return convertirChaineAlaVersIso (res);
 	}
 }
 /** 	Passe en revue toute les zones /zone/ de la notice, et 
 	teste pour chacune d'elles son contenu avant de le convertir 
-	ex : - premi�re zone 517 (i = 0)
-		 - deuxi�me zone 517 (i = 1) etc. jusqu'� res == ""
+	ex : - premi?re zone 517 (i = 0)
+		 - deuxi?me zone 517 (i = 1) etc. jusqu'? res == ""
 */
 function convertirZone (zone, application)
 {
@@ -378,7 +378,7 @@ function convertirZone (zone, application)
 		res = application.activeWindow.title.findTag (zone, i, true, true, false);
 		if (aConvertir (res) == true)
 		{
-			res += "\u0001";// ajout d'un caract�re qui sert � identifier la fin de la ligne
+			res += "\u0001";// ajout d'un caract?re qui sert ? identifier la fin de la ligne
 			application.activeWindow.title.deleteLine(1);
 			application.activeWindow.title.insertText (convertirChaine (res) + "\n");
 		}
@@ -387,7 +387,7 @@ function convertirZone (zone, application)
 	while (res != "");
 }
 
-// couche contr�le
+// couche contr?le
 //
 //
 
