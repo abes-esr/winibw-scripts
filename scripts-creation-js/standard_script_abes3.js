@@ -60,13 +60,13 @@ function _collect_ppn() {
   var list_of_ppns = [];
   var number_of_ppn = Math.min(max_number_of_ppn, application.activeWindow.getVariable("P3GSZ"));
   application.activeWindow.command("af k " + "1", false);
-  var max = number_of_ppn; 
-  
+  var max = number_of_ppn;
+
   // l'itération doit commencer à 1 pour récupérer proprement le contenur de P3VKZ
   for (var _i2 = 1; _i2 < max; _i2 += 16) {
     application.activeWindow.command("af k " + _i2, false);
-    search_results = application.activeWindow.getVariable("P3VKZ").split("\x1BH\x1BLPP"); 
-    
+    search_results = application.activeWindow.getVariable("P3VKZ").split("\x1BH\x1BLPP");
+
     // retrait du premier élément qui est vide
     search_results.shift();
     var _a2 = search_results;
@@ -89,8 +89,8 @@ function _collect_ppn() {
     if (list_of_ppns.length >= max_number_of_ppn) {
       break;
     }
-  } 
-  
+  }
+
   // on slice pour ne pas excéder max_number_of_ppn car on récupère les résultats 16 par 16.
   return list_of_ppns.splice(0, max_number_of_ppn);
 }

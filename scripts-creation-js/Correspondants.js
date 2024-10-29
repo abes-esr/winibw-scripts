@@ -86,13 +86,13 @@ var ppnv = "";
 		affichage = application.activeWindow.getVariable("P3GPR");
 		// prompts.alert(null,"ppn: " , "ppn = " + ppnv);
 		//prompts.alert(null,"status = : " , status);
-		
+
 // SRY le 16-11-2015
 // choix du separateur entre les adresses email
  do {
 	var sepinput = {value: ";"};
 	sepreturn = prompts.prompt(null, "Correspondants", "Choix du s?parateur entre les adresses mails : ';' ou ','", sepinput,"", check);
-} 
+}
 while (sepreturn == true && sepinput.value != ";" && sepinput.value != ",")
 if (sepreturn == false) {
 	prompts.alert(null,"fichier sortie : " , "aucune action n'est faite, s?parateur entre les adresses mails non saisi");
@@ -109,7 +109,7 @@ if (input.value == "non") {
 	if (ppnv == "") prompts.alert(null,"fichier sortie : " , "aucune action n'est faite");
 	}
 	deb = 1;
-	if (ppnv !="") { 
+	if (ppnv !="") {
 	    NbRes = ppnv;
 		deb = ppnv;
 		//application.activeWindow.command("che ppn " + ppnv,false);
@@ -140,12 +140,12 @@ for (courrant=deb; courrant<=NbRes; courrant++) {
 		}
 		application.activeWindow.title.startOfBuffer (false);
 		CORCAT = application.activeWindow.title.findTag("000", 0, false, true, true);
-		chaine = "*********** Lot " + status + " Notice :" + courrant + " ***************************\r\n\r\n"; 
+		chaine = "*********** Lot " + status + " Notice :" + courrant + " ***************************\r\n\r\n";
 		fichierSortie.write(chaine, chaine.length);
 		if (CORCAT != "") {
 		CORCAT = CORCAT.substr(2,CORCAT.length-2);
 		//prompts.alert(null,PPN , CORCAT);
-		
+
 		tabcorcat = CORCAT.split(",");
 		for (i=0;i<tabcorcat.length;i++) {
 			if (tabcorcat[i].indexOf("-") > 0) {
@@ -154,9 +154,9 @@ for (courrant=deb; courrant<=NbRes; courrant++) {
 				for (j = interval1;j<=interval2; j++) {
 					tabcorcat2[cpt] = j;
 					cpt = cpt + 1;
-			
-				} 
-		   
+
+				}
+
 			}
 			else {
 		           tabcorcat2[cpt] = tabcorcat[i];
@@ -187,10 +187,10 @@ for (courrant=deb; courrant<=NbRes; courrant++) {
 			// prompts.alert(null,"ERREUR : " , "indice 2" + chp.substr(chp.indexOf("$b")+2, chp.length));
 			if (chp !="") tabadresse[chp.substr(4,chp.indexOf("$b")-4)] = tabadresse[chp.substr(4,chp.indexOf("$b")-4)] + chp.substr(chp.indexOf("$b")+2, chp.length) + sepinput.value;
 			if (chp != "") len = len + tabadresse[chp.substr(4,chp.indexOf("$b")-4)].length;
-			
+
 			if (chp == "") i=10501;
 		}
-		chaine = "Liste des correspondants catalogage des " + cpt + " bibliothèque(s) localisée(s) sous la notice ppn " + PPN +",\r\n";
+		chaine = "Liste des correspondants catalogage des " + cpt + " bibliothèque(s) localis\u00e9e(s) sous la notice ppn " + PPN +",\r\n";
 		fichierSortie.write(chaine, chaine.length);
 		var mois = 0;
 		mois = jour.getMonth();
@@ -220,15 +220,15 @@ for (courrant=deb; courrant<=NbRes; courrant++) {
 		}
 
 		fichierSortie.write(chaine, chaine.length);
-		chaine = "\r\n"; 
+		chaine = "\r\n";
 		fichierSortie.write(chaine, chaine.length);
-		chaine = "\r\n"; 
+		chaine = "\r\n";
 		fichierSortie.write(chaine, chaine.length);
-		//chaine = "*********************************************************************************"; 
+		//chaine = "*********************************************************************************";
 		//fichierSortie.write(chaine, chaine.length);
-		chaine = "\r\n"; 
+		chaine = "\r\n";
 		fichierSortie.write(chaine, chaine.length);
-		chaine = "\r\n"; 
+		chaine = "\r\n";
 		fichierSortie.write(chaine, chaine.length);
 		application.activeWindow.closeWindow(application.activeWindow.windowID);
 		application.activeWindow.simulateIBWKey("FE");
