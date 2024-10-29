@@ -14,11 +14,11 @@ function CAT_TransfoImpElec() {
 	var check= {value: false};
 	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                         .getService(Components.interfaces.nsIPromptService);
-	var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +  prompts.BUTTON_POS_1 * prompts.BUTTON_TITLE_CANCEL + prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;  
-	// La variable flags va créer. La première sera "Save", la seconde sera aButtonTitle1, et la troisième sera "Cancel"  
-  
+	var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +  prompts.BUTTON_POS_1 * prompts.BUTTON_TITLE_CANCEL + prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;
+	// La variable flags va créer. La première sera "Save", la seconde sera aButtonTitle1, et la troisième sera "Cancel"
+
 	var button = prompts.confirmEx(null, "Transformer une notice d'imprimé en notice de document électronique", "Que voulez-vous faire ?",
-                               flags, "Reproduction patrimoniale", "", "Transformer en ebook", null, check);  
+                               flags, "Reproduction patrimoniale", "", "Transformer en ebook", null, check);
 	if (button == 0) transfoMonoImpMonoElecPatrim();
 	if (button == 2) transfoMonoImpMonoElecEBook();
 }
@@ -30,14 +30,14 @@ Script de transformation d'une monographie electronique en monographie ebook
 function transfoMonoElecEBookMonoImp(){
     var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                         .getService(Components.interfaces.nsIPromptService);
-						
+
 	var bCodedData = application.activeWindow.codedData;
     application.activeWindow.codedData = false;
-   
+
     var ppn = recupererPpnEnCours();
     xpicaCopyRecord();
     modifierNoticeElecEBook(ppn);
-	
+
     application.activeWindow.codedData = bCodedData;
 }
 
@@ -60,17 +60,17 @@ function modifierNoticeElecEBook(ancienPpn){
 	supprimerToutesLesZonesNumero("034");
     supprimerToutesLesZonesNumero("035");
 	supprimerToutesLesZonesNumero("073");
-    suppressionDeLignePuisInsertionDeLigne("100","100 0#$a[Année de l'éditon imprimée]$e[Année de publication de l'original]$f[Année Copyright]");
-	suppressionDeLignePuisInsertionDeLigne("102","102 ##$a[A compléter]");
+    suppressionDeLignePuisInsertionDeLigne("100","100 0#$a[Ann\u00e9e de l'\u00e9diton imprim\u00e9e]$e[Ann\u00e9e de publication de l'original]$f[Ann\u00e9e Copyright]");
+	suppressionDeLignePuisInsertionDeLigne("102","102 ##$a[A compl\u00e9ter]");
 	suppressionDeLignePuisInsertionDeLigne("106","106 ##$ar");
 	supprimerToutesLesZonesNumero("135");
 	suppressionDeLignePuisInsertionDeLigne("181","181 ##$P01$ctxt");
 	suppressionDeLignePuisInsertionDeLigne("182","182 ##$P01$cn");
 	suppressionDeLignePuisInsertionDeLigne("183","183 ##$P01$anga");
 	supprimerToutesLesZonesNumero("205");
-	modifierLeContenuDeLaZone("200","$bRessource électronique","");
+	modifierLeContenuDeLaZone("200","$bRessource \u00e9lectronique","");
 	suppressionDeLignePuisInsertionDeLigne("210","210 ##[A TRANSFORMER EN 214]$a$c$d");
-	ajouterLigne("215 ##$a[Type de présentation matérielle et importance matérielle]$c[Autres caractéristiques matérielles]$d[Dimensions]$eMatériel d'accompagnement");
+	ajouterLigne("215 ##$a[Type de pr\u00e9sentation mat\u00e9rielle et importance mat\u00e9rielle]$c[Autres caract\u00e9ristiques mat\u00e9rielles]$d[Dimensions]$eMat\u00e9riel d'accompagnement");
     suppressionDeLignePuisInsertionDeLigne("225","225 2#$a[Titre de la collection]");
     supprimerToutesLesZonesNumero("230");
     supprimerToutesLesZonesNumero("303");
@@ -83,7 +83,7 @@ function modifierNoticeElecEBook(ancienPpn){
     supprimerToutesLesZonesNumero("339");
 	suppressionDeLignePuisInsertionDeLigne("410","410 ##$t@[Titre]");
 	ajouterLigne("452 ##$0" + ancienPpn);
-	modifierRemplacer("452","$bTexte imprimé","");
+	modifierRemplacer("452","$bTexte imprim\u00e9","");
 	supprimerToutesLesZonesNumero("579");
 	remplacerValeurZone700("7");
 	if(controlePresenceSousZone("702","\\$4340") || controlePresenceSousZone("702","\\$z1a2b")){
@@ -96,7 +96,7 @@ function modifierNoticeElecEBook(ancienPpn){
     supprimerToutesLesZonesNumero("802");
     supprimerToutesLesZonesNumero("856");
     supprimerToutesLesZonesNumero("859");
-	ajouterLigne("une fois la notice validée, modifier le ppn " + ancienPpn + " et ajouter la zone 452 ##$0 + le nouveau ppn généré");
+	ajouterLigne("une fois la notice valid\u00e9e, modifier le ppn " + ancienPpn + " et ajouter la zone 452 ##$0 + le nouveau ppn g\u00e9n\u00e9r\u00e9");
 }
 
 /**
@@ -105,11 +105,11 @@ Fonction de transformation de monographie imprimée en monographie électronique (
 function transfoMonoImpMonoElecPatrim(){
     var bCodedData = application.activeWindow.codedData;
     application.activeWindow.codedData = false;
-   
+
     var ppn = recupererPpnEnCours();
     xpicaCopyRecord();
     modifierNoticePatrim(ppn);
-   
+
     application.activeWindow.codedData = bCodedData;
 }
 
@@ -119,11 +119,11 @@ Fonction de transformation de monographie imprimée en monographie électronique (
 function transfoMonoImpMonoElecEBook(){
 	  var bCodedData = application.activeWindow.codedData;
     application.activeWindow.codedData = false;
-   
+
     var ppn = recupererPpnEnCours();
     xpicaCopyRecord();
     modifierNoticeEBook(ppn);
-   
+
     application.activeWindow.codedData = bCodedData;
 }
 
@@ -132,22 +132,22 @@ xpicaCopyRecord : rôle de la fonction à approfondir
 */
 function xpicaCopyRecord(){
 	var bCodedData = application.activeWindow.codedData;
-	
+
 	application.activeWindow.codedData = false;
 	application.activeWindow.noviceMode = false;
-	
+
 	application.activeWindow.command("\\too unm", false);
 	application.activeWindow.copyTitle();
 
 	var matCode = application.activeWindow.materialCode;
 	var forceDocType = matCode.substr(0, 2);
 
-	
+
 	application.activeWindow.command("\\sys 1; \\bes 1", false);
-	
-	
+
+
 	application.activeWindow.materialCode = forceDocType;
-	
+
 	// crée une notice vide (cre)
 	if (Autorite) application.activeWindow.command("\\inv 2", false);
 	if (Autorite == false) application.activeWindow.command("\\inv 1", false);
@@ -204,7 +204,7 @@ function modifierNoticePatrim(ancienPpn){
 	ajouterLigne("337 ##$aNécessite un logiciel capable de lire un fichier au(x) format(s)..., ... ou ...");
 	ajouterLigne("339 ##$aFormat de la ressource$ddate de publication");
 	ajouterLigne("371 .#$a");
-	supprimerToutesLesZonesNumero("410");	
+	supprimerToutesLesZonesNumero("410");
     ajouterLigne("455 ##$0" + ancienPpn);
 	supprimerToutesLesZonesNumero("579");
 	remplacerValeurZone700("7");
@@ -352,7 +352,7 @@ function modifierLeContenuDeLaZone(numeroDeZone,chaineDeContenuARemplacer,chaine
 Fonction supprimant l'ensemble des lignes qui commence par la zone portant le numéro passé en paramètre
 param: numeroDeLaZone=numero des zones à supprimer (ex: si il y a 3 zones 035 dans la notice d'origine les 3 zones seront supprimées)
 */
-function supprimerToutesLesZonesNumero(numeroDeLaZone){   
+function supprimerToutesLesZonesNumero(numeroDeLaZone){
     application.activeWindow.title.startOfBuffer(false);
     var res = application.activeWindow.title.findTag (numeroDeLaZone, 0, true, true, false);
     while (res != "")
@@ -367,7 +367,7 @@ Fonction permettant de supprimer une ligne entière à partir du numéro de zone
 param: numeroDeZoneDeLaLigneASupprimer=numero de la zone a supprimer, supprimera la ligne entiere
 param: ligneAInserer=nouvelle ligne à insérer à la place
 */
-function suppressionDeLignePuisInsertionDeLigne(numeroDeZoneDeLaLigneASupprimer,ligneAInsererALaPlace){	
+function suppressionDeLignePuisInsertionDeLigne(numeroDeZoneDeLaLigneASupprimer,ligneAInsererALaPlace){
 	application.activeWindow.title.startOfBuffer (false);
 	//recherche à partir de la position 0 du début de ligne
 	var res = application.activeWindow.title.findTag(numeroDeZoneDeLaLigneASupprimer, 0, true, true, false);
@@ -401,22 +401,22 @@ param: souszone=la sous zone qui doit être présente, entre guillements avec deux
 function controlePresenceSousZone(zone,souszone){
 	var result = 0;
 	var n = 0 ;
-	var res = "" ; 
+	var res = "" ;
 	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                         .getService(Components.interfaces.nsIPromptService);
-	
+
 	for (n=0; n<30; n+=1)
 	{
-		application.activeWindow.title.startOfBuffer(false);	
+		application.activeWindow.title.startOfBuffer(false);
 		res = application.activeWindow.title.findTag(zone, n, true, true, false);
 		if (res != "" ) {
-			
+
 			if (res.search(souszone) != -1) {
-				result = 1; 
+				result = 1;
 			}
-		}	
+		}
 	}
-return result;	
+return result;
 }
 
 /**
@@ -428,16 +428,16 @@ function controlePresenceContenuSurLigne(zone,contenuPresentDansLaLigneAVerifier
 	var res = "";
 	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
 						.getService(Components.interfaces.nsIPromptService);
-	
+
 	for (n=0; n<30; n+=1)
 	{
-		application.activeWindow.title.startOfBuffer (false);	
+		application.activeWindow.title.startOfBuffer (false);
 		res = application.activeWindow.title.findTag (zone, n, true, true, false);
 		if (res != "" ) {
 			if (res.contains(contenuPresentDansLaLigneAVerifier)) {
-				result = 1; 
+				result = 1;
 			}
-		}	
+		}
 	}
 return result;
 }
@@ -448,7 +448,7 @@ Fonction permettant de remplacer une zone par une autre zone en conservant le co
 function remplacementZoneParAutreZoneEnConservantContenuDeLaLigne(ancienneZone,nouvelleZone){
 	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
 
-	application.activeWindow.title.startOfBuffer(false);	
+	application.activeWindow.title.startOfBuffer(false);
 	res = application.activeWindow.title.findTag(ancienneZone, 0, true, true, false);
 	if (res != "") {
 		application.activeWindow.title.deleteLine(1);
@@ -460,7 +460,7 @@ function remplacementZoneParAutreZoneEnConservantContenuDeLaLigne(ancienneZone,n
 /**
 Remplacement valeur zone 700
 */
-function remplacerValeurZone700(tag){	
+function remplacerValeurZone700(tag){
 	var res="x";
 	application.activeWindow.title.startOfBuffer (false);
 	var i=0;

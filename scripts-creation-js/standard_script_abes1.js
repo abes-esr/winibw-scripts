@@ -25,26 +25,26 @@ var input = {value: "1"};
 var check= {value: false};
 var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                         .getService(Components.interfaces.nsIPromptService);
-var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +  
+var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +
             prompts.BUTTON_POS_1 * prompts.BUTTON_TITLE_CANCEL +
-			prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;  
-// This value of flags will create 3 buttons. The first will be "Save", the  
-// second will be the value of aButtonTitle1, and the third will be "Cancel"  
-  
-var button = prompts.confirmEx(null, "Choix Copie", "Que voulez-vous faire ?",  
-                               flags, "transformation de notice de thèse électronique en thèse imprimée (reproduction)", "", "transformation de notice de thèse électronique en thèse imprimée (ed. commerciale)", null, check);  
-							   
+			prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;
+// This value of flags will create 3 buttons. The first will be "Save", the
+// second will be the value of aButtonTitle1, and the third will be "Cancel"
+
+var button = prompts.confirmEx(null, "Choix Copie", "Que voulez-vous faire ?",
+                               flags, "transformation de notice de thèse électronique en thèse imprimée (reproduction)", "", "transformation de notice de thèse électronique en thèse imprimée (ed. commerciale)", null, check);
+
  application.activeWindow.codedData = false;
- application.activeWindow.noviceMode = false;						   
-							   
+ application.activeWindow.noviceMode = false;
+
  if (button == 0) AReproTheseOaAa();
  if (button == 2) ACommerceTheseOaAa();
- 
+
  // application.activeWindow.codedData = true;
  if (bCodedData) application.activeWindow.codedData = true;
  // application.activeWindow.noviceMode = true;
  if (bNoviceMode) application.activeWindow.noviceMode = true;
- 
+
  }
 
  // 20170316 : modification RDA FR 2017
@@ -62,7 +62,7 @@ var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
 
 
 
-						
+
 var go=true;
 Res = application.activeWindow.getVariable("P3GPP"); // recupère le ppn
 
@@ -72,7 +72,7 @@ if (Res == "") {
 
 				go = false;
 				}
-if (go == true) {				
+if (go == true) {
 xpicaCopyRecord();
 suptag("Cré");
 suptag("...");
@@ -94,7 +94,7 @@ suptag("579");
 suptag("856");
 application.activeWindow.title.endOfBuffer(false);
 
-application.activeWindow.title.insertText("100 0#$aAnnée d'édition\n");
+application.activeWindow.title.insertText("100 0#$aAnn\u00e9e d'\u00e9dition\n");
 application.activeWindow.title.endOfBuffer(false);
 modifier181("");
 application.activeWindow.title.endOfBuffer(false);
@@ -104,7 +104,7 @@ application.activeWindow.title.insertText("183 ##$P01$anga\n");
 application.activeWindow.title.endOfBuffer(false);
 application.activeWindow.title.insertText("215 ##$a$c$d30 cm$e\n");
 application.activeWindow.title.endOfBuffer(false);
-application.activeWindow.title.insertText("214 #2$aLieu de diffusion$cNom du diffuseur$dAnnée de diffusion\n");
+application.activeWindow.title.insertText("214 #2$aLieu de diffusion$cNom du diffuseur$dAnn\u00e9e de diffusion\n");
 application.activeWindow.title.endOfBuffer(false);
 application.activeWindow.title.insertText("455 ##$0" + Res + "\n");
 
@@ -127,10 +127,10 @@ cont = application.activeWindow.title.findTag("105", 0, true, true, false);
 if (cont != "") {
 		application.activeWindow.title.deleteLine(1);
 		cont = cont.replace("$bm","$bv");
-		 
+
 		application.activeWindow.title.insertText(cont + "\n");
-		
-}	
+
+}
 
 //modif 008
 application.activeWindow.title.startOfBuffer (false);
@@ -138,18 +138,18 @@ cont = application.activeWindow.title.findTag("008", 0, true, true, false);
 if (cont != "") {
 		application.activeWindow.title.deleteLine(1);
 		cont = cont.replace("$aO","$aA");
-		 
+
 		application.activeWindow.title.insertText(cont + "\n");
-		
-}	
+
+}
 //modif 200 on enleve le $b et son contenu
 application.activeWindow.title.startOfBuffer (false);
 cont = application.activeWindow.title.findTag("200", 0, true, true, false);
 if (cont != "") {
 		application.activeWindow.title.deleteLine(1);
-		cont = cont.replace("$bRessource électronique","");
+		cont = cont.replace("$bRessource \u00e9lectronique","");
  		application.activeWindow.title.insertText(cont + "\n");
-}	
+}
 
 //modif 328
 // 22-01-2016 : SRY : prise en compte de toutes les 328
@@ -170,8 +170,8 @@ for (i=0;i<tabres.length;i++)
     application.activeWindow.title.endOfBuffer (false);
     application.activeWindow.title.insertText (tabres[i]+ "\n");
 }
-		
-} // end go	
+
+} // end go
 prompts.alert(null,"ReproTheseOaAa : " , "une fois la notice validée, modifier le ppn " + Res + " et ajouter la zone 456 ##$0 + le nouveau ppn généré");
 application.activeWindow.title.endOfBuffer(false);
 application.activeWindow.title.insertText("une fois la notice validée, modifier le ppn " + Res + " et ajouter la zone 456 ##$0 + le nouveau ppn généré\n");
@@ -181,11 +181,11 @@ function modifier181(tag)
 {
 	application.activeWindow.title.startOfBuffer (false);
 	var cont = application.activeWindow.title.findTag ("181", 0, true, true, false);
-	
+
 	if (cont != "")
 	{
 		//on laisse la 181 telle quelle
-	} 
+	}
 	else
 	{
 		application.activeWindow.title.endOfBuffer (false);
@@ -194,22 +194,22 @@ function modifier181(tag)
 }
 function xpicaCopyRecord() {
 	var bCodedData = application.activeWindow.codedData;
-	
+
 	application.activeWindow.codedData = false;
 	application.activeWindow.noviceMode = false;
-	
+
 	application.activeWindow.command("\\too unm", false);
 	application.activeWindow.copyTitle();
 
 	var matCode = application.activeWindow.materialCode;
 	var forceDocType = matCode.substr(0, 2);
 
-	
+
 	application.activeWindow.command("\\sys 1; \\bes 1", false);
-	
-	
+
+
 	application.activeWindow.materialCode = forceDocType;
-	
+
 	// crée une notice vide (cre)
 	if (Autorite) application.activeWindow.command("\\inv 2", false);
 	if (Autorite == false) application.activeWindow.command("\\inv 1", false);
@@ -236,7 +236,7 @@ while (res != "") {
  // 20170316 : modification RDA FR 2017
  // 20170601 : correction suite mise en place RDA FR 2017
  // 20180104 : suppression zone 579
-function ACommerceTheseOaAa() 
+function ACommerceTheseOaAa()
 {
 
 var cont="";
@@ -246,7 +246,7 @@ var i =0;
 var j =0;
 
 var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-                        .getService(Components.interfaces.nsIPromptService);						
+                        .getService(Components.interfaces.nsIPromptService);
 var go=true;
 Res = application.activeWindow.getVariable("P3GPP"); // recupère le ppn
 
@@ -256,7 +256,7 @@ if (Res == "") {
 
 				go = false;
 				}
-if (go == true) {		
+if (go == true) {
 xpicaCopyRecord();
 suptag("Cré");
 suptag("...");
@@ -297,7 +297,7 @@ suptag("856");
 application.activeWindow.title.endOfBuffer(false);
 application.activeWindow.title.insertText("010 ##$A\n");
 application.activeWindow.title.endOfBuffer(false);
-application.activeWindow.title.insertText("100 0#$aAnnée d'édition\n");
+application.activeWindow.title.insertText("100 0#$aAnn\u00e9e d'\u00e9dition\n");
 modifier181("");
 application.activeWindow.title.endOfBuffer(false);
 application.activeWindow.title.insertText("182 ##$P01$cn\n");
@@ -306,7 +306,7 @@ application.activeWindow.title.insertText("183 ##$P01$anga\n");
 application.activeWindow.title.endOfBuffer(false);
 application.activeWindow.title.insertText("215 ##$a $c $d $e\n");
 application.activeWindow.title.endOfBuffer(false);
-application.activeWindow.title.insertText("214 #0$aLieu de publication$cNom de l'éditeur$dAnnée de publication\n");
+application.activeWindow.title.insertText("214 #0$aLieu de publication$cNom de l'\u00e9diteur$dAnn\u00e9e de publication\n");
 application.activeWindow.title.endOfBuffer(false);
 application.activeWindow.title.insertText("320 ##$a\n");
 application.activeWindow.title.endOfBuffer(false);
@@ -330,24 +330,24 @@ cont = application.activeWindow.title.findTag("008", 0, true, true, false);
 if (cont != "") {
 		application.activeWindow.title.deleteLine(1);
 		cont = cont.replace("$aO","$aA");
-		 
+
 		application.activeWindow.title.insertText(cont + "\n");
-		
-}	
+
+}
 cont = application.activeWindow.title.findTag("105", 0, true, true, false);
 if (cont != "") {
 		application.activeWindow.title.deleteLine(1);
 		cont = cont.replace("$bm","$bv");
-		 
+
 		application.activeWindow.title.insertText(cont + "\n");
-		
-}	
+
+}
 //modif 200 on enleve le $b et son contenu, le $g et son contenu
 application.activeWindow.title.startOfBuffer (false);
 cont = application.activeWindow.title.findTag("200", 0, true, true, false);
 if (cont != "") {
 		application.activeWindow.title.deleteLine(1);
-		cont = cont.replace("$bRessource électronique","");
+		cont = cont.replace("$bRessource \u00e9lectronique","");
 		i = cont.indexOf("\$g");
 		j = cont.lastIndexOf("\$");
 		if ( i>=0 ) {
@@ -356,21 +356,21 @@ if (cont != "") {
 					cont = cont.substr(j);
 				} else {
 					cont = cont.substr(0,j);
-				}		
+				}
 			} else {
 				cont200 = cont.substr(i+1);
 				j = cont200.indexOf("\$");
 				cont200 = "$" + cont200.substr(0,j);
 				cont = cont.replace(cont200,"");
-			}	
-		}	
+			}
+		}
 		application.activeWindow.title.insertText(cont + "\n");
 }
 
 // modif 328
-// 22-01-2016 : SRY : prise en compte de toutes les 328	
+// 22-01-2016 : SRY : prise en compte de toutes les 328
 // 20170601 : correction suite mise en place RDA FR 2017
-i=0;	
+i=0;
 do
     {
         application.activeWindow.title.startOfBuffer (false);
@@ -379,7 +379,7 @@ do
         {
             application.activeWindow.title.deleteLine(1);
 			tabres[i] = cont.replace("$zReproduction de","");
-			tabres[i] = cont.replace("#0","#0$zTexte remanié de");
+			tabres[i] = cont.replace("#0","#0$zTexte remani\u00e9 de");
 			i++;
         }
     } while (cont != "")
@@ -400,7 +400,7 @@ if (cont != "") {
 }
 
 // ne garder que les 700 avec un $4070
-i=0;	
+i=0;
 do
     {
         application.activeWindow.title.startOfBuffer (false);
@@ -432,39 +432,39 @@ function modifierRemplacer(zone,ancientexte,nouveautexte)
 {
 	var tabres = new Array;
 	var i =0;
-	var res = "" ; 
-	
+	var res = "" ;
+
 	do
 	{
-		application.activeWindow.title.startOfBuffer (false);	
+		application.activeWindow.title.startOfBuffer (false);
 		res = application.activeWindow.title.findTag (zone, 0, true, true, false);
 		if (res != "")
         {
 			if (zone == ancientexte) {
-				tabres[i] = nouveautexte + res.substring(3) + "\n"; 
+				tabres[i] = nouveautexte + res.substring(3) + "\n";
 			}
-			else {	
-				tabres[i] = res.replace(ancientexte,nouveautexte) + "\n"; 
-			}	
+			else {
+				tabres[i] = res.replace(ancientexte,nouveautexte) + "\n";
+			}
 			application.activeWindow.title.deleteLine(1);
 			i++;
-		}	
+		}
 	}	while (res != "")
-		
+
 	for (i=0;i<tabres.length;i++)
     {
         application.activeWindow.title.endOfBuffer (false);
         application.activeWindow.title.insertText (tabres[i]);
-    }	
+    }
 }
 
-function remplacerValeurZone700(tag) {	
+function remplacerValeurZone700(tag) {
 	var res="x";
 	application.activeWindow.title.startOfBuffer (false);
 	var i=0;
 	while (res != "") {
 		res = application.activeWindow.title.findTag(tag, i, true, true, false);
-		//on récupére le contenu de la zone sans le libellé de la $4 : 
+		//on récupére le contenu de la zone sans le libellé de la $4 :
 		//l'index de fin est situé à la position de la $4 + 2 caractères de la sous zone + 3 caractères du code de fonction
 		var sousZones = res.split("$4");
 		var zone = res.substring(0, res.indexOf("$4"));
