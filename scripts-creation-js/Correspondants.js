@@ -4,8 +4,8 @@
 // renvoie un objet 'fichier en sortie'
 // modif mte le 2012/06/08 le message et espacement entre blocs
 // ligne 116, modif IAN pour trouver et exporter ppn zone 003 et pas 001, remis sur serveur le 20120723
-// 2014-10-09 vérifié MTE pour mettre ? jour la date du fichier + coded data off
-// 2015-03-19 vérifié IAN pour mettre enlever l'espace en trop entre certaines adresses mails (ligne 194 espace en trop entre les "" en bout de ligne
+// 2014-10-09 verifie MTE pour mettre ? jour la date du fichier + coded data off
+// 2015-03-19 verifie IAN pour mettre enlever l'espace en trop entre certaines adresses mails (ligne 194 espace en trop entre les "" en bout de ligne
 // 2015-11-16 SRY : ajout dialogbox pour choix s?parateur entre le adresses mails et r?solution du probl?me d'adresse undefined
 
 const fabriqueFichier =
