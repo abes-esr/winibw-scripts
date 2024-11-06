@@ -1,6 +1,6 @@
 # winibw-scripts
 
-- Important : winibw ne supporte pas les caractères accentués dans les scripts. Privilégier systématiquement les caractères unicode dans les scripts.
+- Important : winibw ne supporte pas les caractères accentués dans les scripts. **Privilégier systématiquement les caractères unicode dans les scripts**.
 - En cas de rechargement des scripts, penser a recréer et supprimer ses raccourcis crées dans son winibw.
 
 # comment cela fonctionne : dans votre explorateur de fichier windows la ou est installé winibw
