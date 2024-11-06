@@ -1,11 +1,11 @@
-// charge l'objet d'accès à winIbw
+// charge l'objet d'accès a winIbw
 
-//déclaration d'une variable contenant le résumé des messages
+//declaration d'une variable contenant le resume des messages
 var Gmessage = "";
 var NbRes = "";
 var fois = 1;
 
-//déclaration d'une variable contenant les occurrences de zones
+//declaration d'une variable contenant les occurrences de zones
 //var zones = [];
 var zones = new Array();
 function onLoad()
@@ -27,8 +27,8 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	var tagPrecedent = "";
 	var tagCourant = "";
 
-	//algorithme général d'exécution des diverses fonctions ci-dessous
-	//on exécute telle ou telle fonction par rapport au code d'erreur retourné par la précédente
+	//algorithme general d'execution des diverses fonctions ci-dessous
+	//on execute telle ou telle fonction par rapport au code d'erreur retourne par la precedente
 
 	//il existe au moins une zone 60X, on teste la valeur du bouton radio
 	if (document.getElementById("notice").selected == true)
@@ -50,7 +50,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 		    newCopyRecord();
 		//}
 
-		//on vérifie d'abord la présence de zones 60X
+		//on verifie d'abord la presence de zones 60X
 		application.activeWindow.title.startOfBuffer(false);
 		if (application.activeWindow.title.findTag("60", 0, true, true, false) == "")
 		{
@@ -59,7 +59,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 			return;
 		}
 
-		//mémorisation du ppn pour retour ult?rieur
+		//memorisation du ppn pour retour ult?rieur
 		//var ppnInit = application.activeWindow.title.findTag("001", 0, false, false, false);
 
 		//on lance une première boucle pour r?cup?rer les zones 60X de la notice
@@ -89,12 +89,12 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	}
 	else
 	{
-		//on ne récupère que la zone courante
+		//on ne recupère que la zone courante
 		application.activeWindow.title.startOfField(true);
 		ZoneATraiter = application.activeWindow.title.currentField;
 		tagCourant = application.activeWindow.title.tag;
 
-		//mémorisation du ppn pour retour ultérieur
+		//memorisation du ppn pour retour ulterieur
 		//var ppnInit = application.activeWindow.title.findTag("001", 0, false, false, false);
 
 		//on retrouve l'occurrence
@@ -117,7 +117,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 		initTab(tagCourant, j);
 	}
 
-	//retour au début de la notice pour examen de chaque zone
+	//retour au debut de la notice pour examen de chaque zone
 	application.activeWindow.title.startOfBuffer(false);
 
 	for (var tag in zones)
@@ -171,7 +171,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 }
 
 
-//fonction permettant de stocker les informations des notices d'autorités liées à une zone
+//fonction permettant de stocker les informations des notices d'autorites liees a une zone
 function initTab(tag, occurrence)
 {
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
@@ -179,17 +179,17 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 
 	var zoneCourante = application.activeWindow.title.findTag(tag, occurrence, true, true, false);
 
-	//on parcours l'ensemble des autorités liées de la zone courante
+	//on parcours l'ensemble des autorites liees de la zone courante
 	var ppnCourant;
 	var position = 0;
 	var cpt = 0;
 	var indexPpn = zoneCourante.indexOf("$3", position);
 	while (indexPpn != -1)
 	{
-		//récupération du ppn
+		//recuperation du ppn
 		indexPpn += 2;
 		ppnCourant = zoneCourante.substr(indexPpn, 9);
-		//récupération d'informations pour le ppn courant
+		//recuperation d'informations pour le ppn courant
 
 		application.activeWindow.simulateIBWKey("FE");
 
@@ -200,12 +200,12 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 		newCopyRecord();
 		zones[tag][occurrence][cpt] = new Array();
 		zones[tag][occurrence][cpt]["ppn"] = ppnCourant;
-		//récupération zone 008
+		//recuperation zone 008
 		application.activeWindow.title.startOfBuffer(false);
 		var zone008 = application.activeWindow.title.findTag("008", 0, false, true, false);
 		zones[tag][occurrence][cpt]["008"] = zone008.substr(((zone008.indexOf("$a")) + 2), 2);
 
-		//récupération zone 106
+		//recuperation zone 106
 		application.activeWindow.title.startOfBuffer(false);
 		var zone106 = application.activeWindow.title.findTag("106", 0, false, true, false);
 		zones[tag][occurrence][cpt]["106"] = new Array();
@@ -236,11 +236,11 @@ newCopyRecord();
 
 }
 
-//pour toutes les fonctions suivantes, les messages d'erreur sont générés directement dans le code de la fonction
+//pour toutes les fonctions suivantes, les messages d'erreur sont generes directement dans le code de la fonction
 
 //fonction effectuant le traitement n°1 :
-//v?rifier que la zones 60X contenant $2rameau ou $2fmesh est intégralement liée ? des notices d'autorité
-//la fonction retourne true si aucun problème n'est détecté, false sinon pour indiquer qu'on n'effectue pas les autres traitements
+//v?rifier que la zones 60X contenant $2rameau ou $2fmesh est integralement liee ? des notices d'autorite
+//la fonction retourne true si aucun problème n'est detecte, false sinon pour indiquer qu'on n'effectue pas les autres traitements
 function lienNoticesAutorite(zone, tag, occurrence)
 {
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
@@ -252,10 +252,10 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	if ((zone.indexOf("$2rameau") == -1) &&
 		(zone.indexOf("$2fmesh") == -1))
 	{
-		//04-04-11 ORX : Suppression du message en sortie pour les zones non vérifiées car trop gourmand en affichage
+		//04-04-11 ORX : Suppression du message en sortie pour les zones non verifiees car trop gourmand en affichage
 		//la zone ne contient ni $rameau ni $fmesh, on alimente le tableau d'erreur
 		//Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " n'a pas ?t? v?rifi?e\n";
-		//on retourne true pour continuer l'exécution des traitements 2, 3, 4
+		//on retourne true pour continuer l'execution des traitements 2, 3, 4
 		return true;
 	}
 
@@ -263,7 +263,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	(zone.indexOf("$2fmesh") != -1))
 	{
 		//la zone courante contient $2rameau ou $2fmesh
-		//on vérifie les liens vers les notices d'autorité
+		//on verifie les liens vers les notices d'autorite
 		if (application.activeWindow.title.tag == "605")
 		{
 		    //application.messageBox("Controle de syntaxe zones 60X", "tag 605:" + zone + " " + tag , "");
@@ -309,7 +309,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 }
 
 //fonction effectuant le traitement n°2 :
-//vérifier que les autorités utilisées dans une zone 60X donnée ne sont pas incompatibles avec le $2 de la zone
+//verifier que les autorites utilisees dans une zone 60X donnee ne sont pas incompatibles avec le $2 de la zone
 function autoriteIncompatible(zone, tag, occurrence)
 {
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
@@ -321,7 +321,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	//on teste la valeur du $2 : cas $2fmesh
 	if (zone.indexOf("$2fmesh") != -1)
 	{
-		//on vérifie que le type des notices d'autorité liées est fmesh (008 $aTl)
+		//on verifie que le type des notices d'autorite liees est fmesh (008 $aTl)
 		for (cpt in zones[tag][occurrence])
 		{
 			if (zones[tag][occurrence][cpt]["008"] != "Tl") {
@@ -334,7 +334,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	//on teste la valeur du $2 : cas $2rameau
 	if (zone.indexOf("$2rameau") != -1)
 	{
-		//on vérifie que le type des notices d'autorité liées est != fmesh (008 $aTl)
+		//on verifie que le type des notices d'autorite liees est != fmesh (008 $aTl)
 		for (cpt in zones[tag][occurrence])
 		{
 			if ((zones[tag][occurrence][cpt]["008"] == "Tl") || (zones[tag][occurrence][cpt]["008"] == "Tw"))
@@ -348,7 +348,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 }
 
 //fonction effectuant le traitement n°3 :
-//vérifier que l'étiquette de la zone est coh?rente avec les autorités liées présentes dans la zone
+//verifier que l'etiquette de la zone est coh?rente avec les autorites liees presentes dans la zone
 function etiquetteCoherente(zone, tag, occurrence)
 {
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
@@ -369,19 +369,19 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	//on teste la valeur du $2 : cas $2fmesh
 	if (zone.indexOf("$2fmesh") != -1)
 	{
-		//si le tag de la zone est différent de 606 => erreur
+		//si le tag de la zone est different de 606 => erreur
 		if (tag != "606")
 		{
 			Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ?tiquette " + tag + " incompatible avec une indexation FmeSH\n";
 		}
-		//quel que soit le résultat de ce test, l'examen des zones contenant $2fmesh est terminé
+		//quel que soit le resultat de ce test, l'examen des zones contenant $2fmesh est termine
 		return false;
 	}
 
 	//on teste la valeur du $2 : cas $2rameau
 	if (zone.indexOf("$2rameau") != -1)
 	{
-		//le test suivant ne se fait que sur le premier ppn lié
+		//le test suivant ne se fait que sur le premier ppn lie
 		for (cpt in zones[tag][occurrence])
 		{
 			if (corres[tag] != zones[tag][occurrence][cpt]["008"])
@@ -395,8 +395,8 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	return true;
 }
 //fonction effectuant le traitement n°4 :
-//vérifier lorsque la zone 60X contient $2 rameau, que l'ordre et la présence des notices d'autorité
-//dans la zone sont compatibles avec des informations codées présentes dans chacune des notices d'autorité (zone 106 $a $b et $c de la notice d'autorité liée)
+//verifier lorsque la zone 60X contient $2 rameau, que l'ordre et la presence des notices d'autorite
+//dans la zone sont compatibles avec des informations codees presentes dans chacune des notices d'autorite (zone 106 $a $b et $c de la notice d'autorite liee)
 function ordreAutorites(zone, tag, occurrence)
 {
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
@@ -408,16 +408,16 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	//ce test ne concerne que les zones contenant $2rameau
 	if (zone.indexOf("$2rameau") != -1)
 	{
-		//premier examen de la tête de vedette : premier ppn lié
-		//récupération de la tête de vedette
+		//premier examen de la tête de vedette : premier ppn lie
+		//recuperation de la tête de vedette
 
-		//vérification que ce ppn peut être utilisé comme vedette matière
+		//verification que ce ppn peut être utilise comme vedette matière
 		if ((zones[tag][occurrence][0]["106"]["a"] == "#") || (zones[tag][occurrence][0]["106"]["a"] == "1"))
 		{
 			Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][0]["ppn"] + " emploi en vedette mati?re interdit\n";
 		}
 
-		//vérification que ce ppn peut être utilisé en tête de vedette
+		//verification que ce ppn peut être utilise en tête de vedette
 		if ((zones[tag][occurrence][0]["106"]["b"] == "#") || (zones[tag][occurrence][0]["106"]["b"] == "2"))
 		{
 			Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][0]["ppn"] + " emploi en t?te de vedette erron?\n";
@@ -426,19 +426,19 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 		//test sur les ppn suivants de la zone s'ils existent
 		for (var i = 1 ; i < zones[tag][occurrence].length ; i++)
 		{
-			//vérification que ce ppn peut être utilisé comme vedette matière
+			//verification que ce ppn peut être utilise comme vedette matière
 			if ((zones[tag][occurrence][i]["106"]["a"] == "#") || (zones[tag][occurrence][i]["106"]["a"] == "1"))
 			{
 				Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][i]["ppn"] + " emploi en vedette mati?re interdit\n";
 			}
 
-			//vérification que ce ppn peut être utilisé comme subdivision
+			//verification que ce ppn peut être utilise comme subdivision
 			if ((zones[tag][occurrence][i]["106"]["b"]	== "#") || (zones[tag][occurrence][i]["106"]["b"] == "1"))
 			{
 				Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][i]["ppn"] + " emploi en subdivision erron?\n";
 			}
 
-			//vérification que ce ppn peut être utilisé en subdivision géographique à cet endroit
+			//verification que ce ppn peut être utilise en subdivision geographique a cet endroit
 			if (i < (zones[tag][occurrence].length))
 			{
 				if ( (zones[tag][occurrence][i]["008"] == "Tg")
