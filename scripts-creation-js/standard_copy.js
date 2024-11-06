@@ -1,6 +1,6 @@
  /********************************************************************************************
   * This function copies a record found in Base d'Appui to the Sudoc by using the standard
-  * script function 'picaCopyRecord' 
+  * script function 'picaCopyRecord'
   * La fonction 'picaCopyRecord' a ?t? am?lior?e par PDZ (integration de ChoixCopie).
   * R?vis? et test? par MTE le 2012-06-25
   * Correction par Patrick Desmiez le 2012-09-10 : ajout des zones 010 et 320 vides.
@@ -30,34 +30,34 @@ var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                         .getService(Components.interfaces.nsIPromptService);
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
           .getService(Components.interfaces.IApplication);
-var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]  
-   .getService(Components.interfaces.nsIPromptService);  
-var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]  
-                        .getService(Components.interfaces.nsIPromptService);  
-  
-var check = {value: false};                  // default the checkbox to false  
-  
-var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +  
+var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+   .getService(Components.interfaces.nsIPromptService);
+var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+                        .getService(Components.interfaces.nsIPromptService);
+
+var check = {value: false};                  // default the checkbox to false
+
+var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +
             prompts.BUTTON_POS_1 * prompts.BUTTON_TITLE_CANCEL +
-			prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;  
-// This value of flags will create 3 buttons. The first will be "Save", the  
-// second will be the value of aButtonTitle1, and the third will be "Cancel"  
+			prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;
+// This value of flags will create 3 buttons. The first will be "Save", the
+// second will be the value of aButtonTitle1, and the third will be "Cancel"
 var Testaut = application.activeWindow.getVariable("P3VMC"); // recup?re l'info de la notice
-var button = prompts.confirmEx(null, "Choix Copie :" + Testaut, "Que voulez-vous faire ?",  
+var button = prompts.confirmEx(null, "Choix Copie :" + Testaut, "Que voulez-vous faire ?",
                                flags, "D?crire le m?me document (la m?me autorit?) que la notice ? copier", "", "D?crire un autre document (une autre autorit?) que la notice ? copier", null, check);
-  
-// The checkbox will be hidden, and button will contain the index of the button pressed,  
-// 0, 1, or 2.  
- 
-//var items = ["D?crire le m?me document (la m?me autorit?) que la notice ? copier ", "D?crire un autre document (une autre autorit?) que la notice ? copier"]; // liste d'?l?ments  
-  
-//var selected = {};  
-  
-//var result = prompts.select(null, "                             Choix Copie                                     ", "Que voulez vous faire?", items.length, items, selected);  
+
+// The checkbox will be hidden, and button will contain the index of the button pressed,
+// 0, 1, or 2.
+
+//var items = ["D?crire le m?me document (la m?me autorit?) que la notice ? copier ", "D?crire un autre document (une autre autorit?) que la notice ? copier"]; // liste d'?l?ments
+
+//var selected = {};
+
+//var result = prompts.select(null, "                             Choix Copie                                     ", "Que voulez vous faire?", items.length, items, selected);
 //if (result == false) selected.value = 3;
-// result vaut true si le bouton OK est actionn?, false si c'est le bouton Cancel.  
+// result vaut true si le bouton OK est actionn?, false si c'est le bouton Cancel.
 // selected contient l'index de l'?l?ment s?lectionn?. Acc?dez ? cet ?l?ment avec selected items[selected.value].
-		  
+
 //var result = prompts.prompt(null, "Choix de la copie", "0) sortir\r\n1) D?crire le meme document (la m?me autorit?) que la notice ? copier.\r\n 2) D?crire un autre document (une autre autorit?) que la notice a copier", input,"", check);
 NbRes = application.activeWindow.getVariable("P3GPP"); // recup?re le ppn
 var TestNotice = application.activeWindow.getVariable("P3CLIP"); // recup?re l'info de la notice
@@ -74,9 +74,9 @@ if (TestNotice == "") return;
 
 		//if (ZoneATraiter.substr(0,3) == "$aT") Autorite = true ;
 		//if (ZoneATraiter.substr(0,3) != "$aT") Autorite = false ;
-		//application.messageBox("autorité", Autorite, "");
+		//application.messageBox("autorite", Autorite, "");
 		//application.activeWindow.simulateIBWKey("FE", false);
-		//application.messageBox("autorité", Autorite, "");
+		//application.messageBox("autorite", Autorite, "");
 		// ajour SRY 20191014 (1 ligne)
 		suptag("Nom");
 		suptag("E");
@@ -85,7 +85,7 @@ if (TestNotice == "") return;
 		//ZoneATraiter = application.activeWindow.title.findTag("003", 0, false, true, true);
 		//if (ZoneATraiter.indexOf("sudoc",0) != 0) suptag("003");
 
-		//JVK Je regarde si la notice est une notice d'autorité, si c'est pas le cas je supprime la 003
+		//JVK Je regarde si la notice est une notice d'autorite, si c'est pas le cas je supprime la 003
 		ZoneATraiter = application.activeWindow.title.findTag("008", 0, false, true, true);
 		if (ZoneATraiter.substr(0,3) != "$aT") {
 			suptag("003");
@@ -107,7 +107,7 @@ if (TestNotice == "") return;
 	//if (ZoneATraiter.substr(0,3) != "$aT") Autorite = false ;
 		//application.messageBox("autorit?", Autorite, "");
 		application.activeWindow.title.startOfBuffer (false);
-		
+
 		if (Autorite) {
 		    suptag("Cr?");
 			// ajour SRY 20191014 (1 ligne)
@@ -148,31 +148,31 @@ if (TestNotice == "") return;
 			suptag("00A");
 			suptag("001");
 			suptag("000");
-			suptag("002"); 
-			suptag("003"); 
-			suptag("004"); 
-			suptag("005"); 
-			suptag("006"); 
-			suptag("010"); 
-			suptag("011"); 
-			suptag("012"); 
+			suptag("002");
+			suptag("003");
+			suptag("004");
+			suptag("005");
+			suptag("006");
+			suptag("010");
+			suptag("011");
+			suptag("012");
 			suptag("013");
 			suptag("014");
 			suptag("015");
 			suptag("017");
-			suptag("020"); 
-			suptag("021"); 
+			suptag("020");
+			suptag("021");
 			suptag("022");
-			suptag("023"); 
-			suptag("024"); 
+			suptag("023");
+			suptag("024");
 			suptag("029");
 			suptag("033");
 			suptag("034");
-			suptag("035"); 
-			suptag("040"); 
-			suptag("071"); 
-			suptag("072"); 
-			suptag("073"); 
+			suptag("035");
+			suptag("040");
+			suptag("071");
+			suptag("072");
+			suptag("073");
 			suptag("100");
 			suptag("211");
 			suptag("3");
@@ -186,8 +186,8 @@ if (TestNotice == "") return;
 			application.activeWindow.title.insertText("100 0#$a\n");
 			application.activeWindow.title.endOfBuffer(false);
 			application.activeWindow.title.insertText("320 ##$a\n");
-			
-			
+
+
 			suptag("205");
 		//	application.messageBox("autorit?", Autorite, "");
 			application.activeWindow.title.startOfBuffer (false);
@@ -198,7 +198,7 @@ if (TestNotice == "") return;
 				out = tabres[0];
 				for (i=1; i<=tabres.length-1; i++) {
 					//application.messageBox(res + " : tabres", "i=" + i + " tabres[i]= " + tabres[i] + "nb element=" + tabres.length, "");
-					
+
 					if (tabres[i].substr(0,1) != "d") out = out + "$" + tabres[i];
 				}
 				suptag("210");
@@ -208,11 +208,11 @@ if (TestNotice == "") return;
 				application.activeWindow.title.insertText(out);
 			//	application.messageBox("autorit?", Autorite, "");
 			}
-			
-			
-			
-			
-		
+
+
+
+
+
 		}
 	}
 
@@ -235,8 +235,8 @@ function remplacerValeurZone700(tag) {
 	var i=0;
 	while (res != "") {
 		res = application.activeWindow.title.findTag(tag, i, true, true, false);
-		//on récupère le contenu de la zone sans le libellé de la $4 :
-		//l'index de fin est situé à la position de la $4 + 2 caractères de la sous zone + 3 caractères du code de fonction
+		//on recupère le contenu de la zone sans le libelle de la $4 :
+		//l'index de fin est situe à la position de la $4 + 2 caractères de la sous zone + 3 caractères du code de fonction
 		var sousZones = res.split("$4");
 		var zone = res.substring(0, res.indexOf("$4"));
 		//pour chaque $4
@@ -251,10 +251,10 @@ function remplacerValeurZone700(tag) {
 		i++;
 	}
 }
-	
 
 
-// 2017-03-28 : SRY/OCLC : Modification pour correction 
+
+// 2017-03-28 : SRY/OCLC : Modification pour correction
 // 					probl?me d?rivation de notices.
 
 function PatrickCopyNotice() {
@@ -272,10 +272,10 @@ function PatrickCopyNotice() {
 	var matCode = application.activeWindow.materialCode;
 	var forceDocType = matCode.substr(0, 2);
 
-	
+
 	application.activeWindow.command("\\sys 1; \\bes 1", false);
-	
-	
+
+
 	application.activeWindow.materialCode = forceDocType;
 	// cr?e une notice vide (cre)
 	//if (Autorite == true) application.activeWindow.command("cre e", false);
@@ -305,9 +305,9 @@ function PatrickCopyNotice() {
 		application.activeWindow.codedData = false;
 	//MTE	application.activeWindow.title.endOfBuffer(false);
 	}
-	
+
 }
- 
+
  /********************************************************************************************
   * This function switches back to Sudoc. If only one window is open, it opens another window,
   * switches system and closes the window again (thus leaving the window in its original state

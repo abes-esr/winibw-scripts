@@ -7,7 +7,7 @@ var ancienPpn = "";
 
 /**SCRIPT
 point de depart du script
-Script de transformation d'une monographie imprimée en monographie electronique
+Script de transformation d'une monographie imprimee en monographie electronique
 */
 function CAT_TransfoImpElec() {
 	var input = {value: "1"};
@@ -15,9 +15,9 @@ function CAT_TransfoImpElec() {
 	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                         .getService(Components.interfaces.nsIPromptService);
 	var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +  prompts.BUTTON_POS_1 * prompts.BUTTON_TITLE_CANCEL + prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;
-	// La variable flags va créer. La première sera "Save", la seconde sera aButtonTitle1, et la troisième sera "Cancel"
+	// La variable flags va creer. La première sera "Save", la seconde sera aButtonTitle1, et la troisième sera "Cancel"
 
-	var button = prompts.confirmEx(null, "Transformer une notice d'imprimé en notice de document électronique", "Que voulez-vous faire ?",
+	var button = prompts.confirmEx(null, "Transformer une notice d'imprime en notice de document electronique", "Que voulez-vous faire ?",
                                flags, "Reproduction patrimoniale", "", "Transformer en ebook", null, check);
 	if (button == 0) transfoMonoImpMonoElecPatrim();
 	if (button == 2) transfoMonoImpMonoElecEBook();
@@ -100,7 +100,7 @@ function modifierNoticeElecEBook(ancienPpn){
 }
 
 /**
-Fonction de transformation de monographie imprimée en monographie électronique (patrimoniale)
+Fonction de transformation de monographie imprimee en monographie electronique (patrimoniale)
 */
 function transfoMonoImpMonoElecPatrim(){
     var bCodedData = application.activeWindow.codedData;
@@ -114,7 +114,7 @@ function transfoMonoImpMonoElecPatrim(){
 }
 
 /**
-Fonction de transformation de monographie imprimée en monographie électronique (ebook)
+Fonction de transformation de monographie imprimee en monographie electronique (ebook)
 */
 function transfoMonoImpMonoElecEBook(){
 	  var bCodedData = application.activeWindow.codedData;
@@ -148,7 +148,7 @@ function xpicaCopyRecord(){
 
 	application.activeWindow.materialCode = forceDocType;
 
-	// crée une notice vide (cre)
+	// cree une notice vide (cre)
 	if (Autorite) application.activeWindow.command("\\inv 2", false);
 	if (Autorite == false) application.activeWindow.command("\\inv 1", false);
 	if ((application.activeWindow.status == "OK") && (application.activeWindow.title != null)) {

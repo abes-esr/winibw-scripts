@@ -1,9 +1,9 @@
 //Ce script transforme une notice de these electronique en notice de these imprimee, soit //reproduction, soit commerciale.
 //Mis en prod. le 2012-09-10, auteur PDZ.
-//2014-10-09 : mte : on enlève $b et on ajoute 181/182 pour texte imprimé
+//2014-10-09 : mte : on enlève $b et on ajoute 181/182 pour texte imprime
 // 2014-12-01 : mte : recupererPpn de ce script sert de modèle car on utilise la variable p3, pas la zone
 // 2016-01-22 : SRY : CAT_TransfoTheseElecTheseImp: modification mentions zone 210 et prise en compte des notices ayant 2 zones 328
-// 2016-11-14 : SRY : CAT_TransfoTheseElecTheseImp: désactivation automatique du mode novice et les données codées
+// 2016-11-14 : SRY : CAT_TransfoTheseElecTheseImp: desactivation automatique du mode novice et les donnees codees
 // 2017-03-16 : SRY : modification RDA FR 2017
 // 2017-06-01 : SRY : correction suite mise en place RDA FR 2017
 // 2018-01-04 : SRY : CAT_TransfoTheseElecTheseImp : suppression zone 579 et 7X2, remplacement zone 456 par 455
@@ -32,7 +32,7 @@ var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +
 // second will be the value of aButtonTitle1, and the third will be "Cancel"
 
 var button = prompts.confirmEx(null, "Choix Copie", "Que voulez-vous faire ?",
-                               flags, "transformation de notice de thèse électronique en thèse imprimée (reproduction)", "", "transformation de notice de thèse électronique en thèse imprimée (ed. commerciale)", null, check);
+                               flags, "transformation de notice de thèse electronique en thèse imprimee (reproduction)", "", "transformation de notice de thèse electronique en thèse imprimee (ed. commerciale)", null, check);
 
  application.activeWindow.codedData = false;
  application.activeWindow.noviceMode = false;
@@ -172,9 +172,9 @@ for (i=0;i<tabres.length;i++)
 }
 
 } // end go
-prompts.alert(null,"ReproTheseOaAa : " , "une fois la notice validée, modifier le ppn " + Res + " et ajouter la zone 456 ##$0 + le nouveau ppn généré");
+prompts.alert(null,"ReproTheseOaAa : " , "une fois la notice validee, modifier le ppn " + Res + " et ajouter la zone 456 ##$0 + le nouveau ppn genere");
 application.activeWindow.title.endOfBuffer(false);
-application.activeWindow.title.insertText("une fois la notice validée, modifier le ppn " + Res + " et ajouter la zone 456 ##$0 + le nouveau ppn généré\n");
+application.activeWindow.title.insertText("une fois la notice validee, modifier le ppn " + Res + " et ajouter la zone 456 ##$0 + le nouveau ppn genere\n");
 } // fin de fonction
 // 20170601 : correction suite mise en place RDA FR 2017
 function modifier181(tag)
@@ -210,7 +210,7 @@ function xpicaCopyRecord() {
 
 	application.activeWindow.materialCode = forceDocType;
 
-	// crée une notice vide (cre)
+	// cree une notice vide (cre)
 	if (Autorite) application.activeWindow.command("\\inv 2", false);
 	if (Autorite == false) application.activeWindow.command("\\inv 1", false);
 	if ((application.activeWindow.status == "OK") && (application.activeWindow.title != null)) {
@@ -223,7 +223,7 @@ function xpicaCopyRecord() {
 }
 function suptag(tag)
 {
-//supression de la ligne tag tronqué ou non
+//supression de la ligne tag tronque ou non
 var res="x";
 while (res != "") {
 	application.activeWindow.title.startOfBuffer (false);
@@ -421,9 +421,9 @@ for (i=0;i<tabres.length;i++)
     application.activeWindow.title.insertText (tabres[i]+ "\n");
 }
 
-prompts.alert(null,"CommerceTheseOaAa : " , "une fois la notice validée, modifier le ppn " + Res + " et ajouter la zone 452 ##$0 + le nouveau ppn généré");
+prompts.alert(null,"CommerceTheseOaAa : " , "une fois la notice validee, modifier le ppn " + Res + " et ajouter la zone 452 ##$0 + le nouveau ppn genere");
 application.activeWindow.title.endOfBuffer(false);
-application.activeWindow.title.insertText("une fois la notice validée, modifier le ppn " + Res + " et ajouter la zone 452 ##$0 + le nouveau ppn généré\n");
+application.activeWindow.title.insertText("une fois la notice validee, modifier le ppn " + Res + " et ajouter la zone 452 ##$0 + le nouveau ppn genere\n");
 
 }
 
@@ -464,8 +464,8 @@ function remplacerValeurZone700(tag) {
 	var i=0;
 	while (res != "") {
 		res = application.activeWindow.title.findTag(tag, i, true, true, false);
-		//on récupére le contenu de la zone sans le libellé de la $4 :
-		//l'index de fin est situé à la position de la $4 + 2 caractères de la sous zone + 3 caractères du code de fonction
+		//on recupere le contenu de la zone sans le libelle de la $4 :
+		//l'index de fin est situe à la position de la $4 + 2 caractères de la sous zone + 3 caractères du code de fonction
 		var sousZones = res.split("$4");
 		var zone = res.substring(0, res.indexOf("$4"));
 		//pour chaque $4
