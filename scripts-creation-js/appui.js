@@ -1,28 +1,10 @@
-/************************************************************************************************
- * 
- *	This file contains the standard WinIBW script functions for Base d'appui
- *
- *************************************************************************************************
- *************************************************************************************************
- *	$Header$
- *	
- *	Script mis ? jour en juin 2012 pour y int?grer le contenu de "choix-copie"
- *  un ?cran avant la copie permet de choisir de garder ou non les identifiants
- * 20120723 MTE : ajoute definition variable testaut
- * 20120802 MTE : corrige pb confusion autorite/biblio
- * 20140904 MTE : v?rification de la majuscule de la variable "Autorite".
- * 2014-10-09 : mte : v?rif pour mise en prod 181/182
- * 2020-01-01 : sry : ?volution technique
- *	
- **************************************************************************************************	
- */
- const msgAppuiRequired = "Vous devez ?tre connect? ? la Base d'Appui pour pouvoir utiliser cette fonction !";
- const msgSURequired    = "Vous devez ?tre connect? au Sudoc pour pouvoir utiliser cette fonction !";;
- const msgRecordCopied  = "Notice copi?e de la Base d'Appui";
- const msgEditRequired  = "Vous devez ?tre en modification de notice pour pouvoir utiliser cette fonction !";
- const msgNoHits		= "Aucune r?ponse trouv?e dans la Base d'Appui.";
- 
- 
+ const msgAppuiRequired = "Vous devez \u00eatre connect\u00e9 \u00e0 la Base d'Appui pour pouvoir utiliser cette fonction !";
+ const msgSURequired    = "Vous devez \u00eatre connect\u00e9 au Sudoc pour pouvoir utiliser cette fonction !";;
+ const msgRecordCopied  = "Notice copi\u00e9e de la Base d'Appui";
+ const msgEditRequired  = "Vous devez \u00eatre en modification de notice pour pouvoir utiliser cette fonction !";
+ const msgNoHits		= "Aucune r\u00e9ponse trouv\u00e9e dans la Base d'Appui.";
+
+
  function searchLink(doExact) {
 	// check if we are in SUDoc
 	var sys = application.activeWindow.getVariable("system");
@@ -32,20 +14,20 @@
 		application.messageBox("WinIBW 3", msgSURequired, "error-icon");
 		return;
 	}
-	
+
 	// check that we are editing a title
 	if (!application.activeWindow.title) {
 		application.messageBox("WinIBW 3", msgEditRequired, "error-icon");
 		return;
 	}
-	
+
 	// switch to base d'appui
 	application.activeWindow.command("\\bes 1.3", true);
 	if (application.activeWindow.status != "OK") {
 		return;
 	}
 	application.activeWindow.closeWindow();
-	
+
 	// call the appropriate standard script function
 	if (doExact) {
 		picaSearchLinkExact();
@@ -58,13 +40,13 @@
 		(application.activeWindow.messages.count > 0)) {
 
 		var theMessage = "";
-		
+
 		if (application.activeWindow.messages.count > 0) {
 			theMessage = application.activeWindow.messages.item(0).text;
 		} else if (application.activeWindow.status == "NOHITS") {
 			theMessage = msgNoHits;
 		}
-		
+
 		// switch back to SuDoc
 		application.activeWindow.command("\\bes 1.1", true);
 		if (application.activeWindow.status == "OK") {
@@ -74,25 +56,15 @@
 		application.messageBox("WinIBW 3", theMessage, "message-icon");
 	}
  }
- 
+
  function searchLinkInAppui() {
 	searchLink(false);
  }
- 
+
  function searchLinkExactInAppui() {
 	searchLink(true);
  }
- 
- 
- 
- /********************************************************************************************
-  * This function copies a record found in Base d'Appui to the Sudoc by using the standard
-  * script function 'picaCopyRecord' Plus, choix-copie de Patrick
-  * Corrig? le 2012-08-02 par MTE : ne creait pas les notices autorite, corrige suivant standard_copy qui fonctionne bien.
-  ********************************************************************************************/
- /*function copyRecordToSudoc() */
- //choix 1) D?crire le meme document (la meme autorit?) que la notice a copier
-//choix 2) D?crire un autre document (une autre autorit?) que la notice a copier
+
 var Autorite=false;
 var NbRes="";
 var ZoneATraiter="";
@@ -106,39 +78,26 @@ var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                         .getService(Components.interfaces.nsIPromptService);
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
           .getService(Components.interfaces.IApplication);
-var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]  
-   .getService(Components.interfaces.nsIPromptService);  
-var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]  
-                        .getService(Components.interfaces.nsIPromptService);  
-  
-var check = {value: false};                  // default the checkbox to false  
-  
-var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +  
+var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+   .getService(Components.interfaces.nsIPromptService);
+var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+                        .getService(Components.interfaces.nsIPromptService);
+
+var check = {value: false};                  // default the checkbox to false
+
+var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +
             prompts.BUTTON_POS_1 * prompts.BUTTON_TITLE_CANCEL +
-			prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;  
-// This value of flags will create 3 buttons. The first will be "Save", the  
-// second will be the value of aButtonTitle1, and the third will be "Cancel"  
-  
-var button = prompts.confirmEx(null, "Choix Copie", "Que voulez-vous faire ?",  
-                               flags, "D?crire le m?me document (la m?me autorit?) que la notice ? copier", "", "D?crire un autre document (une autre autorit?) que la notice ? copier", null, check);  
-  
-// The checkbox will be hidden, and button will contain the index of the button pressed,  
-// 0, 1, or 2.  
- 
-//var items = ["D?crire le m?me document (la m?me autorit?) que la notice ? copier ", "D?crire un autre document (une autre autorit?) que la notice ? copier"]; // liste d'?l?ments  
-  
-//var selected = {};  
-  
-//var result = prompts.select(null, "                             Choix Copie                                     ", "Que voulez vous faire?", items.length, items, selected);  
-//if (result == false) selected.value = 3;
-// result vaut true si le bouton OK est actionn?, false si c'est le bouton Cancel.  
-// selected contient l'index de l'?l?ment s?lectionn?. Acc?dez ? cet ?l?ment avec selected items[selected.value].  
-		  
-//var result = prompts.prompt(null, "Choix de la copie", "0) sortir\r\n1) D?crire le meme document (la m?me autorit?) que la notice ? copier.\r\n 2) D?crire un autre document (une autre autorit?) que la notice a copier", input,"", check);
-NbRes = application.activeWindow.getVariable("P3GPP"); // recup?re le ppn
-var TestNotice = application.activeWindow.getVariable("P3CLIP"); // recup?re l'info de la notice
-var Testaut = application.activeWindow.getVariable("P3VMC"); // recup?re l'info de la notice
-if (Testaut.substr(0,1) == "T") {Autorite = true ;} else {Autorite = false ;} // ajout? le 09/07/12 info comme dans standard_copy pour diff?rncier bib d'aut
+			prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;
+// This value of flags will create 3 buttons. The first will be "Save", the
+// second will be the value of aButtonTitle1, and the third will be "Cancel"
+
+var button = prompts.confirmEx(null, "Choix Copie", "Que voulez-vous faire ?",
+                               flags, "D\u00e9crire le m\u00eame document (la m\u00eame autorit\u00e9) que la notice \u00e0 copier", "", "D\u00e9crire un autre document (une autre autorit\u00e9) que la notice ? copier", null, check);
+
+NbRes = application.activeWindow.getVariable("P3GPP"); // recupere le ppn
+var TestNotice = application.activeWindow.getVariable("P3CLIP"); // recupere l'info de la notice
+var Testaut = application.activeWindow.getVariable("P3VMC"); // recupere l'info de la notice
+if (Testaut.substr(0,1) == "T") {Autorite = true ;} else {Autorite = false ;} // ajoute le 09/07/12 info comme dans standard_copy pour differncier bib d'aut
 if (TestNotice == "") return;
 
 	if (button == "0") {
@@ -154,7 +113,7 @@ if (TestNotice == "") return;
 		AbesCopyNotice();
 		application.activeWindow.title.startOfBuffer (false);
 		//ZoneATraiter = application.activeWindow.title.findTag("008", 0, false, true, true);//
-//		if (ZoneATraiter.substr(0,3) == "$aT") autorite = true; // notice autorit? ou pas
+//		if (ZoneATraiter.substr(0,3) == "$aT") autorite = true; // notice autorite ou pas
 
 		if (Autorite) {
 		    suptag("Cr?");
@@ -191,31 +150,31 @@ if (TestNotice == "") return;
 			suptag("00A");
 			suptag("001");
 			suptag("000");
-			suptag("002"); 
-			suptag("003"); 
-			suptag("004"); 
-			suptag("005"); 
-			suptag("006"); 
-			suptag("010"); 
-			suptag("011"); 
-			suptag("012"); 
+			suptag("002");
+			suptag("003");
+			suptag("004");
+			suptag("005");
+			suptag("006");
+			suptag("010");
+			suptag("011");
+			suptag("012");
 			suptag("013");
 			suptag("014");
 			suptag("015");
 			suptag("017");
-			suptag("020"); 
-			suptag("021"); 
+			suptag("020");
+			suptag("021");
 			suptag("022");
-			suptag("023"); 
-			suptag("024"); 
+			suptag("023");
+			suptag("024");
 			suptag("029");
 			suptag("033");
 			suptag("034");
-			suptag("035"); 
-			suptag("040"); 
-			suptag("071"); 
-			suptag("072"); 
-			suptag("073"); 
+			suptag("035");
+			suptag("040");
+			suptag("071");
+			suptag("072");
+			suptag("073");
 			suptag("100");
 			suptag("211");
 			suptag("3");
@@ -233,7 +192,7 @@ if (TestNotice == "") return;
 				out = tabres[0];
 				for (i=1; i<=tabres.length-1; i++) {
 					//application.messageBox(res + " : tabres", "i=" + i + " tabres[i]= " + tabres[i] + "nb element=" + tabres.length, "");
-					
+
 					if (tabres[i].substr(0,1) != "d") out = out + "$" + tabres[i];
 				}
 				suptag("210");
@@ -247,7 +206,7 @@ if (TestNotice == "") return;
 
 function suptag(tag)
 {
-//supression de la ligne tag tronqu? ou non
+//supression de la ligne tag tronque ou non
 var res="x";
 while (res != "") {
 	application.activeWindow.title.startOfBuffer (false);
@@ -258,27 +217,27 @@ while (res != "") {
 
 function AbesCopyNotice() {
 	var bCodedData = application.activeWindow.codedData;
-	
+
 	application.activeWindow.codedData = false;
 	application.activeWindow.noviceMode = false;
-	
+
 	application.activeWindow.command("\\too unm", false);
 	application.activeWindow.copyTitle();
 
 	var matCode = application.activeWindow.materialCode;
 	var forceDocType = matCode.substr(0, 2);
 
-	
+
 	application.activeWindow.command("\\sys 1; \\bes 1", false);
-	
-	
+
+
 	application.activeWindow.materialCode = forceDocType;
-	
-	// cr?e une notice vide (cre)
+
+	// cree une notice vide (cre)
 	if (Autorite == true) application.activeWindow.command("cre e", false);
-//	application.messageBox("autorit?", Autorite, "");
+//	application.messageBox("autorite", Autorite, "");
 	if (Autorite == false) application.activeWindow.command("cre", false);
-//	application.messageBox("autorit?", Autorite, "")
+//	application.messageBox("autorite", Autorite, "")
 	if ((application.activeWindow.status == "OK") && (application.activeWindow.title != null)) {
 		application.activeWindow.pasteTitle();
 		if (bCodedData) {
@@ -287,7 +246,7 @@ function AbesCopyNotice() {
 		application.activeWindow.title.endOfBuffer(false);
 	}
 }
- 
+
  /********************************************************************************************
   * This function switches back to Sudoc. If only one window is open, it opens another window,
   * switches system and closes the window again (thus leaving the window in its original state

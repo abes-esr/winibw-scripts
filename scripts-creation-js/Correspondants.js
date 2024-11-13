@@ -4,9 +4,9 @@
 // renvoie un objet 'fichier en sortie'
 // modif mte le 2012/06/08 le message et espacement entre blocs
 // ligne 116, modif IAN pour trouver et exporter ppn zone 003 et pas 001, remis sur serveur le 20120723
-// 2014-10-09 verifie MTE pour mettre ? jour la date du fichier + coded data off
+// 2014-10-09 verifie MTE pour mettre a jour la date du fichier + coded data off
 // 2015-03-19 verifie IAN pour mettre enlever l'espace en trop entre certaines adresses mails (ligne 194 espace en trop entre les "" en bout de ligne
-// 2015-11-16 SRY : ajout dialogbox pour choix s?parateur entre le adresses mails et r?solution du probl?me d'adresse undefined
+// 2015-11-16 SRY : ajout dialogbox pour choix separateur entre le adresses mails et resolution du probleme d'adresse undefined
 
 const fabriqueFichier =
 {
@@ -62,7 +62,7 @@ var sepreturn = true;
 
 var ppnv = "";
 	var resultat = fileChooser.show();
-	// 0 correspond ? cliquer sur 'ok'
+	// 0 correspond a cliquer sur 'ok'
 	if (resultat == 2) resultat = 0;
 	if (resultat == 0)
 	{
@@ -91,11 +91,11 @@ var ppnv = "";
 // choix du separateur entre les adresses email
  do {
 	var sepinput = {value: ";"};
-	sepreturn = prompts.prompt(null, "Correspondants", "Choix du s?parateur entre les adresses mails : ';' ou ','", sepinput,"", check);
+	sepreturn = prompts.prompt(null, "Correspondants", "Choix du s\u00e9parateur entre les adresses mails : ';' ou ','", sepinput,"", check);
 }
 while (sepreturn == true && sepinput.value != ";" && sepinput.value != ",")
 if (sepreturn == false) {
-	prompts.alert(null,"fichier sortie : " , "aucune action n'est faite, s?parateur entre les adresses mails non saisi");
+	prompts.alert(null,"fichier sortie : " , "aucune action n'est faite, s\u00e9parateur entre les adresses mails non saisi");
 	return;
 }
 
@@ -175,7 +175,7 @@ for (courrant=deb; courrant<=NbRes; courrant++) {
 		//msg = application.activeWindow.simulateIBWKey("PF5");
 		//prompts.alert(null,"ERREUR : " , msg);
 		application.activeWindow.title.startOfBuffer (false);
-		// SRY le 16/11/2015 passage de 400 ? 500 pour prendre en compte les ILN > 400 (probl?me d'adresse undefined)
+		// SRY le 16/11/2015 passage de 400 a 500 pour prendre en compte les ILN > 400 (probleme d'adresse undefined)
 		for (i=0; i<500;i++) {
 		   tabadresse[i] = "";
 		   }
@@ -195,7 +195,7 @@ for (courrant=deb; courrant<=NbRes; courrant++) {
 		var mois = 0;
 		mois = jour.getMonth();
 		mois = mois + 1;
-		chaine = "?tablie le " + jour.getDate() + "/" + mois + "/" + jour.getFullYear() + "\r\n\r\n";
+		chaine = "\u00e9tablie le " + jour.getDate() + "/" + mois + "/" + jour.getFullYear() + "\r\n\r\n";
 		fichierSortie.write(chaine, chaine.length);
 		tabtitre = titre.split("$");
 		tabtitre[1] = tabtitre[1].substr(1,tabtitre[1].length);
