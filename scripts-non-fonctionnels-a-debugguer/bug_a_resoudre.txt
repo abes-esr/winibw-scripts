@@ -1,0 +1,1 @@
+se rendre dans le fichier conversionAlaIsoArabe.js pour avoir le TODO expliquant le bug à résoudre
