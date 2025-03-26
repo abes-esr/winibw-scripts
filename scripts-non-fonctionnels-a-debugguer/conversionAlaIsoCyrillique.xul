@@ -6,18 +6,18 @@
 <!-- Define the dialog: -->
 <dialog
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	title="Conversion de ALA vers ISO pour l'arabe"
+	title="Conversion de ALA vers ISO Cyrillique"
 	onload="onLoad();"
 	buttons="cancel"
 	ondialogcancel="return onCancel();"
   style="min-width: 33em;background-color:#FFF5E1"
-  id="DialogConversionAlaVersISo"
+  id="DialogConversionAlaVersISoCyrillique"
 >
-	<script type="application/x-javascript" src="chrome://ibw/content/xul/conversionAlaIsoArabe.js" />
+	<script type="application/x-javascript" src="chrome://ibw/content/xul/conversionAlaIsoCyrillique.js" />
 
 	<vbox>
 	    <groupbox>
-			<caption label="Conversion ALA vers ISO9 pour l'arabe" />
+			<caption label="Conversion ALA vers ISO9 Cyrillique" />
 		    <hbox align="center">
 			
 			    <radiogroup id="radGrpChoisirZones" orient="vertical">

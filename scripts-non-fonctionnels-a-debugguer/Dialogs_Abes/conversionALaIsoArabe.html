@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion de ALA vers ISO pour l'arabe</title>
+	<meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="./W4DialogStyle.css">
+    <script src="./W4DialogFunctions.js"></script>
+	<script>
+		function onLoad (){
+			return true;
+		}
+		function launchConversion(){
+			runScript("__conversionArabe()");
+			closeDialog();
+		}
+	</script>
+	<style>
+        body {
+            min-width: 33em;
+            background-color: #FFF5E1;
+            font-family: Arial, sans-serif;
+        }
+        .groupbox {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+        }
+        .caption {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .vbox, .hbox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .hbox {
+            flex-direction: row;
+        }
+        .radiogroup {
+            margin-bottom: 10px;
+        }
+        .textbox {
+            margin: 5px;
+            padding: 5px;
+            width: 200px;
+        }
+        .button {
+            margin: 5px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body onload="onLoad();">
+    <div class="groupbox">
+        <div class="caption">Conversion ALA vers ISO9 pour l'arabe</div>
+            <button class="button" id="btnLancer" onclick="launchConversion();">Convertir</button>
+    </div>
+</body>
+</html>

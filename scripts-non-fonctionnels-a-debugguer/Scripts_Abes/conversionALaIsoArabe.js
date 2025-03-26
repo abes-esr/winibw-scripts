@@ -1,14 +1,12 @@
-/**
-	Convertir un caractere unicode ALA en un caractere unicode ISO 9.<b>
-	Les formes composees sont preferees pour les caracteres ISO.
-
-
-	Version pour l'Arabe
-*/
-// mis e jour le 2018-05-31 par SRY : ajout zone 219
+function conversionALaIsoArabe()
+{
+	//showDialog(dialogName, dialogStartPointX, dialogStartPointY, dialogWidth, dialogHeight)
+    showDialog('BinDir\\Dialogs_Abes\\conversionALaIsoArabe.html', 150, 20, 750, 160);
+}
 
 function convertirCaractereAlaVersIso (caract)
 {
+	alert('convertirCaractereAlaVersIso');
 	switch (caract)
 	{
 		case "\u0044\u0068" : return "\u1E0E";
@@ -248,6 +246,7 @@ function convertirCaractereAlaVersIso (caract)
 */
 function renvoieZonesATraiterParDefaut ()
 {
+	alert('renvoieZonesATraiterParDefaut');
 	var zones = new Array;
 	var cz = "200,205,206,207,208,210,214,219,225,327,410,411,412,413";
 	cz = cz + ",421,422,423,430,434,435,436,437,440,441,444,445,446";
@@ -259,34 +258,13 @@ function renvoieZonesATraiterParDefaut ()
 	return zones;
 
 }
-
-/**
-	Renvoie les zones e traiter choisies par l'utilisateur
-*/
-function renvoieZonesATraiterChoisies (chaineZones)
-{
-	var zones = new Array;
-	zones = chaineZones.split(",");
-	return zones;
-}
-
 /**
 	Renvoie les zones e traiter
 */
 function renvoieZonesATraiter ()
 {
-	if (document.getElementById("radToutesZones").getAttribute("selected") == "true")
-	{
+	alert('renvoieZonesATraiter');
 		return renvoieZonesATraiterParDefaut ();
-	}
-	else if (document.getElementById("radZonesChoisies").getAttribute("selected") == "true")
-	{
-		return renvoieZonesATraiterChoisies (document.getElementById("txtZones").value);
-	}
-	else
-	{
-		return new Array;
-	}
 }
 /**
 	Convertir la chaene passee en parametre de l'unicode ALA vers les
@@ -294,7 +272,7 @@ function renvoieZonesATraiter ()
 */
 function convertirChaineAlaVersIso (chaine)
 {
-
+	alert('convertirChaineAlaVersIso');
 	// tests avec substr
 	// tant que chaine.length >0, envoyer toute la chaine , puis toute la chaene -1, puis -2
 	// lorsque le res est diff. de rien (a preciser), inserer le caract dans la nouvelle chaine
@@ -342,6 +320,7 @@ function convertirChaineAlaVersIso (chaine)
 */
 function aConvertir (res)
 {
+	alert('aConvertir');
 	if (res != "" && res.indexOf("$7ca") == -1)
 	{
 		return true;
@@ -354,6 +333,7 @@ function aConvertir (res)
 */
 function convertirChaine (res)
 {
+	alert('convertirChaine');
 	if ((pos = res.indexOf ("$7ba")) != -1)
 	{
 		return res.substring(0, pos) + convertirChaineAlaVersIso (res.substring(pos),res.length);
@@ -371,15 +351,26 @@ function convertirChaine (res)
 */
 function convertirZone (zone, application)
 {
+	alert('convertirZone');
 	var i = 0;
 	application.activeWindow.title.startOfBuffer (false);
 	do
 	{
+		alert('convertirZoneB0');
+		//TODO debogguer ici cette fonction en cas de passage à winibw4, res plante
 		res = application.activeWindow.title.findTag (zone, i, true, true, false);
+		alert(application.activeWindow.title.findTag(zone, i, true, true, false));
+		alert(res);
+		alert('t');
+		alert(aConvertir(res));
+		alert('k');
 		if (aConvertir (res) == true)
 		{
+			alert('convertirZoneB1');
 			res += "\u0001";// ajout d'un caractere qui sert e identifier la fin de la ligne
+			alert('convertirZoneB2');
 			application.activeWindow.title.deleteLine(1);
+			alert('convertirZoneB3');
 			application.activeWindow.title.insertText (convertirChaine (res) + "\n");
 		}
 		i++;
@@ -387,25 +378,20 @@ function convertirZone (zone, application)
 	while (res != "");
 }
 
-// couche contrele
-//
-//
-
-
-function btnLancer_click ()
-{
-	application = Components.classes["@oclcpica.nl/kitabapplication;1"].getService(Components.interfaces.IApplication);
-	application.activeWindow.command ("mod", false);
-
+//mettre des param pour les valeurs dom
+function __conversionArabe() {
+	alert('conversionArabe');
+	//Plus d'affectation sous winibw4 de l'objet application -> application = Components.classes["@oclcpica.nl/kitabapplication;1"].getService(Components.interfaces.IApplication);
+	application.activeWindow.command("mod", false);
+	//TODO placer les parametres p1, p2 puis relancer la fonction
 	var zones = new Array;
-	zones = renvoieZonesATraiter ();
-
+	zones = renvoieZonesATraiter();
 	try
 	{
 		var i = 0;
 		while (i < zones.length)
 		{
-			convertirZone (zones[i], application);
+			convertirZone(zones[i], application);
 			i++;
 		}
 	}
@@ -413,20 +399,4 @@ function btnLancer_click ()
 	{
 		alert("erreur");
 	}
-}
-function radToutesZones_click()
-{
-document.getElementById("txtZones").disabled = true;
-}
-function radZonesChoisies_click()
-{
-document.getElementById("txtZones").disabled = false;
-}
-function onLoad ()
-{
-	return true;
-}
-function onCancel()
-{
-	return true;
 }

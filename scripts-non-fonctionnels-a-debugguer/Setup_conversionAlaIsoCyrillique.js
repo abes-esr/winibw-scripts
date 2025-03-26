@@ -23,13 +23,13 @@ function open_xul_dialog(theUrl, theFeatures, theArguments)
 		features = "centerscreen,chrome,close,titlebar,resizable,modal,dialog=yes";
 	}
 	
-	//it doesn't matter, if we don't have a parent
+	// it doesn't matter, if we don't have a parent
 	// we just use the active window, whether its null or not
 	ww.openWindow(theParent, theUrl, "", features, theArguments);
 }
 
 
-function conversionAlaIsoArabe()
+function conversionAlaIsoCyrillique()
 {
-	open_xul_dialog("chrome://ibw/content/xul/conversionAlaIsoArabe.xul", null);
+	open_xul_dialog("chrome://ibw/content/xul/conversionAlaIsoCyrillique.xul", null);
 }
