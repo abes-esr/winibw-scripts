@@ -1,0 +1,7 @@
+si ça marche comme en fcv, c un système de curseur, donc par exemple,
+si t'as fait un findTag sur la zone 200, et que tu veux aller sur la zone 100,
+tu dois revenir au début de la notice, parce que la 200 est située après la 100,
+ça c'est le fonctionnement en fcv, et la méthode s'appelle pareil,
+donc pas impossible que la méthode en js ait un comportement similaire,
+donc l'appeler deux fois peut avoir des effets de bord bizarres, à vérifier,
+je suis vraiment pas sur de ce que j'avance pour les scripts winibw (mais en fcv c sur)
