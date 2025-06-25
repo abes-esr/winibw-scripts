@@ -384,9 +384,17 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 		//le test suivant ne se fait que sur le premier ppn lie
 		for (cpt in zones[tag][occurrence])
 		{
-			if (corres[tag] != zones[tag][occurrence][cpt]["008"])
+			
+			//condition spécifique à la zone 606 pour inclusion tf8
+			if (corres[tag] === "Td") {
+				if (zones[tag][occurrence][cpt]["008"] !== "Td" && zones[tag][occurrence][cpt]["008"] !== "Tf") {
+					Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][cpt]["ppn"] + " Tete de vedette " + zones[tag][occurrence][cpt]["008"] + " incompatible avec l'etiquette de la zone\n";
+					return false;
+				}
+			}
+			else if (corres[tag] != zones[tag][occurrence][cpt]["008"])
 			{
-				Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][cpt]["ppn"] + " T?te de vedette " + zones[tag][occurrence][cpt]["008"] + " incompatible avec l'?tiquette de la zone\n";
+				Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][cpt]["ppn"] + " Tete de vedette " + zones[tag][occurrence][cpt]["008"] + " incompatible avec l'etiquette de la zone\n";
 				return false;
 			}
 			break;
