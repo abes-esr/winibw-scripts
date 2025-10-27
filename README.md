@@ -2,6 +2,7 @@
 
 - Important : winibw ne supporte pas les caractères accentués dans les scripts. **Privilégier systématiquement les caractères unicode dans les scripts**.
 - En cas de rechargement des scripts, penser a recréer et supprimer ses raccourcis crées dans son winibw.
+- Ne pas mettre de caractères accentués dans les fichiers, mais à la place les séquences d'échappement Unicode.
 
 # comment cela fonctionne : dans votre explorateur de fichier windows la ou est installé winibw
 - le fichier : C:\oclcpica\WinIBW30\Profiles\<nom_utilisateur>\winibw.vbs contient les fonctions pré-enregistrées (via play stop sur l'interface de winibw)
