@@ -322,7 +322,7 @@ application.activeWindow.title.insertText(
 "200 1#$a@Titre$eCompl\u00e9ment du Titre$f1re mention de responsabilit\u00e9$gMention de responsabilit\u00e9 de fonction diff\u00e9rente" + "\n" + 
 "205 ##$aEdition" + "\n" + 
 "214 #0$aLieu de publication$bAdresse de l'\u00e9diteur$cNom de l'\u00e9diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" +
-"215 ##$aNombre de volumes (nombre de pages ou de feuilles)$cMention d'illustration$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" + 
+"215 ##$aNombre de volumes (nombre de pages ou de feuillets)$cMention d'illustration$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" + 
 "225  #$a@Titre de la Collection$xISSN$vNum\u00e9ro" + "\n" + 
 "300 ##$aNote g\u00e9n\u00e9rale" + "\n" + 
 "305 ##$aNote sur l'\u00e9dition" + "\n" + 
@@ -690,7 +690,7 @@ application.activeWindow.title.insertText(
 "183 ##$P01$anga" + "\n" +
 "200 1#$a@Titre$eCompl\u00e9ment du titre$fAuteur$gsous la direction de Pr\u00e9nom Nom du directeur de th\u00e8se" + "\n" + 
 "214 #1$dDate de production" + "\n" +
-"215 ##$aNombre de volumes (nombre de pages ou de feuilles)$cMention d'illustration$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" + 
+"215 ##$aNombre de volumes (nombre de pages ou de feuillets)$cMention d'illustration$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" + 
 "300 ##$aTh\u00e8se soutenue en co-tutelle --Th\u00e8se soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" + 
 "310 ##$aTh\u00e8se confidentielle jusqu'en (ann\u00e9e)(s'il y a lieu)" + "\n" + 
 "320 ##$aBibliographie : xxx r\u00e9f\u00e9rences" + "\n" + 
@@ -729,7 +729,7 @@ application.activeWindow.title.insertText(
 "183 ##$P01$anga" + "\n" +
 "200 1#$a@Titre$eCompl\u00e9ment du titre$fAuteur$gsous la direction de Pr\u00e9nom Nom du directeur de th\u00e8se" + "\n" + 
 "214 #2$aLieu de diffusion$bAdresse du diffuseur$cNom diffuseur$dAnn\u00e9e de diffusion" + "\n" +
-"215 ##$aNombre de volumes (nombre de pages ou de feuilles)$cMention d'illustration$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" +
+"215 ##$aNombre de volumes (nombre de pages ou de feuillets)$cMention d'illustration$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" +
 "300 ##$aTh\u00e8se soutenue en co-tutelle --Th\u00e8se soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" + 
 "320 ##$aBibliographie pages xxx-xxx. Index" + "\n" + 
 "328 #0$zReproduction de$bTh\u00e8se d'Etat--Th\u00e8se de doctorat--Th\u00e8se de 3e cycle--Th\u00e8se d'universit\u00e9--Th\u00e8se de docteur-ing\u00e9nieur--Th\u00e8se d'exercice$cDiscipline (libell\u00e9 complet)$eUniversit\u00e9 (voir table des libell\u00e9s du Guide M\u00e9thodologique)$dAnn\u00e9e de soutenance" + "\n" + 
@@ -768,7 +768,7 @@ application.activeWindow.title.insertText(
 "183 ##$P01$anga" + "\n" +
 "200 1#$a@Titre$eCompl\u00e9ment du titre$fAuteur" + "\n" + 
 "214 #0$aLieu de publication$bAdresse de l'\u00e9diteur$cNom de l'\u00e9diteur$dDate de publication [CONSULTER LE GUIDE METHODOLOGIQUE POUR LE BON USAGE DES INDICATEURS ET SOUS-ZONES NECESSAIRES SELON LE TYPE DE MENTION]" + "\n" + 
-"215 ##$aNombre de volumes (nombre de pages ou de feuilles)$cMention d'illustration$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" +
+"215 ##$aNombre de volumes (nombre de pages ou de feuillets)$cMention d'illustration$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" +
 "320 ##$aBibliographie pages xxx-xxx. Index" + "\n" + 
 "328 #0$zTexte remani\u00e9 de$bTh\u00e8se d'Etat--Th\u00e8se de doctorat--Th\u00e8se de 3e cycle--Th\u00e8se d'universit\u00e9--Th\u00e8se de docteur-ing\u00e9nieur--Th\u00e8se d'exercice$cDiscipline (libell\u00e9 complet)$eUniversit\u00e9 (voir table des libell\u00e9s du Guide M\u00e9thodologique)$dAnn\u00e9e de soutenance" + "\n" + 
 "451 ##$t@Lien vers la th\u00e8se originelle sur le m\u00eame support" + "\n" + 
