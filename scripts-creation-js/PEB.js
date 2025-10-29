@@ -1,21 +1,21 @@
-//2014-10-09 : mte : mise à jour de la date
+//2014-10-09 : mte : mise ï¿½ jour de la date
 function PEB_AffBibPre ()
-{// PEB commande Afficher paramètres fournisseur de prêts
+{// PEB commande Afficher paramï¿½tres fournisseur de prï¿½ts
 application.activeWindow.command("aff bib pre", false);
 }
 
 function PEB_AffBibCop ()
-{// PEB commande Afficher paramètres fournisseur de reproductions
+{// PEB commande Afficher paramï¿½tres fournisseur de reproductions
 application.activeWindow.command("aff bib cop", false);
 }
 
 function PEB_AffBibPeb ()
-{// PEB commande Afficher paramètres demandeurs
+{// PEB commande Afficher paramï¿½tres demandeurs
 application.activeWindow.command("aff bib peb", false);
 }
 
 function PEB_AffAdrBib ()
-{// PEB commande Afficher adresse bibliothèque
+{// PEB commande Afficher adresse bibliothï¿½que
 application.activeWindow.commandLine("aff adr bib", false);
 }
 
@@ -30,7 +30,7 @@ application.activeWindow.command("aff ob", false);
 }
 
 function PEB_StoDemande ()
-{// PEB commande Annuler la dernière demande envoy?e
+{// PEB commande Annuler la derniï¿½re demande envoyee
 application.activeWindow.command("sto a*", false);
 }
 
@@ -40,12 +40,12 @@ application.activeWindow.command("sel enr dep auj", false);
 }
 
 function PEB_SelEnrAtt ()
-{// PEB commande Selectionner les demandes preliminaires re?ues
+{// PEB commande Selectionner les demandes preliminaires recues
 application.activeWindow.command("sel enr att", false);
 }
 
 function PEB_AffDemande ()
-{// PEB commande Afficher la dernière demande traitee
+{// PEB commande Afficher la derniï¿½re demande traitee
 application.activeWindow.command("aff a*", false);
 }
 
@@ -55,7 +55,7 @@ application.activeWindow.command("imp a*", false);
 }
 
 function PEB_impEtaFor ()
-{// PEB commande imprimer pour passer à l'etat lu
+{// PEB commande imprimer pour passer ï¿½ l'etat lu
 application.activeWindow.commandLine = "imp ETA 1- FOR";
 }
 
@@ -85,7 +85,7 @@ application.activeWindow.command("sel res", false);
 }
 
 function PEB_stoEta ()
-{// PEB commande passer à l'etat final les reponses negatives
+{// PEB commande passer ï¿½ l'etat final les reponses negatives
 application.activeWindow.commandLine = "sto eta 1-";
 }
 

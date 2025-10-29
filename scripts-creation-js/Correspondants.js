@@ -1,12 +1,12 @@
-// charge l'objet d'accès à winIbw
+// charge l'objet d'accï¿½s ï¿½ winIbw
 //var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 //          .getService(Components.interfaces.IApplication);
 // renvoie un objet 'fichier en sortie'
 // modif mte le 2012/06/08 le message et espacement entre blocs
 // ligne 116, modif IAN pour trouver et exporter ppn zone 003 et pas 001, remis sur serveur le 20120723
-// 2014-10-09 verifie MTE pour mettre ? jour la date du fichier + coded data off
+// 2014-10-09 verifie MTE pour mettre a jour la date du fichier + coded data off
 // 2015-03-19 verifie IAN pour mettre enlever l'espace en trop entre certaines adresses mails (ligne 194 espace en trop entre les "" en bout de ligne
-// 2015-11-16 SRY : ajout dialogbox pour choix s?parateur entre le adresses mails et r?solution du probl?me d'adresse undefined
+// 2015-11-16 SRY : ajout dialogbox pour choix separateur entre le adresses mails et resolution du probleme d'adresse undefined
 
 const fabriqueFichier =
 {
@@ -62,7 +62,7 @@ var sepreturn = true;
 
 var ppnv = "";
 	var resultat = fileChooser.show();
-	// 0 correspond ? cliquer sur 'ok'
+	// 0 correspond a cliquer sur 'ok'
 	if (resultat == 2) resultat = 0;
 	if (resultat == 0)
 	{
@@ -91,11 +91,11 @@ var ppnv = "";
 // choix du separateur entre les adresses email
  do {
 	var sepinput = {value: ";"};
-	sepreturn = prompts.prompt(null, "Correspondants", "Choix du s?parateur entre les adresses mails : ';' ou ','", sepinput,"", check);
+	sepreturn = prompts.prompt(null, "Correspondants", "Choix du s\u00e9parateur entre les adresses mails : ';' ou ','", sepinput,"", check);
 }
 while (sepreturn == true && sepinput.value != ";" && sepinput.value != ",")
 if (sepreturn == false) {
-	prompts.alert(null,"fichier sortie : " , "aucune action n'est faite, s?parateur entre les adresses mails non saisi");
+	prompts.alert(null,"fichier sortie : " , "aucune action n'est faite, s\u00e9parateur entre les adresses mails non saisi");
 	return;
 }
 
@@ -103,7 +103,7 @@ if (sepreturn == false) {
 //si lot
 if (affichage == "K") ppnv = "";
 if (ppnv != "") NbRes = 1;
-if (NbRes>1) result = prompts.prompt(null, "Correspondants", "Attention vous êtes sur un lot de notices, voulez vous le parcourir entièrement ? (oui/non)", input,"", check);
+if (NbRes>1) result = prompts.prompt(null, "Correspondants", "Attention vous ï¿½tes sur un lot de notices, voulez vous le parcourir entiï¿½rement ? (oui/non)", input,"", check);
 if (input.value == "non") {
     if (ppnv == "") NbRes = 0;
 	if (ppnv == "") prompts.alert(null,"fichier sortie : " , "aucune action n'est faite");
@@ -175,7 +175,7 @@ for (courrant=deb; courrant<=NbRes; courrant++) {
 		//msg = application.activeWindow.simulateIBWKey("PF5");
 		//prompts.alert(null,"ERREUR : " , msg);
 		application.activeWindow.title.startOfBuffer (false);
-		// SRY le 16/11/2015 passage de 400 ? 500 pour prendre en compte les ILN > 400 (probl?me d'adresse undefined)
+		// SRY le 16/11/2015 passage de 400 a 500 pour prendre en compte les ILN > 400 (probleme d'adresse undefined)
 		for (i=0; i<500;i++) {
 		   tabadresse[i] = "";
 		   }
@@ -190,12 +190,12 @@ for (courrant=deb; courrant<=NbRes; courrant++) {
 
 			if (chp == "") i=10501;
 		}
-		chaine = "Liste des correspondants catalogage des " + cpt + " bibliothèque(s) localis\u00e9e(s) sous la notice ppn " + PPN +",\r\n";
+		chaine = "Liste des correspondants catalogage des " + cpt + " bibliothï¿½que(s) localis\u00e9e(s) sous la notice ppn " + PPN +",\r\n";
 		fichierSortie.write(chaine, chaine.length);
 		var mois = 0;
 		mois = jour.getMonth();
 		mois = mois + 1;
-		chaine = "?tablie le " + jour.getDate() + "/" + mois + "/" + jour.getFullYear() + "\r\n\r\n";
+		chaine = "\u00e9tablie le " + jour.getDate() + "/" + mois + "/" + jour.getFullYear() + "\r\n\r\n";
 		fichierSortie.write(chaine, chaine.length);
 		tabtitre = titre.split("$");
 		tabtitre[1] = tabtitre[1].substr(1,tabtitre[1].length);
@@ -206,7 +206,7 @@ for (courrant=deb; courrant<=NbRes; courrant++) {
 		if (out != "") chaine = "[WinIBW] ppn " + PPN + " : " + tabtitre[1] + " : " + out + "\r\n\r\n\r\n";
 		if (out == "") chaine = "[WinIBW] ppn " + PPN + " : " + tabtitre[1] +  "\r\n\r\n\r\n";
 		fichierSortie.write(chaine, chaine.length);
-		chaine = "\r\n***** Attention *********, il faut copier les adresses bloc par bloc dans la messagerie (un bloc=1000 caractères maximum), le copier-coller de l'ensemble pose problème avec certains logiciels de messagerie ********\r\n\r\n\r\n\r\n";
+		chaine = "\r\n***** Attention *********, il faut copier les adresses bloc par bloc dans la messagerie (un bloc=1000 caractï¿½res maximum), le copier-coller de l'ensemble pose problï¿½me avec certains logiciels de messagerie ********\r\n\r\n\r\n\r\n";
 		fichierSortie.write(chaine, chaine.length);
 		chaine = "";
 		reste = 0;

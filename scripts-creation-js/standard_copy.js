@@ -1,6 +1,6 @@
  /********************************************************************************************
   * This function copies a record found in Base d'Appui to the Sudoc by using the standard
-  * script function 'picaCopyRecord'
+  * script function 'picaCopyRecord' 
   * La fonction 'picaCopyRecord' a ?t? am?lior?e par PDZ (integration de ChoixCopie).
   * R?vis? et test? par MTE le 2012-06-25
   * Correction par Patrick Desmiez le 2012-09-10 : ajout des zones 010 et 320 vides.
@@ -42,28 +42,13 @@ var flags = prompts.BUTTON_POS_0 * prompts.BUTTON_TITLE_IS_STRING  +
 			prompts.BUTTON_POS_2 * prompts.BUTTON_TITLE_IS_STRING;
 // This value of flags will create 3 buttons. The first will be "Save", the
 // second will be the value of aButtonTitle1, and the third will be "Cancel"
-var Testaut = application.activeWindow.getVariable("P3VMC"); // recup?re l'info de la notice
+var Testaut = application.activeWindow.getVariable("P3VMC"); // recupere l'info de la notice
 var button = prompts.confirmEx(null, "Choix Copie :" + Testaut, "Que voulez-vous faire ?",
-                               flags, "D?crire le m?me document (la m?me autorit?) que la notice ? copier", "", "D?crire un autre document (une autre autorit?) que la notice ? copier", null, check);
+                               flags, "D\u00e9crire le m\u00eame document (la m\u00eame autorit\u00e9) que la notice \u00e0 copier", "", "D\u00e9crire un autre document (une autre autorit\u00e9) que la notice \u00e0 copier", null, check);
 
-// The checkbox will be hidden, and button will contain the index of the button pressed,
-// 0, 1, or 2.
+NbRes = application.activeWindow.getVariable("P3GPP"); // recupere le ppn
+var TestNotice = application.activeWindow.getVariable("P3CLIP"); // recupere l'info de la notice
 
-//var items = ["D?crire le m?me document (la m?me autorit?) que la notice ? copier ", "D?crire un autre document (une autre autorit?) que la notice ? copier"]; // liste d'?l?ments
-
-//var selected = {};
-
-//var result = prompts.select(null, "                             Choix Copie                                     ", "Que voulez vous faire?", items.length, items, selected);
-//if (result == false) selected.value = 3;
-// result vaut true si le bouton OK est actionn?, false si c'est le bouton Cancel.
-// selected contient l'index de l'?l?ment s?lectionn?. Acc?dez ? cet ?l?ment avec selected items[selected.value].
-
-//var result = prompts.prompt(null, "Choix de la copie", "0) sortir\r\n1) D?crire le meme document (la m?me autorit?) que la notice ? copier.\r\n 2) D?crire un autre document (une autre autorit?) que la notice a copier", input,"", check);
-NbRes = application.activeWindow.getVariable("P3GPP"); // recup?re le ppn
-var TestNotice = application.activeWindow.getVariable("P3CLIP"); // recup?re l'info de la notice
-
-//prompts.alert(null,"indicateur notice " , Testaut);
-//application.messageBox("indicateur notice ", Testaut, "");
 if (Testaut.substr(0,1) == "T") {Autorite = true ;} else {Autorite = false ;}
 if (TestNotice == "") return;
 
@@ -81,11 +66,8 @@ if (TestNotice == "") return;
 		suptag("Nom");
 		suptag("E");
 		suptag("L");
-		//JVK la suppression des deux lignes ci dessous permettent d'eviter la suppression de la 008
-		//ZoneATraiter = application.activeWindow.title.findTag("003", 0, false, true, true);
-		//if (ZoneATraiter.indexOf("sudoc",0) != 0) suptag("003");
 
-		//JVK Je regarde si la notice est une notice d'autorite, si c'est pas le cas je supprime la 003
+		//Je regarde si la notice est une notice d'autorite, si c'est pas le cas je supprime la 003
 		ZoneATraiter = application.activeWindow.title.findTag("008", 0, false, true, true);
 		if (ZoneATraiter.substr(0,3) != "$aT") {
 			suptag("003");
@@ -95,22 +77,15 @@ if (TestNotice == "") return;
 		remplacerValeurZone700("7");
 	}
 	if (button == "2") {
-/*	application.activeWindow.command("mod", false);
-	ZoneATraiter = application.activeWindow.title.findTag("008", 0, false, true, true);
-	if (ZoneATraiter.substr(0,3) == "$aT") {Autorite = true ;} else {Autorite = false ;}
-	application.messageBox("autorit?", Autorite, "")
-	application.activeWindow.simulateIBWKey("FE", false);*/
+
 		PatrickCopyNotice();
 		application.activeWindow.codedData = false;
 		ZoneATraiter = application.activeWindow.title.findTag("008", 0, false, true, true);
-	//if (ZoneATraiter.substr(0,3) == "$aT") Autorite = true ;
-	//if (ZoneATraiter.substr(0,3) != "$aT") Autorite = false ;
-		//application.messageBox("autorit?", Autorite, "");
+
 		application.activeWindow.title.startOfBuffer (false);
 
 		if (Autorite) {
-		    suptag("Cr?");
-			// ajour SRY 20191014 (1 ligne)
+		  suptag("Cr?");
 			suptag("Nom");
 			suptag("00A");
 			suptag("003");
@@ -141,9 +116,9 @@ if (TestNotice == "") return;
 			suptag("810");
 			application.activeWindow.title.endOfBuffer(false);
 			application.activeWindow.title.insertText("810 ##$a\n");
-			//application.messageBox("autorit?", Autorite, "");
+			//application.messageBox("autorite", Autorite, "");
 		} else {
-			//suppression des zones propres ? la notice source non copiable dans la notice destination
+			//suppression des zones propres a la notice source non copiable dans la notice destination
 			suptag("Cr?");
 			suptag("00A");
 			suptag("001");
@@ -189,7 +164,7 @@ if (TestNotice == "") return;
 
 
 			suptag("205");
-		//	application.messageBox("autorit?", Autorite, "");
+		//	application.messageBox("autorite", Autorite, "");
 			application.activeWindow.title.startOfBuffer (false);
 			res = application.activeWindow.title.findTag("210", 0, true, true, false);
 			if (res != "") {
@@ -204,15 +179,10 @@ if (TestNotice == "") return;
 				suptag("210");
 				out = out + "$d\n"; //ajout de $d vide
 				application.activeWindow.title.endOfBuffer(false);
-				//application.messageBox("autorit?",Autorite, "")
+				//application.messageBox("autorite",Autorite, "")
 				application.activeWindow.title.insertText(out);
-			//	application.messageBox("autorit?", Autorite, "");
+			//	application.messageBox("autorite", Autorite, "");
 			}
-
-
-
-
-
 		}
 	}
 
@@ -220,7 +190,7 @@ if (TestNotice == "") return;
 
 function suptag(tag)
 {
-//supression de la ligne tag tronqu? ou non
+//supression de la ligne tag tronque ou non
 var res="x";
 while (res != "") {
 	application.activeWindow.title.startOfBuffer (false);
@@ -235,8 +205,8 @@ function remplacerValeurZone700(tag) {
 	var i=0;
 	while (res != "") {
 		res = application.activeWindow.title.findTag(tag, i, true, true, false);
-		//on recupère le contenu de la zone sans le libelle de la $4 :
-		//l'index de fin est situe à la position de la $4 + 2 caractères de la sous zone + 3 caractères du code de fonction
+		//on recupï¿½re le contenu de la zone sans le libelle de la $4 :
+		//l'index de fin est situe ï¿½ la position de la $4 + 2 caractï¿½res de la sous zone + 3 caractï¿½res du code de fonction
 		var sousZones = res.split("$4");
 		var zone = res.substring(0, res.indexOf("$4"));
 		//pour chaque $4
@@ -255,13 +225,13 @@ function remplacerValeurZone700(tag) {
 
 
 // 2017-03-28 : SRY/OCLC : Modification pour correction
-// 					probl?me d?rivation de notices.
+// 					probleme derivation de notices.
 
 function PatrickCopyNotice() {
 	var bCodedData = application.activeWindow.codedData;
 	application.activeWindow.codedData = false;
 	application.activeWindow.noviceMode = false;
-	//application.messageBox("autorit?", Autorite, "");
+	//application.messageBox("autorite", Autorite, "");
 	var screen = application.activeWindow.getVariable("scr");
 	var prefix = "";
 	// if we are displaying a remote record, use the remote command for displaying it.
@@ -277,11 +247,11 @@ function PatrickCopyNotice() {
 
 
 	application.activeWindow.materialCode = forceDocType;
-	// cr?e une notice vide (cre)
+	// cree une notice vide (cre)
 	//if (Autorite == true) application.activeWindow.command("cre e", false);
-//	application.messageBox("autorit?", Autorite, "");
+//	application.messageBox("autorite", Autorite, "");
 	application.activeWindow.command("cre", false);
-//	application.messageBox("autorit?", Autorite, "")
+//	application.messageBox("autorite", Autorite, "")
 	if ((application.activeWindow.status == "OK") && (application.activeWindow.title != null)) {
 		application.activeWindow.pasteTitle();
 		if (bCodedData) {
