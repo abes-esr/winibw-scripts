@@ -1,11 +1,11 @@
-// charge l'objet d'acc�s � winIbw
+// charge l'objet d'accès a winIbw
 
-//d�claration d'une variable contenant le r�sum� des messages
+//declaration d'une variable contenant le resume des messages
 var Gmessage = "";
 var NbRes = "";
 var fois = 1;
 
-//d�claration d'une variable contenant les occurrences de zones
+//declaration d'une variable contenant les occurrences de zones
 //var zones = [];
 var zones = new Array();
 function onLoad()
@@ -62,7 +62,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 		//memorisation du ppn pour retour ulterieur
 		//var ppnInit = application.activeWindow.title.findTag("001", 0, false, false, false);
 
-		//on lance une premi�re boucle pour recuperer les zones 60X de la notice
+		//on lance une première boucle pour recuperer les zones 60X de la notice
 		var j = 0;
 		var i = 0;
 		application.activeWindow.title.startOfBuffer(false);
@@ -89,7 +89,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	}
 	else
 	{
-		//on ne recup�re que la zone courante
+		//on ne recupère que la zone courante
 		application.activeWindow.title.startOfField(true);
 		ZoneATraiter = application.activeWindow.title.currentField;
 		tagCourant = application.activeWindow.title.tag;
@@ -238,9 +238,9 @@ newCopyRecord();
 
 //pour toutes les fonctions suivantes, les messages d'erreur sont generes directement dans le code de la fonction
 
-//fonction effectuant le traitement n�1 :
-//v?rifier que la zones 60X contenant $2rameau ou $2fmesh est int�gralement li�e ? des notices d'autorit�
-//la fonction retourne true si aucun probl�me n'est d�tect�, false sinon pour indiquer qu'on n'effectue pas les autres traitements
+//fonction effectuant le traitement n°1 :
+//verifier que la zones 60X contenant $2rameau ou $2fmesh est integralement liee a des notices d'autorite
+//la fonction retourne true si aucun problème n'est detecte, false sinon pour indiquer qu'on n'effectue pas les autres traitements
 function lienNoticesAutorite(zone, tag, occurrence)
 {
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
@@ -254,7 +254,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	{
 		//04-04-11 ORX : Suppression du message en sortie pour les zones non verifiees car trop gourmand en affichage
 		//la zone ne contient ni $rameau ni $fmesh, on alimente le tableau d'erreur
-		//Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " n'a pas ?t? v?rifi?e\n";
+		//Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " n'a pas ete verifiee\n";
 		//on retourne true pour continuer l'execution des traitements 2, 3, 4
 		return true;
 	}
@@ -308,7 +308,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	return true;
 }
 
-//fonction effectuant le traitement n�2 :
+//fonction effectuant le traitement n°2 :
 //verifier que les autorites utilisees dans une zone 60X donnee ne sont pas incompatibles avec le $2 de la zone
 function autoriteIncompatible(zone, tag, occurrence)
 {
@@ -347,7 +347,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	return true;
 }
 
-//fonction effectuant le traitement n�3 :
+//fonction effectuant le traitement n°3 :
 //verifier que l'etiquette de la zone est coherente avec les autorites liees presentes dans la zone
 function etiquetteCoherente(zone, tag, occurrence)
 {
@@ -372,7 +372,7 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 		//si le tag de la zone est different de 606 => erreur
 		if (tag != "606")
 		{
-			Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : \u00e9tiquette " + tag + " incompatible avec une indexation FmeSH\n";
+			Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : etiquette " + tag + " incompatible avec une indexation FmeSH\n";
 		}
 		//quel que soit le resultat de ce test, l'examen des zones contenant $2fmesh est termine
 		return false;
@@ -386,26 +386,25 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 		{
 			if (corres[tag] != zones[tag][occurrence][cpt]["008"])
 			{
-				Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][cpt]["ppn"] + " T\u00eate de vedette " + zones[tag][occurrence][cpt]["008"] + " incompatible avec l'\u00e9tiquette de la zone\n";
-
-			//condition sp�cifique � la zone 606 pour inclusion tf8
-			if (corres[tag] === "Td") {
-				if (zones[tag][occurrence][cpt]["008"] !== "Td" && zones[tag][occurrence][cpt]["008"] !== "Tf") {
-					Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][cpt]["ppn"] + " Tete de vedette " + zones[tag][occurrence][cpt]["008"] + " incompatible avec l'etiquette de la zone\n";
-					return false;
+				Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][cpt]["ppn"] + " Tete de vedette " + zones[tag][occurrence][cpt]["008"] + " incompatible avec l'etiquette de la zone\n";
+				//zone 606 inclusion tf8
+				if (corres[tag] === "Td") {
+					if (zones[tag][occurrence][cpt]["008"] !== "Td" && zones[tag][occurrence][cpt]["008"] !== "Tf") {
+						Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][cpt]["ppn"] + " Tete de vedette " + zones[tag][occurrence][cpt]["008"] + " incompatible avec l'etiquette de la zone\n";
+						return false;
+					}
 				}
-			}
-			else if (corres[tag] != zones[tag][occurrence][cpt]["008"])
+				else if (corres[tag] != zones[tag][occurrence][cpt]["008"])
 			{
 				Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][cpt]["ppn"] + " Tete de vedette " + zones[tag][occurrence][cpt]["008"] + " incompatible avec l'etiquette de la zone\n";
 				return false;
 			}
 			break;
+			}
 		}
+		return true;
 	}
-	return true;
-}
-//fonction effectuant le traitement n�4 :
+//fonction effectuant le traitement n°4 :
 //verifier lorsque la zone 60X contient $2 rameau, que l'ordre et la presence des notices d'autorite
 //dans la zone sont compatibles avec des informations codees presentes dans chacune des notices d'autorite (zone 106 $a $b et $c de la notice d'autorite liee)
 function ordreAutorites(zone, tag, occurrence)
@@ -419,37 +418,37 @@ var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
 	//ce test ne concerne que les zones contenant $2rameau
 	if (zone.indexOf("$2rameau") != -1)
 	{
-		//premier examen de la t�te de vedette : premier ppn li�
-		//r�cup�ration de la t�te de vedette
+		//premier examen de la tête de vedette : premier ppn lie
+		//recuperation de la tête de vedette
 
-		//verification que ce ppn peut �tre utilise comme vedette mati�re
+		//verification que ce ppn peut être utilise comme vedette matière
 		if ((zones[tag][occurrence][0]["106"]["a"] == "#") || (zones[tag][occurrence][0]["106"]["a"] == "1"))
 		{
-			Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][0]["ppn"] + " emploi en vedette mati?re interdit\n";
+			Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][0]["ppn"] + " emploi en vedette mati\u00e8re interdit\n";
 		}
 
-		//v�rification que ce ppn peut �tre utilis� en t�te de vedette
+		//verification que ce ppn peut être utilise en tête de vedette
 		if ((zones[tag][occurrence][0]["106"]["b"] == "#") || (zones[tag][occurrence][0]["106"]["b"] == "2"))
 		{
-			Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][0]["ppn"] + " emploi en t?te de vedette erron?\n";
+			Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][0]["ppn"] + " emploi en t\u00eate de vedette erron\u00e9\n";
 		}
 
 		//test sur les ppn suivants de la zone s'ils existent
 		for (var i = 1 ; i < zones[tag][occurrence].length ; i++)
 		{
-			//v�rification que ce ppn peut �tre utilis� comme vedette mati�re
+			//verification que ce ppn peut être utilise comme vedette matière
 			if ((zones[tag][occurrence][i]["106"]["a"] == "#") || (zones[tag][occurrence][i]["106"]["a"] == "1"))
 			{
 				Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][i]["ppn"] + " emploi en vedette mati\u00e8re interdit\n";
 			}
 
-			//verification que ce ppn peut �tre utilise comme subdivision
+			//verification que ce ppn peut être utilise comme subdivision
 			if ((zones[tag][occurrence][i]["106"]["b"]	== "#") || (zones[tag][occurrence][i]["106"]["b"] == "1"))
 			{
 				Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][i]["ppn"] + " emploi en subdivision erron\u00e9\n";
 			}
 
-			//v�rification que ce ppn peut �tre utilis� en subdivision g�ographique � cet endroit
+			//verification que ce ppn peut être utilise en subdivision geographique a cet endroit
 			if (i < (zones[tag][occurrence].length))
 			{
 				if ( (zones[tag][occurrence][i]["008"] == "Tg")
