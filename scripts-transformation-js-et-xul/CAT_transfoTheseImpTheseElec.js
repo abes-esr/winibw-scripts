@@ -1,53 +1,52 @@
-// charge l'objet d'acc\u00e8s à winIbw
+// charge l'objet d'acces a winIbw
 // MTE 2012-02-07 ordre dans 856
-// 2014-10-09 : mte : v\u00e9rif pour 181/182 : on enl\u00e8ve 200 $b et on ajoute 181 et 182
+// 2014-10-09 : mte : verif pour 181/182 : on enleve 200 $b et on ajoute 181 et 182
 // 2014-12-01 : mte : correction fonction recupererPpn : on utilise la variable p3, pas la zone
 // 2015-12-07 : SRY : prise en compte des notices ayant 2 zones 328 et message d'alerte indiquant qu'il faut ajouter la zone 456 dans la notice initiale
 // 2016-11-14 : SRY : remplacer la zone 303 par la zone 307
-// 2017-03-16 : SRY : modification RDA FR 2017 + modification zones 230, 303,304 et position zone 200 
+// 2017-03-16 : SRY : modification RDA FR 2017 + modification zones 230, 303,304 et position zone 200
 // 2017-06-01 : SRY : correction suite mise en place RDA FR 2017
 // 2018-01-04 : SRY : suppression zone 579
 // 2020-01-01 par SRY : remplacer 219 par 214 - supprimer pour toutes les zones 60X la sous zone$302724640X, ajout zone 608,  transformer 702 en 701 et 712 en 711, supprimer  zones 033 et 839, modifier zones 337 et 856 (remplacer format par PDF)
-// 2025-10-21 : LPL : supprimer abr\u00e9viations
-// 
+//
 
 var application = Components.classes["@oclcpica.nl/kitabapplication;1"]
-        .getService(Components.interfaces.IApplication);
-		  
+	.getService(Components.interfaces.IApplication);
+
 function onLoad()
 {
-	// à l'ouverture de la boîte de dialogue
-	
+	// a l'ouverture de la boîte de dialogue
+
 	return true;
-}		  
+}
 function onCancel()
 {
 	// The Cancel button is pressed..
-	//alert("Vous avez cliqu\u00e9 sur Annuler, Rien ne sera modifi\u00e9.");
+	//alert("Vous avez clique sur Annuler, Rien ne sera modifie.");
 	return true;
 }
 
 function picaCopyRecord() {
 	var bCodedData = application.activeWindow.codedData;
-	
+
 	application.activeWindow.codedData = false;
 	application.activeWindow.noviceMode = false;
-	
+
 	application.activeWindow.command("\\too unm", false);
 	application.activeWindow.copyTitle();
 
 	var matCode = application.activeWindow.materialCode;
 	var forceDocType = matCode.substr(0, 2);
 
-	
+
 	application.activeWindow.command("\\sys 1; \\bes 1", false);
-	
-	
+
+
 	application.activeWindow.materialCode = forceDocType;
-	
-	// cr\u00e9e une notice vide (cre)
+
+	// cree une notice vide (cre)
 	application.activeWindow.command("\\inv 1", false);
-	
+
 	if ((application.activeWindow.status == "OK") && (application.activeWindow.title != null)) {
 		application.activeWindow.pasteTitle();
 		if (bCodedData) {
@@ -62,11 +61,11 @@ function modifier181()
 {
 	application.activeWindow.title.startOfBuffer (false);
 	var res = application.activeWindow.title.findTag ("181", 0, true, true, false);
-	
+
 	if (res != "")
 	{
 		//on laisse la 181 telle quelle
-	} 
+	}
 	else
 	{
 		ajouter("181 ##$P01$ctxt");
@@ -78,30 +77,30 @@ function modifierRemplacer(zone,ancientexte,nouveautexte)
 {
 	var tabres = new Array;
 	var i =0;
-	var res = "" ; 
-	
+	var res = "" ;
+
 	do
 	{
-		application.activeWindow.title.startOfBuffer (false);	
+		application.activeWindow.title.startOfBuffer (false);
 		res = application.activeWindow.title.findTag (zone, 0, true, true, false);
 		if (res != "")
-        {
+		{
 			if (zone == ancientexte) {
-				tabres[i] = nouveautexte + res.substring(3) + "\n"; 
+				tabres[i] = nouveautexte + res.substring(3) + "\n";
 			}
-			else {	
-				tabres[i] = res.replace(ancientexte,nouveautexte) + "\n"; 
-			}	
+			else {
+				tabres[i] = res.replace(ancientexte,nouveautexte) + "\n";
+			}
 			application.activeWindow.title.deleteLine(1);
 			i++;
-		}	
+		}
 	}	while (res != "")
-		
+
 	for (i=0;i<tabres.length;i++)
-    {
-        application.activeWindow.title.endOfBuffer (false);
-        application.activeWindow.title.insertText (tabres[i]);
-    }	
+	{
+		application.activeWindow.title.endOfBuffer (false);
+		application.activeWindow.title.insertText (tabres[i]);
+	}
 }
 function modifier105()
 {
@@ -122,38 +121,38 @@ function modifier105()
 				res = res.replace("$b7","$bv");
 			}
 		}
-		application.activeWindow.title.insertText (res + "\n");	
+		application.activeWindow.title.insertText (res + "\n");
 	}
 }
 // SRY 20151207 : prise en compte de toutes les zones 328
 function modifier328()
 {
-    var tabres = new Array;
-    var indicateurs = "";
-    var res = "";
-    var i =0;
+	var tabres = new Array;
+	var indicateurs = "";
+	var res = "";
+	var i =0;
 
-    do
-    {
-        application.activeWindow.title.startOfBuffer (false);
-        res = application.activeWindow.title.findTag ("328", 0, true, true, false);
-        if (res != "")
-        {
-            indicateurs = res.substring(4,6);
-            tabres[i] = res.replace("328 " + indicateurs,"328 #0$zReproduction de") + "\n";
-            application.activeWindow.title.deleteLine(1);
-            i++;
-        }
-    } while (res != "")
+	do
+	{
+		application.activeWindow.title.startOfBuffer (false);
+		res = application.activeWindow.title.findTag ("328", 0, true, true, false);
+		if (res != "")
+		{
+			indicateurs = res.substring(4,6);
+			tabres[i] = res.replace("328 " + indicateurs,"328 #0$zReproduction de") + "\n";
+			application.activeWindow.title.deleteLine(1);
+			i++;
+		}
+	} while (res != "")
 
-    for (i=0;i<tabres.length;i++)
-    {
-        application.activeWindow.title.endOfBuffer (false);
-        application.activeWindow.title.insertText (tabres[i]);
-    }
-} 
+	for (i=0;i<tabres.length;i++)
+	{
+		application.activeWindow.title.endOfBuffer (false);
+		application.activeWindow.title.insertText (tabres[i]);
+	}
+}
 function supprimerRemplacer(ancienneZone, nouvelleZone)
-{	
+{
 	application.activeWindow.title.startOfBuffer (false);
 	var res = application.activeWindow.title.findTag (ancienneZone, 0, true, true, false);
 	while (res != "")
@@ -165,7 +164,7 @@ function supprimerRemplacer(ancienneZone, nouvelleZone)
 	application.activeWindow.title.insertText (nouvelleZone + "\n");
 }
 function supprimer(zone)
-{	
+{
 	application.activeWindow.title.startOfBuffer (false);
 	var res = application.activeWindow.title.findTag (zone, 0, true, true, false);
 	while (res != "")
@@ -180,16 +179,37 @@ function ajouter(zone)
 	application.activeWindow.title.insertText (zone + "\n");
 }
 
+function remplacerValeurZone700(tag) {
+	var res="x";
+	application.activeWindow.title.startOfBuffer (false);
+	var i=0;
+	while (res != "") {
+		res = application.activeWindow.title.findTag(tag, i, true, true, false);
+		//on recupere le contenu de la zone sans le libelle de la $4 :
+		//l'index de fin est situe a la position de la $4 + 2 caracteres de la sous zone + 3 caracteres du code de fonction
+		var sousZones = res.split("$4");
+		var zone = res.substring(0, res.indexOf("$4"));
+		//pour chaque $4
+		for (var j=1;j<sousZones.length;j++) {
+			zone += "$4" + sousZones[j].substring(0, 3);
+		}
+		zone += "\n";
+		application.activeWindow.title.deleteLine(1);
+		application.activeWindow.title.insertText(zone);
+		i++;
+	}
+}
+
 // 20170316 : modification RDA FR 2017
 // 20170601 : correction suite mise en place RDA FR 2017
 // 20180104 : SRY : suppression zone 579
-// 20200101 : mise à jour TB 2020
+// 20200101 : mise a jour TB 2020
 function modifierNotice(ancienPpn)
 {
-	
-	
+
+
 	application.activeWindow.title.startOfBuffer (false);
-	
+
 	supprimer("000");
 	supprimer("00A");
 	supprimer("002");
@@ -208,15 +228,10 @@ function modifierNotice(ancienPpn)
 	modifierRemplacer("200","$bTexte imprim\u00e9","");
 	supprimer("210");
 	supprimer("215");
-	//on ajoute la $219 ou bien on la remplace si elle existe d\u00e9jà
+	//on ajoute la $219 ou bien on la remplace si elle existe deja
 	// on remplace la 219 par la 214
 	supprimerRemplacer("214","214 #2$aLieu de diffusion$cNom du diffuseur$dDate de diffusion");
-	ajouter("230 ##$aDonn\u00e9es textuelles");
-	supprimerRemplacer("303","303 ##$aDescription d'apr\u00e8s la consultation, AAAA-MM-JJ");
-	ajouter("304 ##$aTitre provenant de l'\u00e9cran-titre -- Titre provenant des m\u00e9tadonn\u00e9es -- Titre provenant du conteneur -- Titre provenant de la page de titre du document num\u00e9ris\u00e9");
-	ajouter("307 ##$aL'impression du document g\u00e9n\u00e8re XXX pages");
 	modifier328();
-	ajouter("337 ##$aUn logiciel capable de lire un fichier au format PDF");
 	ajouter("455 ##$0" + ancienPpn);
 	supprimer("579");
 	modifierRemplacer("600","$3027253139$2rameau","$2rameau");
@@ -227,7 +242,8 @@ function modifierNotice(ancienPpn)
 	modifierRemplacer("605","$3027253139$2rameau","$2rameau");
 	modifierRemplacer("606","$3027253139$2rameau","$2rameau");
 	modifierRemplacer("607","$3027253139$2rameau","$2rameau");
-	ajouter("608 ##$3027253139$2rameau");
+	supprimerRemplacer("608", "608 ##$3027253139$2rameau");
+	remplacerValeurZone700("7");
 	modifierRemplacer("702","702","701");
 	modifierRemplacer("712","712","711");
 	supprimer("801");
@@ -235,34 +251,34 @@ function modifierNotice(ancienPpn)
 	supprimer("830");
 	supprimer("839");
 	ajouter("856 4#$qPDF$uAdresse URL (si l'acc\u00e8s est r\u00e9serv\u00e9, cr\u00e9er une E856)$zAcc\u00e8s au texte int\u00e9gral");
-	
-	
+
+
 }
 function recupererPpn()
 {
 	application.activeWindow.command("mod", false);
 	//var zone001 = application.activeWindow.title.findTag ("001", 0, true, true, false);
 	//var ppn = zone001.substring(4, zone001.length);
-	ppn = application.activeWindow.getVariable("P3GPP"); // recup\u00e8re le ppn
+	ppn = application.activeWindow.getVariable("P3GPP"); // recupère le ppn
 	application.activeWindow.simulateIBWKey("FE");
 	return ppn;
-	
+
 }
 function transfoTheseImpTheseElec()
 {
 	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-                        .getService(Components.interfaces.nsIPromptService);
+		.getService(Components.interfaces.nsIPromptService);
 	var bCodedData = application.activeWindow.codedData;
 	application.activeWindow.codedData = false;
-	
+
 	var ppn = recupererPpn();
 	picaCopyRecord();
 	modifierNotice(ppn);
-	
+
 	// SRY le 22/01/2016
-	prompts.alert(null,"CAT_transfoTheseImpTheseElec : " , "une fois la notice valid\u00e9e, modifier le ppn " + ppn + " et ajouter la zone 456 ##$0 + le nouveau ppn g\u00e9n\u00e9r\u00e9");
+	prompts.alert(null,"CAT_transfoTheseImpTheseElec : " , "une fois la notice validee, modifier le ppn " + ppn + " et ajouter la zone 456 ##$0 + le nouveau ppn genere");
 	application.activeWindow.title.endOfBuffer(false);
-	application.activeWindow.title.insertText("une fois la notice valid\u00e9e, modifier le ppn " + ppn + " et ajouter la zone 456 ##$0 + le nouveau ppn g\u00e9n\u00e9r\u00e9\n");
+	application.activeWindow.title.insertText("une fois la notice validee, modifier le ppn " + ppn + " et ajouter la zone 456 ##$0 + le nouveau ppn genere\n");
 
 	application.activeWindow.codedData = bCodedData;
 }
