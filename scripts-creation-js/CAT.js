@@ -1,4 +1,4 @@
-//mis \u00e0 jour le 2014-09-04 par MTE : ajout de tous les $b du 200 maintenant qu'ils sont contrôl\u00e9s
+//mis \u00e0 jour le 2014-09-04 par MTE : ajout de tous les $b du 200 maintenant qu'ils sont contrï¿½l\u00e9s
 //mis \u00e0 jour le 2014-10-07 par MTE : remplacement des 200$b par 181 et si possible 182
 //mis \u00e0 jour le 2015-03-19 par IAN : mise \u00e0 jour de la date dans le script CAT_creerExemplaireRetro, pass\u00e9e de 2014 \u00e0 2015
 //mis \u00e0 jour le 2015-04-24 par IAN : mise \u00e0 jour de la date dans le script CAT_creer-ThesesImpEditionCommerciale, mentions subdivision de forme Th\u00e8ses et \u00e9crits acad\u00e9miques ($3 ppn) enlev\u00e9es des zones 606
@@ -403,7 +403,7 @@ application.activeWindow.title.insertText(
 "R300 $aAnn\u00e9e cr\u00e9ation de l'\u00e9tablissement:AAAA" + "\n" + 
 "R305 $aNom pr\u00e9c\u00e9dent de l'\u00e9tablissement" + "\n" + 
 "R310 $aHistorique" + "\n" + 
-"R410 $aNom des Organismes associ\u00e9s$bNature des liens$cN°RCR$3N°PPN de la notice li\u00e9e$eCode CR Sudoc-PS$yN°ILN_XXX " + "\n" + 
+"R410 $aNom des Organismes associ\u00e9s$bNature des liens$cNï¿½RCR$3Nï¿½PPN de la notice li\u00e9e$eCode CR Sudoc-PS$yNï¿½ILN_XXX " + "\n" + 
 "R440 $aNote sur les organismes associ\u00e9s" + "\n" + 
 "R500 $aOuvertures" + "\n" + 
 "R510 $aFermetures" + "\n" + 
@@ -637,38 +637,55 @@ function CAT_creerTheseElectroniqueReproduction ()
 application.activeWindow.codedData = false;
 application.activeWindow.command("cre", false);
 application.activeWindow.title.insertText(
-"008 $aOax3" + "\n" + 
-"101 0#$afre$dfre$deng" + "\n" + 
-"102 ##$aFR" + "\n" + 
-"104 ##$ak$by$cy$dba$e0$ffre" + "\n" + 
-"105 ##$bv$ba$c0$d0$fy$gy" + "\n" + 
-"135 ##$ad$br" + "\n" + 
-"181 ##$P01$ctxt" + "\n" + "182 ##$P01$cc" + "\n" + 
-"183 ##$P01$aceb" + "\n" +
-"200 1#$a@Titre$eCompl\u00e9ment du titre$fAuteur$gsous la direction de Pr\u00e9nom Nom du directeur de th\u00e8se" + "\n" + 
-"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
-"230 ##$aDonn\u00e9es textuelles" + "\n" + 
-"300 ##$aTh\u00e8se soutenue en co-tutelle --Th\u00e8se soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" + 
-"303 ##$anombre de pages g\u00e9n\u00e9r\u00e9 par l'impression du document, lorsque ce document est pagin\u00e9" + "\n" + 
-"304 ##$aTitre provenant de l'\u00e9cran-titre" + "\n" + 
-"320 ##$aBibliographie : xxx r\u00e9f\u00e9rences" + "\n" + 
-"328 #0$zReproduction de$bTh\u00e8se d'Etat--Th\u00e8se de doctorat--Th\u00e8se de 3e cycle--Th\u00e8se d'universit\u00e9--Th\u00e8se de docteur-ing\u00e9nieur--Th\u00e8se d'exercice$cDiscipline (libell\u00e9 complet)$eUniversit\u00e9 (voir table des libell\u00e9s du Guide M\u00e9thodologique)$dAnn\u00e9e de soutenance" + "\n" + 
-"330 ##$aR\u00e9sum\u00e9 français" + "\n" + 
-"330 ##$aR\u00e9sum\u00e9 anglais" + "\n" + 
-"337 ##$aUn logiciel capable de lire un fichier au format (pr\u00e9ciser le format)" + "\n" + 
-"455 ##$t@Lien vers la th\u00e8se originelle" + "\n" + 
-"541 ##$a@Titre traduit en anglais$eCompl\u00e9ment du Titre$zeng" + "\n" + 
-"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
-"606 ##$aAcc\u00e8s sujet - nom commun$2rameau" + "\n" + 
-"606 ##$aACCES SUJET - NOM COMMUN$3040839486$2fmesh" + "\n" + 
-"608 ##$3027253139$2rameau" + "\n" +
-"610 0#$aMots cl\u00e9s libres" + "\n" + 
-"686 ##$a $2TEF" + "\n" + 
-"700 #1$aNom Auteur$bPr\u00e9nom$4070" + "\n" + 
-"701 #1$aNom Directeur de th\u00e8se$bPr\u00e9nom$4727" + "\n" + 
-"711 02$a@Universit\u00e9 de soutenance$4295" + "\n" + 
-"711 02$a@\u00e9tablissement de cotutelle, ou composante, ou organismes partenaires (\u00e0 d\u00e9finir - voir Guide M\u00e9thodologique)$4(code de fonction \u00e0 d\u00e9finir - voir Guide M\u00e9thodologique)" + "\n" + 
-"856 4#$qFormat$uAdresse URL (si l'acc\u00e8s est r\u00e9serv\u00e9, cr\u00e9er une E856)");
+	"008 $aOax3" + "\n" +
+	"029 ##$aFR$bNum\u00e9ro national de th\u00e8se (aaaaCODEnnnn)" + "\n" +
+	"101 0#$afre$dfre$deng" + "\n" +
+	"102 ##$aFR" + "\n" +
+	"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+	"105 ##$bv$ba$c0$d0$fy$gy" + "\n" +
+	"135 ##$ad$br" + "\n" +
+	"181 ##$P01$ctxt" + "\n" +
+	"182 ##$P01$cc" + "\n" +
+	"183 ##$P01$aceb" + "\n" +
+	"200 1#$a@Titre$eCompl\u00e9ment du titre$fAuteur$gsous la direction de Pr\u00e9nom Nom du directeur de th\u00e8se" + "\n" +
+	"214 #2$aLieu de diffusion$bAdresse de diffusion$cNom du diffuseur$dDate de diffusion" + "\n" +
+	"230 ##$aDonn\u00e9es textuelles" + "\n" +
+	"300 ##$aTh\u00e8se soutenue en co-tutelle --Th\u00e8se soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" +
+	"303 ##$anombre de pages g\u00e9n\u00e9r\u00e9 par l'impression du document, lorsque ce document est pagin\u00e9" + "\n" +
+	"304 ##$aTitre provenant de l'\u00e9cran-titre" + "\n" +
+	"314 ##$aEcole(s) Doctorale(s)\u202f: \u2026" + "\n" +
+	"314 ##$aPartenaire(s) de recherche : \u2026 (Laboratoire)\u202f; etc" + "\n" +
+	"314 ##$aAutre(s) contribution(s) : \u2026 (Pr\u00e9sident du jury) ; \u2026 (Rapporteur(s))\u202f; \u2026 (Membre(s) du jury)" + "\n" +
+	"320 ##$aBibliographie : xxx r\u00e9f\u00e9rences" + "\n" +
+	"328 #0$zReproduction de$bTh\u00e8se d'Etat--Th\u00e8se de doctorat--Th\u00e8se de 3e cycle--Th\u00e8se d'universit\u00e9--Th\u00e8se de docteur-ing\u00e9nieur--Th\u00e8se d'exercice$cDiscipline (libell\u00e9 complet)$eUniversit\u00e9 (voir table des libell\u00e9s du Guide M\u00e9thodologique)$dAnn\u00e9e de soutenance" + "\n" +
+	"330 ##$aR\u00e9sum\u00e9 fran\u00E7ais" + "\n" +
+	"330 ##$aR\u00e9sum\u00e9 anglais" + "\n" +
+	"337 ##$aUn logiciel capable de lire un fichier au format (pr\u00e9ciser le format)" + "\n" +
+	"371 0##$aTh\u00e8se confidentielle jusqu'en (ann\u00e9e)(s'il y a lieu)" + "\n" +
+	"371 ##$aPublication autoris\u00e9e par le jury (uniquement pour les th\u00e8ses soutenues avant 2006)" + "\n" +
+	"455 ##$t@Lien vers la th\u00e8se originelle" + "\n" +
+	"541 ##$a@Titre traduit en anglais$eCompl\u00e9ment du Titre$zeng" + "\n" +
+	"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+	"606 ##$aAcc\u00e8s sujet - nom commun$2rameau" + "\n" +
+	"606 ##$aACCES SUJET - NOM COMMUN$3040839486$2fmesh" + "\n" +
+	"608 ##$3027253139$2rameau" + "\n" +
+	"610 0#$aMots cl\u00e9s libres" + "\n" +
+	"686 ##$a $2TEF" + "\n" +
+	"700 #1$aNom Auteur$bPr\u00e9nom$4070" + "\n" +
+	"701 #1$aNom Directeur de th\u00e8se$bPr\u00e9nom$4727" + "\n" +
+	"701 #1$aNom Pr\u00e9sident du jury$bPr\u00e9nom$4958" + "\n" +
+	"701 #1$aNom Rapporteur$bPr\u00e9nom$4956" + "\n" +
+	"701 #1$aNom Membre du jury$bPr\u00e9nom$4555" + "\n" +
+	"711 02$a@Etablissement de soutenance$4295" + "\n" +
+	"711 02$a@Etablissement de cotutelle$4995" + "\n" +
+	"711 02$a@\u00e9tablissement de cotutelle, ou composante, ou organismes partenaires (\u00e0 d\u00e9finir - voir Guide M\u00e9thodologique)$4(code de fonction \u00e0 d\u00e9finir - voir Guide M\u00e9thodologique)" + "\n" +
+	"711 0 $a@Equipe de recherche$4984" + "\n" +
+	"711 0 $a@Laboratoire de recherche$4981" + "\n" +
+	"711 0 $a@Entreprise associ\u00e9e$4982" + "\n" +
+	"711 0 $a@Fondation associ\u00e9e$4983" + "\n" +
+	"711 0 $a@Autre partenaire associ\u00e9$4985" + "\n" +
+	"711 0 $a@Ecole doctorale$4996" + "\n" +
+	"856 4#$qFormat$uAdresse URL (si l'acc\u00e8s est r\u00e9serv\u00e9, cr\u00e9er une E856)")
 application.activeWindow.codedData = true;
 }
 
@@ -680,34 +697,48 @@ function CAT_creerTheseImprimeOriginelle ()
 application.activeWindow.codedData = false;
 application.activeWindow.command("cre", false);
 application.activeWindow.title.insertText(
-"008 $aAax3" + "\n" + 
-"029 ##$aFR$bNum\u00e9ro national de th\u00e8se (aaaaCODEnnnn)" + "\n" + 
-"101 0#$afre$dfre$deng" + "\n" + 
-"102 ##$aFR" + "\n" + 
-"104 ##$ak$by$cy$dba$e0$ffre" + "\n" + 
-"105 ##$bm$ba$c0$d0$e1$fy$gy" + "\n" + 
-"181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn" + "\n" + 
-"183 ##$P01$anga" + "\n" +
-"200 1#$a@Titre$eCompl\u00e9ment du titre$fAuteur$gsous la direction de Pr\u00e9nom Nom du directeur de th\u00e8se" + "\n" + 
-"214 #1$dDate de production" + "\n" +
-"215 ##$aNombre de volumes (nombre de pages ou de feuillets)$cMention d'illustration$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" + 
-"300 ##$aTh\u00e8se soutenue en co-tutelle --Th\u00e8se soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" + 
-"310 ##$aTh\u00e8se confidentielle jusqu'en (ann\u00e9e)(s'il y a lieu)" + "\n" + 
-"320 ##$aBibliographie : xxx r\u00e9f\u00e9rences" + "\n" + 
-"328 #0$bTh\u00e8se d'Etat--Th\u00e8se de doctorat--Th\u00e8se de 3e cycle--Th\u00e8se d'universit\u00e9--Th\u00e8se de docteur-ing\u00e9nieur--Th\u00e8se d'exercice$cDiscipline (libell\u00e9 complet)$eUniversit\u00e9 (voir table des libell\u00e9s du Guide M\u00e9thodologique)$dAnn\u00e9e de soutenance" + "\n" + 
-"330 ##$aR\u00e9sum\u00e9 français" + "\n" + 
-"330 ##$aR\u00e9sum\u00e9 anglais" + "\n" + 
-"541 ##$a@Titre traduit en anglais$eCompl\u00e9ment du Titre$zeng" + "\n" + 
-"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
-"606 ##$aAcc\u00e8s sujet - nom commun$2rameau" + "\n" + 
-"606 ##$aACCES SUJET - NOM COMMUN$3040839486$2fmesh" + "\n" + 
-"608 ##$3027253139$2rameau" + "\n" +
-"610 0#$aMots cl\u00e9s libres" + "\n" + 
-"686 ##$a $2TEF" + "\n" + 
-"700 #1$aNom Auteur$bPr\u00e9nom$4070" + "\n" + 
-"701 #1$aNom Directeur de th\u00e8se$bPr\u00e9nom$4727" + "\n" + 
-"711 02$a@Universit\u00e9 de soutenance$4295" + "\n" + 
-"711 02$a@Composante (d\u00e9partement, laboratoire...)$4295");
+	"008 $aAax3" + "\n" +
+	"029 ##$aFR$bNum\u00e9ro national de th\u00e8se (aaaaCODEnnnn)" + "\n" +
+	"101 0#$afre$dfre$deng" + "\n" +
+	"102 ##$aFR" + "\n" +
+	"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+	"105 ##$bm$ba$c0$d0$e1$fy$gy" + "\n" +
+	"181 ##$P01$ctxt" + "\n" +
+	"182 ##$P01$cn" + "\n" +
+	"183 ##$P01$anga" + "\n" +
+	"200 1#$a@Titre$eCompl\u00e9ment du titre$fAuteur$gsous la direction de Pr\u00e9nom Nom du directeur de th\u00e8se" + "\n" +
+	"214 #1$dDate de production" + "\n" +
+	"215 ##$aNombre de volumes (nombre de pages ou de feuillets)$cMention d'illustration$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" +
+	"300 ##$aTh\u00e8se soutenue en co-tutelle --Th\u00e8se soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" +
+	"314 ##$aEcole(s) Doctorale(s)\u202f: \u2026" + "\n" +
+	"314 ##$aPartenaire(s) de recherche : \u2026 (Laboratoire)\u202f; etc" + "\n" +
+	"314 ##$aAutre(s) contribution(s) : \u2026 (Pr\u00e9sident du jury) ; \u2026 (Rapporteur(s))\u202f; \u2026 (Membre(s) du jury)" + "\n" +
+	"320 ##$aBibliographie : xxx r\u00e9f\u00e9rences" + "\n" +
+	"328 #0$bTh\u00e8se d'Etat--Th\u00e8se de doctorat--Th\u00e8se de 3e cycle--Th\u00e8se d'universit\u00e9--Th\u00e8se de docteur-ing\u00e9nieur--Th\u00e8se d'exercice$cDiscipline (libell\u00e9 complet)$eUniversit\u00e9 (voir table des libell\u00e9s du Guide M\u00e9thodologique)$dAnn\u00e9e de soutenance" + "\n" +
+	"330 ##$aR\u00e9sum\u00e9 fran\u00E7ais" + "\n" +
+	"330 ##$aR\u00e9sum\u00e9 anglais" + "\n" +
+	"371 0##$aTh\u00e8se confidentielle jusqu'en (ann\u00e9e)(s'il y a lieu)" + "\n" +
+	"371 ##$aPublication autoris\u00e9e par le jury (uniquement pour les th\u00e8ses soutenues avant 2006)" + "\n" +
+	"541 ##$a@Titre traduit en anglais$eCompl\u00e9ment du Titre$zeng" + "\n" +
+	"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+	"606 ##$aAcc\u00e8s sujet - nom commun$2rameau" + "\n" +
+	"606 ##$aACCES SUJET - NOM COMMUN$3040839486$2fmesh" + "\n" +
+	"608 ##$3027253139$2rameau" + "\n" +
+	"610 0#$aMots cl\u00e9s libres" + "\n" +
+	"686 ##$a $2TEF" + "\n" +
+	"700 #1$aNom Auteur$bPr\u00e9nom$4070" + "\n" +
+	"701 #1$aNom Directeur de th\u00e8se$bPr\u00e9nom$4727" + "\n" +
+	"701 #1$aNom Pr\u00e9sident du jury$bPr\u00e9nom$4958" + "\n" +
+	"701 #1$aNom Rapporteur$bPr\u00e9nom$4956" + "\n" +
+	"701 #1$aNom Membre du jury$bPr\u00e9nom$4555" + "\n" +
+	"711 02$a@Etablissement de soutenance$4295" + "\n" +
+	"711 02$a@Etablissement de cotutelle$4995" + "\n" +
+	"711 0 $a@Equipe de recherche$4984" + "\n" +
+	"711 0 $a@Laboratoire de recherche$4981" + "\n" +
+	"711 0 $a@Entreprise associ\u00e9e$4982" + "\n" +
+	"711 0 $a@Fondation associ\u00e9e$4983" + "\n" +
+	"711 0 $a@Autre partenaire associ\u00e9$4985" + "\n" +
+	"711 0 $a@Ecole doctorale$4996");
 application.activeWindow.codedData = true;
 }
 
@@ -719,34 +750,49 @@ function CAT_creerTheseImprimeReproduction ()
 application.activeWindow.codedData = false;
 application.activeWindow.command("cre", false);
 application.activeWindow.title.insertText(
-"008 $aAax3" + "\n" + 
-"029 ##$aFR$bNum\u00e9ro national de th\u00e8se (aaaaCODEnnnn)" + "\n" + 
-"100 0#$aAnn\u00e9e de soutenance" + "\n" + 
-"102 ##$aFR" + "\n" + 
-"104 ##$ak$by$cy$dba$e0$ffre" + "\n" + 
-"105 ##$bv$ba$c0$d0$e1$fy$gy" + "\n" + 
-"181 ##$P01$ctxt"+ "\n" +"182 ##$P01$cn" + "\n" + 
-"183 ##$P01$anga" + "\n" +
-"200 1#$a@Titre$eCompl\u00e9ment du titre$fAuteur$gsous la direction de Pr\u00e9nom Nom du directeur de th\u00e8se" + "\n" + 
-"214 #2$aLieu de diffusion$bAdresse du diffuseur$cNom diffuseur$dAnn\u00e9e de diffusion" + "\n" +
-"215 ##$aNombre de volumes (nombre de pages ou de feuillets)$cMention d'illustration$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" +
-"300 ##$aTh\u00e8se soutenue en co-tutelle --Th\u00e8se soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" + 
-"320 ##$aBibliographie pages xxx-xxx. Index" + "\n" + 
-"328 #0$zReproduction de$bTh\u00e8se d'Etat--Th\u00e8se de doctorat--Th\u00e8se de 3e cycle--Th\u00e8se d'universit\u00e9--Th\u00e8se de docteur-ing\u00e9nieur--Th\u00e8se d'exercice$cDiscipline (libell\u00e9 complet)$eUniversit\u00e9 (voir table des libell\u00e9s du Guide M\u00e9thodologique)$dAnn\u00e9e de soutenance" + "\n" + 
-"330 ##$aR\u00e9sum\u00e9 français" + "\n" + 
-"330 ##$aR\u00e9sum\u00e9 anglais" + "\n" + 
-"455 ##$t@Lien vers la th\u00e8se originelle" + "\n" + 
-"541 ##$a@Titre traduit en anglais$eCompl\u00e9ment du Titre$zeng" + "\n" + 
-"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
-"606 ##$aAcc\u00e8s sujet - nom commun$2rameau" + "\n" + 
-"606 ##$aAcc\u00e8s sujet - nom commun$3040839486$2fmesh" + "\n" + 
-"608 ##$3027253139$2rameau" + "\n" +
-"610 0#$aMots cl\u00e9s libres" + "\n" + 
-"686 ##$a $2TEF" + "\n" + 
-"700 #1$aNom Auteur$bPr\u00e9nom$4070" + "\n" + 
-"701 #1$aNom Directeur de th\u00e8se$bPr\u00e9nom$4727" + "\n" + 
-"711 02$a@Universit\u00e9 de soutenance$4295" + "\n" + 
-"711 02$a@Composante (d\u00e9partement, laboratoire...)$4295");
+	"008 $aAax3" + "\n" +
+	"029 ##$aFR$bNum\u00e9ro national de th\u00e8se (aaaaCODEnnnn)" + "\n" +
+	"100 0#$aAnn\u00e9e de soutenance" + "\n" +
+	"102 ##$aFR" + "\n" +
+	"104 ##$ak$by$cy$dba$e0$ffre" + "\n" +
+	"105 ##$bv$ba$c0$d0$e1$fy$gy" + "\n" +
+	"181 ##$P01$ctxt" + "\n" +
+	"182 ##$P01$cn" + "\n" +
+	"183 ##$P01$anga" + "\n" +
+	"200 1#$a@Titre$eCompl\u00e9ment du titre$fAuteur$gsous la direction de Pr\u00e9nom Nom du directeur de th\u00e8se" + "\n" +
+	"214 #2$aLieu de diffusion$bAdresse du diffuseur$cNom diffuseur$dAnn\u00e9e de diffusion" + "\n" +
+	"215 ##$aNombre de volumes (nombre de pages ou de feuillets)$cMention d'illustration$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" +
+	"300 ##$aTh\u00e8se soutenue en co-tutelle --Th\u00e8se soutenue sur un ensemble de travaux (s'il y a lieu)" + "\n" +
+	"314 ##$aAutre(s) contribution(s) : ... (Pr\u00e9sident du jury) ; ... (Rapporteur(s))\u202F; \u2026 (Membre(s) du jury)" + "\n" +
+	"314 ##$aEcole(s) Doctorale(s)\u202F: \u2026" + "\n" +
+	"314 ##$aPartenaire(s) de recherche : .... (Laboratoire)\u202F; etc" + "\n" +
+	"320 ##$aBibliographie pages xxx-xxx. Index" + "\n" +
+	"328 #0$zReproduction de$bTh\u00e8se d'Etat--Th\u00e8se de doctorat--Th\u00e8se de 3e cycle--Th\u00e8se d'universit\u00e9--Th\u00e8se de docteur-ing\u00e9nieur--Th\u00e8se d'exercice$cDiscipline (libell\u00e9 complet)$eUniversit\u00e9 (voir table des libell\u00e9s du Guide M\u00e9thodologique)$dAnn\u00e9e de soutenance" + "\n" +
+	"330 ##$aR\u00e9sum\u00e9 anglais" + "\n" +
+	"330 ##$aR\u00e9sum\u00e9 franï¿½ais" + "\n" +
+	"371 ##$aPublication autoris\u00e9e par le jury (uniquement pour les th\u00e8ses soutenues avant 2006)" + "\n" +
+	"371 0##$aTh\u00e8se confidentielle jusqu'en (ann\u00e9e)(s'il y a lieu)" + "\n" +
+	"455 ##$t@Lien vers la th\u00e8se originelle" + "\n" +
+	"541 ##$a@Titre traduit en anglais$eCompl\u00e9ment du Titre$zeng" + "\n" +
+	"600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" +
+	"606 ##$aAcc\u00e8s sujet - nom commun$3040839486$2fmesh" + "\n" +
+	"606 ##$aAcc\u00e8s sujet - nom commun$2rameau" + "\n" +
+	"608 ##$3027253139$2rameau" + "\n" +
+	"610 0#$aMots cl\u00e9s libres" + "\n" +
+	"686 ##$a $2TEF" + "\n" +
+	"700 #1$aNom Auteur$bPr\u00e9nom$4070" + "\n" +
+	"701 #1$aNom Directeur de th\u00e8se$bPr\u00e9nom$4727" + "\n" +
+	"701 #1$aNom Membre du jury$bPr\u00e9nom$4555" + "\n" +
+	"701 #1$aNom Pr\u00e9sident du jury$bPr\u00e9nom$4958" + "\n" +
+	"701 #1$aNom Rapporteur$bPr\u00e9nom$4956" + "\n" +
+	"711 02$a@Ecole doctorale$4996" + "\n" +
+	"711 02$a@Etablissement de cotutelle$4995" + "\n" +
+	"711 02$a@Etablissement de soutenance$4295" + "\n" +
+	"711 0 $a@Autre partenaire associ\u00e9$4985" + "\n" +
+	"711 0 $a@Entreprise associ\u00e9e$4982" + "\n" +
+	"711 0 $a@Equipe de recherche$4984" + "\n" +
+	"711 0 $a@Fondation associ\u00e9e$4983" + "\n" +
+	"711 0 $a@Laboratoire de recherche$4981" + "\n");
 application.activeWindow.codedData = true;
 }
 
@@ -776,6 +822,7 @@ application.activeWindow.title.insertText(
 "600 # $aPersonne$xSubdivision de sujet$zChronologique$2rameau" + "\n" + 
 "606 ##$aAcc\u00e8s sujet - nom commun$2rameau" + "\n" + 
 "606 ##$aAcc\u00e8s sujet - nom commun$2fmesh" + "\n" + 
+"686 ##$a $2TEF" + "\n" +
 "610 0#$aMots cl\u00e9s libres" + "\n" + 
 "700 #1$aNom Auteur$bPr\u00e9nom$4070");
 application.activeWindow.codedData = true;
@@ -801,7 +848,7 @@ application.activeWindow.title.insertText(
 "215 ##$aImportance mat\u00e9rielle$cMention d'illustrations$dDimensions$eMat\u00e9riel d'accompagnement [NE PAS UTILISER D'ABREVIATIONS, SAUF POUR LES SYMBOLES METRIQUES, LES DUREES OU LES TERMES DEJA ABREGES SUR LA PUBLICATION]" + "\n" + 
 "225  #$a@Titre de la Collection$xISSN$vNum\u00e9ro" + "\n" + 
 "300 ##$aNote sur les versions linguistiques (ex: Sous-titres pour les sourds et les malentendants...)" + "\n" + 
-"305 ##$aNote sur l'historique de l'oeuvre (ex: Enregistrement public au th\u00e9âtre...)" + "\n" + 
+"305 ##$aNote sur l'historique de l'oeuvre (ex: Enregistrement public au th\u00e9ï¿½tre...)" + "\n" + 
 "306 ##$aNote sur l'adresse bibliographique (ex: Copyright)" + "\n" + 
 "307 ##$aFormat de l'image" + "\n" + 
 "312 ##$aNote sur les titres associ\u00e9es (ex: D'apr\u00e8s le roman...)" + "\n" + 
