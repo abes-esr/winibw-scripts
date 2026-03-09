@@ -200,12 +200,44 @@ function remplacerValeurZone700(tag) {
 	}
 }
 
+function est608FmeshTheseUniversitaire(zone608)
+{
+	var zone608Minuscule = zone608.toLowerCase();
+
+	if (zone608Minuscule.indexOf("$2fmesh") == -1)
+	{
+		return false;
+	}
+
+	return zone608.indexOf("$3040839486") > -1 ||
+		zone608Minuscule.indexOf("dissertation universitaire") > -1 ||
+		zone608Minuscule.indexOf("dissertations universitaires") > -1;
+}
+function contient608FmeshADissertationOuPpn()
+{
+	application.activeWindow.title.startOfBuffer(false);
+	var i = 0;
+	var res = application.activeWindow.title.findTag("608", i, true, true, false);
+
+	while (res != "")
+	{
+		if (est608FmeshTheseUniversitaire(res))
+		{
+			return true;
+		}
+		i++;
+		res = application.activeWindow.title.findTag("608", i, true, true, false);
+	}
+	return false;
+}
+
 // 20170316 : modification RDA FR 2017
 // 20170601 : correction suite mise en place RDA FR 2017
 // 20180104 : SRY : suppression zone 579
 // 20200101 : mise a jour TB 2020
 function modifierNotice(ancienPpn)
 {
+	var ajouter608Fmesh = contient608FmeshADissertationOuPpn();
 
 
 	application.activeWindow.title.startOfBuffer (false);
@@ -243,6 +275,10 @@ function modifierNotice(ancienPpn)
 	modifierRemplacer("606","$3027253139$2rameau","$2rameau");
 	modifierRemplacer("607","$3027253139$2rameau","$2rameau");
 	supprimerRemplacer("608", "608 ##$3027253139$2rameau");
+	if (ajouter608Fmesh)
+	{
+		ajouter("608 ##$3040839486$2fmesh");
+	}
 	remplacerValeurZone700("7");
 	modifierRemplacer("702","702","701");
 	modifierRemplacer("712","712","711");
@@ -282,3 +318,4 @@ function transfoTheseImpTheseElec()
 
 	application.activeWindow.codedData = bCodedData;
 }
+
