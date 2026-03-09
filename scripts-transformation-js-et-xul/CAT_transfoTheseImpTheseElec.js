@@ -200,6 +200,19 @@ function remplacerValeurZone700(tag) {
 	}
 }
 
+function est608FmeshTheseUniversitaire(zone608)
+{
+	var zone608Minuscule = zone608.toLowerCase();
+
+	if (zone608Minuscule.indexOf("$2fmesh") == -1)
+	{
+		return false;
+	}
+
+	return zone608.indexOf("$3040839486") > -1 ||
+		zone608Minuscule.indexOf("dissertation universitaire") > -1 ||
+		zone608Minuscule.indexOf("dissertations universitaires") > -1;
+}
 function contient608FmeshADissertationOuPpn()
 {
 	application.activeWindow.title.startOfBuffer(false);
@@ -208,8 +221,7 @@ function contient608FmeshADissertationOuPpn()
 
 	while (res != "")
 	{
-		if (res.indexOf("$2fmesh") > -1 &&
-			(res.indexOf("$3040839486") > -1 || res.indexOf("$aDissertation universitaire") > -1))
+		if (est608FmeshTheseUniversitaire(res))
 		{
 			return true;
 		}
