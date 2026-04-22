@@ -381,27 +381,34 @@ function etiquetteCoherente(zone, tag, occurrence)
 	//on teste la valeur du $2 : cas $2rameau
 	if (zone.indexOf("$2rameau") != -1)
 	{
-		//le test suivant ne se fait que sur le premier ppn lie
-		for (cpt in zones[tag][occurrence])
+		// Contrôle ne portant que sur le premier PPN lié de la zone.
+		// On évite donc de parcourir toutes les occurrences.
+		if (zones[tag][occurrence].length > 0)
 		{
+			var cpt = 0;
+
+			// Contrôle unique sur le premier PPN lié
 			if (corres[tag] != zones[tag][occurrence][cpt]["008"])
 			{
-				Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][cpt]["ppn"] + " Tete de vedette " + zones[tag][occurrence][cpt]["008"] + " incompatible avec l'etiquette de la zone\n";
-				//zone 606 inclusion tf8
-				if (corres[tag] === "Td") {
-					if (zones[tag][occurrence][cpt]["008"] !== "Td" && zones[tag][occurrence][cpt]["008"] !== "Tf") {
+				// Cas particulier de la zone 606 :
+				// on accepte Td et Tf comme types compatibles ici.
+				if (corres[tag] === "Td")
+				{
+					if (zones[tag][occurrence][cpt]["008"] !== "Td" &&
+						zones[tag][occurrence][cpt]["008"] !== "Tf")
+					{
 						Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][cpt]["ppn"] + " Tete de vedette " + zones[tag][occurrence][cpt]["008"] + " incompatible avec l'etiquette de la zone\n";
 						return false;
 					}
 				}
-				else if (corres[tag] != zones[tag][occurrence][cpt]["008"])
+				else
 				{
 					Gmessage += "zone " + tag + " occurrence " + occurrenceAff + " : ppn " + zones[tag][occurrence][cpt]["ppn"] + " Tete de vedette " + zones[tag][occurrence][cpt]["008"] + " incompatible avec l'etiquette de la zone\n";
 					return false;
 				}
-				break;
 			}
 		}
+
 		return true;
 	}
 }
